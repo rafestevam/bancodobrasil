@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+		<role id="sysadmin" level="X" userLicenses="operate">
+			<system component.idref="plan.systemjobs"/>
+			<system component.idref="view.administration"/>
+			<system component.idref="view.buddylist"/>
+			<system component.idref="view.monitoring"/>
+			<system component.idref="download"/>
+			<system component.idref="view.object.in.process"/>
+			<system component.idref="view.importexport"/>
+			<system component.idref="view.amlexport"/>
+			<system component.idref="umc.synchronization"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.controlchecker"/>
+	        <object right.idref="rwc--" objectType.id="CLIENT">
+		        <relation right.idref="ar" listAttrType.id="linktypes"/>
+		        <!-- <relation right.idref="ar" listAttrType.id="impacttypes"/> -->
+	        </object>
+	        <object right.idref="rw---" objectType.id="SITE">
+	            <relation right.idref="ar" listAttrType.id="linktypes"/>
+	            <relation right.idref="ar" listAttrType.id="impacttypes"/>
+	            <relation right.idref="ar" listAttrType.id="dashboardConnections"/>
+	        </object>
+			<object right.idref="r--d-" objectType.id="HIERARCHY" />
+			<object right.idref="r----" objectType.id="USER"/>
+	        <object right.idref="rw---" objectType.id="USERGROUP">
+	        	<relation right.idref="ar" listAttrType.id="groupmembers"/>
+	        </object>
+			<object right.idref="rwcdu" objectType.id="NEWSMESSAGE">
+				<relation right.idref="ar" listAttrType.id="CLIENTs" />
+			</object>
+			
+		    <object right.idref="rwcd-" objectType.id="MESSAGETEMPLATES">
+	            <action actionRight.idref="reset"/>
+	        </object>
+	        <object right.idref="r--d-" objectType.id="JOBINFORMATION"/>
+			<object right.idref="rwcdu" objectType.id="DOCUMENTLINKTYPE"/>
+			<object right.idref="rwcdu" objectType.id="SUBSCRIPTION"/>
+	        <object right.idref="r--d-" objectType.id="OFFLINEPROCESSINGENTRY"/>
+	        <object right.idref="rwc--" objectType.id="IMPACTTYPE">
+	            <relation right.idref="ar" listAttrType.id="quotations" />
+	            <relation right.idref="ar" listAttrType.id="frequencies" />
+	        </object>
+	        <object right.idref="rwc--" objectType.id="QUOTATION"/>
+	        <object right.idref="rwc--" objectType.id="FREQUENCY"/>
+	        <object right.idref="rwcdu" objectType.id="DASHBOARDCONNECTION"/>
+	        <object right.idref="r----" objectType.id="DOCUMENT"/>
+	    </role>
+
+		<role id="clientadmin" level="C"  userLicenses="operate">
+			<system component.idref="view.administration"/>
+			<system component.idref="view.buddylist"/>
+			<system component.idref="view.monitoring"/>
+			<system component.idref="view.object.in.process"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="rw---" objectType.id="CLIENT">
+		        <relation right.idref="ar" listAttrType.id="linktypes"/>
+		        <!-- <relation right.idref="ar" listAttrType.id="impacttypes"/> -->
+	        </object>
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="rwcdu" objectType.id="NEWSMESSAGE">
+				<relation right.idref="ar" listAttrType.id="CLIENTs" />
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		    <object right.idref="rwcd-" objectType.id="MESSAGETEMPLATES">
+	            <action actionRight.idref="reset"/>
+	        </object>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+			<object right.idref="rwcdu" objectType.id="DOCUMENTLINKTYPE"/>
+	        <object right.idref="rwcdu" objectType.id="SUBSCRIPTION"/>
+	        <object right.idref="rwc--" objectType.id="IMPACTTYPE">
+	            <relation right.idref="ar" listAttrType.id="quotations" />
+	            <relation right.idref="ar" listAttrType.id="frequencies" />
+	        </object>
+	        <object right.idref="rwc--" objectType.id="QUOTATION"/>
+	        <object right.idref="rwc--" objectType.id="FREQUENCY"/>
+	    </role>
+
+		<role id="riskparamadmin" level="C" userLicenses="operate">
+			<system component.idref="view.administration"/>
+			<system component.idref="view.buddylist"/>
+			<system component.idref="view.monitoring"/>
+			<system component.idref="view.object.in.process"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="rw---" objectType.id="CLIENT">
+		        <relation right.idref="ar" listAttrType.id="linktypes"/>
+		        <relation right.idref="ar" listAttrType.id="impacttypes"/>
+	        </object>
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="rwcdu" objectType.id="NEWSMESSAGE">
+				<relation right.idref="ar" listAttrType.id="CLIENTs" />
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		    <object right.idref="rwcd-" objectType.id="MESSAGETEMPLATES">
+	            <action actionRight.idref="reset"/>
+	        </object>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+			<object right.idref="rwcdu" objectType.id="DOCUMENTLINKTYPE"/>
+	        <object right.idref="rwcdu" objectType.id="SUBSCRIPTION"/>
+	        <object right.idref="rwc--" objectType.id="IMPACTTYPE">
+	            <relation right.idref="ar" listAttrType.id="quotations" />
+	            <relation right.idref="ar" listAttrType.id="frequencies" />
+	        </object>
+	        <object right.idref="rwc--" objectType.id="QUOTATION"/>
+	        <object right.idref="rwc--" objectType.id="FREQUENCY"/>
+		</role>
+
+	    <!-- im: -> make the role always available for user group creation because "im" is included by base -->
+	    <!-- cm: -> ensure visibility of change management entry at explorer tree -->
+	    <role id="hierarchymanager" level="XC"  userLicenses="operate" licensedComponentIds="im cm">
+	        <system component.idref="view.monitoring"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="generate.changereview"/>
+			<system component.idref="check.changereview"/>
+			<system component.idref="view.home.dashboards"/>
+			<object right.idref="rwc-u" objectType.id="HIERARCHY">
+				<relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="auditor"/>
+				<relation right.idref="ar" listAttrType.id="tester"/>
+				<relation right.idref="ar" listAttrType.id="so_owner"/>
+				<relation right.idref="ar" listAttrType.id="children"/>
+				<relation right.idref="ar" listAttrType.id="bb_deptManager"/>
+				<relation right.idref="ar" listAttrType.id="bb_product"/>
+				<relation right.idref="ar" listAttrType.id="bb_financcount"/>
+				<relation right.idref="ar" listAttrType.id="bb_codIOR_contaContabil"/>				
+			</object>
+			<object right.idref="rwcdu" objectType.id="CHANGEREVIEW">
+	            <action actionRight.idref="extend"/>
+			</object>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+	        <object right.idref="r--d-" objectType.id="JOBINFORMATION"/>
+	    </role>
+	    
+		<roleHierarchies>
+			<roleHierarchy role.idref="sysadmin">
+				<assignRole role.idref="sysadmin"               level="X"/>
+				<assignRole role.idref="clientadmin"            level="C"/>
+	            <assignRole role.idref="hierarchymanager"       level="XC"/>
+	            <assignRole role.idref="hierarchyowner"         level="O"/>
+	            <assignRole role.idref="hierarchyauditor"       level="XC"/>
+	            <assignRole role.idref="testauditor"            level="XCO"/>
+	            <assignRole role.idref="testauditorexternal"    level="XC"/>
+	            <assignRole role.idref="testmanager"            level="XCO"/>
+	            <assignRole role.idref="tester"                 level="O"/>
+	            <assignRole role.idref="testreviewer"           level="O"/>
+	            <assignRole role.idref="riskmanager"            level="XCO"/>
+	            <assignRole role.idref="riskowner"              level="O" />
+	            <assignRole role.idref="riskreviewer"           level="O"/>
+	            <assignRole role.idref="riskauditor"            level="XC"/>
+	            <assignRole role.idref="riskparamadmin"         level="C"/>
+	            <assignRole role.idref="controlmanager"         level="XCO"/>
+	            <assignRole role.idref="controlexecutionowner"  level="O"/>
+	            <assignRole role.idref="groupusermanager"       level="XC"/>
+	            <assignRole role.idref="deficiencymanager_l1"   level="XC"/>
+	            <assignRole role.idref="deficiencymanager_l2"   level="XC"/>
+	            <assignRole role.idref="deficiencymanager_l3"   level="XC"/>
+	            <assignRole role.idref="deficiencyauditor_l1"   level="XC"/>
+	            <assignRole role.idref="deficiencyauditor_l2"   level="XC"/>
+	            <assignRole role.idref="deficiencyauditor_l3"   level="XC"/>
+	            <assignRole role.idref="surveymanager"          level="XC"/>
+	            <assignRole role.idref="questionnaireowner"     level="O"/>
+	            <assignRole role.idref="surveyreviewer"         level="O"/>
+	            <assignRole role.idref="surveyauditor"          level="XCO"/>
+	            <assignRole role.idref="signoffmanager"         level="CO"/>
+	            <assignRole role.idref="signoffowner"           level="O"/>
+	            <assignRole role.idref="signoffreviewer"        level="O"/>
+	            <assignRole role.idref="signoffauditor"         level="C"/>
+	            <assignRole role.idref="issuemgmtapproverl1"    level="O"/>
+	            <assignRole role.idref="issuemgmtapproverl2"    level="O"/>
+	            <assignRole role.idref="issueimplapproverl1"    level="O"/>
+	            <assignRole role.idref="issueimplapproverl2"    level="O"/>
+	            <assignRole role.idref="issuetechapproverl1"    level="O"/>
+	            <assignRole role.idref="issuetechapproverl2"    level="O"/>
+	            <assignRole role.idref="issuecreator"    		level="O"/>
+	            <assignRole role.idref="issueowner"    			level="O"/>
+	            <assignRole role.idref="issuereviewer"    		level="O"/>
+	            <assignRole role.idref="issuemanager"           level="XC"/>
+	            <assignRole role.idref="issueauditor"           level="XCO"/>
+	            <assignRole role.idref="issueatbreport"         level="C"/>
+	            <assignRole role.idref="incidentmanager"        level="XC"/>
+	            <assignRole role.idref="incidentowner"          level="O"/>
+	            <assignRole role.idref="incidentreviewer"       level="O"/>
+	            <assignRole role.idref="incidentauditor"        level="XC"/>
+	            <assignRole role.idref="lossmanager"            level="XC"/>
+	            <assignRole role.idref="lossowner"              level="O"/>
+	            <assignRole role.idref="lossreviewer"           level="O"/>
+	            <assignRole role.idref="lossauditor"            level="XC"/>
+	            <assignRole role.idref="auditowner"             level="O"/>
+	            <assignRole role.idref="auditreviewer"          level="O"/>
+	            <assignRole role.idref="auditstepowner"         level="O"/>
+	            <assignRole role.idref="auditauditor"           level="XCO"/>
+	            <assignRole role.idref="auditmanager"           level="XC"/>
+	            <assignRole role.idref="policymanager"          level="XC"/>
+	            <assignRole role.idref="policyowner"            level="O"/>
+	            <assignRole role.idref="policyapprover"         level="O"/>
+	            <assignRole role.idref="policyaddressee"        level="O"/>
+	            <assignRole role.idref="policyauditor"          level="XCO"/>
+	            <assignRole role.idref="subscriptionmanager"    level="C"/>
+	        </roleHierarchy>
+	        <roleHierarchy role.idref="clientadmin">
+	            <assignRole role.idref="clientadmin"            level="C"/>
+	            <assignRole role.idref="hierarchymanager"       level="C"/>
+	            <assignRole role.idref="hierarchyowner"         level="O"/>
+	            <assignRole role.idref="hierarchyauditor"       level="C"/>
+	            <assignRole role.idref="testmanager"            level="CO"/>
+	            <assignRole role.idref="testauditor"            level="CO"/>
+	            <assignRole role.idref="testauditorexternal"    level="C"/>
+	            <assignRole role.idref="tester"                 level="O"/>
+	            <assignRole role.idref="testreviewer"           level="O"/>
+	            <assignRole role.idref="riskmanager"            level="CO"/>
+	            <assignRole role.idref="riskowner"              level="O" />
+	            <assignRole role.idref="riskreviewer"           level="O" />
+	            <assignRole role.idref="riskauditor"            level="C"/>
+	            <assignRole role.idref="riskparamadmin"         level="C"/>
+	            <assignRole role.idref="controlmanager"         level="CO"/>
+	            <assignRole role.idref="controlexecutionowner"  level="O"/>
+	            <assignRole role.idref="groupusermanager"       level="C"/>
+	            <assignRole role.idref="deficiencymanager_l1"   level="C"/>
+	            <assignRole role.idref="deficiencymanager_l2"   level="C"/>
+	            <assignRole role.idref="deficiencymanager_l3"   level="C"/>
+	            <assignRole role.idref="deficiencyauditor_l1"   level="C"/>
+	            <assignRole role.idref="deficiencyauditor_l2"   level="C"/>
+	            <assignRole role.idref="deficiencyauditor_l3"   level="C"/>
+	            <assignRole role.idref="surveymanager"          level="C"/>
+	            <assignRole role.idref="questionnaireowner"     level="O"/>
+	            <assignRole role.idref="surveyreviewer"         level="O"/>
+	            <assignRole role.idref="surveyauditor"          level="CO"/>
+	            <assignRole role.idref="signoffmanager"         level="CO"/>
+	            <assignRole role.idref="signoffowner"           level="O"/>
+	            <assignRole role.idref="signoffreviewer"        level="O"/>
+	            <assignRole role.idref="signoffauditor"         level="C"/>
+	            <assignRole role.idref="issuemgmtapproverl1"    level="O"/>
+	            <assignRole role.idref="issuemgmtapproverl2"    level="O"/>
+	            <assignRole role.idref="issueimplapproverl1"    level="O"/>
+	            <assignRole role.idref="issueimplapproverl2"    level="O"/>
+	            <assignRole role.idref="issuetechapproverl1"    level="O"/>
+	            <assignRole role.idref="issuetechapproverl2"    level="O"/>
+	            <assignRole role.idref="issuecreator"    		level="O"/>
+	            <assignRole role.idref="issueowner"    			level="O"/>
+	            <assignRole role.idref="issuereviewer"    		level="O"/>
+				<assignRole role.idref="issuemanager"           level="C"/>
+				<assignRole role.idref="issueauditor"           level="CO"/>
+				<assignRole role.idref="issueatbreport"         level="C"/>
+				<assignRole role.idref="incidentmanager"        level="C"/>
+				<assignRole role.idref="incidentowner"          level="O"/>
+				<assignRole role.idref="incidentreviewer"       level="O"/>
+				<assignRole role.idref="incidentauditor"        level="C"/>
+				<assignRole role.idref="lossmanager"            level="C"/>
+				<assignRole role.idref="lossowner"              level="O"/>
+				<assignRole role.idref="lossreviewer"           level="O"/>
+				<assignRole role.idref="lossauditor"            level="C"/>
+	            <assignRole role.idref="auditowner"             level="O"/>
+				<assignRole role.idref="auditreviewer"          level="O"/>
+				<assignRole role.idref="auditstepowner"         level="O"/>
+				<assignRole role.idref="auditauditor"           level="CO"/>
+				<assignRole role.idref="auditmanager"           level="C"/>
+	            <assignRole role.idref="policymanager"          level="C"/>
+	            <assignRole role.idref="policyowner"            level="O"/>
+	            <assignRole role.idref="policyapprover"         level="O"/>
+	            <assignRole role.idref="policyaddressee"        level="O"/>
+	            <assignRole role.idref="policyauditor"          level="CO"/>
+	            <assignRole role.idref="subscriptionmanager"    level="C"/>
+			</roleHierarchy>
+			<roleHierarchy role.idref="groupusermanager">
+				<assignRole role.idref="clientadmin"            level="C"/>
+				<assignRole role.idref="hierarchymanager"       level="XC"/>
+	            <assignRole role.idref="hierarchyauditor"       level="XC"/>
+	            <assignRole role.idref="hierarchyowner"         level="O"/>
+	            <assignRole role.idref="testauditor"            level="XCO"/>
+	            <assignRole role.idref="testmanager"            level="XCO"/>
+	            <assignRole role.idref="tester"                 level="O"/>
+	            <assignRole role.idref="testreviewer"           level="O"/>
+	            <assignRole role.idref="riskmanager"            level="XCO"/>
+	            <assignRole role.idref="riskowner"              level="O"/>
+	            <assignRole role.idref="riskreviewer"           level="O"/>
+	            <assignRole role.idref="riskauditor"            level="XC"/>
+	            <assignRole role.idref="riskparamadmin"         level="X"/>
+	            <assignRole role.idref="controlmanager"         level="XCO"/>
+	            <assignRole role.idref="controlexecutionowner"  level="O"/>
+	            <assignRole role.idref="groupusermanager"       level="XC"/>
+				<assignRole role.idref="deficiencymanager_l1"   level="XC"/>
+				<assignRole role.idref="deficiencymanager_l2"   level="XC"/>
+				<assignRole role.idref="deficiencyauditor_l1"   level="XC"/>
+				<assignRole role.idref="deficiencyauditor_l2"   level="XC"/>
+				<assignRole role.idref="deficiencyauditor_l3"   level="XC"/>
+				<assignRole role.idref="surveymanager"          level="XC"/>
+				<assignRole role.idref="questionnaireowner"     level="O"/>
+				<assignRole role.idref="surveyreviewer"         level="O"/>
+	            <assignRole role.idref="surveyauditor"          level="XCO"/>
+				<assignRole role.idref="signoffmanager"         level="CO"/>
+				<assignRole role.idref="signoffowner"           level="O"/>
+				<assignRole role.idref="signoffreviewer"        level="O"/>
+				<assignRole role.idref="incidentmanager"        level="XC"/>
+				<assignRole role.idref="incidentowner"          level="O"/>
+				<assignRole role.idref="incidentreviewer"       level="O"/>
+				<assignRole role.idref="incidentauditor"        level="XC"/>
+				<assignRole role.idref="lossmanager"            level="XC"/>
+				<assignRole role.idref="lossowner"              level="O"/>
+				<assignRole role.idref="lossreviewer"           level="O"/>
+				<assignRole role.idref="lossauditor"            level="XC"/>
+	            <assignRole role.idref="auditowner"             level="O"/>
+				<assignRole role.idref="auditreviewer"          level="O"/>
+				<assignRole role.idref="auditstepowner"         level="O"/>
+				<assignRole role.idref="auditauditor"           level="XCO"/>
+				<assignRole role.idref="auditmanager"           level="XC"/>
+	            <assignRole role.idref="policymanager"          level="XC"/>
+	            <assignRole role.idref="policyowner"            level="O"/>
+	            <assignRole role.idref="policyapprover"         level="O"/>
+	            <assignRole role.idref="policyaddressee"        level="O"/>
+	            <assignRole role.idref="policyauditor"          level="XCO"/>
+	            <assignRole role.idref="subscriptionmanager"    level="C"/>
+			</roleHierarchy>
+		</roleHierarchies>
+	
+	    <licensedComponents>
+	        <licensedComponent id="dm"/>
+	        <licensedComponent id="sm"/>
+	        <licensedComponent id="so"/>
+	        <licensedComponent id="im"/>
+	        <licensedComponent id="rm"/>
+	        <licensedComponent id="tm"/>
+	        <licensedComponent id="il"/>
+	        <licensedComponent id="in"/>
+	        <licensedComponent id="am"/>
+	        <licensedComponent id="pm"/>
+	        <licensedComponent id="ad"/>
+	        <licensedComponent id="cm"/>
+	    </licensedComponents>
+	
+	    <userLicenses>
+	        <userLicense id="contribute"/>
+	        <userLicense id="operate"/>
+	    </userLicenses>
+	
+		<rights>
+	        <objectRights>
+				<right id="r----"/>
+				<right id="rw---"/>
+				<right id="rwc--"/>
+				<right id="rwcd-"/>
+				<right id="rwcdu"/>
+	            <right id="r--d-"/>
+	            <right id="rw-d-"/>
+	            <right id="r--du"/>
+	            <right id="rw-du"/>
+	        </objectRights>
+	
+			<relationRights>
+				<right id="a"/>
+				<right id="r"/>
+				<right id="ar"/>
+			</relationRights>
+	
+			<actionRights>
+				<actionRight id="reset"/>
+				<actionRight id="duplicate"/>
+				<actionRight id="transfer.values"/>
+				<actionRight id="update"/>
+				<actionRight id="extend"/>
+	            <actionRight id="export.objects" />
+	        </actionRights>
+	
+			<systemRights>
+				<componentRight id="view.signoff.owner.processes"/>
+				<componentRight id="view.ineffective.testactions"/>
+				<componentRight id="view.deficiency.audit"/>
+				<componentRight id="view.signoff.reviewer.processes"/>
+				<componentRight id="view.deficiency.mgr"/>
+				<componentRight id="view.created.testcases"/>
+				<componentRight id="view.open.testactions"/>
+				<componentRight id="view.complete.statistic"/>
+				<componentRight id="view.monitoring"/>
+				<componentRight id="view.object.in.process"/>
+				<componentRight id="download"/>
+	
+				<componentRight id="view.deficiency"/>
+				<componentRight id="view.risk"/>
+				<componentRight id="view.control"/>
+				<componentRight id="view.controlexecutiontask"/>
+				<componentRight id="view.controlexecution"/>
+				<componentRight id="view.owner.controlexecution"/>
+				<componentRight id="view.testdef"/>
+				<componentRight id="view.administration"/>
+				<componentRight id="view.review.surveys"/>
+				<componentRight id="view.importexport"/>
+	            <componentRight id="view.signoff"/>
+				<componentRight id="view.buddylist"/>
+	            <componentRight id="view.external.auditor"/>
+				<componentRight id="view.issue.open"/>
+				<componentRight id="view.issue.review"/>
+				<componentRight id="view.issues"/>
+				<componentRight id="view.issue.mgmtapprl1"/>
+				<componentRight id="view.issue.mgmtapprl2"/>
+				<componentRight id="view.issue.implapprl1"/>
+				<componentRight id="view.issue.implapprl2"/>
+				<componentRight id="view.issue.techapprl1"/>
+				<componentRight id="view.issue.techapprl2"/>
+				<componentRight id="view.issue.atbreport"/>
+				<componentRight id="view.issue.creator"/>
+				<componentRight id="view.testdef_BB"/>
+				<componentRight id="view.issue.issuesapproverbb" />
+				<componentRight id="view.issue.issueowner"/>
+				<componentRight id="view.issue.issuereviewer"/>
+					
+				<componentRight id="send.recommendation"/>
+	            <componentRight id="plan.systemjobs"/>
+	
+	            <componentRight id="generate.soprocess"/>
+	            <componentRight id="generate.testcase"/>
+	            <componentRight id="generate.survey"/>
+	            <componentRight id="generate.audit"/>
+	            <componentRight id="generate.policy"/>
+	            <componentRight id="generate.policyreview"/>
+	            <componentRight id="generate.changereview"/>
+	            <componentRight id="generate.controlexecution"/>
+	
+	            <componentRight id="update.testcase"/>
+	            <componentRight id="update.survey"/>
+	            <componentRight id="update.policy"/>
+	
+	            <componentRight id="check.soprocess"/>
+	            <componentRight id="check.testcase"/>
+				<componentRight id="check.questionnaire"/>
+				<componentRight id="check.survey"/>
+				<componentRight id="check.issue"/>
+				<componentRight id="check.audit"/>
+				<componentRight id="check.auditstep"/>
+	            <componentRight id="view.amlexport"/>
+	            <componentRight id="check.policy"/>
+	            <componentRight id="check.policyreview"/>
+	            <componentRight id="check.policyapproval"/>
+	            <componentRight id="check.policyconfirmation"/>
+	            <componentRight id="check.changereview"/>
+	            <componentRight id="check.controlexecution"/>
+	
+	            <componentRight id="view.surveys"/>
+	            <componentRight id="view.statistic.surveymanagement"/>
+				<componentRight id="view.surveymanagement.baseobjects"/>
+	            <componentRight id="view.open.questionnaires"/>
+	            <componentRight id="view.review.questionnaires"/>
+				<componentRight id="view.questionnaires"/>
+	            
+	            <componentRight id="generate.riskassessment"/>
+				<componentRight id="check.riskassessment"/>
+				<componentRight id="view.riskassessments"/>
+				<componentRight id="view.open.riskassessments"/>
+				<componentRight id="view.review.riskassessments"/>
+				
+				<componentRight id="umc.synchronization"/>
+	
+				<componentRight id="view.losses"/>
+				<componentRight id="view.open.losses"/>
+				<componentRight id="view.review.losses"/>
+				<componentRight id="view.incidents"/>
+				<componentRight id="view.open.incidents"/>
+				<componentRight id="view.review.incidents"/>
+	
+	            <componentRight id="view.mashzone.url.builder"/>
+	
+	            <componentRight id="view.auditmanagement"/>
+	            <componentRight id="view.open.audits"/>
+	            <componentRight id="view.open.auditsteps"/>
+	            <componentRight id="view.review.audits"/>
+	
+	            <componentRight id="view.tasks"/>
+	
+	            <componentRight id="view.policymanagement" />
+	            <componentRight id="view.open.policies" />
+	            <componentRight id="view.open.policyapprovals" />
+	            <componentRight id="view.open.policyconfirmations" />
+	
+	            <componentRight id="view.open.changereview" />
+	            
+	            <componentRight id="view.home.dashboards" />
+	            
+	            <componentRight id="view.controlchecker" />	
+	        </systemRights>
+		</rights>
+	</roles>
+</custom>	

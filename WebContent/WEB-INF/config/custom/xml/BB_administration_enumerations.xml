@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <enum id="hierarchy_type" isMultiple="false" itemClass="HierarchyTypeEnumerationItem" type="Number">
+        <enumitem id="all" value="0" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="tester" value="1">
+            <parameter name="LicensedComponent" value="tm"/>
+        </enumitem>
+        <enumitem id="financialaccount" value="2"/>
+        <enumitem id="orgunit" value="3"/>
+        <enumitem id="process" value="4"/>
+        <enumitem id="category" value="10">
+            <parameter name="LicensedComponent" value="rm,sm,am"/>
+        </enumitem>
+        <enumitem id="applicationsystemtype" value="11">
+            <parameter name="LicensedComponent" value="rm,il,in,am,pm,sm"/>
+        </enumitem>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <enumitem id="bb_businessline" value="100">
+        	<parameter name="LicensedComponent" value="rm,sm,am"/>
+        </enumitem>
+        <enumitem id="bb_product" value="101"/>
+        <enumitem id="bb_icr" value="102"/>
+        <enumitem id="bb_riskfactor" value="103"/>
+    </enum>
+
+    <enum id="currency" isMultiple="false" type="Number">
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="MIXED" isSelectable="false" value="-99" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+		<enumitem id="all_currencies" value="-5" extendedMeaning="all" formRelevant="false"/>
+		
+        <enumitem id="common" isSelectable="false" value="-1"/>
+        <enumitem id="BRL" value="20"/>
+ 		<enumitem id="USD" value="155"/>
+        <enumitem id="EUR" value="47"/>
+        <enumitem id="GBP" value="50"/>
+
+        <enumitem id="others" isSelectable="false" value="-2"/>
+        <enumitem id="AED" value="1"/>
+        <enumitem id="AFA" value="2" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="AFN" value="971"/>
+        <enumitem id="ALL" value="3"/>
+        <enumitem id="AMD" value="4"/>
+        <enumitem id="ANG" value="5"/>
+        <enumitem id="AOA" value="6"/>
+        <enumitem id="ARS" value="7"/>
+        <enumitem id="AUD" value="8"/>
+        <enumitem id="AWG" value="9"/>
+        <enumitem id="AZM" value="10" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="BAM" value="11"/>
+        <enumitem id="BBD" value="12"/>
+        <enumitem id="BDT" value="13"/>
+        <enumitem id="BGN" value="14"/>
+        <enumitem id="BHD" value="15"/>
+        <enumitem id="BIF" value="16"/>
+        <enumitem id="BMD" value="17"/>
+        <enumitem id="BND" value="18"/>
+        <enumitem id="BOB" value="19"/>
+        <enumitem id="BSD" value="21"/>
+        <enumitem id="BTN" value="22"/>
+        <enumitem id="BWP" value="23"/>
+        <enumitem id="BYR" value="24"/>
+        <enumitem id="BZD" value="25"/>
+        <enumitem id="CAD" value="26"/>
+        <enumitem id="CDF" value="27"/>
+        <enumitem id="CHF" value="28"/>
+        <enumitem id="CLP" value="29"/>
+        <enumitem id="CNY" value="30"/>
+        <enumitem id="COP" value="31"/>
+        <enumitem id="CRC" value="32"/>
+        <enumitem id="CSD" value="33"/>
+        <enumitem id="CUC" value="34"/>
+        <enumitem id="CUP" value="35"/>
+        <enumitem id="CVE" value="36"/>
+        <enumitem id="CYP" value="37" formRelevant="false" filterRelevant="false"/> <!-- until 31.01.2008 -->
+        <enumitem id="CZK" value="38"/>
+        <enumitem id="DJF" value="39"/>
+        <enumitem id="DKK" value="40"/>
+        <enumitem id="DOP" value="41"/>
+        <enumitem id="DZD" value="42"/>
+        <enumitem id="EEK" value="43"/>
+        <enumitem id="EGP" value="44"/>
+        <enumitem id="ERN" value="45"/>
+        <enumitem id="ETB" value="46"/>
+        <enumitem id="FJD" value="48"/>
+        <enumitem id="FKP" value="49"/>
+        <enumitem id="GEL" value="51"/>
+        <enumitem id="GGP" value="52"/>
+        <enumitem id="GHC" value="53" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="GIP" value="54"/>
+        <enumitem id="GMD" value="55"/>
+        <enumitem id="GNF" value="56"/>
+        <enumitem id="GTQ" value="57"/>
+        <enumitem id="GYD" value="58"/>
+        <enumitem id="HKD" value="59"/>
+        <enumitem id="HNL" value="60"/>
+        <enumitem id="HRK" value="61"/>
+        <enumitem id="HTG" value="62"/>
+        <enumitem id="HUF" value="63"/>
+        <enumitem id="IDR" value="64"/>
+        <enumitem id="ILS" value="65"/>
+        <enumitem id="IMP" value="66" formRelevant="false" filterRelevant="false"/> <!-- may be Isle of Man Pound -->
+        <enumitem id="INR" value="67"/>
+        <enumitem id="IQD" value="68"/>
+        <enumitem id="IRR" value="69"/>
+        <enumitem id="ISK" value="70"/>
+        <enumitem id="JEP" value="71" formRelevant="false" filterRelevant="false"/> <!-- may be Jersey Island Pound -->
+        <enumitem id="JMD" value="72"/>
+        <enumitem id="JOD" value="73"/>
+        <enumitem id="JPY" value="74"/>
+        <enumitem id="KES" value="75"/>
+        <enumitem id="KGS" value="76"/>
+        <enumitem id="KHR" value="77"/>
+        <enumitem id="KMF" value="78"/>
+        <enumitem id="KPW" value="79"/>
+        <enumitem id="KRW" value="80"/>
+        <enumitem id="KWD" value="81"/>
+        <enumitem id="KYD" value="82"/>
+        <enumitem id="KZT" value="83"/>
+        <enumitem id="LAK" value="84"/>
+        <enumitem id="LBP" value="85"/>
+        <enumitem id="LKR" value="86"/>
+        <enumitem id="LRD" value="87"/>
+        <enumitem id="LSL" value="88"/>
+        <enumitem id="LTL" value="89"/>
+        <enumitem id="LVL" value="90"/>
+        <enumitem id="LYD" value="91"/>
+        <enumitem id="MAD" value="92"/>
+        <enumitem id="MDL" value="93"/>
+        <enumitem id="MGA" value="94"/>
+        <enumitem id="MKD" value="95"/>
+        <enumitem id="MMK" value="96"/>
+        <enumitem id="MNT" value="97"/>
+        <enumitem id="MOP" value="98"/>
+        <enumitem id="MRO" value="99"/>
+        <enumitem id="MTL" value="100" formRelevant="false" filterRelevant="false"/> <!-- until 31.01.2008 -->
+        <enumitem id="MUR" value="101"/>
+        <enumitem id="MVR" value="102"/>
+        <enumitem id="MWK" value="103"/>
+        <enumitem id="MXN" value="104"/>
+        <enumitem id="MYR" value="105"/>
+        <enumitem id="MZM" value="106" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="MZN" value="943"/>
+        <enumitem id="NAD" value="107"/>
+        <enumitem id="NGN" value="108"/>
+        <enumitem id="NIO" value="109"/>
+        <enumitem id="NOK" value="110"/>
+        <enumitem id="NPR" value="111"/>
+        <enumitem id="NZD" value="112"/>
+        <enumitem id="OMR" value="113"/>
+        <enumitem id="PAB" value="114"/>
+        <enumitem id="PEN" value="115"/>
+        <enumitem id="PGK" value="116"/>
+        <enumitem id="PHP" value="117"/>
+        <enumitem id="PKR" value="118"/>
+        <enumitem id="PLN" value="119"/>
+        <enumitem id="PYG" value="120"/>
+        <enumitem id="QAR" value="121"/>
+        <enumitem id="ROL" value="122" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="RON" value="946"/>
+        <enumitem id="RSD" value="941"/>
+        <enumitem id="RUB" value="123"/>
+        <enumitem id="RWF" value="124"/>
+        <enumitem id="SAR" value="125"/>
+        <enumitem id="SBD" value="126"/>
+        <enumitem id="SCR" value="127"/>
+        <enumitem id="SDD" value="128" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="SDG" value="938"/>
+        <enumitem id="SEK" value="129"/>
+        <enumitem id="SGD" value="130"/>
+        <enumitem id="SHP" value="131"/>
+        <enumitem id="SIT" value="132" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="SKK" value="133"/>
+        <enumitem id="SLL" value="134"/>
+        <enumitem id="SOS" value="135"/>
+        <enumitem id="SPL" value="136" formRelevant="false" filterRelevant="false"/> <!-- completely unknown -->
+        <enumitem id="SRD" value="137"/>
+        <enumitem id="STD" value="138"/>
+        <enumitem id="SVC" value="139"/>
+        <enumitem id="SYP" value="140"/>
+        <enumitem id="SZL" value="141"/>
+        <enumitem id="THB" value="142"/>
+        <enumitem id="TJS" value="143"/>
+        <enumitem id="TMM" value="144"/>
+        <enumitem id="TND" value="145"/>
+        <enumitem id="TOP" value="146"/>
+        <enumitem id="TRL" value="147" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="TRY" value="148"/>
+        <enumitem id="TTD" value="149"/>
+        <enumitem id="TVD" value="150" formRelevant="false" filterRelevant="false"/> <!-- may be Tuvalu Dollar -->
+        <enumitem id="TWD" value="151"/>
+        <enumitem id="TZS" value="152"/>
+        <enumitem id="UAH" value="153"/>
+        <enumitem id="UGX" value="154"/>
+        <enumitem id="UYU" value="156"/>
+        <enumitem id="UZS" value="157"/>
+        <enumitem id="VEB" value="158" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="VEF" value="937"/>
+        <enumitem id="VND" value="159"/>
+        <enumitem id="VUV" value="160"/>
+        <enumitem id="WST" value="161"/>
+        <enumitem id="XAF" value="162"/>
+        <enumitem id="XAG" value="163"/>
+        <enumitem id="XAU" value="164"/>
+        <enumitem id="XCD" value="165"/>
+        <enumitem id="XDR" value="166"/>
+        <enumitem id="XOF" value="167"/>
+        <enumitem id="XPD" value="168"/>
+        <enumitem id="XPF" value="169"/>
+        <enumitem id="XPT" value="170"/>
+        <enumitem id="YER" value="171"/>
+        <enumitem id="ZAR" value="172"/>
+        <enumitem id="ZMK" value="173"/>
+        <enumitem id="ZWD" value="174"/>
+    </enum>
+    
+    <enum id="bb_scope" isMultiple="true" type="Number">
+        <enumitem id="sox" value="1"/>
+        <enumitem id="basel" value="2"/>
+        <enumitem id="operational_risk" value="4"/>
+        <enumitem id="strategic_decision" value="3" />
+    </enum>
+    
+    <enum id="initiators" isMultiple="false" type="Number" itemClass="MessageTemplateEnumerationItem">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+
+        <enumitem id="testcase_noneffective" value="7"/>
+        <enumitem id="testcase_measure_deactivated" value="8"/>
+        <enumitem id="testcase_issue_reactivated" value="4009"/>
+        <enumitem id="testcase_rejected" value="4010"/>
+
+        <enumitem id="xmlexportjob_successful" value="20">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="xmlexportjob_failed" value="21">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="xmlimportjob_successful" value="22">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="xmlimportjob_failed" value="23">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+
+        <enumitem id="issue_responsible_assigned" value="24">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_set_on_hold" value="25">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_to_be_approved" value="26">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_set_in_process" value="27">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_approved" value="28">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_not_approved" value="29">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="issue_overdue" value="30">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+
+        <enumitem id="async_report_successful" value="36">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="async_report_failed" value="37">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="async_report_warning" value="38">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="async_report_canceled" value="39">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+
+        <enumitem id="riskassessment_created" value="40"/>
+        <enumitem id="riskassessment_closed_assessed" value="44"/>
+        <enumitem id="riskassessment_closed_assessment_not_possible" value="45"/>
+        <enumitem id="riskassessment_reopened" value="46"/>
+        <enumitem id="riskassessment_threshold_reached" value="47"/>
+
+        <enumitem id="checkout_successful" value="50"/>
+        <enumitem id="op_checkin_job_summary" value="51">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="op_checkin_verification" value="52">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="op_offline_entry_deleted" value="53">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+
+        <enumitem id="questionnaire_closed_complete" value="58"/>
+        <enumitem id="questionnaire_closed_not_answerable" value="59"/>
+        <enumitem id="questionnaire_reopened" value="60"/>
+
+        <enumitem id="lossdb_inform_management" value="70"/>
+        <enumitem id="lossdb_inform_risk_responsibles" value="71">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="lossdb_incident_closed" value="72"/>
+        <enumitem id="lossdb_incident_deactivated" value="73"/>
+        <enumitem id="lossdb_incident_reactivated" value="74"/>
+        <enumitem id="lossdb_incident_accepted" value="75"/>
+        <enumitem id="lossdb_incident_rejected" value="76"/>
+        <enumitem id="lossdb_loss_closed" value="77"/>
+        <enumitem id="lossdb_loss_deactivated" value="78"/>
+        <enumitem id="lossdb_loss_accepted" value="79"/>
+        <enumitem id="lossdb_loss_rejected" value="80"/>
+        
+        <enumitem id="recommendation" value="81">
+            <parameter name="Mailstrategies" value="email"/>
+        </enumitem>
+
+        <enumitem id="adminmessage" value="82"/>
+        <enumitem id="feedback" value="83">
+            <parameter name="Mailstrategies" value="email"/>
+        </enumitem>
+
+        <enumitem id="audit_closed" value="90"/>
+        <enumitem id="audit_rejected" value="91"/>
+        <enumitem id="audit_deactivated" value="92"/>
+        <enumitem id="audit_reopened" value="97"/>
+        <enumitem id="audit_step_reopened" value="93"/>
+        <enumitem id="audit_step_created" value="94"/>
+        <enumitem id="audit_step_closed" value="95"/>
+        <enumitem id="audit_step_deactivated" value="96"/>
+        <enumitem id="audit_steps_created" value="98"/>
+
+        <enumitem id="generatorjob" value="4001" />
+        <enumitem id="followupgeneratorjob" value="4002"/>
+        <enumitem id="monitorjob" value="4003" />
+        <enumitem id="updaterjob" value="4004" />
+
+        <enumitem id="backup_successful" value="4005"/>
+        <enumitem id="backup_failed" value="4006"/>
+        <enumitem id="restore_successful" value="4007"/>
+        <enumitem id="restore_failed" value="4008"/>
+
+        <enumitem id="policy_created" value="4100" />
+        <enumitem id="policy_created_manual" value="4101" />
+
+        <enumitem id="policyapproval_created" value="4103" />
+        <enumitem id="policyapproval_disapproved" value="4104" />
+        <enumitem id="policyapproval_reopened" value="4105" />
+
+        <enumitem id="policyconfirmation_created" value="4110" />
+        <enumitem id="policyconfirmation_rejected" value="4111" />
+        <enumitem id="policyconfirmation_reopened" value="4112" />
+        <enumitem id="policyconfirmation_notcompleted" value="4113" />
+
+        <enumitem id="policyreview_created" value="4120" />
+        <enumitem id="policyreview_created_manual" value="4123" />
+        <enumitem id="policyreview_closed" value="4121" />
+        <enumitem id="policyreview_retire" value="4122" />
+        
+        <enumitem id="changereview_created" value="4210" />
+        <enumitem id="changereview_update_needed" value="4220" />
+        
+        <enumitem id="audittemplate_copied" value="4300"/>
+        
+        <enumitem id="testcase_effective" value="5000" />
+        <enumitem id="testcase_accepted" value="5001" />
+        
+        <!-- removed during implementation of "new approach"
+        <enumitem id="issue_rejected_mgmtapproverl1" value="5002" />
+        <enumitem id="issue_accepted_mgmtapproverl1" value="5003" />
+        <enumitem id="issue_accepted_mgmtapproverl2" value="5004" />
+        <enumitem id="issue_rejected_mgmtapproverl2" value="5005" />
+        <enumitem id="issue_accepted_implapproverl1" value="5006" />
+        <enumitem id="issue_rejected_implapproverl1" value="5007" />
+        <enumitem id="issue_accepted_implapproverl2" value="5008" />
+        <enumitem id="issue_rejected_implapproverl2" value="5009" />
+        <enumitem id="issue_accepted_techapproverl1" value="5010" />
+        <enumitem id="issue_rejected_techapproverl1" value="5011" />
+        <enumitem id="issue_accepted_techapproverl2" value="5012" />
+        <enumitem id="issue_rejected_techapproverl2" value="5013" />
+        <enumitem id="issue_to_be_approved_mgmtapproverl1" value="5014" />
+        <enumitem id="issue_to_be_approved_mgmtapproverl2" value="5015" />
+        <enumitem id="issue_to_be_approved_implapproverl1" value="5016" />
+        <enumitem id="issue_to_be_approved_implapproverl2" value="5017" />
+        <enumitem id="issue_to_be_approved_techapproverl1" value="5018" />
+        <enumitem id="issue_to_be_approved_techapproverl2" value="5019" />
+        <enumitem id="issue_execution_finished" value="5020" />
+        -->
+        <enumitem id="questionnaire_generatorjob" value="5021" />
+		<enumitem id="testcase_generatorjob" value="5022" />
+		<enumitem id="testcase_deficiency_reactivated" value="5023"/>
+		
+		<enumitem id="issue_general" value="20160627"/>
+		<enumitem id="generatorjob_empty_group" value="201602041"/>
+        <enumitem id="followupjob_empty_group" value="201602161"/>
+        <enumitem id="user_added_empty_group" value="201603211"/>
+        <enumitem id="last_user_removed_group" value="201603212"/>
+        <enumitem id="riskassessment_closed_reviewed" value="20160922"/>
+        <enumitem id="control_checker_successful" value="201611221">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+        <enumitem id="control_checker_failed" value="201611222">
+            <parameter name="Scope" value="site" />
+        </enumitem>
+    </enum>
+
+    <enum id="jobs" isMultiple="false" itemClass="JobEnumerationItem" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="cleaningJob" value="3">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.CleaningJob"/>
+        </enumitem>
+        <enumitem id="xmlExportJob" value="11">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.XMLExportJob"/>
+        </enumitem>
+        <enumitem id="xmlImportJob" value="12">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.XMLImportJob"/>
+        </enumitem>
+        <enumitem id="asynDefaultReportJob" value="14">
+            <parameter name="ClassName" value="com.idsscheer.webapps.aam.logic.jobs.AsyncDefaultReportJob"/>
+        </enumitem>
+        <enumitem id="jobListCleaningJob" value="15">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.JobListCleaningJob"/>
+        </enumitem>
+        <enumitem id="umcSyncJob" value="16">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.UMCSyncJob"/>
+        </enumitem>
+        <enumitem id="objectExportJob" value="17">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.AMLExportJob"/>
+            <parameter name="AllowedObjectTypes" value="RISK,USER" />
+        </enumitem>
+
+        <enumitem id="checkOutJob" value="21">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.offlineprocessing.jobs.CheckOutJob"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE,RISKASSESSMENT,QUESTIONNAIRE" />
+        </enumitem>
+
+        <enumitem id="offlineProcessingAutoConfirmationJob" value="22">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.offlineprocessing.jobs.OfflineProcessingAutoConfirmationJob"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE,RISKASSESSMENT,QUESTIONNAIRE" />
+        </enumitem>
+
+        <enumitem id="generatorJob" value="40">
+            <parameter name="ClientDependent" value="true"/>
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.generic.generator.GeneratorJob"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE,RISKASSESSMENT,SURVEY,SOPROCESS,AUDIT,POLICY,POLICYREVIEW,CHANGEREVIEW,CONTROLEXECUTION" />
+        </enumitem>
+        <enumitem id="followupGeneratorJob" value="41">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.generic.generator.FollowupGeneratorJob"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE" />
+        </enumitem>
+        <!-- BdB customized monitor class -->
+        <enumitem id="monitorJob" value="42">
+            <parameter name="ClientDependent" value="true"/>
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.generic.monitor.MonitorJobBB"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE,RISKASSESSMENT,SURVEY,QUESTIONNAIRE,SOPROCESS,ISSUE,AUDIT,AUDITSTEP,POLICY,POLICYCONFIRMATION,POLICYAPPROVAL,POLICYREVIEW,CHANGEREVIEW,CONTROLEXECUTION" />
+        </enumitem>
+        <enumitem id="updaterJob" value="43">
+            <parameter name="ClientDependent" value="true"/>
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.generic.updater.UpdaterJob"/>
+            <parameter name="AllowedObjectTypes" value="TESTCASE,SURVEY,POLICY" />
+        </enumitem>
+        <enumitem id="backupJob" value="44">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.BackupJob"/>
+        </enumitem>
+        <enumitem id="restoreJob" value="45">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.RestoreBackupJob"/>
+        </enumitem>
+        <enumitem id="backupClientJob" value="46">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.BackupJob"/>
+        </enumitem>
+        <enumitem id="restoreClientJob" value="47">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.RestoreBackupJob"/>
+        </enumitem>
+        <enumitem id="eventImportJob" value="48">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.CEPImportJob"/>
+        </enumitem>
+        <enumitem id="transferJob" value="49">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.framework.jobs.specific.TransferJob"/>
+        </enumitem>
+        <enumitem id="controlCheckerJob" value="20161122">
+            <parameter name="ClassName" value="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.job.ControlChecker"/>
+        </enumitem>
+    </enum>
+    
+    <!-- BdB CUSTOMZATION -->
+    <enum id="bb_tipoUnidOrganizacional" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_ior" value="1" />
+       	<enumitem id="bb_uor" value="2" />        
+   	</enum>
+   	
+   	<enum id="userrole_type" isMultiple="false" type="String">  <!-- value must match with the role-id in roles.xml-->
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="none" value="-2" formRelevant="false" filterRelevant="true"/>
+        <enumitem id="auditowner" value="auditowner"/>
+        <enumitem id="auditreviewer" value="auditreviewer"/>
+        <enumitem id="auditstepowner" value="auditstepowner"/>
+        <enumitem id="auditauditor" value="auditauditor"/>
+        <enumitem id="auditmanager" value="auditmanager"/>
+        <enumitem id="deficiencyauditor_l1" value="deficiencyauditor_l1"/>
+        <enumitem id="deficiencyauditor_l2" value="deficiencyauditor_l2"/>
+        <enumitem id="deficiencyauditor_l3" value="deficiencyauditor_l3"/>
+        <enumitem id="clientadmin" value="clientadmin"/>
+        <enumitem id="controlmanager" value="controlmanager"/>
+        <enumitem id="controlexecutionowner" value="controlexecutionowner"/>
+        <enumitem id="deficiencymanager_l1" value="deficiencymanager_l1"/>
+        <enumitem id="deficiencymanager_l2" value="deficiencymanager_l2"/>
+        <enumitem id="deficiencymanager_l3" value="deficiencymanager_l3"/>
+        <enumitem id="groupusermanager" value="groupusermanager"/>
+        <enumitem id="hierarchyauditor" value="hierarchyauditor"/>
+        <enumitem id="hierarchymanager" value="hierarchymanager"/>
+        <enumitem id="hierarchyowner" value="hierarchyowner"/>
+        <enumitem id="incidentmanager" value="incidentmanager"/>
+        <enumitem id="incidentowner" value="incidentowner"/>
+        <enumitem id="incidentreviewer" value="incidentreviewer"/>
+        <enumitem id="incidentauditor" value="incidentauditor"/>
+        <enumitem id="lossmanager" value="lossmanager"/>
+        <enumitem id="lossowner" value="lossowner"/>
+        <enumitem id="lossreviewer" value="lossreviewer"/>
+        <enumitem id="lossauditor" value="lossauditor"/>
+        <enumitem id="issuemanager" value="issuemanager"/>
+        <enumitem id="issueauditor" value="issueauditor"/>
+        <enumitem id="issuemgmtapproverl1" value="issuemgmtapproverl1"/>
+        <enumitem id="issuemgmtapproverl2" value="issuemgmtapproverl2"/>
+        <enumitem id="issueimplapproverl1" value="issueimplapproverl1"/>
+        <enumitem id="issueimplapproverl2" value="issueimplapproverl2"/>
+        <enumitem id="issuetechapproverl1" value="issuetechapproverl1"/>
+        <enumitem id="issuetechapproverl2" value="issuetechapproverl2"/>
+        <enumitem id="issuecreator" value="issuecreator"/>
+        <enumitem id="issueowner" value="issueowner"/>
+        <enumitem id="issuereviewer" value="issuereviewer"/>
+        <enumitem id="policyowner" value="policyowner"/>
+        <!--<enumitem id="policyreviewer" value="policyreviewer"/>-->
+        <enumitem id="policyapprover" value="policyapprover"/>
+        <enumitem id="policyaddressee" value="policyaddressee"/>
+        <enumitem id="policyauditor" value="policyauditor"/>
+        <enumitem id="policymanager" value="policymanager"/>
+        <enumitem id="riskauditor" value="riskauditor"/>
+        <enumitem id="riskmanager" value="riskmanager"/>
+        <enumitem id="riskowner" value="riskowner"/>
+        <enumitem id="riskreviewer" value="riskreviewer"/>
+        <enumitem id="signoffmanager" value="signoffmanager"/>
+        <enumitem id="signoffowner" value="signoffowner"/>
+        <enumitem id="signoffreviewer" value="signoffreviewer"/>
+        <enumitem id="surveymanager" value="surveymanager"/>
+        <enumitem id="signoffauditor" value="signoffauditor"/>
+        <enumitem id="questionnaireowner" value="questionnaireowner"/>
+        <enumitem id="surveyreviewer" value="surveyreviewer"/>
+        <enumitem id="surveyauditor" value="surveyauditor"/>
+        <enumitem id="sysadmin" value="sysadmin"/>
+        <enumitem id="testauditor" value="testauditor"/>
+        <enumitem id="testauditorexternal" value="testauditorexternal"/>
+        <enumitem id="tester" value="tester"/>
+        <enumitem id="testmanager" value="testmanager"/>
+        <enumitem id="testreviewer" value="testreviewer"/>
+        <enumitem id="issueatbreport" value="issueatbreport"/>
+        <enumitem id="subscriptionmanager" value="subscriptionmanager"/>
+        <enumitem id="riskparamadmin" value="riskparamadmin"/>
+    </enum>
+    
+    <enum enumClass="LanguageEnumeration" id="language" isMultiple="false" itemClass="LanguageEnumerationItem" type="String">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="german" value="de" image="flags/1031.png">
+            <parameter name="DateFormat" value="medium;de"/>
+            <parameter name="DateTimeFormat" value="medium,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="dd.mm.yy"/>
+            <parameter name="ChartDirectorFormat" value="dd.mm.yyyy"/>
+            <parameter name="DatePickerInputMask" value="dd.mm.yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="english" value="en" image="flags/1033.png">
+            <parameter name="DateFormat" value="format:MM/dd/yyyy"/>
+            <parameter name="DateTimeFormat" value="medium,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="mm/dd/yy"/>
+            <parameter name="ChartDirectorFormat" value="mm/dd/yyyy"/>
+            <parameter name="DatePickerInputMask" value="mm/dd/yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="french" value="fr" image="flags/1036.png">
+            <parameter name="DateFormat" value="medium;de"/>
+            <parameter name="DateTimeFormat" value="medium,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="dd.mm.yy"/>
+            <parameter name="ChartDirectorFormat" value="dd.mm.yyyy"/>
+            <parameter name="DatePickerInputMask" value="dd.mm.yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="japanese" value="ja" image="flags/1041.png">
+            <parameter name="DateFormat" value="medium;ja"/>
+            <parameter name="DateTimeFormat" value="medium,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="yy/mm/dd"/>
+            <parameter name="ChartDirectorFormat" value="yyyy/mm/dd"/>
+            <parameter name="DatePickerInputMask" value="yyyy/mm/dd"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="chinese" value="zh" image="flags/2052.png">
+            <parameter name="DateFormat" value="medium;zh"/>
+            <parameter name="DateTimeFormat" value="medium,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="yy-mm-dd"/>
+            <parameter name="ChartDirectorFormat" value="yyyy-mm-dd"/>
+            <parameter name="DatePickerInputMask" value="yyyy-mm-dd"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="spanish" value="es" image="flags/1034.png">
+            <parameter name="DateFormat" value="format:dd/MM/yyyy"/>
+            <parameter name="DateTimeFormat" value="short,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="dd/mm/yy"/>
+            <parameter name="ChartDirectorFormat" value="dd/MM/yyyy"/>
+            <parameter name="DatePickerInputMask" value="dd/mm/yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+		<enumitem id="portuguese" value="pt" image="flags/1046.png">
+            <parameter name="DateFormat" value="format:dd/MM/yyyy"/>
+            <parameter name="DateTimeFormat" value="short,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="dd/mm/yy"/>
+            <parameter name="ChartDirectorFormat" value="dd/MM/yyyy"/>
+            <parameter name="DatePickerInputMask" value="dd/mm/yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+        <enumitem id="italian" value="it" image="flags/1040.png">
+            <parameter name="DateFormat" value="format:dd/MM/yyyy"/>
+            <parameter name="DateTimeFormat" value="short,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+            <parameter name="JSFormat" value="dd/mm/yy"/>
+            <parameter name="ChartDirectorFormat" value="dd/MM/yyyy"/>
+            <parameter name="DatePickerInputMask" value="dd/mm/yyyy"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+		<enumitem id="hungarian" value="hu" image="flags/1038.png" formRelevant="false">
+            <!-- Use date format which does not end with "." -  JQuery date picker input mask reacts buggy otherwise -->
+            <parameter name="DateFormat" value="format:yyyy.MM.dd"/>
+            <parameter name="DateTimeFormat" value="short,medium"/>
+            <parameter name="TimeFormat" value="medium"/>
+			<parameter name="JSFormat" value="yy.mm.dd"/>
+            <parameter name="ChartDirectorFormat" value="yyyy.MM.dd"/>
+            <parameter name="DatePickerInputMask" value="yyyy.mm.dd"/>
+            <parameter name="Deactivated" value="false"/>
+        </enumitem>
+    </enum>
+    	
+    <!-- Método de agregação -->
+
+    <enum id="bb_tipoFatorControle" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_limitesExposPerdasOperac" value="1" />
+       	<enumitem id="bb_indicadoresChaveRisco" value="2" />
+       	<enumitem id="bb_analiseCenarios" value="3" />
+       	<enumitem id="bb_painelRiscoOperac" value="4" />
+   	</enum>
+   		
+   	<enum id="bb_metodoAgregacao" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_average" value="1" />
+       	<enumitem id="bb_sum" value="2" />
+       	<enumitem id="bb_maximum" value="3" />
+       	<enumitem id="bb_minimum" value="4" />
+   	</enum>
+   		
+   	<enum id="bb_metodoPrevisao" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_simple" value="1" />
+       	<enumitem id="bb_double" value="2" />
+       	<enumitem id="bb_linear" value="3" />
+       	<enumitem id="bb_damptread" value="4" />
+   	</enum>
+   	
+   	<!-- bb_estadoRegControl -->
+   	<enum id="bb_estadoRegControl" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_regVigenteConf2Assin" value="1" />
+       	<enumitem id="bb_regisPendConfCadast" value="2" />
+       	<enumitem id="bb_registPendenConfirAlter" value="3" />
+       	<enumitem id="bb_registPendenConfirExcluLogic" value="4" />
+       	<enumitem id="bb_registroExcluido" value="5" />
+       	<enumitem id="bb_registVersionPoster" value="6" />
+   	</enum>
+   		
+   	<enum id="bb_codClassifFatorContrInt" isMultiple="false" type="Number">   
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>    
+       	<enumitem id="bb_extrapolado" value="1" />
+       	<enumitem id="bb_toleravel" value="2" />
+       	<enumitem id="bb_alerta" value="3" />
+       	<enumitem id="bb_critico" value="4" />
+   	</enum>     
+   	<enum id="bb_avalMaterialidadeContas" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>       	           
+       	<enumitem id="bb_materialidade_1" value="1" />
+       	<enumitem id="bb_materialidade_2" value="2" />
+       	<enumitem id="bb_materialidade_3" value="3" />
+   	</enum>        
+   	<enum id="bb_tipoFinancialAccount" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="true" filterRelevant="false"/>       	           
+       	<enumitem id="bb_contaContabil" value="1" />
+       	<enumitem id="bb_rubrica" value="2" />      	
+   	</enum>   	
+    <enum id="bb_codigoEstadoModal" isMultiple="false" type="Number">
+       	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="true" filterRelevant="false"/>
+   	   	<enumitem id="bb_codigoEstadoModal_A" value="1"/>
+		<enumitem id="bb_codigoEstadoModal_E" value="2"/>
+		<enumitem id="bb_codigoEstadoModal_I" value="3"/>
+		<enumitem id="bb_codigoEstadoModal_S" value="4"/>
+		<enumitem id="bb_codigoEstadoModal_U" value="5"/>
+		<enumitem id="bb_codigoEstadoModal_X" value="6"/>
+	</enum>
+    <enum id="taskitem_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="open" value="1"/>
+        <enumitem id="completed" value="2"/>
+        <enumitem id="not_completed" value="3"/>
+        <!-- workflow states -->
+        <enumitem id="delete" value="4" formRelevant="false" filterRelevant="true"/>
+        <!-- / workflow states -->
+    </enum>
+    <enum id="bb_usergroupkind" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all"/>
+        <enumitem id="empty" value="1"/>
+        <enumitem id="deactivated" value="2"/>
+    </enum>
+   	<enum id="bb_riskFactorType" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+    	<enumitem id="undefined" value="0" extendedMeaning="please_select" formRelevant="true" filterRelevant="false"/>       	           
+       	<enumitem id="Processos" value="1" />
+       	<enumitem id="Pessoas" value="2" />
+       	<enumitem id="Sistemas" value="3" />
+       	<enumitem id="Eventos externos" value="4" />      	
+   	</enum> 
+   	<enum id="bb_rateLowMedHigh" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+       	<enumitem id="low" value="1" />
+       	<enumitem id="medium" value="2" />
+       	<enumitem id="high" value="3" />
+   	</enum>     	
+    
+    
+</custom>

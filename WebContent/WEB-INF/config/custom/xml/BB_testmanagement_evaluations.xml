@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<evaluation id="testcase"
+	            filter.idref="testcaseStatistic"	            
+	            controlName="statistic"                                         
+	            type="statistic" >
+        <access.control id="testcase" />
+        <statistic>  
+            <statistic.tree/>
+            <statistic.data.filter id="testcase"/>
+            
+            <statistic.columns>                   
+                <statistic.data>
+                    <parameter name="viewId" value="testcase_statistic_{hierarchy_type}" />
+                    <parameter name="viewOrderColumnId" value="node_id" />
+                </statistic.data>
+                
+                <statistic.calculator id="testcase">
+                    <parameter name="uniqueIdColumn" value="testcase_id"/>
+                </statistic.calculator>
+                <statistic.column.tree/> 
+                <statistic.columnGroup.enum enumeration.idref="testcase_owner_status"  
+                                            link.type="list" link.idref="statisticTestcases"
+                                            enumGroupChart.id="statisticPieChart" addPerCentColumn="false">
+                    <statistic.subColumns.enum enumItem.idref="noneffective">
+                        <statistic.columnGroup.enum propertyKey="attribute.TESTCASE.measure.DBI" 
+                                                    enumeration.idref="measure" 
+                                                    link.type="list" link.idref="statisticTestcases" width="7%" />
+                    </statistic.subColumns.enum>
+                </statistic.columnGroup.enum>   
+            </statistic.columns>              
+        </statistic>
+         
+        <toolbarButtons>
+		    <buttonReference button.idref="PDF_REPORT" />
+		    <buttonReference button.idref="EXCEL_REPORT" />
+	    </toolbarButtons>
+    </evaluation>
+    
+    <evaluation id="testcaseControl"
+	            filter.idref="testcaseStatistic"	            
+	            controlName="statistic"                                         
+	            type="statistic" >
+        <access.control id="testcase" />
+        <statistic>  
+            <statistic.tree/>
+            <statistic.data.filter id="testcase"/>
+            
+            <statistic.columns>                   
+                <statistic.data>
+                    <parameter name="viewId" value="testcase_statistic_control_process" />
+                    <parameter name="viewOrderColumnId" value="node_id" />
+                </statistic.data>
+                
+                <statistic.calculator id="testcase">
+                    <parameter name="uniqueIdColumn" value="testcase_id"/>
+                </statistic.calculator>
+                <statistic.column.tree/> 
+                <statistic.columnGroup.enum enumeration.idref="testcase_owner_status"  
+                                            link.type="list" link.idref="statisticTestcasesControl"
+                                            enumGroupChart.id="statisticPieChart" addPerCentColumn="false">
+                    <statistic.subColumns.enum enumItem.idref="noneffective">
+                        <statistic.columnGroup.enum propertyKey="attribute.TESTCASE.measure.DBI" 
+                                                    enumeration.idref="measure" 
+                                                    link.type="list" link.idref="statisticTestcasesControl" width="7%" />
+                    </statistic.subColumns.enum>
+                </statistic.columnGroup.enum>   
+            </statistic.columns>              
+        </statistic>
+         
+        <toolbarButtons>
+		    <buttonReference button.idref="PDF_REPORT" />
+		    <buttonReference button.idref="EXCEL_REPORT" />
+	    </toolbarButtons>
+    </evaluation>
+
+</custom>    

@@ -1,0 +1,314 @@
+package QUESTION_RuleSet
+expander question.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.QuestionHelper;
+
+# OBJECT   client_objid        LONG       Client ID                                                                                                                                                                                
+# OBJECT   client_sign         CLIENTSIGN Client                                                                                                                                                                                   
+# OBJECT   create_date         DATE       Creation date                                                                                                                                                                            
+# OBJECT   creator_user_id     LONG       User ID (creator)                                                                                                                                                                        
+# OBJECT   delete_date         DATE       Deletion date                                                                                                                                                                            
+# OBJECT   guid                STRING     GUID                                                                                                                                                                                     
+# OBJECT   obj_id              LONG       ID                                                                                                                                                                                       
+# OBJECT   obj_type            OBJECTTYPE Object type                                                                                                                                                                              
+# OBJECT   root_guid           STRING     Root GUID                                                                                                                                                                                
+# OBJECT   versions            LONG       Number of versions                                                                                                                                                                       
+# VERSION  aris_change_date    DATE       ARIS change date                                                                                                                                                                         
+# VERSION  change_date         DATE       Change date                                                                                                                                                                              
+# VERSION  change_type         ENUM       Change type                             changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                                    
+# VERSION  change_user_id      LONG       User ID (editor)                                                                                                                                                                         
+# VERSION  deactivated         BOOLEAN    Deactivated                                                                                                                                                                              
+# VERSION  id                  LONG       ID                                                                                                                                                                                       
+# VERSION  substitute_user_id  LONG       User ID (substitute)                                                                                                                                                                     
+# VERSION  version_active      BOOLEAN    Current version                                                                                                                                                                          
+# VERSION  version_number      LONG       Version number                                                                                                                                                                           
+# QUESTION annotationAllowed   BOOLEAN    Notes allowed                                                                                                                                                                            
+# QUESTION documents           LIST       Documents                               to * DOCUMENTs (LT=3221)                                                                                                                         
+# QUESTION isWorkingCopy       ENUM       Working copy                            workingcopy (all=-1,snapshot=3,no=0,yes=1,internal=2)                                                                                            
+# QUESTION optionSet           LIST       Option set                              to 1 OPTIONSET (LT=25)                                                                                                                           
+# QUESTION optionalQuestion    BOOLEAN    Optional question                                                                                                                                                                        
+# QUESTION options             LIST       Answer options                          to * OPTIONs (LT=3205)                                                                                                                           
+# QUESTION   options_weighting DOUBLE     Weighting                                                                                                                                                                                
+# QUESTION originalQuestion    LIST       Question (original)                     to 1 QUESTION (LT=3206)                                                                                                                          
+# QUESTION questionValue       DOUBLE     Question value                                                                                                                                                                           
+# QUESTION question_text       TEXT       Question text                                                                                                                                                                            
+# QUESTION remark              TEXT       Remark                                                                                                                                                                                   
+# QUESTION reviewerRatesAnswer BOOLEAN    Evaluation of answer by survey reviewer                                                                                                                                                  
+# QUESTION type                ENUM       Question type                           question_type (all=-1,please_select=0,single_choice_combobox=5,single_choice_radio=6,multiple_choice=7,text=2,long=3,double=4,date=1,daterange=8)
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+rule "surveymanager - editable and mandatory attributes [I,V]"
+
+	salience 40100
+	
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "question_text" editable
+		set "type" editable
+		set "remark" editable
+		set "annotationAllowed" editable
+		set "optionalQuestion" editable
+		set "manager_group" editable
+		set "documents" editable
+
+		set "question_text" mandatory
+		set "type" mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_evidencesAllowed" editable
+
+end
+
+rule "disable original question visibility [I,V]"
+
+	salience 40000
+
+	when
+		( user has_not right "read" AND    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has_not at object role "surveymanager" AND
+		  user has_not at object role "surveyauditor") OR
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "originalQuestion" invisible
+
+end
+
+################################################
+#### rules concerning "reviewerRatesAnswer" ####
+
+rule "set 'reviewerRatesAnswer' invisible first [I,V]"
+
+    salience 30300
+
+	when
+
+	then
+		set "reviewerRatesAnswer" invisible
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+#rule "reviewer rates never an answer of any option based question type [V]"
+
+	#salience 30200
+
+	#when
+	    #value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_combobox" OR
+	    #value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_radio" OR
+	    #value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "multiple_choice"
+
+	#then
+		#set "reviewerRatesAnswer" to value "false"
+		
+#end
+
+rule "reviewerRatesAnswer visible for native question types for surveymanagers, surveyreviewers and surveyauditors [I,V]"
+
+	salience 30100
+	when
+	    ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "text" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "long" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "double" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "date" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "daterange" OR
+	      	      
+	      ########################
+		  ### BB CUSTOMIZATION ###
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_combobox" OR 
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_radio" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "multiple_choice" )
+	      ########################
+		( user has right "read" OR    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has at object role "surveymanager" OR
+		  user has at object role "surveyauditor" )
+
+	then
+		set "reviewerRatesAnswer" visible
+
+end
+
+rule "reviewerRatesAnswer editable and mandatory for native question types for surveymanagers if this is not a working copy [I,V]"
+
+	salience 30000
+	when
+	    ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "text" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "long" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "double" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "date" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "daterange" OR
+	       
+		  ########################
+		  ### BB CUSTOMIZATION ###
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_combobox" OR 
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_radio" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "multiple_choice" )
+	      ########################
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "reviewerRatesAnswer" editable
+		set "reviewerRatesAnswer" mandatory
+
+end
+
+####################################################
+#### rules concerning "optionSet" and "options" ####
+
+rule "set 'optionSet' and 'options' invisible first [I,V]"
+
+    salience 20400
+
+	when
+
+	then
+		set "optionSet" invisible
+		set "options" invisible
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_reviewerOptionSet" invisible
+		
+
+end
+
+rule "options and optionsets visible for surveymanagers, surveyreviewers and surveyauditors at single or multiple choice questions [I,V]"
+
+	salience 20300
+
+	when
+	    ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_radio" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_combobox" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "multiple_choice" )
+		( user has right "read" OR    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has at object role "surveymanager" OR
+		  user has at object role "surveyauditor" )
+
+	then
+		set "optionSet" visible
+		set "options" visible
+		
+end
+
+
+rule "options and optionsets editable and mandatory for surveymanagers at single or multiple choice questions which are not a working copy [I,V]"
+
+	salience 20200
+
+	when
+		( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_radio" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "single_choice_combobox" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "multiple_choice" )
+	    user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "optionSet" editable
+		set "options" editable
+		
+		set "optionSet" mandatory
+		set "options" mandatory
+		
+end
+
+rule "options and optionsets visible for native question types for surveymanagers, surveyreviewers and surveyauditors [I,V]"
+
+	salience 20100
+	when
+	    ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "text" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "long" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "double" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "date" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "daterange" )
+		value comparison fulfilled: ":transient:" attr_value "reviewerRatesAnswer" "EQUALS" value "true"
+		( user has right "read" OR    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has at object role "surveymanager" OR
+		  user has at object role "surveyauditor" )
+
+	then
+		#set "optionSet" visible
+		#set "options" visible
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_reviewerOptionSet" visible
+
+end
+
+rule "options and optionsets editable and mandatory for native question types for surveymanagers if this is not a working copy and reviewer will rate answers [I,V]"
+
+	salience 20000
+	when
+	    ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "text" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "long" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "double" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "date" OR
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "daterange" )
+		value comparison fulfilled: ":transient:" attr_value "reviewerRatesAnswer" "EQUALS" value "true"
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		#set "optionSet" editable
+		#set "options" editable
+
+		#set "optionSet" mandatory
+		#set "options" mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_reviewerOptionSet" editable
+		set "bb_reviewerOptionSet" mandatory
+
+end
+
+# "optionSet" and "options" are exclusive
+rule "optionSet assigned => hide options [I,V]"
+
+	salience 10100
+	when
+		"optionSet" is filled
+
+	then
+	    set "options" not_mandatory
+		set "options" invisible
+
+end
+
+rule "options assigned => hide optionSet [I,V]"
+
+	salience 10000
+	when
+		"options" is filled
+
+	then
+		set "optionSet" not_mandatory
+		set "optionSet" invisible
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide attributes [I,V]"
+
+ salience 9900
+ no-loop true
+  
+ when
+ 
+ then
+   set "isWorkingCopy" invisible
+end

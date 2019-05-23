@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<view id="hierarchy" view.parameter="DISTINCT">
+		<viewObject id="VO_hierarchy_1" objectType="HIERARCHY" isMainViewObject="true" preserveRightCheck="object">
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="isroot" attributeType="isroot" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="hnumber" attributeType="hnumber" isSortable="true" isSelectColumn="true"></viewColumn>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_scope" attributeType="bb_scope" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_codDependResp" attributeType="bb_codDependResp" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_nomeDependResp" attributeType="bb_nomeDependResp" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_codDivisaoResp" attributeType="bb_codDivisaoResp" isSortable="true" isSelectColumn="true"/>			
+            <viewColumn id="bb_codNucleoResp" attributeType="bb_codNucleoResp" isSortable="true" isSelectColumn="true"/>            
+			<viewColumn id="bb_finaccountAssertions" attributeType="bb_finaccountAssertions" />
+			<viewColumn id="bb_codigoEstadoModal" attributeType="bb_codigoEstadoModal" />
+			<viewColumn id="bb_codAbragModalidade" attributeType="bb_codAbragModalidade" />
+			<viewColumn id="bb_indModalidadeTesouraria" attributeType="bb_indModalidadeTesouraria" />
+			<viewColumn id="bb_tipoUnidOrganizacional" attributeType="bb_tipoUnidOrganizacional" />
+			<viewColumn id="bb_codigoIOR" attributeType="bb_codigoIOR" /> 
+			<viewColumn id="bb_mapFreeSH2" attributeType="bb_mapFreeSH2" />
+			<viewColumn id="bb_fundoGarantiaInvest" attributeType="bb_fundoGarantiaInvest" />
+			<viewColumn id="bb_eloParSA" attributeType="bb_eloParSA" />
+			<viewColumn id="bb_previ" attributeType="bb_previ" />
+			<viewColumn id="bb_BB_USA_Hold" attributeType="bb_BB_USA_Hold" />
+			<viewColumn id="bb_BB_Seguros_Part" attributeType="bb_BB_Seguros_Part" />
+			<viewColumn id="bb_TesouroNacional" attributeType="bb_TesouroNacional" />
+			<viewColumn id="bb_BB_Leasing_Co" attributeType="bb_BB_Leasing_Co" />
+			<viewColumn id="bb_codigoUOR" attributeType="bb_codigoUOR" />
+			<viewColumn id="bb_BB_BI" attributeType="bb_BB_BI" />
+			<viewColumn id="bb_MapFreeSegurosGerais" attributeType="bb_MapFreeSegurosGerais" />
+			<viewColumn id="bb_BB" attributeType="bb_BB" />
+			<viewColumn id="bb_AcaoTesouroria" attributeType="bb_AcaoTesouroria" />
+			<viewColumn id="bb_BB_mapFreeSH1" attributeType="bb_BB_mapFreeSH1" />
+			<viewColumn id="bb_fundoFiscalInvEstab" attributeType="bb_fundoFiscalInvEstab" />
+			<viewColumn id="bb_BB_cartoesPart" attributeType="bb_BB_cartoesPart" />
+			<viewColumn id="bb_BB_AG" attributeType="bb_BB_AG" />
+			<viewColumn id="bb_corPart" attributeType="bb_corPart" />
+			<viewColumn id="bb_cxFIGarantConstNaval" attributeType="bb_cxFIGarantConstNaval" />
+			<viewColumn id="bb_BAMB" attributeType="bb_BAMB" />
+			<viewColumn id="bb_segPart" attributeType="bb_segPart" />
+			<viewColumn id="bb_BB_DTVM" attributeType="bb_BB_DTVM" />
+			<viewColumn id="bb_freeFloat" attributeType="bb_freeFloat" />
+			<viewColumn id="bb_BNDESPar" attributeType="bb_BNDESPar" />
+			<viewColumn id="bb_codigoTipologia" attributeType="bb_codigoTipologia" />
+			<viewColumn id="bb_sigla" attributeType="bb_sigla" />
+			<viewColumn id="bb_prefixo" attributeType="bb_prefixo" />
+			<viewColumn id="bb_emailUOR" attributeType="bb_emailUOR" />
+			<viewColumn id="bb_notaTecnicaAprova" attributeType="bb_notaTecnicaAprova" />
+			<viewColumn id="bb_participacaoCalculoCapital" attributeType="bb_participacaoCalculoCapital" />
+		    <viewColumn id="bb_valorLimiteCritico" attributeType="bb_valorLimiteCritico" />
+		    <viewColumn id="bb_valorLimiteInferior" attributeType="bb_valorLimiteInferior" />
+			<viewColumn id="bb_valorLimiteSuperior" attributeType="bb_valorLimiteSuperior" />
+			<viewColumn id="bb_metodoAgregacao" attributeType="bb_metodoAgregacao" />
+			<viewColumn id="bb_tipoFinancialAccount" attributeType="bb_tipoFinancialAccount" />
+			<viewColumn id="bb_avalMaterialidadeContas" attributeType="bb_avalMaterialidadeContas" />	
+            <viewColumn id="bb_consolidado" attributeType="bb_consolidado" />
+            <viewColumn id="bb_eliminado" attributeType="bb_eliminado" />     
+            <viewColumn id="bb_aglutinado" attributeType="bb_aglutinado" />      
+            <viewColumn id="bb_suscetibFraude" attributeType="bb_suscetibFraude" />
+            <viewColumn id="bb_avalQuantitativa" attributeType="bb_avalQuantitativa" />
+            <viewColumn id="bb_valBaseMaterialidade" attributeType="bb_valBaseMaterialidade" />
+            <viewColumn id="bb_grauExposicao" attributeType="bb_grauExposicao" />
+            <viewColumn id="bb_percentAplicRiscoAlto" attributeType="bb_percentAplicRiscoAlto" />         
+            <viewColumn id="bb_percentAplicRiscoMedio" attributeType="bb_percentAplicRiscoMedio" />                                          
+		</viewObject> 
+		<viewObject id="VO_hierarchy_2" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy_3" objectType="HIERARCHY">
+			<viewColumn id="org_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="org_type" attributeType="type" isSortable="true" isSelectColumn="true"/>    
+			<viewColumn id="org_hnumber" attributeType="hnumber" isSelectColumn="true"></viewColumn>
+		</viewObject> 		
+		<viewObject id="VO_hierarchy_4" objectType="HIERARCHY">
+			<viewColumn id="bb_codIOR_contaContabil" attributeType="name" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <viewObject id="VO_hierarchy_5_TESTCASE" objectType="TESTCASE">
+        	<viewColumn id="ta_bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio"/>
+        	<viewColumn id="ta_bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio"/>
+            <viewColumn id="ta_va" attributeType="version_active"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy_6_DEFICIENCY" objectType="DEFICIENCY">
+        	<viewColumn id="def_bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio"/>
+        	<viewColumn id="def_bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio"/>
+        	<viewColumn id="def_va" attributeType="version_active"/>
+            <viewColumn id="def_deactivated" attributeType="deactivated"/>
+        </viewObject>
+
+		<link linktype.id="100" 	firstViewObject="VO_hierarchy_2" secondViewObject="VO_hierarchy_1"/>
+		<link linktype.id="10002" 	firstViewObject="VO_hierarchy_1" secondViewObject="VO_hierarchy_3" joinType="LEFT"/>
+		<link linktype.id="10040" 	firstViewObject="VO_hierarchy_1" secondViewObject="VO_hierarchy_4" joinType="LEFT"/>				
+		<link linktype.id="54" 		firstViewObject="VO_hierarchy_1" secondViewObject="VO_hierarchy_5_TESTCASE" joinType="LEFT"/>
+		<link linktype.id="68" 		firstViewObject="VO_hierarchy_1" secondViewObject="VO_hierarchy_6_DEFICIENCY" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_hierarchy_1" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="isroot" compareType="EQ"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="type" compareType="IN"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_hierarchy_2" column.id="client_sign" compareType="EQ"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_scope" compareType="IN"/>
+				<condition viewObject.id="VO_hierarchy_3" column.id="org_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_3" column.id="org_hnumber" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codDependResp" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_nomeDependResp" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codDivisaoResp" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codNucleoResp" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_finaccountAssertions" compareType="IN"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codigoEstadoModal" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codAbragModalidade" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_indModalidadeTesouraria" compareType="EQ"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_tipoUnidOrganizacional" compareType="EQ"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codigoIOR" compareType="LIKE"/> 
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codigoUOR" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_mapFreeSH2" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_fundoGarantiaInvest" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_eloParSA" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_previ" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_USA_Hold" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_Seguros_Part" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_TesouroNacional" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_Leasing_Co" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_BI" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_MapFreeSegurosGerais" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_AcaoTesouroria" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_mapFreeSH1" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_fundoFiscalInvEstab" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_cartoesPart" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_AG" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_corPart" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_cxFIGarantConstNaval" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BAMB" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_segPart" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BB_DTVM" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_freeFloat" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_BNDESPar" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_codigoTipologia" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_sigla" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_prefixo" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_emailUOR" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_notaTecnicaAprova" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_participacaoCalculoCapital" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_valorLimiteCritico" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_valorLimiteInferior" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_valorLimiteSuperior" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_metodoAgregacao" compareType="LIKE"/>
+                <condition viewObject.id="VO_hierarchy_1" column.id="bb_tipoFinancialAccount" compareType="LIKE"/>
+                <condition viewObject.id="VO_hierarchy_1" column.id="bb_avalMaterialidadeContas" compareType="EQ"/>
+                <condition viewObject.id="VO_hierarchy_1" column.id="bb_grauExposicao" compareType="EQ"/>                               
+                <condition viewObject.id="VO_hierarchy_4" column.id="bb_codIOR_contaContabil" compareType="LIKE"/>  
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_consolidado" compareType="LIKE"/>    
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_eliminado" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_aglutinado" compareType="LIKE"/>	
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_suscetibFraude" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_avalQuantitativa" compareType="LIKE"/>		
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_valBaseMaterialidade" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_grauExposicao" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_percentAplicRiscoAlto" compareType="LIKE"/>
+				<condition viewObject.id="VO_hierarchy_1" column.id="bb_percentAplicRiscoMedio" compareType="LIKE"/>																									                          
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="usergroup2userSubViewNotEmpty" view.parameter="DISTINCT">
+        <viewObject id="VO_usergroup2userSubViewNotEmpty_1_USERGROUP" objectType="USERGROUP" isMainViewObject="true">
+        	<viewColumn id="ug_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="ug_va" attributeType="version_active"/>
+            <viewColumn id="ug_deactivated" attributeType="deactivated"/>
+        </viewObject>
+
+        <viewObject id="VO_usergroup2userSubViewNotEmpty_2_USER" objectType="USER" >
+            <viewColumn id="user_obj_id" attributeType="obj_id"/>
+            <viewColumn id="user_va" attributeType="version_active"/>
+            <viewColumn id="user_deactivated" attributeType="deactivated"/>
+        </viewObject>
+        <link linktype.id="1" firstViewObject="VO_usergroup2userSubViewNotEmpty_2_USER" secondViewObject="VO_usergroup2userSubViewNotEmpty_1_USERGROUP" isParentVersionActive="true"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ug_va" compareType="EQ" value="true"/>
+                <condition column.id="user_va" compareType="EQ" value="true"/>
+                <condition column.id="user_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="usergroup2userSubViewNotDeactivated" view.parameter="DISTINCT">
+        <viewObject id="VO_usergroup2userSubViewNotDeactivated_1_USERGROUP" objectType="USERGROUP" isMainViewObject="true">
+        	<viewColumn id="ug_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="ug_va" attributeType="version_active"/>
+            <viewColumn id="ug_deactivated" attributeType="deactivated"/>
+        </viewObject>
+
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ug_va" compareType="EQ" value="true"/>
+                <condition column.id="ug_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	
+    <view id="openTaskForUG" view.parameter="DISTINCT">
+        <viewObject id="VO_openTaskForUG_1_TASKITEM" objectType="TASKITEM" isMainViewObject="true">
+            <viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true" function="COUNT_DISTINCT"/>
+			<viewColumn id="task_status" attributeType="status"/>
+        </viewObject>
+        <viewObject id="VO_openTaskForUG_2_USERGROUP" objectType="USERGROUP">
+            <viewColumn id="group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="5001" firstViewObject="VO_openTaskForUG_1_TASKITEM" secondViewObject="VO_openTaskForUG_2_USERGROUP"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="task_status" compareType="EQ" value="1"/> <!-- open -->
+				<condition column.id="group_id" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	
+	<view id="usergroup" view.parameter="DISTINCT">
+        <viewObject id="VO_8_1" objectType="USERGROUP" isMainViewObject="true">
+        	<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_8_2" objectType="HIERARCHY">
+        	<viewColumn id="bb_prefixo" attributeType="bb_prefixo" />
+        	<viewColumn id="bb_codigoUOR" attributeType="bb_codigoUOR" />
+        </viewObject>
+        <viewObject id="VO_8_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="VO_8_3" secondViewObject="VO_8_1"/>
+        <link linktype.id="20160322" firstViewObject="VO_8_1" secondViewObject="VO_8_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+            	<condition column.id="group_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="sign" compareType="LIKE"/>
+                <condition column.id="role" compareType="IN"/>
+                <condition column.id="rolelevel" compareType="IN"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="description" compareType="LIKE"/>
+            	<condition column.id="bb_prefixo" compareType="LIKE"/>
+                <condition column.id="bb_codigoUOR" compareType="LIKE"/>
+                <condition column.id="bb_prefixo" compareType="LIKE"/>
+                <condition column.id="bb_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	
+	<view id="hierarchy_testergroup_sel" view.parameter="DISTINCT">
+        <viewObject id="VO_hierarchy_ownergroup_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy_ownergroup_sel_2" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="hierarchy_count" attributeType="obj_id" isSelectColumn="true" function="COUNT_DISTINCT"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy_ownergroup_sel_3" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="69" firstViewObject="VO_hierarchy_ownergroup_sel_1" secondViewObject="VO_hierarchy_ownergroup_sel_2" joinType="LEFT"/>
+        <link linktype.id="20160322" firstViewObject="VO_hierarchy_ownergroup_sel_1" secondViewObject="VO_hierarchy_ownergroup_sel_3" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="HIERARCHY" currentAttributeType.id="tester"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="tester"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="hierarchy_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+	<view id="hierarchy_signoffowner_sel" view.parameter="DISTINCT">
+		<viewObject id="hierarchy_signoffowner_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="hierarchy_signoffowner_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="hierarchy_signoffowner_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="hierarchy_signoffowner_sel_3" secondViewObject="hierarchy_signoffowner_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="hierarchy_signoffowner_sel_1" secondViewObject="hierarchy_signoffowner_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="HIERARCHY" currentAttributeType.id="so_owner"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="HIERARCHY" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="signoffowner"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="usergroupForRoleAndOrgunit" view.parameter="DISTINCT">
+        <viewObject id="VO_usergroupForRoleAndOrgunit_1_USERGROUP" objectType="USERGROUP" isMainViewObject="true">
+        	<viewColumn id="ug_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+        	<viewColumn id="ug_role" attributeType="role"/>
+        	<viewColumn id="ug_rolelevel" attributeType="rolelevel"/>
+            <viewColumn id="ug_va" attributeType="version_active"/>
+            <viewColumn id="ug_deactivated" attributeType="deactivated"/>
+        </viewObject>
+
+        <viewObject id="VO_usergroupForRoleAndOrgunit_1_ORGUNIT" objectType="HIERARCHY" >
+            <viewColumn id="ou_obj_id" attributeType="obj_id"/>
+            <viewColumn id="ou_va" attributeType="version_active"/>
+            <viewColumn id="ou_deactivated" attributeType="deactivated"/>
+        </viewObject>
+        <link linktype.id="20160322" firstViewObject="VO_usergroupForRoleAndOrgunit_1_USERGROUP" secondViewObject="VO_usergroupForRoleAndOrgunit_1_ORGUNIT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ug_va" compareType="EQ" value="true"/>
+                <condition column.id="ug_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ou_va" compareType="EQ" value="true"/>
+                <condition column.id="ou_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="usergroupForRole" view.parameter="DISTINCT">
+        <viewObject id="VO_usergroupForRole_1_USERGROUP" objectType="USERGROUP" isMainViewObject="true">
+        	<viewColumn id="ug_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+        	<viewColumn id="ug_role" attributeType="role"/>
+        	<viewColumn id="ug_rolelevel" attributeType="rolelevel"/>
+            <viewColumn id="ug_va" attributeType="version_active"/>
+            <viewColumn id="ug_deactivated" attributeType="deactivated"/>
+        </viewObject>
+        <viewObject id="VO_usergroupForRole_2_USER" objectType="USER">
+        	<viewColumn id="u_obj_id" attributeType="obj_id"/>
+            <viewColumn id="u_va" attributeType="version_active"/>
+            <viewColumn id="u_deactivated" attributeType="deactivated"/>
+        </viewObject>
+        <link linktype.id="1" firstViewObject="VO_usergroupForRole_1_USERGROUP" secondViewObject="VO_usergroupForRole_2_USER"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ug_va" compareType="EQ" value="true"/>
+                <condition column.id="ug_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="u_va" compareType="EQ" value="true"/>
+                <condition column.id="u_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="BB_process2control" view.parameter="DISTINCT">
+        <viewObject id="VO_process2control_Control" objectType="CONTROL" isMainViewObject="true" preserveRightCheck="object">
+            <viewColumn id="control_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controltypes_information" attributeType="control_type" isSelectColumn="true"/>
+            <viewColumn id="controls" attributeType="controls" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="control_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_process2control_Process" objectType="HIERARCHY">
+        	<viewColumn id="id_riskHPr" attributeType="obj_id"/>
+        	<viewColumn id="id_controlHPr" attributeType="obj_id"/>
+            <viewColumn id="idlist_controlHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_controlHPr" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_process2control_CONTROLGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_controlgroups" attributeType="obj_id"/>
+            <viewColumn id="responsible_reviewer" attributeType="obj_id"/>
+        </viewObject>
+        
+        <link linktype.id="10050" firstViewObject="VO_process2control_Control" secondViewObject="VO_process2control_Process" />
+        <link linktype.id="13" firstViewObject="VO_process2control_Control" secondViewObject="VO_process2control_CONTROLGROUPS" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="controls" compareType="LIKE"/>
+                <condition column.id="control_version_active" compareType="EQ" value="true"/>
+                <condition column.id="id_riskHPr" compareType="IN"/>
+                <condition column.id="id_controlHPr" compareType="IN"/>
+                <condition column.id="idlist_controlHPr" compareType="IN"/>
+                <condition column.id="responsible_controlgroups" compareType="IN"/>
+                <condition column.id="idforexcludefilter_controlHPr" compareType="IN"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="hierarchy2testdef_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_hierarchy2testdef_refs_1_Orgunit" objectType="HIERARCHY">
+            <viewColumn id="id_orgH" attributeType="obj_id"/>
+            <viewColumn id="idlist_orgH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_orgH" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_2" objectType="RISK">
+            <viewColumn id="risk_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_Control" objectType="CONTROL">
+            <viewColumn id="control_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="control_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_Testdef" objectType="TESTDEFINITION" isMainViewObject="true" preserveRightCheck="object">
+            <viewColumn id="testdefinition_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="frequency" attributeType="frequency" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="duration" attributeType="duration" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdefinition_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="startdate" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="startdate_2" attributeType="startdate" isSortable="true"/>
+            <viewColumn id="testdef_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="responsible_2" attributeType="obj_id"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_REVIEWER" objectType="USERGROUP">
+            <viewColumn id="responsible_reviewer" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_RISKGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_riskgroups" attributeType="obj_id"/>
+            <viewColumn id="responsible_opriskgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_CONTROLGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_controlgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_TG" objectType="USERGROUP">
+            <viewColumn id="testergroup" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_riskhierarchiesProcess" objectType="HIERARCHY">
+            <viewColumn id="id_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHPr" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_riskhierarchiesFinacc" objectType="HIERARCHY">
+            <viewColumn id="id_riskHFA" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHFA" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHFA" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_TesterHierarchy" objectType="HIERARCHY">
+            <viewColumn id="id_testerH" attributeType="obj_id"/>
+            <viewColumn id="idlist_testerH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_testerH" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testdef_refs_1_controlhierarchiesProcess" objectType="HIERARCHY">
+            <viewColumn id="id_controlHPr" attributeType="obj_id"/>
+            <viewColumn id="idlist_controlHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_controlHPr" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="49" firstViewObject="VO_hierarchy2testdef_refs_1_Testdef" secondViewObject="VO_hierarchy2testdef_refs_1_Orgunit" joinType="LEFT"/>
+        <link linktype.id="15" firstViewObject="VO_hierarchy2testdef_refs_1_Testdef" secondViewObject="VO_hierarchy2testdef_refs_1_Control" joinType="LEFT"/>
+        <link linktype.id="4" firstViewObject="VO_hierarchy2testdef_refs_1_Control" secondViewObject="VO_hierarchy2testdef_refs_1_2" joinType="LEFT"/>
+        <link linktype.id="13" firstViewObject="VO_hierarchy2testdef_refs_1_Control" secondViewObject="VO_hierarchy2testdef_refs_1_CONTROLGROUPS" joinType="LEFT"/>
+        <link linktype.id="52" firstViewObject="VO_hierarchy2testdef_refs_1_2" secondViewObject="VO_hierarchy2testdef_refs_1_RISKGROUPS" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2testdef_refs_1_Testdef" secondViewObject="VO_hierarchy2testdef_refs_1_7" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2testdef_refs_1_Testdef" secondViewObject="VO_hierarchy2testdef_refs_1_TG" joinType="LEFT"/>
+        <link linktype.id="69" firstViewObject="VO_hierarchy2testdef_refs_1_TG" secondViewObject="VO_hierarchy2testdef_refs_1_TesterHierarchy" joinType="LEFT"/>
+        <link linktype.id="53" firstViewObject="VO_hierarchy2testdef_refs_1_Testdef" secondViewObject="VO_hierarchy2testdef_refs_1_REVIEWER" joinType="LEFT"/>
+        <link linktype.id="47" firstViewObject="VO_hierarchy2testdef_refs_1_2" secondViewObject="VO_hierarchy2testdef_refs_1_riskhierarchiesProcess" joinType="LEFT"/>
+        <link linktype.id="48" firstViewObject="VO_hierarchy2testdef_refs_1_2" secondViewObject="VO_hierarchy2testdef_refs_1_riskhierarchiesFinacc" joinType="LEFT"/>
+        <link linktype.id="10050" firstViewObject="VO_hierarchy2testdef_refs_1_Control" secondViewObject="VO_hierarchy2testdef_refs_1_controlhierarchiesProcess" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+                <condition column.id="startdate" compareType="GE"/>
+                <condition column.id="startdate_2" compareType="LE"/>
+                <condition column.id="testdef_version_active" compareType="EQ" value="true"/>
+                <!-- filtered hierarchy -->
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="id_orgH" compareType="IN"/>
+                    <condition column.id="idlist_orgH" compareType="IN"/>
+                    <condition column.id="id_testerH" compareType="IN"/>
+                    <condition column.id="idlist_testerH" compareType="IN"/>
+                    <condition column.id="id_riskHPr" compareType="IN"/>
+                    <condition column.id="idlist_riskHPr" compareType="IN"/>
+                    <condition column.id="id_controlHPr" compareType="IN"/>
+                    <condition column.id="idlist_controlHPr" compareType="IN"/>
+                    <condition column.id="id_riskHFA" compareType="IN"/>
+                    <condition column.id="idlist_riskHFA" compareType="IN"/>
+                    <!-- groupconditions -->
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="responsible_2" compareType="IN"/>
+                            <condition column.id="responsible_reviewer" compareType="IN"/>
+                            <condition column.id="responsible_riskgroups" compareType="IN"/>
+                            <condition column.id="responsible_opriskgroups" compareType="IN"/>
+                            <condition column.id="responsible_controlgroups" compareType="IN"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="idforexcludefilter_orgH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_testerH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHPr" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_controlHPr" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHFA" compareType="IN"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="hierarchy2testaction_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_hierarchy2testaction_refs_1_1" objectType="HIERARCHY">
+            <viewColumn id="id" attributeType="obj_id"/>
+            <viewColumn id="version_number" attributeType="version_number"/>
+            <viewColumn id="idlist" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_3" objectType="TESTCASE" isMainViewObject="true" preserveRightCheck="object">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="execution_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_6" objectType="USER">
+            <viewColumn id="user_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="user_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="user_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="user_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_6b" objectType="USER">
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_fh" objectType="USERGROUP">
+            <viewColumn id="responsible_2" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_8" objectType="HIERARCHY">
+            <viewColumn id="testergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testergroup_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_risk" objectType="RISK">
+            <viewColumn id="risk_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_Control" objectType="CONTROL">
+            <viewColumn id="control_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_RISKGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_riskgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_CONTROLGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_controlgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2testaction_refs_1_controlhierarchiesProcess" objectType="HIERARCHY">
+            <viewColumn id="control_id" attributeType="obj_id"/>
+            <viewColumn id="control_version_number" attributeType="version_number"/>
+            <viewColumn id="control_idlist" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="54,72,74, 75" firstViewObject="VO_hierarchy2testaction_refs_1_1" secondViewObject="VO_hierarchy2testaction_refs_1_3" joinType="LEFT"/>
+        <link linktype.id="12" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_6" joinType="LEFT"/>
+        <link linktype.id="72" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_8"/>
+        <link linktype.id="3110" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_6b" joinType="LEFT"/>
+        <link linktype.id="57" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_7"/>
+        <link linktype.id="57,58" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_fh"/>
+        <link linktype.id="19" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_risk" joinType="LEFT" attendVersionizing="false"/>
+        <link linktype.id="16" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_Control" joinType="LEFT" attendVersionizing="false"/>
+        <link linktype.id="13" firstViewObject="VO_hierarchy2testaction_refs_1_Control" secondViewObject="VO_hierarchy2testaction_refs_1_CONTROLGROUPS" joinType="LEFT"/>
+        <link linktype.id="52" firstViewObject="VO_hierarchy2testaction_refs_1_risk" secondViewObject="VO_hierarchy2testaction_refs_1_RISKGROUPS" joinType="LEFT"/>
+        <link linktype.id="10051" firstViewObject="VO_hierarchy2testaction_refs_1_3" secondViewObject="VO_hierarchy2testaction_refs_1_controlhierarchiesProcess" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <condition column.id="controlstartdate" compareType="LE"/>
+                <condition column.id="controlenddate" compareType="GE"/>
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="version_number" compareType="LE"/>
+                    <condition column.id="id" compareType="IN"/>
+                    <condition column.id="control_version_number" compareType="LE"/>
+                    <condition column.id="control_id" compareType="IN"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="idlist" compareType="IN"/>
+                    <condition column.id="control_idlist" compareType="IN"/>
+                    <condition column.id="responsible_2" compareType="IN"/>
+                    <condition column.id="responsible_riskgroups" compareType="IN"/>
+                    <condition column.id="responsible_controlgroups" compareType="IN"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="hierarchy2risk_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_hierarchy2risk_refs_1_Orgunit" objectType="HIERARCHY">
+            <viewColumn id="id_orgH" attributeType="obj_id"/>
+            <viewColumn id="idlist_orgH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_orgH" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_2" objectType="RISK" isMainViewObject="true" skipRightsConditionForRoleLevels="object">
+            <viewColumn id="clientSign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="risk_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="risk_version_active" attributeType="version_active"/>
+            <viewColumn id="impact" attributeType="impact" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="probability" attributeType="probability" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="risktype" attributeType="risktype" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="assertions" attributeType="assertions" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_risk_owner" objectType="USERGROUP">
+            <viewColumn id="riskOwnerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_Control" objectType="CONTROL">
+            <viewColumn id="Control_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_Testdef" objectType="TESTDEFINITION">
+            <viewColumn id="testdef_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="responsible_2" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_REVIEWER" objectType="USERGROUP">
+            <viewColumn id="responsible_reviewer" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_RISKGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_riskgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_OPRISKGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_opriskgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_CONTROLGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_controlgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_riskhierarchiesProcess" objectType="HIERARCHY">
+            <viewColumn id="id_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="id_controlHPr" attributeType="obj_id"/>
+            <!-- needed for aggregated HierarchyReport -->
+            <viewColumn id="idPr" attributeType="obj_id"/>
+            <viewColumn id="idlist_controlHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_controlHPr" attributeType="obj_id"/>
+        </viewObject>
+        
+        <viewObject id="VO_hierarchy2risk_refs_riskhierarchiesFatorDeRisco" objectType="HIERARCHY">
+            <viewColumn id="id_riskHFR" attributeType="obj_id"/>
+            <!-- needed for aggregated HierarchyReport -->
+            <viewColumn id="idHFR" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHFR" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHFR" attributeType="obj_id"/>
+        </viewObject>
+       
+        <viewObject id="VO_hierarchy2risk_refs_riskhierarchiesFinacc" objectType="HIERARCHY">
+            <viewColumn id="id_riskHFA" attributeType="obj_id"/>
+            <!-- needed for aggregated HierarchyReport -->
+            <viewColumn id="idFA" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHFA" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHFA" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_riskhierarchiesOR" objectType="HIERARCHY">
+            <viewColumn id="id_riskHOR" attributeType="obj_id"/>
+            <!-- needed for aggregated HierarchyReport -->
+            <viewColumn id="idOR" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHOR" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHOR" attributeType="obj_id"/>
+            <viewColumn id="idlist_processHpro" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_refs_1_TG" objectType="USERGROUP">
+            <viewColumn id="testergroup" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2risk_TesterHierarchy" objectType="HIERARCHY">
+            <viewColumn id="id_testerH" attributeType="obj_id"/>
+            <viewColumn id="idlist_testerH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_testerH" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="52" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_1_RISKGROUPS" joinType="LEFT"/>
+        <link linktype.id="3160,3161" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_1_OPRISKGROUPS" joinType="LEFT"/>
+        <link linktype.id="201610201" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_riskhierarchiesFatorDeRisco" joinType="LEFT"/>
+        <link linktype.id="47" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_riskhierarchiesProcess" joinType="LEFT"/>
+        <link linktype.id="48" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_riskhierarchiesFinacc" joinType="LEFT"/>
+        <link linktype.id="3163,3162,3164" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_riskhierarchiesOR" joinType="LEFT"/>
+        <link linktype.id="4" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_1_Control" joinType="LEFT"/>
+        <link linktype.id="52" firstViewObject="VO_hierarchy2risk_refs_1_2" secondViewObject="VO_hierarchy2risk_refs_risk_owner" joinType="LEFT"/>
+        <link linktype.id="13" firstViewObject="VO_hierarchy2risk_refs_1_Control" secondViewObject="VO_hierarchy2risk_refs_1_CONTROLGROUPS" joinType="LEFT"/>
+        <link linktype.id="15" firstViewObject="VO_hierarchy2risk_refs_1_Control" secondViewObject="VO_hierarchy2risk_refs_1_Testdef" joinType="LEFT"/>
+        <link linktype.id="49" firstViewObject="VO_hierarchy2risk_refs_1_Testdef" secondViewObject="VO_hierarchy2risk_refs_1_Orgunit" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2risk_refs_1_Testdef" secondViewObject="VO_hierarchy2risk_refs_1_7" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2risk_refs_1_Testdef" secondViewObject="VO_hierarchy2risk_refs_1_TG" joinType="LEFT"/>
+        <link linktype.id="53" firstViewObject="VO_hierarchy2risk_refs_1_Testdef" secondViewObject="VO_hierarchy2risk_refs_1_REVIEWER" joinType="LEFT"/>
+        <link linktype.id="69" firstViewObject="VO_hierarchy2risk_refs_1_TG" secondViewObject="VO_hierarchy2risk_TesterHierarchy" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="risk_version_active" compareType="EQ" value="true"/>
+                <!-- filtered hierarchy -->
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="id_orgH" compareType="IN"/>
+                    <condition column.id="idlist_orgH" compareType="IN"/>
+                    <condition column.id="id_testerH" compareType="IN"/>
+                    <condition column.id="idlist_testerH" compareType="IN"/>
+                    <condition column.id="id_riskHPr" compareType="IN"/>
+                    <condition column.id="idPr" compareType="IN"/>
+                    <condition column.id="idlist_controlHPr" compareType="IN"/>
+                    <condition column.id="id_controlHPr" compareType="IN"/>
+                    <condition column.id="id_riskHFA" compareType="IN"/>
+                    <condition column.id="idFA" compareType="IN"/>
+                    <condition column.id="idlist_riskHFA" compareType="IN"/>
+                    <condition column.id="id_riskHOR" compareType="IN"/>
+                    <condition column.id="idOR" compareType="IN"/>
+                    <condition column.id="idlist_riskHOR" compareType="IN"/>
+                    <condition column.id="id_riskHFR" compareType="IN"/>
+                    <condition column.id="idHFR" compareType="IN"/>
+                    <condition column.id="idlist_riskHFR" compareType="IN"/>
+                    <condition column.id="idlist_processHpro" compareType="IN"/>
+                    <!-- groupconditions -->
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="responsible_2" compareType="IN"/>
+                            <condition column.id="responsible_reviewer" compareType="IN"/>
+                            <condition column.id="responsible_riskgroups" compareType="IN"/>
+                            <condition column.id="responsible_opriskgroups" compareType="IN"/>
+                            <condition column.id="responsible_controlgroups" compareType="IN"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="idforexcludefilter_orgH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_testerH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_controlHPr" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHPr" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHFA" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHOR" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHFR" compareType="IN"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+     
+    <!-- Controls, which are assigned to a hierarchy over master data -->
+    <view id="hierarchy2control_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_hierarchy2control_refs_1_Control" objectType="CONTROL" isMainViewObject="true" skipRightsConditionForRoleLevels="object">
+            <viewColumn id="control_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controltypes_information" attributeType="control_type" isSelectColumn="true"/>
+            <viewColumn id="controls" attributeType="controls" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="control_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_2" objectType="RISK">
+            <viewColumn id="risk_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_Testdef" objectType="TESTDEFINITION">
+            <viewColumn id="testdef_obj_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_Orgunit" objectType="HIERARCHY">
+            <!--org unit-->
+            <viewColumn id="id_orgH" attributeType="obj_id"/>
+            <viewColumn id="idlist_orgH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_orgH" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_RISKGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_riskgroups" attributeType="obj_id"/>
+            <viewColumn id="responsible_opriskgroups" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="responsible_2" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_REVIEWER" objectType="USERGROUP">
+            <viewColumn id="responsible_reviewer" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_CONTROLGROUPS" objectType="USERGROUP">
+            <viewColumn id="responsible_controlgroups" attributeType="obj_id"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_riskhierarchiesProcess" objectType="HIERARCHY">
+            <viewColumn id="id_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHPr" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHPr" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_riskhierarchiesFinacc" objectType="HIERARCHY">
+            <viewColumn id="id_riskHFA" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHFA" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHFA" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_refs_1_TG" objectType="USERGROUP">
+            <viewColumn id="testergroup_2" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_hierarchy2control_TesterHierarchy" objectType="HIERARCHY">
+            <viewColumn id="id_testerH" attributeType="obj_id"/>
+            <viewColumn id="idlist_testerH" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_testerH" attributeType="obj_id"/>
+        </viewObject>
+         <viewObject id="VO_hierarchy2control_refs_riskhierarchiesFatorDeRisco" objectType="HIERARCHY">
+            <viewColumn id="id_riskHFR" attributeType="obj_id"/>
+            <!-- needed for aggregated HierarchyReport -->
+            <viewColumn id="idHFR" attributeType="obj_id"/>
+            <viewColumn id="idlist_riskHFR" attributeType="obj_id"/>
+            <viewColumn id="idforexcludefilter_riskHFR" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="4" firstViewObject="VO_hierarchy2control_refs_1_Control" secondViewObject="VO_hierarchy2control_refs_1_2" joinType="LEFT"/>
+        <link linktype.id="15" firstViewObject="VO_hierarchy2control_refs_1_Control" secondViewObject="VO_hierarchy2control_refs_1_Testdef" joinType="LEFT"/>
+        <link linktype.id="13" firstViewObject="VO_hierarchy2control_refs_1_Control" secondViewObject="VO_hierarchy2control_refs_1_CONTROLGROUPS" joinType="LEFT"/>
+        <link linktype.id="49" firstViewObject="VO_hierarchy2control_refs_1_Testdef" secondViewObject="VO_hierarchy2control_refs_Orgunit" joinType="LEFT"/>
+        <link linktype.id="52" firstViewObject="VO_hierarchy2control_refs_1_2" secondViewObject="VO_hierarchy2control_refs_1_RISKGROUPS" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2control_refs_1_Testdef" secondViewObject="VO_hierarchy2control_refs_1_7" joinType="LEFT"/>
+        <link linktype.id="3" firstViewObject="VO_hierarchy2control_refs_1_Testdef" secondViewObject="VO_hierarchy2control_refs_1_TG" joinType="LEFT"/>
+        <link linktype.id="53" firstViewObject="VO_hierarchy2control_refs_1_Testdef" secondViewObject="VO_hierarchy2control_refs_1_REVIEWER" joinType="LEFT"/>
+        <link linktype.id="47" firstViewObject="VO_hierarchy2control_refs_1_2" secondViewObject="VO_hierarchy2control_refs_riskhierarchiesProcess" joinType="LEFT"/>
+        <link linktype.id="48" firstViewObject="VO_hierarchy2control_refs_1_2" secondViewObject="VO_hierarchy2control_refs_riskhierarchiesFinacc" joinType="LEFT"/>
+        <link linktype.id="69" firstViewObject="VO_hierarchy2control_refs_1_TG" secondViewObject="VO_hierarchy2control_TesterHierarchy" joinType="LEFT"/>
+        <link linktype.id="201610201" firstViewObject="VO_hierarchy2control_refs_1_2" secondViewObject="VO_hierarchy2control_refs_riskhierarchiesFatorDeRisco" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="controls" compareType="LIKE"/>
+                <condition column.id="control_version_active" compareType="EQ" value="true"/>
+                <!-- filtered hierarchy -->
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="id_orgH" compareType="IN"/>
+                    <condition column.id="idlist_orgH" compareType="IN"/>
+                    <condition column.id="id_testerH" compareType="IN"/>
+                    <condition column.id="idlist_testerH" compareType="IN"/>
+                    <condition column.id="id_riskHPr" compareType="IN"/>
+                    <condition column.id="idlist_riskHPr" compareType="IN"/>
+                    <condition column.id="id_riskHFA" compareType="IN"/>
+                    <condition column.id="idlist_riskHFA" compareType="IN"/>
+                    <condition column.id="id_riskHFR" compareType="IN"/>
+                    <condition column.id="idlist_riskHFR" compareType="IN"/>
+                    <condition column.id="idHFR" compareType="IN"/>
+                    
+                    <!-- groupconditions -->
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="responsible_2" compareType="IN"/>
+                            <condition column.id="responsible_reviewer" compareType="IN"/>
+                            <condition column.id="responsible_riskgroups" compareType="IN"/>
+                            <condition column.id="responsible_opriskgroups" compareType="IN"/>
+                            <condition column.id="responsible_controlgroups" compareType="IN"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="idforexcludefilter_orgH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_testerH" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHPr" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHFA" compareType="IN"/>
+                            <condition column.id="idforexcludefilter_riskHFR" compareType="IN"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="hierarchy2process_refs_1" view.parameter="DISTINCT">
+		<viewObject id="VO_hierarchy2process_1" objectType="HIERARCHY" 		isMainViewObject="true" preserveRightCheck="object">
+			<viewColumn id="name" 			attributeType="name" 			isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="obj_id" 		attributeType="obj_id" 			isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="description" 	attributeType="description" 	isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		 
+		<viewObject id="VO_hierarchy2process_1_1" objectType="HIERARCHY">
+			<viewColumn id="id_processHpro" 	attributeType="obj_id"/>
+			<viewColumn id="idlist_processHpro" attributeType="obj_id"/>
+		</viewObject>
+		
+		<viewObject id="VO_hierarchy2process_1_2" objectType="HIERARCHY">
+			<viewColumn id="id_riskHFR" 		attributeType="obj_id"/>
+			<viewColumn id="idlist_riskHFR" 	attributeType="obj_id"/>						
+		</viewObject> 		
+		 		
+		<link linktype.id="10003" 	  firstViewObject="VO_hierarchy2process_1" secondViewObject="VO_hierarchy2process_1_1" joinType="LEFT"/>
+		<link linktype.id="201701131" firstViewObject="VO_hierarchy2process_1" secondViewObject="VO_hierarchy2process_1_2" joinType="LEFT"/>
+		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition column.id="idlist_processHpro" 	compareType="IN"/>
+				<condition column.id="idlist_riskHFR" 		compareType="IN"/>
+				<condition column.id="id_riskHFR" 			compareType="IN"/>
+				<condition column.id="id_processHpro" 		compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<!-- BdB CUSTOMIZATION -->	
+    <view id="bb_process2soprocess" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SignoffObjectRoleViewHandlerBB">
+        <viewObject id="VO_process2soprocess_1" objectType="SOPROCESS" isMainViewObject="true" skipRightsConditionForRoleLevels="client">        
+            <viewColumn id="process_id" 			attributeType="obj_id" 				isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_start" 	attributeType="controlstartdate" 	isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_end" 	attributeType="controlenddate" 		isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_start" 		attributeType="plannedstartdate" 	isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_end" 		attributeType="plannedenddate" 		isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_version_active" attributeType="version_active"      isSortable="true"/>
+            <viewColumn id="deactivated"            attributeType="deactivated"         isSortable="true" isSelectColumn="true"/>
+            
+        </viewObject>   
+        <viewObject id="VO_process2soprocess_2" objectType="HIERARCHY">
+        	<viewColumn id="hierarchy_id" attributeType="obj_id"/>                      	       
+        </viewObject>        	       
+        
+        <viewObject id="VO_process2soprocess_3" objectType="USERGROUP">
+			<viewColumn id="signoffower_ID" attributeType="obj_id"/>
+		</viewObject>
+        
+        <viewObject id="VO_process2soprocess_4" objectType="USERGROUP">
+			<viewColumn id="signoffreviewer_ID" attributeType="obj_id"/>
+		</viewObject>
+		
+		<viewObject id="VO_process2soprocess_5" objectType="USERGROUP">
+			<viewColumn id="signoffmanager_ID" attributeType="obj_id"/>
+		</viewObject>
+
+        <link linktype.id="61" firstViewObject="VO_process2soprocess_1" secondViewObject="VO_process2soprocess_2"/>
+        <link linktype.id="63" firstViewObject="VO_process2soprocess_1" secondViewObject="VO_process2soprocess_3" joinType="LEFT"/>
+        <link linktype.id="76" firstViewObject="VO_process2soprocess_1" secondViewObject="VO_process2soprocess_4" joinType="LEFT"/>
+        <link linktype.id="6111" firstViewObject="VO_process2soprocess_1" secondViewObject="VO_process2soprocess_5" joinType="LEFT"/>
+       
+        <conditions>
+           <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="process_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="deactivated" compareType="EQ" value="false"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">                    
+                	<condition column.id="hierarchy_id" compareType="EQ" currentObjectType.id="HIERARCHY" currentAttributeType.id="obj_id"/>
+                </compoundCondition>        	                   
+           </compoundCondition>	
+        </conditions>               
+    </view>
+        
+</custom>

@@ -1,0 +1,41 @@
+package ISSUE_MANIFESTATION_IRO_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+rule "IRO visible attributes - 'manifestation' [I,V]"
+
+	salience 10
+	no-loop true
+	
+	when
+		is IRO
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"				
+
+	then
+		set object readonly
+		remove object messages	
+
+		set "bb_mgmtApproverL1_group" 	visible
+		set "bb_mgmtApproverL1_aware" 	visible
+		set "bb_mgmtApproverL1" 		visible
+		set "bb_mgmtApproverL1_date" 	visible
+		set "bb_mgmtApprover_orgunit"	visible
+		
+		set "bb_implApproverL1_group" 	visible
+		set "bb_implApproverL1_status" 	visible
+		set "bb_implApproverL1_remark" 	visible
+		set "bb_implApproverL1" 		visible
+		set "bb_implApproverL1_date" 	visible
+		set "bb_implApprover_orgunit"	visible
+		
+		set "remark"                  	visible
+		set "immediateMeasure"        	visible
+		set "bb_anotherImportantInfo" 	visible
+		set "bb_confidentialityLevel" 	visible
+
+end
+
+

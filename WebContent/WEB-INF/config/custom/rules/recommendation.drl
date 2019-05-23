@@ -1,0 +1,116 @@
+package RECOMMENDATION_RuleSet
+expander recommendation.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.testmanagement.re.RecommendationHelper;
+import com.idsscheer.webapps.arcm.bl.component.testmanagement.re.RecommendationHelperBB;
+
+# OBJECT         client_objid        LONG       Client ID             
+# OBJECT         client_sign         CLIENTSIGN Client                
+# OBJECT         create_date         DATE       Creation date         
+# OBJECT         creator_user_id     LONG       User ID (creator)     
+# OBJECT         delete_date         DATE       Deletion date         
+# OBJECT         guid                STRING     GUID                  
+# OBJECT         obj_id              LONG       ID                    
+# OBJECT         obj_type            OBJECTTYPE Object type           
+# OBJECT         root_guid           STRING     Root GUID             
+# OBJECT         versions            LONG       Number of versions    
+# VERSION        change_user_id      LONG       User ID (editor)      
+# VERSION        deactivated         BOOLEAN    Deactivated           
+# VERSION        id                  LONG       ID                    
+# VERSION        substitute_user_id  LONG       User ID (substitute)  
+# VERSION        version_number      LONG       Version number        
+# RECOMMENDATION email               STRING     E-mail                
+# RECOMMENDATION mail_sent           BOOLEAN    Recommendation sent   
+# RECOMMENDATION name                STRING     Name                  
+# RECOMMENDATION recommendation      STRING     Recommendation        
+# RECOMMENDATION recommendation_date DATE       Date                  
+# RECOMMENDATION relatedObjectId     LONG       Related object        
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "define all standard attributes editable [I,V]"
+
+	salience 10400
+	no-loop true
+
+	when
+
+	then
+		set "name"                editable
+		set "recommendation"      editable
+		set "email"               editable
+		set "recommendation_date" editable
+		
+		########################
+		### BB CUSTOMIZATION ###
+		check recommendation date
+
+end
+
+rule "set_object_readonly_if_not_opened_by_creator_[I,V]"
+
+	salience 10300
+	no-loop true
+
+	when
+		object is_not new
+		object is_not opened by its creator
+
+	then
+		set "name"                readonly
+		set "recommendation"      readonly
+		set "email"               readonly
+		set "recommendation_date" readonly
+
+end
+
+rule "set_object_readonly_if_testcase_is_closed_by_tester_[I,V]"
+
+	salience 10200
+	no-loop true
+
+	when
+		user is tester of related test_case
+		related testcase has been closed by tester
+
+	then
+		set "name"                readonly
+		set "recommendation"      readonly
+		set "email"               readonly
+		set "recommendation_date" readonly
+
+end
+
+rule "set_object_readonly_if_testcase_closed_by_reviewer_[I,V]"
+
+	salience 10100
+	no-loop true
+
+	when
+		user is reviewer of related test_case
+		related testcase has been closed by reviewer
+
+	then
+		set "name"                readonly
+		set "recommendation"      readonly
+		set "email"               readonly
+		set "recommendation_date" readonly
+
+end
+
+rule "mark_mandatory_fields_[I,V]"
+
+	salience 10000
+	no-loop true
+
+	when
+
+	then
+		set "recommendation"    mandatory
+		set "name"              mandatory
+
+end

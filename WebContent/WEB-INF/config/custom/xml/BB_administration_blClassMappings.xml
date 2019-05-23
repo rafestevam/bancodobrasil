@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<!--
+			filter attributes for lists.
+			    * name clsNames are use in filtes*.xml
+			    * every mapping must implement IFilterAttribute, see IFilterAttribute JavaDoc for details, name clsNames are used in filtes*.xml
+		-->
+		<mappingType name="Filter">
+	        <!-- common -->
+	        <mapping name="hierarchyEnumFilterBB"	                    				clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProcessHierarchyEnumFilterAttributeBB"/>
+	        <mapping name="hierarchyStringFilterBB"	                    				clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProcessHierarchyStringFilterAttributeBB"/>
+	        <mapping name="hierarchyDateRangeFilterBB"	                    			clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProcessHierarchyDateRangeFilterAttributeBB"/>
+	        <mapping name="applicationSystemHierarchyStringFilterBB"					clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ApplicationSystemHierarchyStringFilterAttributeBB"/>	       
+	        <mapping name="applicationSystemHierarchyEnumFilterBB"   					clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ApplicationSystemHierarchyEnumFilterAttributeBB"/>
+	        <mapping name="finAccountHierarchyEnumFilterBB"	        					clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.FinancialAccountHierarchyEnumFilterAttributeBB"/>
+	      	<mapping name="prodModalityHierarchyBooleanFilterAttributeBB"	    		clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProductModalityHierarchyBooleanFilterAttributeBB"/>
+	        <mapping name="prodModalityHierarchyStringFilterAttributeBB"	    		clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProductModalityHierarchyStringFilterAttributeBB"/>
+	        <mapping name="organizationUnitHierarchyEnumFilterAttributeBB"	    		clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.OrganizationUnitHierarchyEnumFilterAttributeBB"/>
+	        <mapping name="organizationUnitHierarchyFilterIORAttributeBB"	    		clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.OrganizationUnitHierarchyFilterIORAttributeBB"/>
+	        <mapping name="organizationUnitHierarchyFilterUORAttributeBB"	    		clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.OrganizationUnitHierarchyFilterUORAttributeBB"/>
+	        <mapping name="iCRHierarchyStringFilterAttributeBB"	    				    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ICRHierarchyStringFilterAttributeBB"/>
+	        <mapping name="iCRHierarchyEnumFilterAttributeBB"	    				    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ICRHierarchyEnumFilterAttributeBB"/>
+	        <mapping name="iCRHierarchyNumberRangeFilterAttribute"	    				clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ICRHierarchyNumberRangeFilterAttribute"/>
+	        <mapping name="businessLineHierarchyEnumFilterAttributeBB"	    			clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.BusinessLineHierarchyEnumFilterAttributeBB"/>
+            <mapping name="finAccountHierarchyStringFilterBB"	        			    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.FinancialAccountHierarchyStringFilterAttributeBB"/>	        
+	        <mapping name="finAccountHierarchyNumberRangeFilterAttribute"	    	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.FinancialAccountHierarchyNumberRangeFilterAttribute"/>
+	        <mapping name="prodModalityHierarchyEnumFilterAttributeBB"	   			    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ProductModalityHierarchyEnumFilterAttributeBB"/>	        
+	        <mapping name="usergroupKindFilterBB" 										clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.UsergroupKindFilterBB"/>
+	        <mapping name="subordinatedMasterDataBB"      								clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.MasterDataSubordinatedFilterAttributeBB"/>
+	    	<mapping name="subordinatedMasterDataRiskBB"	               				clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.MasterDataSubordinatedFilterAttributeRiskBB"/>
+	    	<mapping name="subordinatedBB"			      								clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.SubordinatedFilterAttributeBB"/>	        
+	        <mapping name="clicloAvaliatorioFilterAttribute"	               			clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.administration.ClicloAvaliatorioFilterAttributeBB"/>
+	    </mappingType>
+
+	</blClassMapping>
+</custom>

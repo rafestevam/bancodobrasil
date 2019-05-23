@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<rulesconfig>
+	    <imp_object type="CONTROL">
+	    	<imp_ignore name="bb_scope" />
+	    	<imp_ignore name="bb_riscoFalha" />
+	    	<imp_ignore name="bb_salvaAtivos" />
+	    	<imp_ignore name="manager_group" />
+	    	<imp_ignore name="bb_evidenciasControle" />
+	    	<imp_ignore name="bb_controleAntifraude" />
+	    	<imp_ignore name="bb_conformidade" />	    	
+	    </imp_object>
+    </rulesconfig>
+</custom>

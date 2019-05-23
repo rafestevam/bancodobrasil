@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<!-- RISK -->
+	<view id="risk" view.parameter="DISTINCT">
+		<viewObject id="VO_1_1" objectType="RISK" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="obj_id" attributeType="obj_id" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="risk_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="risk_version_active" attributeType="version_active" isSortable="true"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+			<!-- <viewColumn id="risk_type" attributeType="risktype" isSortable="true" isSelectColumn="true"/> -->
+			<viewColumn id="assertion" attributeType="assertions" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="mgmt_relevant" attributeType="risk_management_relevant" isSortable="true"/>
+			<viewColumn id="event_driven" attributeType="event_driven_allowed" isSortable="true"/>
+			<viewColumn id="bb_pendencia" attributeType="bb_pendencia" isSortable="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true"/>
+			<viewColumn id="data_source" attributeType="data_source" isSortable="true"/>
+			<viewColumn id="activities" attributeType="assessment_activities" isSortable="true"/>
+			<viewColumn id="frequency" attributeType="frequency" isSortable="true"/>
+			<viewColumn id="duration" attributeType="duration" isSortable="true"/>
+			<viewColumn id="startdate" attributeType="startdate" isSortable="true"/>
+			<viewColumn id="startdate2" attributeType="startdate" isSortable="true"/>
+			<viewColumn id="enddate" attributeType="enddate" isSortable="true"/>
+			<viewColumn id="enddate2" attributeType="enddate" isSortable="true"/>
+			<viewColumn id="bb_criticidadeInicial" attributeType="bb_criticidadeInicial" isSortable="true" isSelectColumn="true"></viewColumn>
+			<viewColumn id="bb_datapromocao_1" attributeType="bb_datapromocao" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_datapromocao_2" attributeType="bb_datapromocao" isSortable="true"/>
+			<viewColumn id="probability" attributeType="probability" isSelectColumn="true" isSortable="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_1_2" objectType="HIERARCHY">
+			<viewColumn id="function_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="model_name" attributeType="model_name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+			<viewColumn id="deactivate" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_CATEGORY" objectType="HIERARCHY">
+			<viewColumn id="category_name" attributeType="name" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_ORGUNIT" objectType="HIERARCHY">
+			<viewColumn id="orgunit_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_APPSYSTYPE" objectType="HIERARCHY">
+			<viewColumn id="appsystype_name" attributeType="name" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_BUSINESSLINE" objectType="HIERARCHY">
+			<viewColumn id="bb_business_line_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_OWNERGROUP" objectType="USERGROUP">
+			<viewColumn id="ownergroup_name" attributeType="name" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_RISK_REVIEWERGROUP" objectType="USERGROUP">
+			<viewColumn id="reviewergroup_name" attributeType="name" isSortable="true"/>
+		</viewObject>
+		<link linktype.id="47" firstViewObject="VO_1_1" secondViewObject="VO_1_2" joinType="LEFT"/><!-- function -->
+		<link linktype.id="3160" firstViewObject="VO_1_1" secondViewObject="VO_RISK_OWNERGROUP" joinType="LEFT"/><!-- risk owner -->
+		<link linktype.id="3161" firstViewObject="VO_1_1" secondViewObject="VO_RISK_REVIEWERGROUP" joinType="LEFT"/><!-- risk reviewer -->
+		<link linktype.id="3162" firstViewObject="VO_1_1" secondViewObject="VO_RISK_CATEGORY" joinType="LEFT"/><!-- category -->
+		<link linktype.id="3163" firstViewObject="VO_1_1" secondViewObject="VO_RISK_ORGUNIT" joinType="LEFT"/><!-- orgunit -->
+		<link linktype.id="3164" firstViewObject="VO_1_1" secondViewObject="VO_RISK_APPSYSTYPE" joinType="LEFT"/><!-- appsystype -->
+		<link linktype.id="10000" firstViewObject="VO_1_1" secondViewObject="VO_RISK_BUSINESSLINE" joinType="LEFT"/><!-- bb_businessline -->
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<!-- <condition column.id="risk_type" compareType="EQ"/> -->
+                <condition column.id="assertion" compareType="EQ"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="risk_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="function_name" compareType="LIKE"/>
+                <condition column.id="model_name" compareType="LIKE"/>
+                <condition column.id="mgmt_relevant" compareType="EQ"/>
+                <condition column.id="event_driven" compareType="EQ"/>
+                <condition column.id="activities" compareType="LIKE"/>
+                <condition column.id="frequency" compareType="EQ"/>
+                <condition column.id="duration" compareType="EQ"/>
+                <condition column.id="startdate" compareType="GE"/>
+                <condition column.id="startdate2" compareType="LE"/>
+                <!--if enddate is null show the risk because the filter of the specific date didnt match
+				like in surveytask and testdefinition -->
+                <compoundCondition conditionConnect="OR">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="enddate" compareType="GE"/>
+                        <condition column.id="enddate2" compareType="LE"/>
+                    </compoundCondition>
+                    <condition column.id="enddate" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="reviewergroup_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="appsystype_name" compareType="LIKE"/>
+				<condition column.id="bb_business_line_name" compareType="LIKE"/>
+				<compoundCondition conditionConnect="OR">
+					<condition column.id="version_active" compareType="EQ" value="true"/>
+					<condition column.id="version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<compoundCondition conditionConnect="AND">
+					<condition column.id="bb_datapromocao_1" compareType="GE"/>
+					<condition column.id="bb_datapromocao_2" compareType="LE"/>
+				</compoundCondition>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="risk2testdefinition" view.parameter="DISTINCT">
+		<viewObject id="VO_risk2testdefinition_1" objectType="TESTDEFINITION" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="testdefinition_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="testfrequency" attributeType="frequency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="testduration" attributeType="duration" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="startdate" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="startdate_2" attributeType="startdate" isSortable="true"/>
+			<viewColumn id="testdefinition_version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="testdefinition_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="enddate" attributeType="enddate"/>
+			<viewColumn id="enddate_2" attributeType="enddate"/>
+			<viewColumn id="test_nature" attributeType="test_nature"/>
+			<viewColumn id="testtype" attributeType="testtype"/>
+			<viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_finalidadeTeste" attributeType="bb_finalidadeTeste"/>
+			<viewColumn id="bb_validacaoFrente" attributeType="bb_validacaoFrente"/>
+			<viewColumn id="bb_validacaoAmbito" attributeType="bb_validacaoAmbito"/>
+			<viewColumn id="bb_validacaoObjeto" attributeType="bb_validacaoObjeto"/>
+			<viewColumn id="bb_validacaoSecao" attributeType="bb_validacaoSecao"/>
+			<viewColumn id="bb_testeValidacao" attributeType="bb_testeValidacao"/>			
+		</viewObject>
+		<viewObject id="VO_risk2testdefinition_2" objectType="CONTROL">
+			<viewColumn id="control_id" attributeType="obj_id" isSelectColumn="true"/>
+			<viewColumn id="control_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="control_version_active" attributeType="version_active"/>
+			<viewColumn id="control_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_risk2testdefinition_3" objectType="RISK">
+			<viewColumn id="risk_id" attributeType="obj_id"/>
+		</viewObject>		
+		<viewObject id="VO_risk2testdefinition_4" objectType="USERGROUP">
+			<viewColumn id="group_id" attributeType="obj_id" isSelectColumn="true"/>
+			<viewColumn id="groupname" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="group_version_active" attributeType="version_active"/>
+			<viewColumn id="group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_testdefinition_managergroup" objectType="USERGROUP">
+            <viewColumn id="managergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="manager_group_version_active" attributeType="version_active"/>
+            <viewColumn id="manager_group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_testdefinition_reviewergroup" objectType="USERGROUP">
+            <viewColumn id="reviewergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_group_version_active" attributeType="version_active"/>
+            <viewColumn id="reviewer_group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+		<viewObject id="VO_risk2testdefinition_5" objectType="HIERARCHY">
+			<viewColumn id="process_name" attributeType="name"/>
+			<viewColumn id="process_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="CONTROL_PROCESS" objectType="HIERARCHY">
+			<viewColumn id="control_process_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="control_process_va" attributeType="version_active"/>
+		</viewObject>
+		<link linktype.id="15" firstViewObject="VO_risk2testdefinition_2" secondViewObject="VO_risk2testdefinition_1"/>
+		<link linktype.id="4" firstViewObject="VO_risk2testdefinition_3" secondViewObject="VO_risk2testdefinition_2"/>
+		<link linktype.id="3" firstViewObject="VO_risk2testdefinition_1" secondViewObject="VO_risk2testdefinition_4"/>
+		<link linktype.id="5815" firstViewObject="VO_risk2testdefinition_1" secondViewObject="VO_testdefinition_managergroup" joinType="LEFT" isParentVersionActive="true"/>
+        <link linktype.id="53" firstViewObject="VO_risk2testdefinition_1" secondViewObject="VO_testdefinition_reviewergroup" joinType="LEFT" isParentVersionActive="true"/>
+		<link linktype.id="47" firstViewObject="VO_risk2testdefinition_3" secondViewObject="VO_risk2testdefinition_5"/>
+		<link linktype.id="10050" firstViewObject="VO_risk2testdefinition_2" secondViewObject="CONTROL_PROCESS" joinType="LEFT"/><!-- Process -->
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition column.id="testdefinition_obj_id" compareType="EQ"/>
+                <condition column.id="testfrequency" compareType="IN"/>
+                <condition column.id="startdate" compareType="GE"/>
+                <condition column.id="startdate_2" compareType="LE"/>
+                <condition column.id="testdefinition_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+                <!--if enddate is null show the risk because the filter of the specific date didnt match
+				like in surveytask and risk -->
+				<compoundCondition conditionConnect="OR">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="enddate" compareType="GE"/>
+                        <condition column.id="enddate_2" compareType="LE"/>
+                    </compoundCondition>
+                    <condition column.id="enddate" compareType="ISNULL"/>
+                </compoundCondition>
+				<condition column.id="test_nature" compareType="EQ"/>
+                <condition column.id="testtype" compareType="EQ"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="control_version_active" compareType="EQ" value="true"/>
+                <condition column.id="risk_id" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="obj_id"/>
+                <condition column.id="groupname" compareType="LIKE"/>
+                <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                <condition column.id="guid" compareType="EQ"/>
+				<condition column.id="bb_finalidadeTeste" compareType="LIKE"/>
+				<condition column.id="bb_validacaoFrente" compareType="EQ"/>
+				<condition column.id="bb_validacaoAmbito" compareType="EQ"/>
+				<condition column.id="bb_validacaoObjeto" compareType="LIKE"/>
+				<condition column.id="bb_validacaoSecao" compareType="LIKE"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<!-- RISKASSESSMENT -->
+	<view id="riskassessment2testdefinitions" view.parameter="DISTINCT">
+        <viewObject id="TESTDEFINITION" objectType="TESTDEFINITION" isMainViewObject="true">
+        	<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdefinition_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testfrequency" attributeType="frequency" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testduration" attributeType="duration" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="startdate" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="startdate_2" attributeType="startdate" isSortable="true"/>
+            <viewColumn id="testdefinition_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="testdefinition_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="enddate" attributeType="enddate"/>
+            <viewColumn id="enddate_2" attributeType="enddate"/>
+            <viewColumn id="test_nature" attributeType="test_nature"/>
+            <viewColumn id="testtype" attributeType="testtype"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_finalidadeTeste" attributeType="bb_finalidadeTeste"/>
+            <viewColumn id="bb_validacaoFrente" attributeType="bb_validacaoFrente"/>
+            <viewColumn id="bb_validacaoAmbito" attributeType="bb_validacaoAmbito"/>
+            <viewColumn id="bb_validacaoObjeto" attributeType="bb_validacaoObjeto"/>
+            <viewColumn id="bb_validacaoSecao" attributeType="bb_validacaoSecao"/>
+			<viewColumn id="bb_testeValidacao" attributeType="bb_testeValidacao"/>            
+        </viewObject>
+        <viewObject id="CONTROL" objectType="CONTROL">
+            <viewColumn id="control_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="control_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="control_version_active" attributeType="version_active"/>
+            <viewColumn id="control_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_id" attributeType="obj_id"/>
+        </viewObject>        
+        <viewObject id="RISKASSESSMENT" objectType="RISKASSESSMENT">
+            <viewColumn id="riskassesment_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="USERGROUP" objectType="USERGROUP">
+            <viewColumn id="group_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="groupname" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="MANAGERGROUP" objectType="USERGROUP">
+            <viewColumn id="managergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="manager_rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="manager_group_version_active" attributeType="version_active"/>
+            <viewColumn id="manager_group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="REVIEWERGROUP" objectType="USERGROUP">
+            <viewColumn id="reviewergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_group_version_active" attributeType="version_active"/>
+            <viewColumn id="reviewer_group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="PROCESS" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+            <viewColumn id="process_version_active" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CONTROL_PROCESS" objectType="HIERARCHY">
+			<viewColumn id="control_process_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="control_process_va" attributeType="version_active"/>
+		</viewObject>
+        <link linktype.id="15" firstViewObject="CONTROL" secondViewObject="TESTDEFINITION"/>
+        <link linktype.id="4" firstViewObject="RISK" secondViewObject="CONTROL"/>
+        <link linktype.id="3" firstViewObject="TESTDEFINITION" secondViewObject="USERGROUP"/>
+        <link linktype.id="3166" firstViewObject="RISKASSESSMENT" secondViewObject="RISK" attendVersionizing="false"/>
+        <link linktype.id="5815" firstViewObject="TESTDEFINITION" secondViewObject="MANAGERGROUP" joinType="LEFT" isParentVersionActive="true"/>
+        <link linktype.id="53" firstViewObject="TESTDEFINITION" secondViewObject="REVIEWERGROUP" joinType="LEFT" isParentVersionActive="true"/>
+        <link linktype.id="47" firstViewObject="RISK" secondViewObject="PROCESS"/>
+        <link linktype.id="10050" firstViewObject="CONTROL" secondViewObject="CONTROL_PROCESS" joinType="LEFT"/><!-- Process -->
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="testdefinition_obj_id" compareType="EQ"/>
+                <condition column.id="testfrequency" compareType="IN"/>
+                <condition column.id="startdate" compareType="GE"/>
+                <condition column.id="startdate_2" compareType="LE"/>
+                <condition column.id="testdefinition_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+                <!--if enddate is null show the risk because the filter of the specific date didnt match
+				like in surveytask and risk -->
+                <compoundCondition conditionConnect="OR">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="enddate" compareType="GE"/>
+                        <condition column.id="enddate_2" compareType="LE"/>
+                    </compoundCondition>
+                    <condition column.id="enddate" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="test_nature" compareType="EQ"/>
+                <condition column.id="testtype" compareType="EQ"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="control_version_active" compareType="EQ" value="true"/>
+                <condition column.id="riskassesment_id" compareType="EQ" currentObjectType.id="RISKASSESSMENT" currentAttributeType.id="obj_id"/>
+                <condition column.id="groupname" compareType="LIKE"/>
+                <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="bb_finalidadeTeste" compareType="LIKE"/>
+                <condition column.id="bb_validacaoFrente" compareType="EQ"/>
+                <condition column.id="bb_validacaoAmbito" compareType="EQ"/>
+                <condition column.id="bb_validacaoObjeto" compareType="LIKE"/>
+                <condition column.id="bb_validacaoSecao" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_riskmanager_sel" view.parameter="DISTINCT">
+		<viewObject id="risk_riskmanager_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskmanager_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskmanager_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="risk_riskmanager_sel_3" secondViewObject="risk_riskmanager_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="risk_riskmanager_sel_1" secondViewObject="risk_riskmanager_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="RISK" currentAttributeType.id="manager_group"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="riskmanager"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_riskowner_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+		<viewObject id="risk_riskowner_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskowner_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskowner_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="risk_riskowner_sel_3" secondViewObject="risk_riskowner_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="risk_riskowner_sel_1" secondViewObject="risk_riskowner_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="RISK" currentAttributeType.id="owner_group"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="riskowner"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_riskreviewer_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+		<viewObject id="risk_riskreviewer_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskreviewer_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="risk_riskreviewer_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="risk_riskreviewer_sel_3" secondViewObject="risk_riskreviewer_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="risk_riskreviewer_sel_1" secondViewObject="risk_riskreviewer_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="RISK" currentAttributeType.id="reviewer_group"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="riskreviewer"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="riskassessment2testcase" view.parameter="DISTINCT">
+        <viewObject id="TESTCASE" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdatefrom" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdateto" attributeType="execution_date" isSortable="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="measure" attributeType="measure" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="remark" attributeType="remark" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="walkthrough_name" attributeType="bb_walkthroughName" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="walkthrough_counter" attributeType="walkthroughCounter" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true"/>
+        </viewObject>
+        <viewObject id="USER" objectType="USER">
+            <viewColumn id="userid" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="username" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="user_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="user_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="SUBSTITUDE" objectType="USER">
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="risk_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISKASSESSMENT" objectType="RISKASSESSMENT">
+            <viewColumn id="riskassesment_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="PROCESS_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="function_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="function_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="FINANCIAL_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="financial_statement_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="USERGROUP" objectType="USERGROUP">
+            <viewColumn id="tester_group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="tester_group_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="tester_group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="3166" firstViewObject="RISKASSESSMENT" secondViewObject="RISK"/>
+        <link linktype.id="12" firstViewObject="TESTCASE" secondViewObject="USER" joinType="LEFT"/>
+        <link linktype.id="19" firstViewObject="TESTCASE" secondViewObject="RISK" attendVersionizing="false"/>
+        <link linktype.id="54" firstViewObject="TESTCASE" secondViewObject="PROCESS_HIERARCHY" joinType="LEFT"/>
+        <link linktype.id="75" firstViewObject="TESTCASE" secondViewObject="FINANCIAL_HIERARCHY" joinType="LEFT"/>
+        <link linktype.id="57" firstViewObject="TESTCASE" secondViewObject="USERGROUP"/>
+        <link linktype.id="3110" firstViewObject="TESTCASE" secondViewObject="SUBSTITUDE" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="riskassesment_id" compareType="EQ" currentObjectType.id="RISKASSESSMENT" currentAttributeType.id="obj_id"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="controlstartdate" compareType="LE"/>
+                <condition column.id="controlenddate" compareType="GE"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="user_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="user_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="substitute_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="substitute_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_assessment_owner" view.parameter="DISTINCT">
+        <viewObject id="RISKASSESSMENT" objectType="RISKASSESSMENT" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="execution_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_criticidadeFinal" attributeType="bb_criticidadeFinal" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="RISKOWNERGROUP" objectType="USERGROUP">
+            <viewColumn id="groupname" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="PERFORMEDBY" objectType="USER">
+            <viewColumn id="performedby_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedby_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="SUBSTITUTE" objectType="USER">
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="FUNCTION" objectType="HIERARCHY">
+            <viewColumn id="function_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RA_IMPACTTYPE" objectType="RA_IMPACTTYPE">
+            <viewColumn id="type" attributeType="type"/>
+            <viewColumn id="loss_value" attributeType="exp_avg_loss"/>
+            <viewColumn id="loss_value_currency" attributeType="currency"/>
+        </viewObject>
+        <link linktype.id="3168" firstViewObject="RISKASSESSMENT" secondViewObject="RISKOWNERGROUP"/>
+        <link linktype.id="3169" firstViewObject="RISKASSESSMENT" secondViewObject="PERFORMEDBY" joinType="LEFT"/>
+        <link linktype.id="3175" firstViewObject="RISKASSESSMENT" secondViewObject="SUBSTITUTE" joinType="LEFT"/>
+        <link linktype.id="3165" firstViewObject="RISKASSESSMENT" secondViewObject="FUNCTION"/>
+        <link linktype.id="3166" firstViewObject="RISKASSESSMENT" secondViewObject="RISK"/>
+        <link linktype.id="5822" firstViewObject="RISKASSESSMENT" secondViewObject="RA_IMPACTTYPE"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="obj_id" compareType="EQ"/>
+                <condition column.id="loss_value" compareType="BETWEEN"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="performedby_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="function_name" compareType="LIKE"/>
+                <condition column.id="bb_criticidadeFinal" compareType="EQ"/>
+                <condition column.id="reviewer_status" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_assessment_reviewer" view.parameter="DISTINCT">
+        <viewObject id="RISKASSESSMENT" objectType="RISKASSESSMENT" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="execution_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="review_state" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="RISKOWNERGROUP" objectType="USERGROUP">
+            <viewColumn id="groupname" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="PERFORMEDBY" objectType="USER">
+            <viewColumn id="performedby_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedby_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="SUBSTITUTE" objectType="USER">
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="FUNCTION" objectType="HIERARCHY">
+            <viewColumn id="function_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RA_IMPACTTYPE" objectType="RA_IMPACTTYPE">
+            <viewColumn id="type" attributeType="type"/>
+            <viewColumn id="loss_value" attributeType="exp_avg_loss"/>
+            <viewColumn id="loss_value_currency" attributeType="currency"/>
+        </viewObject>
+        <link linktype.id="3168" firstViewObject="RISKASSESSMENT" secondViewObject="RISKOWNERGROUP"/>
+        <link linktype.id="3169" firstViewObject="RISKASSESSMENT" secondViewObject="PERFORMEDBY" joinType="LEFT"/>
+        <link linktype.id="3175" firstViewObject="RISKASSESSMENT" secondViewObject="SUBSTITUTE" joinType="LEFT"/>
+        <link linktype.id="3165" firstViewObject="RISKASSESSMENT" secondViewObject="FUNCTION"/>
+        <link linktype.id="3166" firstViewObject="RISKASSESSMENT" secondViewObject="RISK"/>
+        <link linktype.id="5822" firstViewObject="RISKASSESSMENT" secondViewObject="RA_IMPACTTYPE"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="review_state" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="obj_id" compareType="EQ"/>
+                <condition column.id="loss_value" compareType="BETWEEN"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="performedby_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="function_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="risk_assessment" view.parameter="DISTINCT">
+        <viewObject id="RISKASSESSMENT" objectType="RISKASSESSMENT" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="execution_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="review_state" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="RISKOWNERGROUP" objectType="USERGROUP">
+            <viewColumn id="groupname" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="PERFORMEDBY" objectType="USER">
+            <viewColumn id="performedby_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedby_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="SUBSTITUTE" objectType="USER">
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="FUNCTION" objectType="HIERARCHY">
+            <viewColumn id="function_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="RA_IMPACTTYPE" objectType="RA_IMPACTTYPE">
+            <viewColumn id="type" attributeType="type"/>
+            <viewColumn id="loss_value" attributeType="exp_avg_loss"/>
+            <viewColumn id="loss_value_currency" attributeType="currency"/>
+            <!-- BdB CUSTOMIZATION -->
+            <viewColumn id="bb_criticidadeFinal" attributeType="bb_criticidadeFinal" isSortable="false" isSelectColumn="true"/>                        
+        </viewObject>
+        <link linktype.id="3168" firstViewObject="RISKASSESSMENT" secondViewObject="RISKOWNERGROUP"/>
+        <link linktype.id="3169" firstViewObject="RISKASSESSMENT" secondViewObject="PERFORMEDBY" joinType="LEFT"/>
+        <link linktype.id="3175" firstViewObject="RISKASSESSMENT" secondViewObject="SUBSTITUTE" joinType="LEFT"/>
+        <link linktype.id="3165" firstViewObject="RISKASSESSMENT" secondViewObject="FUNCTION"/>
+        <link linktype.id="3166" firstViewObject="RISKASSESSMENT" secondViewObject="RISK"/>
+        <link linktype.id="5822" firstViewObject="RISKASSESSMENT" secondViewObject="RA_IMPACTTYPE"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="review_state" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="obj_id" compareType="EQ"/>
+                <condition column.id="loss_value" compareType="BETWEEN"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="performedby_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="function_name" compareType="LIKE"/>
+                <condition column.id="bb_criticidadeFinal" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+        
+</custom><!-- end views offline processing-->

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!-- BdB CUSTOMIZATION -->
+        
+    <enum id="lossdb_loss_type" isMultiple="false" type="Number">   
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="loss" value="-2" formRelevant="false" virtualScope.idrefs="direct_loss,indirect_loss"/>    
+        <enumitem id="direct_loss" value="1"/>          <!-- Perda efetiva -->
+        <enumitem id="indirect_loss" value="2"/>        <!-- Custos de oportunidades -->
+        <enumitem id="near_loss" value="3"/>            <!-- Quase perda -->
+        <enumitem id="gain" value="4"/>                 <!-- Ganhos Operacionais -->  
+        <enumitem id="bb_receitasPerdidas" value="5"/>  <!--  Receitas Perdidas -->
+    </enum>   
+    
+    <enum id="lossdb_eventtype_lvl1" isMultiple="false" itemClass="HierarchicalEnumerationItem" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select"/>
+        <enumitem id="internal_fraud" value="1"/>
+        <enumitem id="external_fraud" value="2"/>
+        <enumitem id="workplace_safety" value="3"/>
+        <enumitem id="business_practices" value="4"/>       
+        <enumitem id="damage_to_physical_assets" value="5" formRelevant="false" filterRelevant="false" evaluationRelevant="false"/>
+        <enumitem id="system_failures" value="6"/>
+        <enumitem id="process_mgmt" value="7"/>
+        <enumitem id="bb_interrupcao_Ativ" value="8" />
+    </enum>
+
+    <enum id="lossdb_eventtype_lvl2" isMultiple="false" itemClass="HierarchicalEnumerationItem" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" >
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="all"/>
+        </enumitem>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="please_select"/>
+        </enumitem>
+
+        <enumitem id="grp_internal_fraud" isSelectable="false" value="1"/>
+        <enumitem id="unauthorized_activity" value="11">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="internal_fraud"/>
+        </enumitem>
+        <enumitem id="internal_theft_and_fraud" value="12">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="internal_fraud"/>
+        </enumitem>
+        <!-- BdB CUSTOMIZATION -->
+        <enumitem id="bb_furtosAtivosFisicos" value="13">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="internal_fraud"/>
+        </enumitem>
+
+        <enumitem id="grp_external_fraud" isSelectable="false" value="2"/>
+        <enumitem id="external_theft_and_fraud" value="21">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="external_fraud"/>
+        </enumitem>
+        <enumitem id="systems_security" value="22">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="external_fraud"/>
+        </enumitem>
+        <enumitem id="bb_fraudesExtNaoEletr" value="23">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="external_fraud"/>
+        </enumitem>
+
+        <enumitem id="grp_workplace_safety" isSelectable="false" value="3"/>
+        <enumitem id="employee_relations" value="31">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="workplace_safety"/>
+        </enumitem>
+        <enumitem id="safe_environment" value="32">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="workplace_safety"/>
+        </enumitem>
+        
+        <enumitem id="diversity_and_discimination" value="33" formRelevant="false" filterRelevant="false" evaluationRelevant="false">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="workplace_safety"/>
+        </enumitem>
+        
+        <enumitem id="grp_business_practices" isSelectable="false" value="4"/>
+        <enumitem id="disclosure" value="41" formRelevant="false" filterRelevant="false" evaluationRelevant="false">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>
+        <enumitem id="improper_practices" value="42">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>
+        <enumitem id="product_flaws" value="43">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>
+        <enumitem id="sponsorship" value="44" formRelevant="false" filterRelevant="false" evaluationRelevant="false">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>
+        <enumitem id="advisory_activities" value="45">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>        
+        
+        <!-- BdB CUSTOMIZATION -->
+        <enumitem id="bb_danosClientesTerceiros" value="46">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="business_practices"/>
+        </enumitem>
+        
+        <enumitem id="grp_damage_to_physical_assets" isSelectable="false" value="5" formRelevant="false" filterRelevant="false" evaluationRelevant="false" />
+        <enumitem id="disasters_and_events" value="51" formRelevant="false" filterRelevant="false" evaluationRelevant="false" >
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="damage_to_physical_assets"/>
+        </enumitem>
+        
+        <enumitem id="grp_system_failures" isSelectable="false" value="6"/>
+        <enumitem id="systems" value="61">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="system_failures"/>
+        </enumitem>
+
+        <enumitem id="grp_process_mgmt" isSelectable="false" value="7"/>
+        <enumitem id="execution_and_maintenance" value="71">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem>
+        <enumitem id="monitoring_and_reporting" value="72">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem>
+        <enumitem id="documentation" value="73">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem>
+        <enumitem id="account_management" value="74">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem>
+        
+        <enumitem id="trade_counterparties" value="75" formRelevant="false" filterRelevant="false" evaluationRelevant="false">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem>
+                        
+        <enumitem id="vendors_and_suppliers" value="76">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="process_mgmt"/>
+        </enumitem> 
+               
+        <!-- BdB CUSTOMIZATION -->
+        <enumitem id="bb_grp_interrupcaoAtiv" isSelectable="false" value="8"/>
+        <enumitem id="bb_interrupcaoAtiv" value="81">
+            <parameter name="ParentEnum" value="lossdb_eventtype_lvl1"/>
+            <parameter name="ParentEnumItem" value="bb_interrupcao_Ativ"/>
+        </enumitem>   
+   </enum>
+</custom>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<tabMapping id="incident" >
+		<tTab page="1" id="incident" propertyKey="tab.incident.DBI" action="object.do?__commandId=cache&amp;__objectType=incident&amp;__formPage=1"  />
+        <tTab id="losses" propertyKey="tab.losses.DBI" action="list.do?__commandId=init&amp;__listName=incident2losses"  objectType="LOSS"/>
+        <tTab id="connect_hierarchies" propertyKey="tab.hierarchy.type.assignments.DBI" access="persistent">
+            <tSubTab id="hierarchy_applicationsystemtype" propertyKey="tab.hierarchy.type.applicationsystemtype.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_applicationsystemtype&amp;__filterSetParam=hierarchy_type,applicationsystemtype" />
+            <tSubTab id="hierarchy_financialaccount" propertyKey="tab.hierarchy.type.financialaccount.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_financialaccount&amp;__filterSetParam=hierarchy_type,financialaccount" />
+            <tSubTab id="hierarchy_organisation" propertyKey="tab.hierarchy.type.orgunit.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_orgunit&amp;__filterSetParam=hierarchy_type,orgunit" />
+            <tSubTab id="hierarchy_process" propertyKey="tab.hierarchy.type.process.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_process&amp;__filterSetParam=hierarchy_type,process" />
+            <tSubTab id="hierarchy_riskcategory" propertyKey="tab.hierarchy.type.category.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_category&amp;__filterSetParam=hierarchy_type,category" />
+            <!-- BdB CUSTOMIZATION -->
+            <tSubTab id="hierarchy_product" propertyKey="tab.hierarchy.type.bb_product.DBI" action="list.do?__commandId=init&amp;__listName=incident2hierarchies_bb_product&amp;__filterSetParam=hierarchy_type,bb_product" />
+        </tTab>
+        <tTab id="connect" propertyKey="tab.assignment.DBI" access="persistent">
+            <tSubTab id="risks" propertyKey="tab.risks.DBI" action="list.do?__commandId=init&amp;__listName=incident2risks"  objectType="RISK"/>
+            <tSubTab id="controls" propertyKey="tab.controls.DBI" action="list.do?__commandId=init&amp;__listName=incident2controls"  objectType="CONTROL"/>
+            <tSubTab id="audits" propertyKey="tab.audits.DBI" action="list.do?__commandId=init&amp;__listName=incident2audits"  objectType="AUDIT"/>
+            <tSubTab id="policies" propertyKey="tab.policies.DBI"  action="list.do?__commandId=init&amp;__listName=incident2policies" objectType="POLICY"/>
+        </tTab>
+        <tTab id="issue" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" action="object.do?__objectType=incident&amp;__commandId=protocol" />
+    </tabMapping>
+</custom>

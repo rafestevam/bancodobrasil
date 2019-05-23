@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<enum id="bb_riskAssessmentStatus" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all"/>
+        <enumitem id="on_time" value="1"  image="iconlib/icons/states/state_on_time_16.png"/>
+        <enumitem id="overdue" value="2"  image="iconlib/icons/states/state_overdue_16.png"/>
+        <enumitem id="finished" value="5"  image="iconlib/icons/states/state_finished_16.png"/>
+    </enum>
+	
+	<enum id="bb_criticidadeInicial" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="true" filterRelevant="false"/>        
+        <enumitem id="alta" value="1"/>
+        <enumitem id="media" value="2"/>
+        <enumitem id="baixa" value="3" />
+    </enum>
+    
+	<enum id="bb_criticidadeFinal" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="true" filterRelevant="false"/>        
+        <enumitem id="alta" value="1"/>
+        <enumitem id="media" value="2"/>
+        <enumitem id="baixa" value="3" />    
+    </enum>             
+            
+    <enum id="assessment_notification" isMultiple="true" type="Number">
+        <enumitem id="client_specific_riskmanager" value="2"/>
+        <enumitem id="object_specific_riskmanager" value="1"/>        
+        <enumitem id="cross_client_riskmanager" value="3"/>
+        <enumitem id="no_notification" value="4" extendedMeaning="exclusive"/>
+    </enum>
+    
+    <enum id="probability" isMultiple="false" type="Number">
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select"/>
+        <enumitem id="rare" value="1"/>
+        <enumitem id="moderate" value="2"/>
+        <enumitem id="likely" value="3"/>
+        <enumitem id="almostcertain" value="4"/>
+        <enumitem id="bb_extremelyrare" value="5"/>
+    </enum>
+    
+    <enum id="impact" isMultiple="false" type="Number">
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select"/>
+        <enumitem id="minor" value="1"/>
+        <enumitem id="moderate" value="2"/>
+        <enumitem id="critical" value="3"/>
+        <enumitem id="fundamental" value="4"/>
+        <enumitem id="bb_reduced" value="5"/>
+    </enum>
+    
+</custom>

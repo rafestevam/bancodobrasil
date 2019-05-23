@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<objectType id="CONTROL" xmlexport="true" extends="VERSION"
+                descriptionAttributes="control_id" displayAttribute="name" licensedComponentIds="tm"
+                mashzoneId="50" arisImportRole="controlmanager" image="iconlib/icons/content/control_16.png">
+        <stringAttrType id="control_id" maxCharCount="80" isMassEditable="true">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+        <stringAttrType id="name" maxCharCount="250" isMassEditable="true">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <listAttrType id="manager_group" maxSize="1" objectType.idref="USERGROUP" linkType="13">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="controlmanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="control_frequency" defaultValue="0" enumeration="controlfrequency" isMassEditable="true"/>
+        <enumAttrType id="control_execution" enumeration="controlexecution" isMassEditable="true"/>
+        <enumAttrType id="control_effect" enumeration="controleffect" defaultValue="0" isMassEditable="true"/>
+        <enumAttrType id="control_type" enumeration="controltype" isMassEditable="true"/>
+        <textAttrType id="controls" isMassEditable="true"/>
+        <listAttrType id="testdefinitions" objectType.idref="TESTDEFINITION" linkType="15"/>
+        <textAttrType id="control_objective" isMassEditable="true"/>
+        <booleanAttrType id="key_control" isMassEditable="true"/>
+        <listAttrType id="controlexecutiontasks" objectType.idref="CONTROLEXECUTIONTASK" linkType="6050"/>
+        <index id="I_7_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_7_2" type="normal">
+            <attributeRef attribute="control_frequency"/>
+        </index>
+        <index id="I_7_3" type="normal">
+            <attributeRef attribute="control_effect"/>
+        </index>
+        <!--index id="I_7_4" type="fullText">
+            <attributeRef attribute="controls"/>
+        </index-->
+        <index id="I_CONTROL_KEY_CONTROL" type="normal">
+            <attributeRef attribute="key_control"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <enumAttrType id="bb_afirmacoesControle" enumeration="bb_afirmacoesControle" />
+        <enumAttrType id="bb_controlAssertions" enumeration="assertion"/> <!-- Based on risk assertions -->
+        <listAttrType id="bb_appSystems" maxSize="-1" linkType="10004" objectType.idref="HIERARCHY">
+            <listRestriction> 
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="bb_riskfactor" objectType.idref="HIERARCHY" linkType="201610202">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_riskfactor"/>
+            </listRestriction>
+        </listAttrType>        
+        <textAttrType id="bb_evidenciasControle"/>
+        <enumAttrType id="bb_nivelControle" enumeration="bb_nivelControle" defaultValue="0"/>
+        <enumAttrType id="bb_scope" enumeration="bb_scope"/>
+        <booleanAttrType id="bb_salvaAtivos"/>
+        <booleanAttrType id="bb_controleAntifraude"/>
+        <enumAttrType id="bb_riscoFalha" enumeration="bb_riscoFalha" defaultValue="-2"/>
+        <booleanAttrType id="bb_conformidade"/>
+        <stringAttrType id="bb_planilhaDept" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>  
+        <!-- 
+        <stringAttrType id="bb_processoControle" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>     
+        -->
+        <listAttrType id="BB_control_process" objectType.idref="HIERARCHY" linkType="10050">
+        	<listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>        
+                   
+    </objectType>
+    
+    <objectType id="TESTDEFINITION" xmlexport="true" extends="RECURRING" displayAttribute="name" licensedComponentIds="tm"
+                descriptionAttributes="frequency, duration, startdate"
+                mashzoneId="60" arisImportRole="testmanager" image="iconlib/icons/content/test_definition_16.png">
+        <textAttrType id="testingsteps" isMassEditable="true"/>
+        <enumAttrType id="test_nature" enumeration="natureoftest" isMassEditable="true"/>
+        <textAttrType id="testextend" isMassEditable="true"/>
+        <enumAttrType id="frequency" enumeration="frequency_including_none" defaultValue="0"/>
+        <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="3">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="tester"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="53">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="testreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="manager_group" maxSize="1" objectType.idref="USERGROUP" linkType="5815">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="testmanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="orgunit" maxSize="1" objectType.idref="HIERARCHY" linkType="49">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <stringAttrType id="walkthroughCounter" maxCharCount="200" isMassEditable="true">
+            <validate name="maxlength" arg0="200"/>
+        </stringAttrType>
+        <stringAttrType id="name" maxCharCount="250" isMassEditable="true">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="testtype" enumeration="testtype" isMassEditable="false"/>
+        <index id="I_TESTDEFINITION_4" type="normal">
+            <attributeRef attribute="walkthroughName"/>
+        </index>
+        <index id="I_TESTDEFINITION_5" type="normal">
+            <attributeRef attribute="walkthroughCounter"/>
+        </index>
+        <index id="I_TESTDEFINITION_6" type="fullText">
+            <attributeRef attribute="isfollowup"/>
+        </index>
+        <index id="I_TESTDEFINITION_NAME" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <stringAttrType id="bb_finalidadeTeste" maxCharCount="500">
+            <validate name="maxlength" arg0="500"/>
+        </stringAttrType>
+        <enumAttrType id="bb_validacaoFrente" enumeration="bb_validacaoFrente" defaultValue="0"/>
+        <enumAttrType id="bb_validacaoAmbito" enumeration="bb_validacaoAmbito" defaultValue="0"/>
+        <stringAttrType id="bb_validacaoObjeto" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_validacaoSecao" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="bb_origemAmostra" />
+        <textAttrType id="bb_criterioAmostra" />
+        <!--<listAttrType id="bb_dependenciaAmostra"  linkType="10005" objectType.idref="HIERARCHY">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        -->
+        <textAttrType id="bb_depeFornecAmostra"/>
+        <textAttrType id="bb_funcFornecAmostra" />
+        <stringAttrType id="bb_validacaoReferencia" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <booleanAttrType id="isfollowup" defaultValue="true" isMassEditable="true"/>
+        <booleanAttrType id="bb_testeValidacao" defaultValue="false" isMassEditable="false"/>
+        <!--<listAttrType id="bb_detalDependExecutaControle"  linkType="10042" objectType.idref="HIERARCHY">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>-->
+        <textAttrType id="orgunitDepenCtl" />	
+		<textAttrType id="bb_detalPerioBaseSelecao" />
+		<dateAttrType id="bb_dtInicioBaseSelecao">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_dtFimBaseSelecao">
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <enumAttrType id="control_frequency" enumeration="controlfrequency" defaultValue="0"/>
+        <stringAttrType id="walkthroughName" maxCharCount="50" isMassEditable="true">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <textAttrType id="bb_walkthroughName" />
+    </objectType>
+    
+    <objectType id="TESTCASE" xmlexport="true" extends="MONITORABLE" displayAttribute="obj_id" licensedComponentIds="tm"
+                descriptionAttributes="type, plannedstartdate, plannedenddate, controlstartdate, controlenddate, execution_date, owner_status, walkthroughName, walkthroughCounter"
+                dataKind="transactiondata"
+                mashzoneId="70" image="iconlib/icons/content/testcase_16.png">
+        <enumAttrType id="type" enumeration="testcasetype" defaultValue="1"/>
+
+        <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="57">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="tester"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="12" />
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3110"/>
+        <enumAttrType id="owner_status" enumeration="testcase_owner_status" defaultValue="1"/>
+        <!-- Added on 98.5.1.10 -->
+        <listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="4026"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+		<!-- Added on 98.5.1.10 -->
+		
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="58">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="testreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="manager_group" maxSize="1" objectType.idref="USERGROUP" linkType="5816">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="testmanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="4005" />
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="4006"/>
+        <enumAttrType id="reviewer_status" enumeration="testcase_reviewer_status" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        <listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="4027"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <enumAttrType id="measure" enumeration="measure" defaultValue="0"/>
+        <textAttrType id="reviewer_remark"/>
+
+        <stringAttrType id="walkthroughCounter" maxCharCount="200">
+            <validate name="maxlength" arg0="200"/>
+        </stringAttrType>
+        <textAttrType id="testingsteps"/>
+        <enumAttrType id="test_nature" enumeration="natureoftest"/>
+        <textAttrType id="testextend"/>
+        <enumAttrType id="control_frequency" enumeration="controlfrequency" defaultValue="0"/>
+        <textAttrType id="design_description"/>
+        <textAttrType id="operative_description"/>
+        <textAttrType id="remark"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="6"/>
+        <listAttrType id="recommendations" objectType.idref="RECOMMENDATION" linkType="7" />
+        <listAttrType id="risk" maxSize="1" objectType.idref="RISK" linkType="19" usingFixChildVersion="true"/>
+        <listAttrType id="control" maxSize="1" objectType.idref="CONTROL" linkType="16" usingFixChildVersion="true"/>
+        <listAttrType id="testdefinition" maxSize="1" objectType.idref="TESTDEFINITION" linkType="14" usingFixChildVersion="true"/>
+        <listAttrType id="process" maxSize="1" objectType.idref="HIERARCHY" linkType="54" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="predecessor" maxSize="1" objectType.idref="TESTCASE" linkType="55" />
+        <listAttrType id="followup" maxSize="1" objectType.idref="TESTCASE" linkType="56"/>
+        <listAttrType id="questionnaire" objectType.idref="QUESTION" linkType="8"/>
+        <enumAttrType id="effectiveness" enumeration="effectiveness"/>
+        <enumAttrType id="testtype" enumeration="testtype"/>
+        <listAttrType id="testerhierarchy" maxSize="1" objectType.idref="HIERARCHY" linkType="72" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="tester"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="orgunit" maxSize="1" objectType.idref="HIERARCHY" linkType="74" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="75" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <index id="I_9_1" type="normal">
+            <attributeRef attribute="type"/>
+        </index>
+        <index id="I_9_5" type="normal">
+            <attributeRef attribute="walkthroughName"/>
+        </index>
+        <index id="I_9_6" type="normal">
+            <attributeRef attribute="walkthroughCounter"/>
+        </index>
+        <!--	<index id="I_9_8" type="fullText">
+            <attributeRef attribute="A_9_17"/>
+        </index>
+        <index id="I_9_9" type="fullText">
+            <attributeRef attribute="A_9_18"/>
+        </index>
+        <index id="I_9_10" type="fullText">
+            <attributeRef attribute="A_9_19"/>
+        </index>-->
+        <index id="I_9_12" type="normal">
+            <attributeRef attribute="owner_status"/>
+            <attributeRef attribute="version_active"/>
+            <attributeRef attribute="deactivated"/>
+            <attributeRef attribute="plannedstartdate"/>
+        </index>
+        <index id="I_9_13" type="normal">
+            <attributeRef attribute="owner_status"/>
+            <attributeRef attribute="version_active"/>
+            <attributeRef attribute="deactivated"/>
+            <attributeRef attribute="plannedenddate"/>
+        </index>
+        <index id="I_9_14" type="normal">
+            <attributeRef attribute="version_active"/>
+            <attributeRef attribute="deactivated"/>
+            <attributeRef attribute="plannedenddate"/>
+        </index>
+        <index id="I_9_15" type="normal">
+            <attributeRef attribute="version_active"/>
+            <attributeRef attribute="deactivated"/>
+            <attributeRef attribute="owner_status"/>
+            <attributeRef attribute="reviewer_group"/>
+            <attributeRef attribute="reviewer_status"/>
+            <attributeRef attribute="measure"/>
+        </index>
+        <index id="I_TESTCASE_1" type="normal">
+            <attributeRef attribute="measure"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <textAttrType id="bb_conclusaoTeste" />
+        <textAttrType id="bb_periodoSelecao" />
+        <stringAttrType id="bb_validacaoReferencia" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="walkthroughName" maxCharCount="50">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <dateAttrType id="bb_inicioClicloAvaliatorio">
+			<modify name="beginOfDay"/>
+		</dateAttrType>	        
+        <dateAttrType id="bb_fimClicloAvaliatorio">
+			<modify name="endOfDay"/>
+		</dateAttrType>	        
+        <dateAttrType id="bb_dtInicioBaseSelecao">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_dtFimBaseSelecao">
+            <modify name="endOfDay"/>
+        </dateAttrType>      
+        <textAttrType id="bb_walkthroughName" />  
+        <listAttrType id="BB_control_process" objectType.idref="HIERARCHY" linkType="10051">
+        	<listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="bb_defManagerL1_group" maxSize="1" objectType.idref="USERGROUP" linkType="20161028">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="deficiencymanager_l1"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+    </objectType>
+</custom>

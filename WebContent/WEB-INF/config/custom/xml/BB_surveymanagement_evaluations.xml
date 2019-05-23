@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<!-- *********************************************************
+     surveysummary
+    *********************************************************-->
+
+    <evaluation id="questionnairetemplate_result_summary"
+                controlName="surveysummary"
+                type="surveysummary"
+                filter.idref="questionnaireTemplateResultSummaryFilter"
+                definitionClass="com.idsscheer.webapps.arcm.bl.component.surveymanagement.evaluation.surveysummary.SurveySummaryBB">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="template_id"/>
+            <simpleFilter filterRow.idref="sectionStructure"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="interviewee_id"/>
+            <simpleFilter filterRow.idref="questionnaire_status"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="reviewergroup_id"/>
+            <simpleFilter filterRow.idref="questionnaire_review_status"/>
+        </simpleFilterRow>
+        <toolbarButtons>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </toolbarButtons>
+    </evaluation>
+
+    <evaluation id="survey_result_summary"
+                controlName="surveysummary"
+                type="surveysummary"
+                filter.idref="surveyResultSummaryFilter"
+                definitionClass="com.idsscheer.webapps.arcm.bl.component.surveymanagement.evaluation.surveysummary.SurveySummaryBB">
+        <toolbarButtons>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </toolbarButtons>
+    </evaluation>
+
+    <evaluation id="surveytask_result_summary"
+                controlName="surveysummary"
+                type="surveysummary"
+                filter.idref="surveyTaskResultSummaryFilter"
+                definitionClass="com.idsscheer.webapps.arcm.bl.component.surveymanagement.evaluation.surveysummary.SurveySummaryBB">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="template_id"/>
+            <simpleFilter filterRow.idref="sectionStructure"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="interviewee_id"/>
+            <simpleFilter filterRow.idref="questionnaire_status"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="reviewergroup_id"/>
+            <simpleFilter filterRow.idref="questionnaire_review_status"/>
+        </simpleFilterRow>
+        <toolbarButtons>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </toolbarButtons>
+    </evaluation>
+    
+</custom>    

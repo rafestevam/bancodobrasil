@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+		<role id="deficiencymanager_l1" level="XCO" licensedComponentIds="dm" userLicenses="operate">
+			<system component.idref="view.deficiency" />
+			<system component.idref="view.deficiency.mgr" />
+			<system component.idref="view.statistic" />
+			<system component.idref="view.mashzone.url.builder" />
+			<object right.idref="r----" objectType.id="HIERARCHY" />
+			<object right.idref="r----" objectType.id="USERGROUP" />
+			<object right.idref="r----" objectType.id="RISK" />
+			<object right.idref="r----" objectType.id="CONTROL" />
+			<object right.idref="r----" objectType.id="TESTDEFINITION" />
+			<object right.idref="r----" objectType.id="TESTCASE" />
+			<object right.idref="rwcdu" objectType.id="DEFICIENCY">
+				<action actionRight.idref="duplicate" />
+				<relation right.idref="ar" listAttrType.id="orgunit" />
+				<relation right.idref="ar" listAttrType.id="finaccount" />
+				<relation right.idref="ar" listAttrType.id="process" />
+				<relation right.idref="ar" listAttrType.id="risk" />
+				<relation right.idref="ar" listAttrType.id="remediation_ctrl" />
+				<relation right.idref="ar" listAttrType.id="compensating_ctl_l1" />
+				<relation right.idref="ar" listAttrType.id="manager_group_l1"/>
+				<relation right.idref="ar" listAttrType.id="manager_group_l2"/>
+				<relation right.idref="ar" listAttrType.id="manager_group_l3"/>
+				<relation right.idref="ar" listAttrType.id="bb_appSystems" />
+				<relation right.idref="ar" listAttrType.id="bb_testcase" />
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT" />
+		</role>
+
+		<role id="deficiencymanager_l2" level="XCO" licensedComponentIds="dm" userLicenses="operate">
+			<system component.idref="view.deficiency" />
+			<system component.idref="view.deficiency.mgr" />
+			<system component.idref="view.statistic" />
+			<system component.idref="view.mashzone.url.builder" />
+			<object right.idref="r----" objectType.id="HIERARCHY" />
+			<object right.idref="r----" objectType.id="USERGROUP" />
+			<object right.idref="r----" objectType.id="RISK" />
+			<object right.idref="r----" objectType.id="CONTROL" />
+			<object right.idref="r----" objectType.id="TESTDEFINITION" />
+			<object right.idref="r----" objectType.id="TESTCASE" />
+			<object right.idref="rw---" objectType.id="DEFICIENCY">
+				<action actionRight.idref="reset" />
+				<relation right.idref="ar" listAttrType.id="compensating_ctl_l2" />
+				<relation right.idref="ar" listAttrType.id="remediation_ctrl" />
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT" />
+		</role>
+
+		<role id="deficiencymanager_l3" level="XCO" licensedComponentIds="dm" userLicenses="operate">
+			<system component.idref="view.deficiency" />
+			<system component.idref="view.deficiency.mgr" />
+			<system component.idref="view.statistic" />
+			<system component.idref="view.mashzone.url.builder" />
+			<object right.idref="r----" objectType.id="HIERARCHY" />
+			<object right.idref="r----" objectType.id="USERGROUP" />
+			<object right.idref="r----" objectType.id="RISK" />
+			<object right.idref="r----" objectType.id="CONTROL" />
+			<object right.idref="r----" objectType.id="TESTDEFINITION" />
+			<object right.idref="r----" objectType.id="TESTCASE" />
+			<object right.idref="rw---" objectType.id="DEFICIENCY">
+				<action actionRight.idref="reset" />
+				<relation right.idref="ar" listAttrType.id="compensating_ctl_l3" />
+				<relation right.idref="ar" listAttrType.id="remediation_ctrl" />
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT" />
+		</role>
+	</roles>
+</custom>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<tabMapping id="control" >
+		<tTab page="1" id="control" propertyKey="tab.control.DBI" action="object.do?__commandId=cache&amp;__objectType=control&amp;__formPage=1"  />
+		<tTab id="connect" propertyKey="tab.assignment.DBI" access="persistent">
+			<tSubTab id="testdefinitions" propertyKey="tab.testdefinitions.DBI"  action="list.do?__commandId=init&amp;__listName=control2testdefinition" objectType="TESTDEFINITION"/>
+			<tSubTab id="controlexecutiontasks" propertyKey="tab.controlexecutiontasks.DBI"  action="list.do?__commandId=init&amp;__listName=control2controlexecutiontask" objectType="CONTROLEXECUTIONTASK"/>
+			<tSubTab id="risk" propertyKey="tab.risk.DBI"  action="list.do?__commandId=init&amp;__listName=control2risk" objectType="RISK"/>
+			<tSubTab id="testcase" propertyKey="tab.testactions.DBI"  action="list.do?__commandId=init&amp;__listName=control2testaction" objectType="TESTCASE"/>
+			<tSubTab id="controlexecution" propertyKey="tab.controlexecutions.DBI"  action="list.do?__commandId=init&amp;__listName=control2controlexecution" objectType="CONTROLEXECUTION"/>
+            <tSubTab id="incidents" propertyKey="tab.incidents.DBI"  action="list.do?__commandId=init&amp;__listName=control2incidents" objectType="INCIDENT"/>
+            <tSubTab id="surveys" propertyKey="tab.surveys.DBI"  action="list.do?__commandId=init&amp;__listName=control2surveys" objectType="SURVEY" roles="controlmanager" licensedComponentId="sm"/>
+            <tSubTab id="questionnaires" propertyKey="tab.questionnaires.DBI"  action="list.do?__commandId=init&amp;__listName=control2questionnaires" objectType="QUESTIONNAIRE" roles="controlmanager" licensedComponentId="sm"/>
+            <!-- BEGIN : Issue #113874 : TC.GC.282 - Explorer / Gestão de Teste / Controles - Visualizar as deficiências vinculadas a um controle -->
+            <tSubTab id="deficiencies" propertyKey="tab.deficiencies.DBI"  action="list.do?__commandId=init&amp;__listName=BB_control2deficiencies" objectType="DEFICIENCY" roles="testmanager,tester,testreviewer,controlmanager" />
+            <!-- END -->
+            <!-- <tSubTab id="appSystems" propertyKey="tab.hierarchy.type.applicationsystemtype.DBI"  action="list.do?__commandId=init&amp;__listName=control_add2appsystems_refs" objectType="HIERARCHY"/> -->
+        </tTab>
+        <tTab id="charts" propertyKey="tab.evaluations.DBI" roles="controlmanager">
+            <tSubTab id="trend_analysis" propertyKey="tab.control.chart.trend.analysis.DBI" action="evaluation.do?__commandId=init&amp;__evaluationId=chartControlTrendAnalysis" objectType="CONTROLEXECUTION"  />
+        </tTab>
+        <tTab id="issue" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" >
+			<tSubTab id="protocol_control" propertyKey="tab.control.DBI" action="object.do?__objectType=control&amp;__commandId=protocol"  />
+			<tSubTab id="protocol_testdefinitions" propertyKey="tab.testdefinitions.DBI"  action="object.do?__objectType=control&amp;__commandId=protocol&amp;relationprotocol=testdefinitions" objectType="TESTDEFINITION"/>
+ 		</tTab>
+    </tabMapping>
+    
+    <tabMapping id="testcase" >
+		<tTab page="1" id="testcase" propertyKey="tab.testaction.DBI" action="object.do?__commandId=cache&amp;__objectType=testcase&amp;__formPage=1"  />
+        <tTab id="connect" propertyKey="tab.lists.DBI" roles="tester, testreviewer, testauditor, testmanager">
+            <tSubTab id="surveys" propertyKey="tab.surveys.DBI"  action="list.do?__commandId=init&amp;__listName=testcase2surveys" objectType="SURVEY" licensedComponentId="sm"/>
+            <tSubTab id="questionnaires" propertyKey="tab.questionnaires.DBI"  action="list.do?__commandId=init&amp;__listName=testcase2questionnaires" objectType="QUESTIONNAIRE" licensedComponentId="sm"/>
+            <tSubTab id="controlexecutions" propertyKey="tab.controlexecutions.DBI"  action="list.do?__commandId=init&amp;__listName=testcase2controlexecutions" objectType="CONTROLEXECUTION" licensedComponentId="tm"/>
+        	<tSubTab id="deficiency" propertyKey="tab.deficiencies.DBI"  action="list.do?__commandId=init&amp;__listName=BB_testaction2deficiency_refs" objectType="DEFICIENCY"/>
+        </tTab>
+        <tTab id="issue" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" action="object.do?__objectType=testcase&amp;__commandId=protocol" />
+	</tabMapping>
+
+</custom>

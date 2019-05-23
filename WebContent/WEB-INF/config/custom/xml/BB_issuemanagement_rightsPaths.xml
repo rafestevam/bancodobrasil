@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <rightsPaths>
+		<!-- if a user has a group with role 'issuemgmtapproverl1' or 'issuemgmtapproverl2', the group will be automatically left-joined -->
+        <paths role="issuemgmtapproverl1">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_mgmtApproverL1_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+        <paths role="issuemgmtapproverl2">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_mgmtApproverL2_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+        <paths role="issueimplapproverl1">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_implApproverL1_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+        <paths role="issueimplapproverl2">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_implApproverL2_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+        <paths role="issuetechapproverl1">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_techApproverL1_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+        <paths role="issuetechapproverl2">
+            <rightsObject objectType="ISSUE">
+                <rightsPath dataKind="transactiondata">
+                    <node from="USERGROUP" to="ISSUE" connectingAttribute="bb_techApproverL2_group"/>
+                </rightsPath>
+            </rightsObject>
+        </paths>
+    </rightsPaths>
+</custom>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<enum id="bb_afirmacoesControle" isMultiple="true" type="Number">
+        <enumitem id="completo" value="1"/>
+        <enumitem id="correto" value="2"/>
+        <enumitem id="valido" value="3"/>
+        <enumitem id="restrito" value="4"/>
+    </enum>
+    
+    <enum id="bb_nivelControle" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="direto" value="1"/>
+        <enumitem id="corp_direto" value="2"/>
+        <enumitem id="corp_indireto" value="3"/>
+        <enumitem id="cgti_direto" value="4"/>
+        <enumitem id="cgti_corp_direto" value="5"/>
+        <enumitem id="cgti_corp_indireto" value="6"/>
+    </enum>
+    
+    <enum id="bb_riscoFalha" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="alto" value="1"/>
+        <enumitem id="baixo" value="0"/>
+        <enumitem id="unspecified" value="-2" formRelevant="false" filterRelevant="false" evaluationRelevant="false"/>
+    </enum>
+    
+    <enum id="testtype" isMultiple="true" type="Number">
+        <enumitem id="testofdesign" value="1" extendedMeaning="exclusive"/>
+        <enumitem id="testofeffectiveness" value="2" extendedMeaning="exclusive"/>
+       <!--  <enumitem id="bb_elc" value="3"/>
+        <enumitem id="bb_conformidade" value="4"/>
+        <enumitem id="bb_validacao" value="5"/>
+        <enumitem id="bb_dne" value="6"/>
+         -->
+    </enum>
+    
+    <enum id="natureoftest" isMultiple="true" type="Number">
+    	<enumitem id="observation" value="2"/>
+        <enumitem id="inquiry" value="1"/>
+        <enumitem id="examination" value="3"/>
+        <enumitem id="reperformance" value="4"/>
+        <enumitem id="bb_dbanalysis" value="5"/>
+    </enum>
+    
+    <enum id="bb_validacaoFrente" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="bb_roperacional" value="1"/>
+        <enumitem id="bb_rcredito" value="2"/>
+        <enumitem id="bb_rmercado" value="3"/>
+        <enumitem id="bb_rban" value="4"/>
+        <enumitem id="bb_rliquidez" value="5"/>
+        <enumitem id="bb_rconcentracao" value="6"/>
+        <enumitem id="bb_rcontraparte" value="7"/>
+        <enumitem id="bb_rsocioambiental" value="8"/>
+        <enumitem id="bb_rreputacao" value="9"/>
+        <enumitem id="bb_restrategia" value="10"/>
+        <enumitem id="bb_rcapital" value="11"/>
+    </enum>
+    
+    <enum id="bb_validacaoAmbito" isMultiple="false" type="Number">
+    	<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="bb_gestaogov" value="1"/>
+        <enumitem id="bb_metodologias" value="2"/>
+        <enumitem id="bb_dados" value="3"/>
+        <enumitem id="bb_ti" value="4"/>
+    </enum>
+    
+    <enum id="testcase_owner_status" isMultiple="false" type="Number" itemClass="ColoredEnumerationItem">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="open" value="0" formRelevant="false" virtualScope.idrefs="new,in_process">
+            <parameter name="Background" value="FFDE00"/> <!-- yellow -->
+        </enumitem>
+        <enumitem id="new" value="1" formRelevant="false" image="iconlib/icons/states/state_new_16.png"/>
+        <enumitem id="in_process" value="2" image="iconlib/icons/states/state_in_process_16.png"/>
+        <enumitem id="effective" value="3" image="iconlib/icons/states/state_effective_16.png">
+            <parameter name="Background" value="ADCF00"/>  <!-- green -->
+        </enumitem>
+        <enumitem id="noneffective" value="4" image="iconlib/icons/states/state_noneffective_16.png">
+            <parameter name="Background" value="EF4231"/>  <!-- red -->
+        </enumitem>
+        <enumitem id="nottestable" value="5" image="iconlib/icons/states/state_not_testable_16.png">
+            <parameter name="Background" value="FFDE00"/>  <!-- yellow -->
+        </enumitem>
+        <enumitem id="nottested" value="6" formRelevant="false" image="iconlib/icons/states/state_not_processed_16.png">
+            <parameter name="Background" value="F9B600"/>  <!-- orange -->
+        </enumitem>
+        <enumitem id="bb_to_be_reviewed" value="-2" formRelevant="false" virtualScope.idrefs="noneffective,effective,nottestable">
+            <parameter name="Background" value="0094E9"/> <!-- blue -->
+        </enumitem>      
+    </enum>
+   
+    <enum id="frequency_including_none" isMultiple="false" itemClass="FrequencyEnumerationItem" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="oneoff" value="1">
+            <parameter name="Frequency" value="oneoff"/>
+        </enumitem>
+        <enumitem id="daily" value="2">
+            <parameter name="Frequency" value="daily"/>
+        </enumitem>
+        <enumitem id="weekly" value="3">
+            <parameter name="Frequency" value="weekly"/>
+        </enumitem>
+        <enumitem id="monthly" value="4">
+            <parameter name="Frequency" value="monthly"/>
+        </enumitem>
+        <enumitem id="quarterly" value="5">
+            <parameter name="Frequency" value="quarterly"/>
+        </enumitem>
+        <enumitem id="semiannually" value="6">
+            <parameter name="Frequency" value="semiannually"/>
+        </enumitem>
+        <enumitem id="annually" value="7">
+            <parameter name="Frequency" value="annually"/>
+        </enumitem>
+        <enumitem id="everysecondyear" value="8">
+            <parameter name="Frequency" value="YEAR:2"/>
+        </enumitem>
+        <enumitem id="everythirdyear" value="10">
+            <parameter name="Frequency" value="YEAR:3"/>
+        </enumitem>
+        <enumitem id="none" value="9">
+            <parameter name="Frequency" value="none"/>
+        </enumitem>
+    </enum>
+
+    <enum id="controlexecution" isMultiple="true" type="Number">
+        <enumitem id="manual" value="1"/>
+        <enumitem id="it" value="2"/>
+        <enumitem id="bb_hibrido" value="3"/>
+    </enum>
+    
+    <enum id="risktype" isMultiple="true" type="Number">
+        <enumitem id="strategic" value="4"/>
+        <enumitem id="operations" value="3"/>
+        <enumitem id="compliance" value="2"/>
+        <enumitem id="financial_reporting" value="1"/>                      
+    </enum>    
+</custom>

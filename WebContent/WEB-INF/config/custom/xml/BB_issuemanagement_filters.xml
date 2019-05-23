@@ -1,0 +1,1779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<filter id="issueMgmtApproverL1" dataSource.idref="IssueMgmtApproverL1">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+                 
+        <!-- BdB CUSTOMIZATION - NEILA 
+        <filterRow id="bb_issueType">
+            <filterElement dataReference.idref="bb_issueType"  />
+        </filterRow>
+        -->
+        
+        <!-- BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>				
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>        
+                
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		
+		<!--  BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" default="" filterType="managementApproverL1StringFilterAttributeBB" /> 
+        </filterRow>
+        <!--  BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="0" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>        
+		<!--  BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" default="" filterType="implementationApproverL1StringFilterAttributeBB"  />
+        </filterRow>
+        <!--  BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" default="" filterType="technicalApproverL1StringFilterAttributeBB"  />
+        </filterRow>
+        
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>        
+    </filter>
+	
+	<filter id="issueMgmtApproverL2" dataSource.idref="IssueMgmtApproverL2">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION - NEILA
+        <filterRow id="bb_issueType">
+            <filterElement dataReference.idref="bb_issueType"  />
+        </filterRow>
+        -->
+        
+        <!-- BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>                
+                <dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>                							
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>        
+                
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="0" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<!-- BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1"  filterType="managementApproverL1EnumFilterAttributeBB"/>
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" default="" filterType="managementApproverL1StringFilterAttributeBB"  />
+        </filterRow>
+        <!--  BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" default="" filterType="implementationApproverL1StringFilterAttributeBB"  />
+        </filterRow>
+        <!--  BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" default="" filterType="technicalApproverL1StringFilterAttributeBB"  />
+        </filterRow>        
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>        	
+	</filter>
+	
+	<filter id="issueImplApproverL1" dataSource.idref="IssueImplApproverL1">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>                
+                <dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>                							
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" default="0" filterType="implementationApproverL1EnumFilterAttributeBB"  />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB"  />
+        </filterRow>
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>        
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+    </filter>
+	
+	<filter id="issueTechApproverL1" dataSource.idref="IssueTechApproverL1">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1_status"/>                
+                <dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>                							
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="bb_techApproverL1_status">
+			<filterElement dataReference.idref="bb_techApproverL1_status" default="0" filterType="technicalApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow>  
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueTechApproverL2" dataSource.idref="IssueTechApproverL2">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1_status"/>                
+                <dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>                							
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="bb_techApproverL2_status">
+			<filterElement dataReference.idref="bb_techApproverL2_status" default="0" filterType="technicalApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_techApproverL1_status">
+			<filterElement dataReference.idref="bb_techApproverL1_status" default="-1" filterType="technicalApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueImplApproverL2" dataSource.idref="IssueImplApproverL2">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1_status"/>                
+                <dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>                							
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="bb_implApproverL2_status">
+			<filterElement dataReference.idref="bb_implApproverL2_status" default="0" filterType="implementationApproverL2EnumFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="bb_techApproverL2_status">
+			<filterElement dataReference.idref="bb_techApproverL2_status" default="-1" filterType="technicalApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_techApproverL1_status">
+			<filterElement dataReference.idref="bb_techApproverL1_status" default="-1" filterType="technicalApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueOwner" dataSource.idref="IssueOwner">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="0"  />
+		</filterRow>
+		<filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>            	
+	</filter>
+	
+	<filter id="issueExecImplApprL1" dataSource.idref="IssueExecImplApprL1">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>	
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-2"  />
+		</filterRow>
+		<filterRow id="bb_execImplApprL1_status">
+			<filterElement dataReference.idref="bb_execImplApprL1_status" default="0" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>	
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueExecImplApprL2" dataSource.idref="IssueExecImplApprL2">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-2"  />
+		</filterRow>
+		<filterRow id="bb_execImplApprL1_status">
+			<filterElement dataReference.idref="bb_execImplApprL1_status" default="-1" filterType="implementationApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="bb_execImplApprL2_status">
+			<filterElement dataReference.idref="bb_execImplApprL2_status" default="0" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueReviewer" dataSource.idref="IssueReviewer">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+	    <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+			<filterElement dataReference.idref="creator_name"  />
+		</filterRow>
+	    <filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+            <filterElement dataReference.idref="owner_name"  />
+        </filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-2"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+		<filterRow id="reviewer_status">
+			<filterElement dataReference.idref="reviewer_status" default="1"  />
+		</filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+		<filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+
+	<filter id="issueExecMgmtApprL1" dataSource.idref="IssueExecMgmtApprL1">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execMgmtApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-2"  />
+		</filterRow>
+		<filterRow id="bb_execImplApprL1_status">
+			<filterElement dataReference.idref="bb_execImplApprL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="bb_execImplApprL2_status">
+			<filterElement dataReference.idref="bb_execImplApprL2_status" default="-1" filterType="implementationApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="reviewer_status">
+			<filterElement dataReference.idref="reviewer_status" default="-1"  />
+		</filterRow>
+		<filterRow id="bb_execMgmtApprL1_status">
+			<filterElement dataReference.idref="bb_execMgmtApprL1_status" default="0" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+		<filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="issueExecMgmtApprL2" dataSource.idref="IssueExecMgmtApprL2">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"  />
+        </filterRow>
+        <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execMgmtApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execMgmtApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+	    <filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="remediationMeasure">
+			<filterElement dataReference.idref="remediationMeasure"  />
+		</filterRow>
+		<filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+                <parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+			</filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="remark">
+			<filterElement dataReference.idref="remark"  />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="3"  />
+		</filterRow>
+	    <filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-2"  />
+		</filterRow>
+		<filterRow id="bb_execImplApprL1_status">
+			<filterElement dataReference.idref="bb_execImplApprL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="bb_execImplApprL2_status">
+			<filterElement dataReference.idref="bb_execImplApprL2_status" default="-1" filterType="implementationApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="bb_execMgmtApprL1_status">
+			<filterElement dataReference.idref="bb_execMgmtApprL1_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="bb_execMgmtApprL2_status">
+			<filterElement dataReference.idref="bb_execMgmtApprL2_status" default="0" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+		<filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"  />
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow> 
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+		 <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>               	
+	</filter>
+	
+	<filter id="MyCreatedIssues" dataSource.idref="MyCreatedIssues">
+    	<filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+        	<filterElement dataReference.idref="IssueID"  />
+	    </filterRow>
+	    
+	    <!-- BdB CUSTOMIATION - NEILA
+	    <filterRow id="bb_issueType">
+	    	<filterElement dataReference.idref="bb_issueType"  />
+	    </filterRow>
+	    -->
+	    
+	    <!-- BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL2_status"/> 
+				<dependentFilterAttribute attribute.idref="bb_techApproverL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1_status"/>												
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>								
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>											
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>																				
+			</filterElement> 
+		</filterRow>	    	    
+	    
+	    <filterRow id="name">
+	    	<filterElement dataReference.idref="name"  />
+	    </filterRow>
+	    <filterRow id="description">
+	    	<filterElement dataReference.idref="description"  />
+	    </filterRow>
+	    <filterRow id="remediationMeasure">
+	    	<filterElement dataReference.idref="remediationMeasure"  />
+	    </filterRow>
+	    <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+	    	<filterCell>
+	        	<filterElement dataReference.idref="plannedenddate"  >
+	            	<parameter name="propertyKey" value="filter.from.DBI"/>
+	                <filterType.parameter name="daterange" value="plannedenddate2"/>
+	            </filterElement>
+	            <filterElement dataReference.idref="plannedenddate2"  >
+	                <parameter name="propertyKey" value="filter.to.DBI"/>
+	            </filterElement>
+	        </filterCell>
+	    </filterRow>
+	    <filterRow id="remark">
+	    	<filterElement dataReference.idref="remark"  />
+        </filterRow>
+      	<filterRow id="bb_implApproverL2_status">
+			<filterElement dataReference.idref="bb_implApproverL2_status" default="-1" filterType="implementationApproverL2EnumFilterAttributeBB"  />
+        </filterRow>
+        <filterRow id="bb_techApproverL2_status">
+			<filterElement dataReference.idref="bb_techApproverL2_status" default="-1" filterType="technicalApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_techApproverL1_status">
+			<filterElement dataReference.idref="bb_techApproverL1_status" default="-1" filterType="technicalApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" default="-1" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+	    <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" default="-1" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" />
+		</filterRow>
+      	<filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+        	<filterElement dataReference.idref="owner_name"  />
+      	</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" default="" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" default="" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow>       	
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" default="" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>               	
+    </filter>
+    
+    <filter id="MyCreatedIssuesExecution" dataSource.idref="MyCreatedIssuesExecution">
+    	<filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+        	<filterElement dataReference.idref="IssueID"  />
+	    </filterRow>
+	    <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL1_status"/> 
+				<dependentFilterAttribute attribute.idref="bb_execImplApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execMgmtApprL1_status"/>
+				<dependentFilterAttribute attribute.idref="bb_execMgmtApprL2_status"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>								
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>											
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>																				
+			</filterElement> 
+		</filterRow>
+	    <filterRow id="name">
+	    	<filterElement dataReference.idref="name"  />
+	    </filterRow>
+	    <filterRow id="description">
+	    	<filterElement dataReference.idref="description"  />
+	    </filterRow>
+	    <filterRow id="remediationMeasure">
+	    	<filterElement dataReference.idref="remediationMeasure"  />
+	    </filterRow>
+	    <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+	    	<filterCell>
+	        	<filterElement dataReference.idref="plannedenddate"  >
+	            	<parameter name="propertyKey" value="filter.from.DBI"/>
+	                <filterType.parameter name="daterange" value="plannedenddate2"/>
+	            </filterElement>
+	            <filterElement dataReference.idref="plannedenddate2"  >
+	                <parameter name="propertyKey" value="filter.to.DBI"/>
+	            </filterElement>
+	        </filterCell>
+	    </filterRow>
+	    <filterRow id="remark">
+	    	<filterElement dataReference.idref="remark"  />
+        </filterRow>
+      	<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" />
+		</filterRow>
+      	<filterRow id="bb_execImplApprL1_status">
+			<filterElement dataReference.idref="bb_execImplApprL1_status" filterType="implementationApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+      	<filterRow id="bb_execImplApprL2_status">
+			<filterElement dataReference.idref="bb_execImplApprL2_status" filterType="implementationApproverL2EnumFilterAttributeBB" />
+        </filterRow>
+        <filterRow id="reviewer_status">
+			<filterElement dataReference.idref="reviewer_status" />
+		</filterRow>
+        <filterRow id="bb_execMgmtApprL1_status">
+			<filterElement dataReference.idref="bb_execMgmtApprL1_status" filterType="managementApproverL1EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="bb_execMgmtApprL2_status">
+			<filterElement dataReference.idref="bb_execMgmtApprL2_status" filterType="managementApproverL2EnumFilterAttributeBB" />
+		</filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" />
+		</filterRow>
+      	<filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+        	<filterElement dataReference.idref="owner_name"  />
+      	</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"  />
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" default="" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" default="" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow>       	
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" default="" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+	     <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>               	
+    </filter>
+    
+    <!-- default filter implementation was changed dataSource.idref="RelatedIssues,policyreview2policyissues" -->
+    <filter id="RelatedIssues" dataSource.idref="RelatedIssues">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"/>
+        </filterRow>
+        <filterRow id="bb_issueType">
+	    	<filterElement dataReference.idref="bb_issueType"  />
+	    </filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"/>
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"/>
+        </filterRow>
+        <filterRow id="remediationMeasure">
+            <filterElement dataReference.idref="remediationMeasure"/>
+        </filterRow>
+        <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate" filterType="daterange">
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate2"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedenddate2">
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="remark">
+            <filterElement dataReference.idref="remark"/>
+        </filterRow>
+        <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"/>
+        </filterRow>
+        <filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+            <filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+        <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"/>
+        </filterRow>
+        <filterRow id="reviewer_name" propertyKey="filter.row.issue.reviewer.DBI">
+            <filterElement dataReference.idref="reviewer_name"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"/>
+        </filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" />
+		</filterRow>
+      	<filterRow id="bb_implApproverL2_status">
+			<filterElement dataReference.idref="bb_implApproverL2_status" />
+        </filterRow>
+        <filterRow id="bb_mgmtApproverL1_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL1_status" />
+		</filterRow>
+        <filterRow id="bb_mgmtApproverL2_status">
+			<filterElement dataReference.idref="bb_mgmtApproverL2_status" />
+		</filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"/>
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated">
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>               	
+    </filter>
+    
+    <filter id="issues" dataSource.idref="Issues">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"/>
+        </filterRow>
+        <filterRow id="bb_issueType">
+	    	<filterElement dataReference.idref="bb_issueType"  />
+	    </filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"/>
+        </filterRow>
+        <filterRow id="remediationMeasure">
+            <filterElement dataReference.idref="remediationMeasure"/>
+        </filterRow>
+        <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate" filterType="daterange">
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate2"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedenddate2">
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="remark">
+            <filterElement dataReference.idref="remark"/>
+        </filterRow>
+        <filterRow id="creator_status">
+            <filterElement dataReference.idref="creator_status" default="3"/>
+        </filterRow>
+        <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"/>
+        </filterRow>
+        <filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+            <filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+        <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"/>
+        </filterRow>
+        <filterRow id="reviewer_name" propertyKey="filter.row.issue.reviewer.DBI">
+            <filterElement dataReference.idref="reviewer_name"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"/>
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"/>
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name"  />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name"  />
+        </filterRow>   
+	    <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name"  />
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+        <filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="bb_owner_group_id,bb_reviewer_group_id,mgmtApproverL1Group_ID,mgmtApproverL2Group_ID,implApproverL1Group_ID,implApproverL2Group_ID,bb_techApproverL1_group_id,bb_techApproverL2_group_id"/>
+			</filterElement>	
+		</filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated">
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+               	
+    </filter>
+    
+    <filter id="issuesapproverbb" dataSource.idref="IssuesApproverBB">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"/>
+        </filterRow>
+        <filterRow id="bb_issueType">
+	    	<filterElement dataReference.idref="bb_issueType"  />
+	    </filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"/>
+        </filterRow>
+        <filterRow id="remediationMeasure">
+            <filterElement dataReference.idref="remediationMeasure"/>
+        </filterRow>
+        <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate" filterType="daterange">
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate2"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedenddate2">
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="remark">
+            <filterElement dataReference.idref="remark"/>
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"/>
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+		<filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>   
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated">
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+               	
+    </filter>
+    
+    <filter id="ATBReport" dataSource.idref="ATBReport">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"/>
+        </filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"/>
+        </filterRow>
+        <filterRow id="remediationMeasure">
+            <filterElement dataReference.idref="remediationMeasure"/>
+        </filterRow>
+        <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate" filterType="daterange">
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate2"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedenddate2">
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="remark">
+            <filterElement dataReference.idref="remark"/>
+        </filterRow>
+        <filterRow id="creator_status">
+            <filterElement dataReference.idref="creator_status" default="3"/>
+        </filterRow>
+        <filterRow id="creator_name" propertyKey="filter.row.issue.creator.DBI">
+            <filterElement dataReference.idref="creator_name"/>
+        </filterRow>
+        <filterRow id="owner_name" propertyKey="filter.row.issue.owner.DBI">
+            <filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+        <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"/>
+        </filterRow>
+        <filterRow id="reviewer_name" propertyKey="filter.row.issue.reviewer.DBI">
+            <filterElement dataReference.idref="reviewer_name"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"/>
+        </filterRow>
+        <filterRow id="stateTime">
+            <filterElement dataReference.idref="stateTime" default="-1"/>
+        </filterRow>
+        <filterRow id="created_by_testcase">
+            <filterElement dataReference.idref="created_by_testcase" default="-1"  >
+                <parameter name="showAll" value="true"/>
+            </filterElement>
+        </filterRow>
+        <filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>
+        <!--  BdB CUSTOMIZATION -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name"  />
+        </filterRow>
+        <filterRow id="bb_mgmtApproverL2Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL2Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL2Group_name"  />
+        </filterRow>
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name"  />
+        </filterRow>
+        <filterRow id="bb_implApproverL1_status">
+			<filterElement dataReference.idref="bb_implApproverL1_status" />
+		</filterRow>
+        <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name"  />
+        </filterRow>
+		<filterRow id="bb_mgmtApprover_orgunit" propertyKey="filter.row.issue.bb_mgmtApprover_orgunit.DBI">
+			<filterElement dataReference.idref="bb_mgmtApprover_orgunit"/>
+		</filterRow>
+		<filterRow id="bb_implApprover_orgunit" propertyKey="filter.row.issue.bb_implApprover_orgunit.DBI">
+			<filterElement dataReference.idref="bb_implApprover_orgunit"/>
+		</filterRow>
+        <filterRow id="bb_implApproverL1Group_codUOR" propertyKey="filter.row.issue.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_codUOR" />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issuemgmtapproverl1_sel" dataSource.idref="issue_issuemgmtapproverl1_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issuemgmtapproverl2_sel" dataSource.idref="issue_issuemgmtapproverl2_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issueimplapproverl1_sel" dataSource.idref="issue_issuemgmtapproverl2_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issueimplapproverl2_sel" dataSource.idref="issue_issueimplapproverl2_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issuetechapproverl1_sel" dataSource.idref="issue_issuetechapproverl1_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issuetechapproverl2_sel" dataSource.idref="issue_issuetechapproverl2_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issueowner_sel" dataSource.idref="issue_issueowner_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="issue_issuereviewers_sel" dataSource.idref="issue_issuereviewers_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="MyCreatedOpenIssues" dataSource.idref="myCreatedOpenIssues">
+        <filterRow id="IssueID" propertyKey="filter.row.issue.id.DBI">
+            <filterElement dataReference.idref="IssueID"/>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION - NEILA -->
+	    <filterRow id="bb_issueType">
+			<filterElement dataReference.idref="bb_issueType" default="-1" filterType="issueTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL1Group_name"/>				
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL2Group_name"/>
+				<dependentFilterAttribute attribute.idref="bb_mgmtApproverL2_status"/>				
+				<dependentFilterAttribute attribute.idref="bb_implApproverL1Group_name"/>				
+				<dependentFilterAttribute attribute.idref="bb_techApproverL1Group_name"/>			
+			</filterElement> 
+		</filterRow>	    
+		
+        <filterRow id="remediationPlannedBefore" propertyKey="filter.row.issue.remedationPlannedBefore.DBI">
+			<filterCell>
+			<filterElement dataReference.idref="plannedenddate"  >
+				<parameter name="propertyKey" value="filter.from.DBI"/>
+                <filterType.parameter name="daterange" value="plannedenddate2"/>
+            </filterElement>
+			<filterElement dataReference.idref="plannedenddate2"  >
+				 <parameter name="propertyKey" value="filter.to.DBI"/>
+			</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"/>
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"/>
+        </filterRow>
+        <filterRow id="creator_status">
+			<filterElement dataReference.idref="creator_status" default="0"  />
+		</filterRow>
+        <filterRow id="remediationMeasure">
+            <filterElement dataReference.idref="remediationMeasure"/>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL1Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL1Group_name" default="" filterType="managementApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL2Group_name" propertyKey="filter.row.issue.bb_mgmtApproverL2Group_name.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL2Group_name" default="" filterType="managementApproverL2StringFilterAttributeBB" />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_mgmtApproverL2_status" propertyKey="filter.row.issue.bb_mgmtApproverL2_status.DBI">
+            <filterElement dataReference.idref="bb_mgmtApproverL2_status" default="-1" filterType="managementApproverL2EnumFilterAttributeBB" />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NEILA -->        
+	    <filterRow id="bb_implApproverL1Group_name" propertyKey="filter.row.issue.bb_implApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_implApproverL1Group_name" default="" filterType="implementationApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NEILA -->
+        <filterRow id="bb_techApproverL1Group_name" propertyKey="filter.row.issue.bb_techApproverL1Group_name.DBI">
+            <filterElement dataReference.idref="bb_techApproverL1Group_name" default="" filterType="technicalApproverL1StringFilterAttributeBB" />
+        </filterRow>
+        
+		<filterRow id="priority">
+        	<filterElement dataReference.idref="priority"/>
+        </filterRow>               				                
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated">
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<!-- BdB CUSTOMIZATION -->
+	<filter id="testcase2issue" dataSource.idref="testcase2issue">
+		<filterRow id="ta_id">
+			<filterElement dataReference.idref="ta_id"/>
+		</filterRow>	
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="0"  />
+		</filterRow>	   
+	   <filterRow id="start_test">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedstartdate_from" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>								
+			</filterCell>
+		</filterRow>	
+	   <filterRow id="end_test">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate_from" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedenddate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>				
+			</filterCell>
+		</filterRow>	
+		<filterRow id="start_control_date">
+			<filterCell>
+				<filterElement dataReference.idref="controlstartdate_from"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="end_control_date">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate_from"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlenddate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlenddate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="execution_period_issue" >
+			<filterCell>
+				<filterElement dataReference.idref="testdateto"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="testdatefrom"/>
+                </filterElement>
+				<filterElement dataReference.idref="testdatefrom"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>                
+			</filterCell>
+		</filterRow>
+		<filterRow id="walkthrough_counter">
+			<filterElement dataReference.idref="walkthrough_counter"/>
+		</filterRow>	
+		<filterRow id="walkthrough_name">
+			<filterElement dataReference.idref="walkthrough_name"/>
+		</filterRow>
+	</filter>
+	
+	<filter id="BB_approver_orgunit_sel" dataSource.idref="BB_approver_orgunit_sel">
+		<filterRow id="hierarchy_name">
+			<filterElement dataReference.idref="hierarchy_name"/>
+		</filterRow>
+		<filterRow id="hierarchy_description">
+			<filterElement dataReference.idref="hierarchy_description"/>
+		</filterRow>
+		 <filterRow id="bb_ior_uor" propertyKey="filter.issue.bb_ior_uor.DBI">
+            <filterElement dataReference.idref="bb_ior_uor" />
+        </filterRow>    
+		<filterRow id="hierarchy_isroot">
+			<filterElement dataReference.idref="hierarchy_isroot"/>
+		</filterRow>
+	</filter>	
+	
+	<filter id="BB_implApprover_orgunit_sel" dataSource.idref="BB_implApprover_orgunit_sel">
+		<filterRow id="hierarchy_name">
+			<filterElement dataReference.idref="hierarchy_name"/>
+		</filterRow>
+		<filterRow id="hierarchy_description">
+			<filterElement dataReference.idref="hierarchy_description"/>
+		</filterRow>
+		 <filterRow id="bb_ior_uor" propertyKey="filter.issue.bb_ior_uor.DBI">
+            <filterElement dataReference.idref="bb_ior_uor" />
+        </filterRow>    
+		<filterRow id="hierarchy_isroot">
+			<filterElement dataReference.idref="hierarchy_isroot"/>
+		</filterRow>
+	</filter>	
+	
+	<filter id="bb_techApprover_orgunit_sel" dataSource.idref="bb_techApprover_orgunit_sel">
+		<filterRow id="hierarchy_name">
+			<filterElement dataReference.idref="hierarchy_name"/>
+		</filterRow>
+		<filterRow id="hierarchy_description">
+			<filterElement dataReference.idref="hierarchy_description"/>
+		</filterRow>
+		 <filterRow id="bb_ior_uor" propertyKey="filter.issue.bb_ior_uor.DBI">
+            <filterElement dataReference.idref="bb_ior_uor" />
+        </filterRow>    
+		<filterRow id="hierarchy_isroot">
+			<filterElement dataReference.idref="hierarchy_isroot"/>
+		</filterRow>
+	</filter>
+	
+</custom>

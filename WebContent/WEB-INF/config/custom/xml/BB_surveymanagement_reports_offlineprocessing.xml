@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <arisreportstyle styleID="surveysection_header_bold" font="arial unicode ms" fontsize="10" fontcolor="black" backgroundcolor="grey_80_percent" bold="true"/>
+    <arisreportstyle styleID="surveysection_bold" font="arial unicode ms" fontsize="10" fontcolor="black" backgroundcolor="white" textalignment="left" bold="true" leftborder="none" rightborder="none" topborder="none" bottomborder="none"/>
+
+    <arisreportstyle styleID="answer_mandatory_marker" font="arial unicode ms" fontsize="10" fontcolor="red" backgroundcolor="white" bold="true"/>
+
+    <!-- ~~~~~~~~~~~~~~ SURVEY ~~~~~~~~~~~~~~-->
+    <!-- ~~~~ QUESTIONNAIRE OWNER ~~~~ -->
+    <arisreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <!-- base data -->
+        <arissubreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_CHECKOUT_BASE"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"
+                       discardMainDatasourceAfterUse="false"/>
+        <!-- survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_MUTE_SECTION"
+                       reportType="FORM"
+                       datasourceID="questionnaire_section[APPOBJ:questionnaireSections|QUESTIONNAIRESECTION]"/>
+        <!-- checkout info -->
+        <arissubreport reportID="QUESTIONNAIRE_CHECKOUT_OFFLINEINFO"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"/>
+
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_CHECKOUT_BASE" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="80" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="surveyTask">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.surveyTask.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="surveyTask" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="survey">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.survey.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="survey" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questionnaire_template">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questionnaire_template.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questionnaire_template" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateName">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateName.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateName" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateDescr">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateDescr.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateDescr" relativeWidth="80"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="relatedAppSystems">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedAppSystems.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedAppSystems" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedRegulations">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedRegulations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedRegulations" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedOrgunits">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedOrgunits.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedOrgunits" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedProcesses">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedProcesses.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedProcesses" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedCategories">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedCategories.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedCategories" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="risks">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.risks.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risks" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controls">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.controls.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="controls" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_definitions">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.test_definitions.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_definitions" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate|plannedenddate">
+                    <arisreporttablecell propertyKey="form.row.survey.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="plannedstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="plannedenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="owner"
+                                          rendererID="userSubstituteRenderer"
+                                          rendererParameter="SUBSTITUTE_LIST_ATTRIBUTE=owner_substitute"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="progress">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.progress.DBI" relativeWidth="50" styleID="header_left" />
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80" rendererID="percentageRenderer" rendererParameter="VIEWNAME=showQuestionnaireCompleteness|TOTAL_NUMBER_COLUMN_NAME=totalNumberOfAnswers|RELATIVE_NUMBER_COLUMN_NAME=answered"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="80"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_status">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewRemark">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewRemark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewRemark" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="80" />
+                </arisreporttablerow>
+
+            </arisreporttable>
+
+        </arisreportsection>
+
+    </arisreport>
+
+    <!-- used since each questionnaire has one invisible top section which shall also not be displayed in the offline document -->
+    <arisreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_MUTE_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection">
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection">
+
+        <!-- tab for current survey section -->
+        <arisreportsection>
+
+            <!-- start new excel sheet for section -->
+            <arisreporttable tableNameDataReference="name">
+
+                <arisreporttablerow>
+                    <arisreporttablecell relativeWidth="100.0" styleID="surveysection_bold" colSpan="2">
+                        <arisreportoutput dataReference="*obj_id"/>
+                        <arisreportoutput outputText=" "/>
+                        <arisreportoutput dataReference="name"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell>
+
+                        <!-- all answers listed in an inner table -->
+                        <arisreporttable datasourceID="answer[APPOBJ:answers|ANSWER]" multipleDatasourcesAsListMode="false" indexEnabled="true">
+
+                            <arisreporttablerow>
+                                <arisreporttablecell relativeWidth="100.0" styleID="header_left" colSpan="2">
+                                    <arisreportoutput propertyKey="objectType.QUESTION.DBI"/>
+                                    <arisreportoutput outputText=" "/>
+                                    <!-- section index is passed directly as global datasource parameter -->
+                                    <arisreportoutput dataReference="*obj_id"/>
+                                    <arisreportoutput outputText="."/>
+                                    <!-- internal indexing only to "determine" the answer sub index -->
+                                    <arisreportoutput dataReference="$index"/>
+                                </arisreporttablecell>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow visibilityConstraint="question_text">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_text.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_text" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="question_remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_remark" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="optionalAnswer">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.optionalAnswer.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="optionalAnswer" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow>
+                                <arisreporttablecell relativeWidth="30.0" styleID="header_left">
+                                    <arisreportoutput dataReference="optionalAnswer"
+                                                      rendererID="offlineProcessingQuestionnaireAnswerMandatoryMarkerRenderer"
+                                                      rendererParameter="REVERSE=true"
+                                                      styleID="answer_mandatory_marker"/>
+                                    <arisreportoutput propertyKey="attribute.ANSWER.textValue.DBI"/>
+                                </arisreporttablecell>
+                                <arisreporttablecell dataReference="type"
+                                                     rendererID="offlineProcessingQuestionnaireAnswerInputReferenceRenderer"
+                                                     rendererParameter="LIST_SELECTION_ATTRIBUTE=possibleOptions"
+                                                     styleID="offlineinputcell"
+                                                     relativeWidth="80" />
+                            </arisreporttablerow>
+                            <!-- notes -->
+                            <arisreporttablerow visibilityConstraint="remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="remark" relativeWidth="80.0"
+                                                     rendererID="offlineProcessingInputReferenceRenderer"
+                                                     styleID="offlineinputcell"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="reviewerOption" >
+                                <arisreporttablecell propertyKey="attribute.ANSWER.reviewerOption.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="reviewerOption" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow>
+                                <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                                <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                            </arisreporttablerow>
+
+                        </arisreporttable>
+
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+
+        </arisreportsection>
+
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_QUESTIONNAIREOWNER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+
+    </arisreport>
+
+
+    <arisreport reportID="QUESTIONNAIRE_CHECKOUT_OFFLINEINFO" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+        <arisreportsection>
+            <arisreportautocomponent	componentID="offlineinfo" />
+        </arisreportsection>
+    </arisreport>
+
+
+    <!-- ~~~~ QUESTIONNAIRE REVIEWER ~~~~ -->
+    <arisreport reportID="QUESTIONNAIRE_SURVEYREVIEWER" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <!-- base data -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_CHECKOUT_BASE"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"
+                       discardMainDatasourceAfterUse="false"/>
+        <!-- survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_MUTE_SECTION"
+                       reportType="FORM"
+                       datasourceID="questionnaire_section[APPOBJ:questionnaireSections|QUESTIONNAIRESECTION]"/>
+        <!-- checkout info -->
+        <arissubreport reportID="QUESTIONNAIRE_CHECKOUT_OFFLINEINFO"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"/>
+
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_CHECKOUT_BASE" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="80" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="surveyTask">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.surveyTask.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="surveyTask" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="survey">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.survey.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="survey" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questionnaire_template">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questionnaire_template.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questionnaire_template" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateName">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateName.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateName" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateDescr">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateDescr.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateDescr" relativeWidth="80"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="relatedAppSystems">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedAppSystems.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedAppSystems" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedRegulations">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedRegulations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedRegulations" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedOrgunits">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedOrgunits.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedOrgunits" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedProcesses">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedProcesses.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedProcesses" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedCategories">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedCategories.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedCategories" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="risks">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.risks.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risks" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controls">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.controls.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="controls" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_definitions">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.test_definitions.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_definitions" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate|plannedenddate">
+                    <arisreporttablecell propertyKey="form.row.survey.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="plannedstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="plannedenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="owner"
+                                          rendererID="userSubstituteRenderer"
+                                          rendererParameter="SUBSTITUTE_LIST_ATTRIBUTE=owner_substitute"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="progress">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.progress.DBI" relativeWidth="50" styleID="header_left" />
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80" rendererID="percentageRenderer" rendererParameter="VIEWNAME=showQuestionnaireCompleteness|TOTAL_NUMBER_COLUMN_NAME=totalNumberOfAnswers|RELATIVE_NUMBER_COLUMN_NAME=answered"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="actualScore">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.actualScore.DBI" relativeWidth="50" styleID="header_left" />
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80" rendererID="viewBasedSumRenderer" rendererParameter="VIEWNAME=sum_actualScoreOfQuestionnaire|SUM_COLUMN_NAME=actualScore"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="targetScore">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.targetScore.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="targetScore" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="owner_status">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="80"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell" />
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewRemark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewRemark" relativeWidth="80"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="80" />
+                </arisreporttablerow>
+
+            </arisreporttable>
+
+        </arisreportsection>
+
+    </arisreport>
+
+    <!-- used since each questionnaire has one invisible top section which shall also not be displayed in the offline document -->
+    <arisreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_MUTE_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection">
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection" indexEnabled="true">
+
+        <!-- tab for current survey section -->
+        <arisreportsection>
+
+            <!-- start new excel sheet for section -->
+            <arisreporttable tableNameDataReference="name">
+
+                <arisreporttablerow>
+                    <arisreporttablecell relativeWidth="60" styleID="surveysection_bold" colSpan="2">
+                        <arisreportoutput dataReference="*obj_id"/>
+                        <arisreportoutput outputText=" "/>
+                        <arisreportoutput dataReference="name"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell>
+
+                        <!-- all answers listed in an inner table -->
+                        <arisreporttable datasourceID="answer[APPOBJ:answers|ANSWER]" multipleDatasourcesAsListMode="false">
+
+                            <arisreporttablerow>
+                                <arisreporttablecell relativeWidth="100.0" styleID="header_left" colSpan="2">
+                                    <arisreportoutput propertyKey="objectType.QUESTION.DBI"/>
+                                    <arisreportoutput outputText=" "/>
+                                    <!-- section index is passed directly as global datasource parameter -->
+                                    <arisreportoutput dataReference="*obj_id"/>
+                                    <arisreportoutput outputText="."/>
+                                    <!-- internal indexing only to "determine" the answer sub index -->
+                                    <arisreportoutput dataReference="$index"/>
+                                </arisreporttablecell>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow visibilityConstraint="question_text">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_text.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_text" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="question_remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_remark" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow>
+                                <arisreporttablecell propertyKey="attribute.ANSWER.optionalAnswer.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="optionalAnswer" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="type">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.type.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="type" relativeWidth="80.0"
+                                                     rendererID="questionnaireAnswerRenderer" />
+                            </arisreporttablerow>
+                            <!-- notes -->
+                            <arisreporttablerow visibilityConstraint="remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="remark" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="reviewerOption" >
+                                <arisreporttablecell propertyKey="attribute.ANSWER.reviewerOption.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="reviewerOption" relativeWidth="80.0"
+                                                     rendererID="offlineProcessingInputReferenceRenderer"
+                                                     rendererParameter="LIST_SINGLE_SELECTION_ATTRIBUTE=possibleOptions"
+                                                     styleID="offlineinputcell"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="actualScore">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.actualScore.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="actualScore" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow>
+                                <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                                <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                            </arisreporttablerow>
+
+                        </arisreporttable>
+
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+
+        </arisreportsection>
+
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYREVIEWER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+
+    </arisreport>
+
+    <!-- ~~~~ QUESTIONNAIRE MANAGER ~~~~ -->
+    <arisreport reportID="QUESTIONNAIRE_SURVEYMANAGER" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <!-- base data -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYMANAGER_CHECKOUT_BASE"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"
+                       discardMainDatasourceAfterUse="false"/>
+        <!-- survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYMANAGER_MUTE_SECTION"
+                       reportType="FORM"
+                       datasourceID="questionnaire_section[APPOBJ:questionnaireSections|QUESTIONNAIRESECTION]"/>
+        <!-- checkout info -->
+        <arissubreport reportID="QUESTIONNAIRE_CHECKOUT_OFFLINEINFO"
+                       reportType="FORM"
+                       datasourceID="appobj_questionnaire"/>
+
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_SURVEYMANAGER_CHECKOUT_BASE" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnaire">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="80" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="surveyTask">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.surveyTask.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="surveyTask" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="survey">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.survey.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="survey" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questionnaire_template">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questionnaire_template.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questionnaire_template" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateName">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateName.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateName" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="questTemplateDescr">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.questTemplateDescr.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="questTemplateDescr" relativeWidth="80"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="relatedAppSystems">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedAppSystems.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedAppSystems" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedRegulations">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedRegulations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedRegulations" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedOrgunits">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedOrgunits.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedOrgunits" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedProcesses">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedProcesses.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedProcesses" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="relatedCategories">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.relatedCategories.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="relatedCategories" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="risks">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.risks.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risks" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controls">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.controls.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="controls" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_definitions">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.test_definitions.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_definitions" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="80" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.plannedstartdate.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="plannedstartdate" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.plannedenddate.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="plannedenddate" relativeWidth="80"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="80">
+                        <arisreportoutput dataReference="owner"
+                                          rendererID="userSubstituteRenderer"
+                                          rendererParameter="SUBSTITUTE_LIST_ATTRIBUTE=owner_substitute"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="progress">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.progress.DBI" relativeWidth="50" styleID="header_left" />
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80" rendererID="percentageRenderer" rendererParameter="VIEWNAME=showQuestionnaireCompleteness|TOTAL_NUMBER_COLUMN_NAME=totalNumberOfAnswers|RELATIVE_NUMBER_COLUMN_NAME=answered"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="actualScore">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.actualScore.DBI" relativeWidth="50" styleID="header_left" />
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="80" rendererID="viewBasedSumRenderer" rendererParameter="VIEWNAME=sum_actualScoreOfQuestionnaire|SUM_COLUMN_NAME=actualScore"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="targetScore">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.targetScore.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="targetScore" relativeWidth="80" />
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="owner_status">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_status">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewRemark">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.reviewRemark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewRemark" relativeWidth="80"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.QUESTIONNAIRE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="80" />
+                </arisreporttablerow>
+
+            </arisreporttable>
+
+        </arisreportsection>
+
+    </arisreport>
+
+    <!-- used since each questionnaire has one invisible top section which shall also not be displayed in the offline document -->
+    <arisreport reportID="QUESTIONNAIRE_SURVEYMANAGER_MUTE_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection">
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYMANAGER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+    </arisreport>
+
+    <arisreport reportID="QUESTIONNAIRE_SURVEYMANAGER_SECTION" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_questionnairesection" indexEnabled="true">
+
+        <!-- tab for current survey section -->
+        <arisreportsection>
+
+            <!-- start new excel sheet for section -->
+            <arisreporttable tableNameDataReference="name">
+
+                <arisreporttablerow>
+                    <arisreporttablecell relativeWidth="60" styleID="surveysection_bold" colSpan="2">
+                        <arisreportoutput dataReference="*obj_id"/>
+                        <arisreportoutput outputText=" "/>
+                        <arisreportoutput dataReference="name"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                    <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell>
+
+                        <!-- all answers listed in an inner table -->
+                        <arisreporttable datasourceID="answer[APPOBJ:answers|ANSWER]" multipleDatasourcesAsListMode="false">
+
+                            <arisreporttablerow>
+                                <arisreporttablecell relativeWidth="100.0" styleID="header_left" colSpan="2">
+                                    <arisreportoutput propertyKey="objectType.QUESTION.DBI"/>
+                                    <arisreportoutput outputText=" "/>
+                                    <!-- section index is passed directly as global datasource parameter -->
+                                    <arisreportoutput dataReference="*obj_id"/>
+                                    <arisreportoutput outputText="."/>
+                                    <!-- internal indexing only to "determine" the answer sub index -->
+                                    <arisreportoutput dataReference="$index"/>
+                                </arisreporttablecell>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow visibilityConstraint="question_text">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_text.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_text" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="question_remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.question_remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="question_remark" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow>
+                                <arisreporttablecell propertyKey="attribute.ANSWER.optionalAnswer.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="optionalAnswer" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="type">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.textValue.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="type" relativeWidth="80"
+                                                     rendererID="questionnaireAnswerRenderer"/>
+                            </arisreporttablerow>
+                            <!-- notes -->
+                            <arisreporttablerow visibilityConstraint="remark">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.remark.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="remark" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="reviewerOption">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.reviewerOption.DBI" relativeWidth="80" />
+                                <arisreporttablecell dataReference="reviewerOption" relativeWidth="80"/>
+                            </arisreporttablerow>
+                            <arisreporttablerow visibilityConstraint="actualScore">
+                                <arisreporttablecell propertyKey="attribute.ANSWER.actualScore.DBI" relativeWidth="30.0" styleID="header_left"/>
+                                <arisreporttablecell dataReference="actualScore" relativeWidth="80.0"/>
+                            </arisreporttablerow>
+
+                            <arisreporttablerow>
+                                <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                                <arisreporttablecell outputText="" relativeWidth="80" styleID="noborders"/>
+                            </arisreporttablerow>
+
+                        </arisreporttable>
+
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+
+        </arisreportsection>
+
+        <!-- sub survey section tabs -->
+        <arissubreport reportID="QUESTIONNAIRE_SURVEYMANAGER_SECTION"
+                       reportType="FORM"
+                       datasourceID="sub_questionnaire_section[APPOBJ:subSections|QUESTIONNAIRESECTION]"/>
+
+    </arisreport>
+
+</custom>

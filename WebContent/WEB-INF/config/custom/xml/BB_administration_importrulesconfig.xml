@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<rulesconfig>
+	    <imp_object type="USER">
+	    	<imp_ignore name="first_name" />
+	    	<imp_ignore name="email" />
+	    	<imp_ignore name="phone" />
+	    </imp_object>
+	    
+    	<imp_object type="HIERARCHY">
+        	<imp_condition type="and">
+            	<imp_mandatory>
+                	<imp_attr name="type"/>
+            	</imp_mandatory>
+        	</imp_condition>            
+    
+        	<imp_condition type="or">
+            	<imp_condition type="value" attrname="type" attrvalue="@enum=1"/> <!-- tester -->
+	            <imp_condition type="value" attrname="type" attrvalue="@enum=2"/> <!-- financialaccount -->
+            	<imp_condition type="value" attrname="type" attrvalue="@enum=3"/> <!-- orgunit -->
+	            <imp_condition type="value" attrname="type" attrvalue="@enum=4"/> <!-- process -->
+            	<imp_mandatory>
+                	<imp_attr name="signoff"/>
+	            </imp_mandatory>
+        	</imp_condition>
+
+	        <imp_condition type="value" attrname="reviewRelevant" attrvalue="true">
+    	        <imp_mandatory>
+        	        <imp_attr name="activities" />
+            	    <imp_attr name="frequency" />
+                	<imp_attr name="event_driven_allowed" />
+	                <imp_attr name="duration" />
+    	            <imp_attr name="startdate" />
+        	        <imp_link name="LT_3113" /> <!-- hierarchy owner group -->
+	            </imp_mandatory>
+    	    </imp_condition>
+    	</imp_object>
+	    
+    </rulesconfig>
+</custom>

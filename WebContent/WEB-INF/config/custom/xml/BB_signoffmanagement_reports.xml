@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<!-- PDF report for question list - needed because question type enum has no icons -->
+    <arisreport  reportID="soprocess" format="PDF" datasourceType="VIEW" datasourceID="soprocess_view">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.SOPROCESS.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+            <arisreporttable>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="tableheader.so.task.id" relativeWidth="7.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.client" relativeWidth="10.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.element" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.type" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.control.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner" relativeWidth="13.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.performed.by" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.date" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.reviewer.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                	<arisreporttablecell relativeWidth="7.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="10.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell relativeWidth="13.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell dataReference="process_id" relativeWidth="7.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="10.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="hierarchy_name" relativeWidth="9.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="hierarchy_type" relativeWidth="9.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="owner_name" relativeWidth="13.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="ownerUser_name" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="process_so_date" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                </arisreporttablerow>
+            </arisreporttable>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell dataReference="~list_entry_counter" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+    
+     <arisreport  reportID="soowner" format="PDF" datasourceType="VIEW" datasourceID="soowner_view">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.SOPROCESS.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+            <arisreporttable>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="tableheader.so.task.id" relativeWidth="7.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.client" relativeWidth="10.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.element" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.type" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.control.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner" relativeWidth="13.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.performed.by" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.date" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.reviewer.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                	<arisreporttablecell relativeWidth="7.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="10.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell relativeWidth="13.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell dataReference="process_id" relativeWidth="7.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="10.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="hierarchy_name" relativeWidth="9.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="hierarchy_type" relativeWidth="9.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_so_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_so_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="owner_name" relativeWidth="13.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="ownerUser_name" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="process_so_date" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                </arisreporttablerow>
+            </arisreporttable>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell dataReference="~list_entry_counter" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+    
+    <arisreport  reportID="soreviewer" format="PDF" datasourceType="VIEW" datasourceID="soreviewer_view">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.SOPROCESS.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+            <arisreporttable>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="tableheader.so.task.id" relativeWidth="7.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.client" relativeWidth="10.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.element" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.type" relativeWidth="9.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.control.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.period" relativeWidth="14.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner" relativeWidth="13.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.performed.by.DBI" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.date" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.so.owner.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.reviewer.status.short.DBI" relativeWidth="4.0" styleID="header_rowspan_upper"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                	<arisreporttablecell relativeWidth="7.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="10.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="9.0" styleID="header_rowspan_lower"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.begin" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.end" relativeWidth="7.0" styleID="header"/>
+                	<arisreporttablecell relativeWidth="13.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="4.0" styleID="header_rowspan_lower"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell dataReference="process_id" relativeWidth="7.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="10.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="hierarchy_name" relativeWidth="9.0"  styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="hierarchy_type" relativeWidth="9.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_control_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_so_start" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="process_so_end" relativeWidth="7.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="reviewer_name" relativeWidth="13.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="ownerUser_name" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="process_so_date" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="4.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                </arisreporttablerow>
+            </arisreporttable>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell dataReference="~list_entry_counter" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+    
+
+</custom>

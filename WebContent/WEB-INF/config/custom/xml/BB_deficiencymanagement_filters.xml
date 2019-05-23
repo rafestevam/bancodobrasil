@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<filter id="deficiency" dataSource.idref="deficiency">
+		<!-- BEGIN : Issue #113859 : TC.GD.157 - Explorer/Gestão de deficiência/Deficiências - ID -->
+		<!-- filterRow id="deficiency_id" propertyKey="filter.row.deficiency.deficiency_id">
+			<filterElement dataReference.idref="deficiency_id"  />
+		</filterRow> -->
+		<filterRow id="deficiency_id" propertyKey="filter.row.deficiency.deficiency_id">
+			<filterElement dataReference.idref="id"  />
+		</filterRow>
+		<!-- END -->
+        <filterRow id="clientSign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="company" propertyKey="filter.row.deficiency.company.DBI">
+			<filterElement dataReference.idref="company"  />
+		</filterRow>
+        <filterRow id="ta_id" propertyKey="filter.row.testactions.id.DBI">
+            <filterElement dataReference.idref="ta_id"  />
+        </filterRow>
+        <filterRow id="savestate">
+            <filterElement dataReference.idref="savestate" default="" filterType="deficiencyLevel" />
+		</filterRow>
+        <filterRow id="savestate_l2">
+            <filterElement dataReference.idref="savestate_l2" default="" filterType="deficiencyLevel" />
+        </filterRow>
+        <filterRow id="savestate_l3">
+            <filterElement dataReference.idref="savestate_l3" default="" filterType="deficiencyLevel" />
+        </filterRow>
+        <filterRow id="descr_l1">
+            <filterElement dataReference.idref="descr_l1"  />
+        </filterRow>
+        <filterRow id="likelihood">
+             <filterElement dataReference.idref="likelihood" default="-1"  />
+        </filterRow>
+		<filterRow id="unit_type">
+			<filterElement dataReference.idref="unit_type"  />
+		</filterRow>
+		<filterRow id="unit">
+			<filterElement dataReference.idref="unit"  />
+		</filterRow>
+		<filterRow id="country">
+			<filterElement dataReference.idref="country"  />
+		</filterRow>
+		<filterRow id="control_level">
+			<filterElement dataReference.idref="control_level" default="-1"  />
+		</filterRow>
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default=""  />
+		</filterRow>
+		<filterRow id="createdate" propertyKey="filter.row.createdate.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="changedate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="changedate2"/>
+				</filterElement>
+				<filterElement dataReference.idref="changedate2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.ciclo.period.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.ciclo.period.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="identifiedbyid">
+		 	<filterElement dataReference.idref="identifiedbyid" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l1">
+		 	<filterElement dataReference.idref="classification_l1" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l2">
+		 	<filterElement dataReference.idref="classification_l2" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l3">
+		 	<filterElement dataReference.idref="classification_l3" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l1">
+		 	<filterElement dataReference.idref="categorisation_l1" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l2">
+		 	<filterElement dataReference.idref="categorisation_l2" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l3">
+		 	<filterElement dataReference.idref="categorisation_l3" default="-1"  />
+		</filterRow>
+        <filterRow id="remedied_by_mgmt">
+            <filterElement dataReference.idref="remedied_by_mgmt" default="-1"  />
+        </filterRow>
+        <filterRow id="still_exists_at_yearend">
+            <filterElement dataReference.idref="still_exists_at_yearend" default="-1"  />
+        </filterRow>
+        <filterRow id="manager_group_l1" propertyKey="filter.row.deficiency.manager.group.l1.DBI">
+            <filterElement dataReference.idref="manager_group_l1"/>
+        </filterRow>
+        <filterRow id="manager_group_l2" propertyKey="filter.row.deficiency.manager.group.l2.DBI">
+            <filterElement dataReference.idref="manager_group_l2"/>
+        </filterRow>
+        <filterRow id="manager_group_l3" propertyKey="filter.row.deficiency.manager.group.l3.DBI">
+            <filterElement dataReference.idref="manager_group_l3"/>
+        </filterRow>
+        <filterRow id="process_name" propertyKey="attribute.DEFICIENCY.process.DBI">
+			<filterElement dataReference.idref="process_name"  />
+		</filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="deficiencyStatistic" dataSource.idref="deficiency_statistic_tester">
+		<filterRow id="statisticClient" propertyKey="filter.row.client.sign.DBI">
+			<filterElement name="statisticClient" default="-1" filterType="statisticClient" template="predefinedValues">
+				<filterType.parameter name="LicensedComponent" value="dm"/>
+				<filterType.parameter name="role" value="deficiencymanager_l1,deficiencymanager_l2,deficiencymanager_l3,deficiencyauditor_l1,deficiencyauditor_l2,deficiencyauditor_l3"/> 
+				<filterType.parameter name="mode" value="all"/>
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="statisticStructure"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="statisticStructure" propertyKey="filter.row.structureelementtext.DBI">
+			<filterElement name="statisticStructure" default="-1" filterType="deficiencyStatisticStructure" template="predefinedValuesExtendedBB">
+				<filterType.parameter name="mode" value="all"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="calculation" propertyKey="filter.row.calculation.DBI">
+			<filterCell separator="&amp;amp;nbsp;">
+                	<filterElement default="true" filterType="calculator" enumeration.idref="accumulate" />
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="controlenddate" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+				</filterElement>
+				<filterElement dataReference.idref="controlstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.statistics.deficiency.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.statistics.deficiency.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+	</filter>
+	
+	<!-- BdB CUSTOMIZATION -->
+	<filter id="testcase2def" dataSource.idref="testcase2def">
+		<filterRow id="ta_id">
+			<filterElement dataReference.idref="ta_id"/>
+		</filterRow>	
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="0"  />
+		</filterRow>	   
+	   <filterRow id="start_test">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedstartdate_from" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>								
+			</filterCell>
+		</filterRow>	
+	   <filterRow id="end_test">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate_from" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedenddate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedenddate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>				
+			</filterCell>
+		</filterRow>	
+		<filterRow id="start_control_date">
+			<filterCell>
+				<filterElement dataReference.idref="controlstartdate_from"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="end_control_date">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate_from"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlenddate_to"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlenddate_to"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="execution_period_issue" >
+			<filterCell>
+				<filterElement dataReference.idref="testdateto"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="testdatefrom"/>
+                </filterElement>
+				<filterElement dataReference.idref="testdatefrom"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>                
+			</filterCell>
+		</filterRow>
+		<filterRow id="walkthrough_counter">
+			<filterElement dataReference.idref="walkthrough_counter"/>
+		</filterRow>	
+		<filterRow id="walkthrough_name">
+			<filterElement dataReference.idref="walkthrough_name"/>
+		</filterRow>
+	</filter>
+	
+	<filter id="deficiency_managerl2_sel" dataSource.idref="deficiency_managerl2_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="deficiency_managerl3_sel" dataSource.idref="deficiency_managerl3_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+
+	<filter id="deficiency2listprocess" dataSource.idref="hierarchy" dataSourceType="object">
+		<filterRow id="name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="name"  />
+      	</filterRow>
+		<filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+	</filter>
+</custom>

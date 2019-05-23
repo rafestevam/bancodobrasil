@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">    
+    <!--
+    *
+    *   TESTCASE
+    *
+    -->
+    <catalog id="testcase">
+    
+    	<commandchain id="prepareJob">
+    		<command id="isEventDrivenCheckBB" />
+            <command id="testdefinitionFindLinkedControlAndRisks" />
+            <command id="testdefinitionActiveHierarchiesCheck" />
+            <command id="assignedUsergroupsCheck" />
+            <command id="dueCheck" />
+            <command id="testdefinitionRunningSignoffCheck" />
+            <command id="testcaseGenerate" />
+            <command id="assignedUsergroupsSend"/>
+        </commandchain>
+
+        <commandchain id="prepareFollowupJob">
+            <command id="testcaseFindLinkedTestdefinitionControlAndRisks" />
+            <command id="testcaseFollowupExistenceCheck" />
+            <command id="testcaseActiveHierarchiesCheck"/>
+            <command id="testcaseRunningSignoffCheck" />
+            <command id="testcaseFollowupGenerate" />
+            <command id="followupAssignedUsergroupsSend"/>
+        </commandchain>
+
+        <commandchain id="prepareManual">
+            <command id="checkObjectPersistent" />
+            <command id="isEventDrivenCheck" />
+            <command id="testdefinitionFindLinkedControlAndRisks" />
+            <command id="testdefinitionActiveHierarchiesCheck" />
+            <command id="assignedUsergroupsCheck" />
+            <command id="dueCheck" />
+            <command id="testdefinitionRunningSignoffCheck" />
+            <command id="testcaseGenerate" />
+            <command id="assignedUsergroupsSend"/>
+        </commandchain>
+        
+    	
+        <commandchain id="insertFollowupJob">
+        	<!-- 
+            <command id="prepareJobMessageBB">
+                <parameter name="message_template" value="followupgeneratorjob" />
+                <parameter name="sender" value="reviewer_group" />
+                <parameter name="list_name" value="testactionTester" />
+                <parameter name="filter_name" value="testactionstate" />
+                <parameter name="filter_value" value="open" />
+            </command>
+           	-->
+        </commandchain>
+    	 
+    	 
+    	 <commandchain id="insertJob">
+    	 <!--  
+            <command id="prepareJobMessage"> 
+                <parameter name="message_template" value="generatorjob" />
+                <parameter name="list_name" value="testactionTester" />
+                <parameter name="filter_name" value="testactionstate" />
+                <parameter name="filter_value" value="open" />
+            </command>
+         -->
+         	<command id="sendMailBB">
+                <parameter name="template" value="testcase_generatorjob"/>
+                <parameter name="to" value="owner_group"/>
+            </command>
+        </commandchain>
+    	 
+    	<commandchain id="executionInProgress">
+            <command id="update">
+                <parameter name="owner_status" value="in_process" />
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="update">
+                <parameter name="effectiveness" value="$null" />
+                <!-- 
+                <parameter name="design_description" value="$null" />
+                <parameter name="operative_description" value="$null" />
+                -->
+            </command>
+        </commandchain>
+
+        <commandchain id="executionEffective">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <command id="update">
+                <parameter name="execution_date" value="$now" />
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <!-- BdB does not want to notify at this point 
+            <command id="sendMail">
+                <parameter name="template" value="testcase_effective"/>
+                <parameter name="to" value="reviewer_group"/>
+            </command> -->
+            <command id="sendRecommendations" />
+        </commandchain>
+        
+        <commandchain id="executionNotEffective">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!--
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            -->
+            <command id="update">
+                <parameter name="execution_date" value="$now" />
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <!-- BdB does not want to notify at this point 
+            <command id="sendMail">
+                <parameter name="template" value="testcase_noneffective"/>
+                <parameter name="to" value="reviewer_group"/>
+            </command> -->
+            <command id="sendRecommendations" />
+        </commandchain>
+        
+        <commandchain id="executionNotTestable">        
+		    <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <command id="update">
+                <parameter name="execution_date" value="$now" />
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="update">
+		        <parameter name="effectiveness" value="$null" />
+		        <!-- 
+		        <parameter name="design_description" value="$null" />
+		        <parameter name="operative_description" value="$null" />
+		        -->
+		    </command>
+            <command id="sendRecommendations" />		    
+		</commandchain>
+        
+        <commandchain id="reviewReject">
+            <command id="resetTestcase" />
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!--
+            <command id="clearOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            -->
+            <command id="update">
+                <parameter name="owner_status" value="in_process" />
+            </command>
+            <command id="update">
+                <parameter name="effectiveness" value="$null" />
+                <parameter name="design_description" value="$null" />
+                <parameter name="operative_description" value="$null" />
+                <parameter name="measure" value="$null" />
+            </command>
+            <command id="prolongDate">
+                <parameter name="attributeID" value="plannedenddate"/>
+                <parameter name="minimumDays" value="14"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <!-- BdB does not want to notify at this point
+            <command id="sendMail">
+                <parameter name="template" value="testcase_rejected"/>
+                <parameter name="to" value="owner_group"/>
+            </command> -->
+        </commandchain>
+        
+        <commandchain id="reviewAccept">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="createDeficiency" />
+            <command id="createIssue" />
+            <!-- BdB does not want to notify at this point 
+            <command id="sendMail">
+                <parameter name="template" value="testcase_accepted"/>
+                <parameter name="to" value="owner_group"/>
+                <parameter name="cc" value="C:testmanager"/>
+            </command> -->
+        </commandchain>
+        
+        <commandchain id="measureChanged" />
+    </catalog>
+</custom>

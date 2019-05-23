@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!-- PDF report for question list - needed because question type enum has no icons -->
+    <arisreport  reportID="questionnaires_owner" format="PDF" datasourceType="VIEW" datasourceID="questionnaireowner_questionnaires_view">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.QUESTIONNAIRE.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+            <arisreporttable>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.id.DBI" relativeWidth="5.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.name.DBI" relativeWidth="20.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.owner.DBI" relativeWidth="13.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.performed.by" relativeWidth="15.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.date.DBI" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.survey.periode.DBI" relativeWidth="16.0" styleID="header"/>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.progress.DBI" relativeWidth="7.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.status.DBI" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                    <arisreporttablecell propertyKey="tableheader.questionnaire.review.status.DBI" relativeWidth="8.0" styleID="header_rowspan_upper"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                	<arisreporttablecell relativeWidth="5.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="20.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="13.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="15.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                	<arisreporttablecell propertyKey="tableheader.questionnaire.startDate.DBI" relativeWidth="8.0" styleID="header"/>
+                	<arisreporttablecell propertyKey="tableheader.questionnaire.endDate.DBI" relativeWidth="8.0" styleID="header"/>
+                	<arisreporttablecell relativeWidth="7.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                    <arisreporttablecell relativeWidth="8.0" styleID="header_rowspan_lower"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell dataReference="questionnaire_id" relativeWidth="5.0" rendererParameter="DEACTIVATED_REFERENCE=deactivated" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="template_name" relativeWidth="20.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="ownerGroup_name" relativeWidth="13.0" rendererParameter="DEACTIVATED_REFERENCE=deactivated" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="performedBy_name" relativeWidth="15.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="questionnaire_date" relativeWidth="8.0" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell dataReference="questionnaire_startDate" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="questionnaire_endDate" relativeWidth="8.0" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="totalNumberOfAnswers" relativeWidth="7.0" rendererID="percentageRenderer" rendererParameter="VIEWNAME=showQuestionnaireCompleteness|TOTAL_NUMBER_COLUMN_NAME=totalNumberOfAnswers|RELATIVE_NUMBER_COLUMN_NAME=answered" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell dataReference="questionnaire_status" relativeWidth="8.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                    <arisreporttablecell dataReference="questionnaire_review_status" relativeWidth="8.0" styleID="default_list_data_center_top" renderAsIcon="true" renderAsText="false"/>
+                </arisreporttablerow>
+            </arisreporttable>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell dataReference="~list_entry_counter" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+
+</custom>

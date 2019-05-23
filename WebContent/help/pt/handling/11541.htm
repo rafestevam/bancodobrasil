@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html LANG='pt-BR'>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title> Configurar processos de Signoff </title>
+
+<script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .htm file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicFile = url.substring(url.lastIndexOf("/") + 1)
+            var newUrl = baseUrl + "index.htm#" + topicFile;
+            location.href = newUrl;
+            return false;
+        }
+</script>
+
+
+</head>
+<body  onload="if (isTOCLoaded()) {expand('38850');expand('40283');highlight('40481')}">
+<h3 id="t40481" class="heading3">Configurar processos de Signoff</h3>
+<p class="orientationtext">A seguir é esclarecido como você deve configurar um <a id="h11433" class="jumptemplate" title="O que é processo de Signoff?" href="11434.htm" target="_self">Processo de Signoff</a>. No ARIS, você pode modelar os objetos relevantes para Signoff, alterando o procedimento conforme esclarecido a seguir.</p>
+<p class="conditionheading">Pré-requisito</p>
+<p class="conditiontext">Você tem o papel Gestor de Signoff.</p>
+<p class="procedureheading">Procedimento</p>
+<ol class="procedure1"><li class="procedure1"><a id="h11551" class="jumptemplate" title="Criar novo grupo de usuários" href="11552.htm" target="_self">Crie grupos de usuários para cada nível de hierarquia</a> e atribua a cada um o papel <span class="emphases">Gestor de Signoff</span>.</li><li class="procedure1">2.	Defina um Gestor de Signoff para cada nível de hierarquia, ou seja, os usuários que executam o processo de avaliação de cada nível de hierarquia. <a id="h11554" class="jumptemplate" title="Atribuir usuários a grupos de usuários existentes" href="11201.htm" target="_self">Atribua estes ao respectivo grupo de usuários</a>, de modo que cada nível de hierarquia seja testado pelo respectivo usuário com o papel Gestor de Signoff.</li><li class="procedure1"><a id="h11556" class="jumptemplate" title="Criar elemento hierárquico" href="11216.htm" target="_self">Defina a hierarquia</a> a ser usada como base para o processo de Signoff. Na criação dos elementos hierárquicos, ative a opção <span class="emphases">Relevante para Signoff</span>, para que eles sejam <a id="h11513" class="jumptemplate" title="Como são identificados os elementos hierárquicos relevantes para Signoff?" href="11514.htm" target="_self">envolvidos no processo de Signoff</a> e atribua no campo <span class="emphases">Gestor de Signoff</span> o respectivo grupo de usuários.</li><li class="procedure1"><a id="h11557" class="jumptemplate" title="Atribuir elementos básicos a elementos hierárquicos" href="11278.htm" target="_self">Atribua aos elementos hierárquicos os elementos básicos desejados</a>: <span class="emphases">Risco</span> ou <span class="emphases">Definição de teste</span>. Com a atribuição dos elementos básicos, os casos de teste destes estão ligados com o elemento hierárquico. Estes casos de teste são verificados pelo Gestor de Signoff.</li><li class="procedure1"><a id="h43169" class="jumptemplate" title="Criar tarefa de Signoff" href="43166.htm" target="_self">Crie</a> uma tarefa de Signoff.</li><li class="procedure1"><a id="h43172" class="jumptemplate" title="Gerar processos de Signoff" href="43170.htm" target="_self">Gere</a> o processo de Signoff.</li></ol><p class="resulttext">O processo de Signoff pode ser executado.</p>
+
+
+<input id="topicId" type="hidden" value="40481" />
+<input id="topicDescription" type="hidden" value="Configurar processos de aprovação" />
+<input id="footer-modified" type="hidden" value="Last modified: 17.06.2016 21:21:07" />
+
+
+
+</body>
+</html>

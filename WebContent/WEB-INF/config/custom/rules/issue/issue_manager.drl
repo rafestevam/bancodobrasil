@@ -1,0 +1,208 @@
+package ISSUE_MANAGER_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+
+rule "manager + 'faultlog' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "faultlog"
+		
+	then
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_mgmtApproverL2_group" editable
+		set "bb_implApproverL1_group" editable
+
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_mgmtApproverL2_group" mandatory
+		set "bb_implApproverL1_group" mandatory
+
+end
+
+rule "manager + 'tech_recommendation' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "tech_recommendation"
+		
+	then
+		set "bb_owners_group" editable
+		set "bb_reviewers_group" editable
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_mgmtApproverL2_group" editable
+		set "bb_implApproverL1_group" editable
+		set "bb_implApproverL2_group" editable
+
+		set "bb_owners_group" mandatory
+		set "bb_reviewers_group" mandatory
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_mgmtApproverL2_group" mandatory
+		set "bb_implApproverL1_group" mandatory
+		set "bb_implApproverL2_group" mandatory
+
+end
+
+rule "manager + 'action' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		
+	then
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_mgmtApproverL2_group" editable
+		set "bb_implApproverL1_group" editable
+		set "bb_implApproverL2_group" editable
+
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_mgmtApproverL2_group" mandatory
+		set "bb_implApproverL1_group" mandatory
+		set "bb_implApproverL2_group" mandatory
+
+end
+
+rule "manager + 'manifestation' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"
+		
+	then
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_implApproverL1_group" editable
+
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_implApproverL1_group" mandatory
+
+end
+
+rule "manager + 'dealing_deadline' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "dealing_deadline"
+		
+	then
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_mgmtApproverL2_group" editable
+
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_mgmtApproverL2_group" mandatory
+
+end
+
+rule "manager + 'sad' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+		
+	then
+		set "bb_mgmtApproverL2_group" editable
+
+		set "bb_mgmtApproverL2_group" mandatory
+
+end
+
+rule "manager + 'extra_sheet' [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "extra_sheet"
+		
+	then
+		set "bb_mgmtApproverL1_group" editable
+		set "bb_implApproverL1_group" editable
+
+		set "bb_mgmtApproverL1_group" mandatory
+		set "bb_implApproverL1_group" mandatory
+
+end
+
+rule "manager + 'bb_techApproverL1_2_groups' [I,V]"
+
+	salience 990
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		is_not in workflow state "PREPARED"
+		is_not in workflow state "openForCreation"
+		value comparison fulfilled: ":transient:" attr_value "bb_isTechSupportNeeded" "EQUALS" value "true"	
+
+	then
+		set "bb_techApproverL1_group" visible
+		set "bb_techApproverL2_group" visible
+
+		set "bb_techApproverL1_group" editable
+		set "bb_techApproverL2_group" editable
+
+		set "bb_techApproverL1_group" mandatory
+		set "bb_techApproverL2_group" mandatory
+
+end
+
+rule "manager + 'closed workstates' [I,V]"
+
+	salience 500
+	no-loop true
+
+	when
+		user has in_general role "issuemanager"
+		( is in workflow state "creationFaultLogClosedByImplApprL1" OR
+			is in workflow state "creationManifestationClosedByMgmtApprL1" OR
+			is in workflow state "creationExtrapolationClosedByImplApprL2" OR
+			is in workflow state "creationSADClosedByMgmtApprL2" OR
+			is in workflow state "closedByMgmtApprL1" OR
+			is in workflow state "closedByMgmtApprL2" OR
+			is in workflow state "creationDealingDeadlineClosedByMgmtApprL2")
+		
+	then
+		set "bb_owners_group" not_mandatory
+		set "bb_reviewers_group" not_mandatory
+		set "bb_mgmtApproverL1_group" not_mandatory
+		set "bb_mgmtApproverL2_group" not_mandatory
+		set "bb_implApproverL1_group" not_mandatory
+		set "bb_implApproverL2_group" not_mandatory
+		set "bb_techApproverL1_group" not_mandatory
+		set "bb_techApproverL2_group" not_mandatory
+
+		set "bb_owners_group" readonly
+		set "bb_reviewers_group" readonly
+		set "bb_mgmtApproverL1_group" readonly
+		set "bb_mgmtApproverL2_group" readonly
+		set "bb_implApproverL1_group" readonly
+		set "bb_implApproverL2_group" readonly
+		set "bb_techApproverL1_group" readonly
+		set "bb_techApproverL2_group" readonly
+
+end

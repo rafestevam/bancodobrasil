@@ -1,0 +1,118 @@
+package ANSWER_RuleSet
+expander answer.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.AnswerHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.AnswerHelperBB;
+
+# OBJECT        client_objid                LONG       Client ID                                                                                                                                                                                
+# OBJECT        client_sign                 CLIENTSIGN Client                                                                                                                                                                                   
+# OBJECT        create_date                 DATE       Creation date                                                                                                                                                                            
+# OBJECT        creator_user_id             LONG       User ID (creator)                                                                                                                                                                        
+# OBJECT        delete_date                 DATE       Deletion date                                                                                                                                                                            
+# OBJECT        guid                        STRING     GUID                                                                                                                                                                                     
+# OBJECT        obj_id                      LONG       ID                                                                                                                                                                                       
+# OBJECT        obj_type                    OBJECTTYPE Object type                                                                                                                                                                              
+# OBJECT        root_guid                   STRING     Root GUID                                                                                                                                                                                
+# OBJECT        versions                    LONG       Number of versions                                                                                                                                                                       
+# VERSION       aris_change_date            DATE       ARIS change date                                                                                                                                                                         
+# VERSION       change_date                 DATE       Change date                                                                                                                                                                              
+# VERSION       change_type                 ENUM       Change type                             changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                                    
+# VERSION       change_user_id              LONG       User ID (editor)                                                                                                                                                                         
+# VERSION       deactivated                 BOOLEAN    Deactivated                                                                                                                                                                              
+# VERSION       id                          LONG       ID                                                                                                                                                                                       
+# VERSION       substitute_user_id          LONG       User ID (substitute)                                                                                                                                                                     
+# VERSION       version_active              BOOLEAN    Current version                                                                                                                                                                          
+# VERSION       version_number              LONG       Version number                                                                                                                                                                           
+# TRANSACTIONAL execution_date              DATE       Processed on                                                                                                                                                                             
+# TRANSACTIONAL owner                       LIST       Performed by                            to 1 USER (LT=3229)                                                                                                                              
+# TRANSACTIONAL owner_group                 LIST       Owner group                             to 1 USERGROUP (LT=4007)                                                                                                                         
+# TRANSACTIONAL owner_status                ENUM       Owner status                            EMPTY ()                                                                                                                                         
+# TRANSACTIONAL owner_substitute            LIST       Substitute                              to 1 USER (LT=3230)                                                                                                                              
+# TRANSACTIONAL review_date                 DATE       Review date                                                                                                                                                                              
+# TRANSACTIONAL reviewer                    LIST       Reviewed by                             to 1 USER (LT=3231)                                                                                                                              
+# TRANSACTIONAL reviewer_group              LIST       Reviewer group                          to 1 USERGROUP (LT=4008)                                                                                                                         
+# TRANSACTIONAL reviewer_status             ENUM       Reviewer status                         EMPTY ()                                                                                                                                         
+# TRANSACTIONAL reviewer_substitute         LIST       Survey reviewer (substitute)            to 1 USER (LT=3232)                                                                                                                              
+# ANSWER        actualScore                 DOUBLE     Score (actual)                                                                                                                                                                           
+# ANSWER        annotationAllowed           BOOLEAN    Notes allowed                                                                                                                                                                            
+# ANSWER        answerIndex                 LONG       Index                                                                                                                                                                                    
+# ANSWER        answered                    LONG       Answered                                                                                                                                                                                 
+# ANSWER        dateValue                   DATE       Answer                                                                                                                                                                                   
+# ANSWER        dateValueFrom               DATE       Answer                                                                                                                                                                                   
+# ANSWER        dateValueTo                 DATE       Answer                                                                                                                                                                                   
+# ANSWER        doubleValue                 DOUBLE     Answer                                                                                                                                                                                   
+# ANSWER        longValue                   LONG       Answer                                                                                                                                                                                   
+# ANSWER        optionalAnswer              BOOLEAN    Answer (optional)                                                                                                                                                                        
+# ANSWER        possibleOptions             LIST       Answer options                          to * OPTIONs (LT=38)                                                                                                                             
+# ANSWER          possibleOptions_weighting DOUBLE     Weighting                                                                                                                                                                                
+# ANSWER        question                    LIST       Question                                to 1 QUESTION (LT=36)                                                                                                                            
+# ANSWER        questionValue               DOUBLE     Question value                                                                                                                                                                           
+# ANSWER        question_documents          LIST       Documents                               to * DOCUMENTs (LT=3236)                                                                                                                         
+# ANSWER        question_remark             TEXT       Remark                                                                                                                                                                                   
+# ANSWER        question_text               TEXT       Question text                                                                                                                                                                            
+# ANSWER        relatedQuestionnaire        LIST       Questionnaire                           to 1 QUESTIONNAIRE (LT=3215)                                                                                                                     
+# ANSWER        remark                      TEXT       Remark                                                                                                                                                                                   
+# ANSWER        reviewed                    LONG       Reviewed                                                                                                                                                                                 
+# ANSWER        reviewerOption              LIST       Evaluation by survey reviewer           to 1 OPTION (LT=3233)                                                                                                                            
+# ANSWER          reviewerOption_weighting  DOUBLE     Weighting                                                                                                                                                                                
+# ANSWER        reviewerRatesAnswer         BOOLEAN    Evaluation of answer by survey reviewer                                                                                                                                                  
+# ANSWER        selectedOptions             LIST       Answer                                  to * OPTIONs (LT=37)                                                                                                                             
+# ANSWER          selectedOptions_weighting DOUBLE     Weighting                                                                                                                                                                                
+# ANSWER        textValue                   TEXT       Answer                                                                                                                                                                                   
+# ANSWER        type                        ENUM       Question type                           question_type (all=-1,please_select=0,single_choice_combobox=5,single_choice_radio=6,multiple_choice=7,text=2,long=3,double=4,date=1,daterange=8)
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "enable visibility for managers and owners depending on the question type [I,V]"
+	
+	salience 10300
+
+	when
+
+	then
+		customized define question type dependent visibility
+
+end
+
+rule "enable editable for owners depending on the question type [I,V]"
+	
+	salience 10200
+
+	when
+
+	then
+		customized define question type dependent editable
+
+end
+
+rule "enable mandatory for owners depending on the question type [I,V]"
+
+	salience 10100
+	when
+
+	then
+		customized define question type dependent mandatory
+
+end
+
+#
+# for each question of type daterange the left date ('from-date') must 
+# not be later than the right date ('to-date'):
+#
+rule "from-date must not be later than to-date [V]"
+
+	salience 10000
+
+	when
+		value comparison fulfilled: ":persistent:" attr_value "type" "CONTAINS" value "daterange"
+        attribute comparison fulfilled: ":transient:" attr_value "dateValueFrom" "GREATER THAN" ":transient:" attr_value "dateValueTo"
+
+	then 
+		set "dateValueTo" invalid
+		add "error" message "error.date.range.DBI" to "dateValueTo"		
+		
+end

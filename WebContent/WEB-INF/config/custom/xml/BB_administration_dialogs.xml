@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/dialogs.xsd" >
+    <!-- user dialog for start date / duration -->
+    <dialog id="riskassessment_create" >
+        <dateAttribute id="calculator_startdate" >
+            <!-- <validate name="futureDate" /> -->
+            <modify name="beginOfDay" />
+        </dateAttribute>
+        <longAttribute id="calculator_duration">
+            <validate name="long" arg0="geq:1:value.field.must.not.be.smaller.than.bound.ERR" />
+            <validate name="long" arg1="leq:365:value.field.must.not.be.greater.than.bound.ERR"/>
+        </longAttribute>
+    </dialog>
+</custom>

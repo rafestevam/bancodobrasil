@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<includes>
+		<scripts>
+			<file id="extended-combobox" />
+		</scripts>
+		<styles>
+			<file id="extended-combobox" />
+		</styles>
+	</includes>
+
+</custom>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+		<nav.module module.id="module.explorer" propertyKey="module.explorer.DBI">
+	        <nav.item item.idref="item.explorer.audit.management"/>
+	        <nav.item item.idref="item.explorer.change.management"/>
+	        <nav.item item.idref="item.explorer.deficiency.management"/>
+	        <nav.item item.idref="item.explorer.incident.management"/>
+	        <nav.item item.idref="item.explorer.policy.management"/>
+	        <nav.item item.idref="item.explorer.risk.management"/>
+	        <nav.item item.idref="item.explorer.signoff.management"/>
+	        <nav.item item.idref="item.explorer.survey.management"/>
+	        <nav.item item.idref="item.explorer.test.management"/>
+	        <nav.item item.idref="item.explorer.offline.processing"/>
+	        <!-- 
+	        <nav.item item.idref="item.explorer.control.management"/>  -->
+	        <nav.item item.idref="item.explorer.issue.management"/>
+	    </nav.module>
+
+	    <!-- SIGNOFF MANAGEMENT -->
+	    <nav.item item.id="item.explorer.signoff.management" propertyKey="item.explorer.signoff.management.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="so"/>
+	        </nav.access>
+	
+	        <!-- for signoff managers-->
+	        <nav.data.grid dataGrid.idref="sotask">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.signoff"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for signoff owners -->
+	        <nav.data.grid dataGrid.idref="soowner">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.signoff.owner.processes"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for signoff reviewers -->
+	        <nav.data.grid dataGrid.idref="soreviewer">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.signoff.reviewer.processes"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for signoff managers-->
+	        <nav.data.grid dataGrid.idref="soprocess">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.signoff"/>
+	            </nav.access>
+	        </nav.data.grid>
+	    </nav.item>	    
+	    
+	</navigation>
+</custom>

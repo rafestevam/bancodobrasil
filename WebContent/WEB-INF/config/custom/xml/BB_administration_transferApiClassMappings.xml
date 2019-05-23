@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/blClassMappings.xsd">
+	    <mappingType name="TransferApi.PostProcessor">
+	        <mapping name="default" clsName="com.aris.arcm.transfer.parser.dynamic.PostProcessorBB"/>
+	    </mappingType>
+	</blClassMapping>
+</custom>
+

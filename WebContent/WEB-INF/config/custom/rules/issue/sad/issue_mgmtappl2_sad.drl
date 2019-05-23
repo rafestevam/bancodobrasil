@@ -1,0 +1,364 @@
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+#####################################################
+### Workflow state "openForCreationSADMgmtApprL2" ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' --> attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		is in workflow state "openForCreationSADMgmtApprL2"
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+
+	then
+		
+		set "bb_mgmtApproverL2_status" 		editable
+		set "bb_mgmtApproverL2_remark" 		editable
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "ISSUE has been rejected by the mgmtApproverL2 workflow state is 'openForCreationSADMgmtApprL2' --> 'bb_mgmtApproverL2_remark' is mandatory [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		is in workflow state "openForCreationSADMgmtApprL2" 
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_mgmtApproverL2_status" "CONTAINS" value "rejected"
+
+	then
+		
+		set "bb_mgmtApproverL2_remark" 	mandatory
+end
+
+###############################################
+### All workflow states - after state rules ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+
+	then
+		
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date" 		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "remark"                  		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_probAndMagnitQst01" 		visible
+		set "bb_probAndMagnitQst02" 		visible
+		set "bb_probAndMagnitQst03" 		visible
+		set "bb_probAndMagnitQst04" 		visible
+		set "bb_probAndMagnitQst05" 		visible
+		set "bb_compControlsQst01" 			visible
+		set "bb_otherConsidQst01" 			visible
+		set "bb_otherConsidQst03" 			visible
+		set "bb_deficiencyGravityQst01" 	visible
+		
+		
+		set "remediationMeasure"       		not_mandatory
+		set "remediationMeasure"       		invisible
+		
+		set "owners" 						invisible
+		set "owner" 						invisible
+		set "reviewers" 					invisible
+		set "reviewer" 						invisible
+		
+		### BdB CUSTOMIZATION ###
+		set "bb_controlesCompensat"         visible
+		
+		add object "information" message "info.issuemanagement.execution.phase.not.needed.INF"
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_otherConsidQst01' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad")
+
+	then
+	
+		set "bb_otherConsidQst02" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_otherConsidQst03' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad")
+
+	then
+	
+		set "bb_otherConsidQst04" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst01' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "true" )
+
+	then
+		
+		set "bb_deficiencyGravityQst02" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst01' is 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "false" )
+
+	then
+		
+		
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst02' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "true" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst03" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst02' is 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "false" )
+
+	then
+		
+		 
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst03' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "true" AND	
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "true" AND	
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst03" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst04" 	visible
+		set "bb_defGravityRmrk04" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst03' is 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst03" "EQUALS" value "false" )
+
+	then
+		
+		
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst04' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst04" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst04' is 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst04" "EQUALS" value "false" )
+
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst05' is 'true' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst05" "EQUALS" value "true" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "false" OR
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "false" OR
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst03" "EQUALS" value "false" OR
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst04" "EQUALS" value "true" )  
+
+	then
+	
+		set "bb_deficiencyGravityQst06" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst05' is 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst05" "EQUALS" value "false" )
+
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and 'bb_deficiencyGravityQst06' is 'true' or 'false' --> readonly attributes for issuemgmtapproverl2 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuemgmtapproverl2" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  ( value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst06" "EQUALS" value "true" OR
+		    value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst06" "EQUALS" value "false") )
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end

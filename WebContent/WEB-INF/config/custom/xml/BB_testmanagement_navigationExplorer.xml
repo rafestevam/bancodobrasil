@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+	    <nav.module module.id="module.explorer" propertyKey="module.explorer.DBI">
+	        <nav.item item.idref="item.explorer.audit.management"/>
+	        <nav.item item.idref="item.explorer.change.management"/>
+	        <nav.item item.idref="item.explorer.deficiency.management"/>
+	        <nav.item item.idref="item.explorer.incident.management"/>
+	        <nav.item item.idref="item.explorer.policy.management"/>
+	        <nav.item item.idref="item.explorer.risk.management"/>
+	        <nav.item item.idref="item.explorer.signoff.management"/>
+	        <nav.item item.idref="item.explorer.survey.management"/>
+	        <nav.item item.idref="item.explorer.test.management"/> 
+	        <nav.item item.idref="item.explorer.offline.processing"/>
+	        <!-- 
+	        <nav.item item.idref="item.explorer.control.management"/>  -->
+	        <nav.item item.idref="item.explorer.issue.management"/>
+	    </nav.module>
+
+	    <!-- TEST MANAGEMENT -->
+
+	    <nav.item item.id="item.explorer.test.management" propertyKey="item.explorer.test.management.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="tm"/>
+	        </nav.access>
+	        <!-- for test managers, risk managers, control managers, auditors-->
+	        <nav.data.grid dataGrid.idref="control">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.control"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="testdefinition">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.testdef"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="testdefinition_BB">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.testdef_BB"/>
+	            </nav.access>
+	        </nav.data.grid>
+	
+	        <!-- for testers -->
+	        <nav.data.grid dataGrid.idref="testactionTester">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.open.testactions"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for test reviewers -->
+	        <nav.data.grid dataGrid.idref="testactionReviewer">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.ineffective.testactions"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for external test auditor -->
+	        <nav.data.grid dataGrid.idref="testactionExternalAuditor">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.external.auditor"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for test managers, auditors -->
+	        <nav.data.grid dataGrid.idref="createdTestactions">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.created.testcases"/>
+	            </nav.access>
+	        </nav.data.grid>
+	    </nav.item>
+	
+	    <nav.item item.id="item.explorer.offline.processing" propertyKey="item.explorer.offline.processing.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="tm,sm,rm,pm"/>
+	            <nav.access.privilege objectPrivilege="READ" relatedObjectTypeID="OFFLINEPROCESSINGENTRY"/>
+	        </nav.access>
+	
+	        <nav.data.grid dataGrid.idref="ope">
+	            <nav.access>
+	                <nav.access.role roleIDs="POLICYMANAGER,RISKMANAGER,SURVEYMANAGER,TESTMANAGER" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="myope" uniqueID="explorer.myope" />
+	    </nav.item>
+	    
+	</navigation>
+</custom>

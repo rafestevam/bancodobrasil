@@ -1,0 +1,452 @@
+package ISSUE_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+# OBJECT        client_objid         LONG       Client ID                                                                                                                                                   
+# OBJECT        client_sign          CLIENTSIGN Client                                                                                                                                                      
+# OBJECT        create_date          DATE       Creation date                                                                                                                                               
+# OBJECT        creator_user_id      LONG       User ID (creator)                                                                                                                                           
+# OBJECT        delete_date          DATE       Deletion date                                                                                                                                               
+# OBJECT        guid                 STRING     GUID                                                                                                                                                        
+# OBJECT        obj_id               LONG       ID                                                                                                                                                          
+# OBJECT        obj_type             OBJECTTYPE Object type                                                                                                                                                 
+# OBJECT        root_guid            STRING     Root GUID                                                                                                                                                   
+# OBJECT        versions             LONG       Number of versions                                                                                                                                          
+# VERSION       aris_change_date     DATE       ARIS change date                                                                                                                                            
+# VERSION       change_date          DATE       Change date                                                                                                                                                 
+# VERSION       change_type          ENUM       Change type                changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                    
+# VERSION       change_user_id       LONG       User ID (editor)                                                                                                                                            
+# VERSION       deactivated          BOOLEAN    Deactivated                                                                                                                                                 
+# VERSION       id                   LONG       ID                                                                                                                                                          
+# VERSION       substitute_user_id   LONG       User ID (substitute)                                                                                                                                        
+# VERSION       version_active       BOOLEAN    Current version                                                                                                                                             
+# VERSION       version_number       LONG       Version number                                                                                                                                              
+# TRANSACTIONAL execution_date       DATE       Processed on                                                                                                                                                
+# TRANSACTIONAL owner                LIST       Performed by               to 1 USER (LT=3105)                                                                                                              
+# TRANSACTIONAL owner_group          LIST       Owner group                to 0 USERGROUPs (LT=4019)                                                                                                        
+# TRANSACTIONAL owner_status         ENUM       Owner status               issue_owner_status (all=-1,open=0,to_be_reviewed=-2,new=1,in_progress=2,finished=3,on_hold=4,not_possible=5,open_for_execution=6)
+# TRANSACTIONAL owner_substitute     LIST       Performed by (substitute)  to 1 USER (LT=3106)                                                                                                              
+# TRANSACTIONAL review_date          DATE       Review date                                                                                                                                                 
+# TRANSACTIONAL reviewer             LIST       Reviewer                   to 1 USER (LT=4022)                                                                                                              
+# TRANSACTIONAL reviewer_group       LIST       Reviewer group             to 0 USERGROUPs (LT=4021)                                                                                                        
+# TRANSACTIONAL reviewer_status      ENUM       Reviewer status            issue_reviewer_status (all=-1,to_be_approved=1,approved=2,not_approved=3)                                                        
+# TRANSACTIONAL reviewer_substitute  LIST       Reviewer (substitute)      to * USERs (LT=4023)                                                                                                             
+# MONITORABLE   controlenddate       DATE       End of control period                                                                                                                                       
+# MONITORABLE   controlstartdate     DATE       Start of control period                                                                                                                                     
+# MONITORABLE   plannedenddate       DATE       Remediation planned before                                                                                                                                  
+# MONITORABLE   plannedstartdate     DATE       Start date                                                                                                                                                  
+# ISSUE         category             ENUM       Issue category             issue_category (all=-1,please_select=0,finance=1,compliance=2,operations=3)                                                      
+# ISSUE         created_by_testcase  BOOLEAN    Generated by test case                                                                                                                                      
+# ISSUE         creator              LIST       Issue creator              to 1 USER (LT=3103)                                                                                                              
+# ISSUE         creator_status       ENUM       Creator status             issue_creator_status (all=-1,open=0,new=1,in_creation=2,released=3)                                                              
+# ISSUE         description          TEXT       Description                                                                                                                                                 
+# ISSUE         documents            LIST       Documents                  to * DOCUMENTs (LT=3104)                                                                                                         
+# ISSUE         immediateMeasure     TEXT       Immediate measure                                                                                                                                           
+# ISSUE         issueRelevantObjects LIST       Issue-relevant objects     to * OBJECTs (LT=3102)                                                                                                           
+# ISSUE         name                 STRING     Name                                                                                                                                                        
+# ISSUE         owner_remark         TEXT       Remark (issue owner)                                                                                                                                        
+# ISSUE         owners               LIST       Issue owner                to * USERs (LT=3100)                                                                                                             
+# ISSUE         priority             ENUM       Priority                   issuePriority (all=-1,low=1,medium=2,high=3)                                                                                     
+# ISSUE         relatedTestcaseID    LONG       ID (related test case)                                                                                                                                      
+# ISSUE         remark               TEXT       Remark                                                                                                                                                      
+# ISSUE         remediationMeasure   TEXT       Remediation measure                                                                                                                                         
+# ISSUE         reviewer_remark      TEXT       Remark (issue reviewer)                                                                                                                                     
+# ISSUE         reviewers            LIST       Issue reviewer             to * USERs (LT=3101)                                                                                                             
+# ISSUE         stateTime            ENUM       Due status                 issueStateTime (all=-1,on_time=1,overdue=2)                                                                                      
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "init hidden attributes [I,V]"
+
+	salience 3300
+	no-loop true
+
+	when
+
+	then
+		set "owner_status"            	invisible
+		set "owner_remark"            	invisible
+		set "reviewer_status"         	invisible
+		set "reviewer_remark"         	invisible
+		set "stateTime"               	invisible
+		
+		set "plannedenddate"          		invisible
+		set "remark"                  		invisible
+		set "priority"                		invisible
+		set "category"                		invisible
+		set "immediateMeasure"        		invisible
+		
+		set "bb_issueGrade"           		invisible
+		set "bb_faultLogCategory"     		invisible
+		set "bb_anotherImportantInfo" 		invisible
+		set "bb_confidentialityLevel" 		invisible
+		set "bb_specificKpiLimit" 			invisible
+		set "bb_specificKpiLimitAmount" 	invisible
+		set "bb_kpiLimitCurrentAmount" 		invisible
+		set "bb_specificKpiLimitDocs" 		invisible
+		set "bb_firstPlannedEndDate" 		invisible
+		set "bb_projectServiceRequest" 		invisible
+		set "bb_issueOrign" 				invisible
+		set "bb_probAndMagnitQst01" 		invisible
+		set "bb_probAndMagnitQst02" 		invisible
+		set "bb_probAndMagnitQst03" 		invisible
+		set "bb_probAndMagnitQst04" 		invisible
+		set "bb_probAndMagnitQst05" 		invisible
+		set "bb_compControlsQst01" 			invisible
+		set "bb_otherConsidQst01" 			invisible
+		set "bb_otherConsidQst02" 			invisible
+		set "bb_otherConsidQst03" 			invisible
+		set "bb_otherConsidQst04" 			invisible
+		set "bb_deficiencyGravityQst01" 	invisible
+		set "bb_deficiencyGravityQst02" 	invisible
+		set "bb_deficiencyGravityQst03" 	invisible
+		set "bb_deficiencyGravityQst04" 	invisible
+		set "bb_defGravityRmrk04" 			invisible
+		set "bb_deficiencyGravityQst05" 	invisible
+		set "bb_defGravityRmrk05" 			invisible
+		set "bb_deficiencyGravityQst06" 	invisible
+		set "bb_defGravitySuggResult" 		invisible
+		set "bb_defGravityResult" 			invisible
+		set "bb_conclusionPercentage" 		invisible
+		set "bb_injuredIssue" 				invisible
+		set "bb_implDocuments" 				invisible
+		set "bb_dealingDeadlineDate" 		invisible
+		
+		set "bb_mgmtApproverL1_group" 		invisible
+		set "bb_mgmtApproverL1_status" 		invisible
+		set "bb_mgmtApproverL1_remark" 		invisible
+		set "bb_mgmtApproverL1" 			invisible
+		set "bb_mgmtApproverL1_aware" 		invisible
+		set "bb_mgmtApproverL1_date" 		invisible
+		
+		set "bb_execMgmtApprL1_status" 		invisible
+		set "bb_execMgmtApprL1_remark" 		invisible
+		set "bb_execMgmtApprL1" 			invisible
+		set "bb_execMgmtApprL1_aware" 		invisible
+		
+		set "bb_mgmtApproverL2_group" 		invisible
+		set "bb_mgmtApproverL2_status" 		invisible
+		set "bb_mgmtApproverL2_remark" 		invisible
+		set "bb_mgmtApproverL2" 			invisible
+		set "bb_mgmtApproverL2_date" 		invisible
+		set "bb_mgmtApprover_orgunit"		invisible
+		
+		set "bb_execMgmtApprL2_status" 		invisible
+		set "bb_execMgmtApprL2_remark" 		invisible
+		set "bb_execMgmtApprL2" 			invisible
+		
+		set "bb_implApproverL1_group" 		invisible
+		set "bb_implApproverL1_status" 		invisible
+		set "bb_implApproverL1_remark" 		invisible
+		set "bb_implApproverL1" 			invisible
+		set "bb_implApproverL1_aware" 		invisible
+		set "bb_implApproverL1_date" 		invisible
+		
+		set "bb_execImplApprL1_status" 		invisible
+		set "bb_execImplApprL1_remark" 		invisible
+		set "bb_execImplApprL1" 			invisible
+		
+		set "bb_implApproverL2_group" 		invisible
+		set "bb_implApproverL2_status" 		invisible
+		set "bb_implApproverL2_remark" 		invisible
+		set "bb_implApproverL2" 			invisible
+		set "bb_implApproverL2_date" 		invisible
+		set "bb_implApproverL2_aware" 		invisible
+		set "bb_implApprover_orgunit"		invisible
+		
+		set "bb_execImplApprL2_status" 		invisible
+		set "bb_execImplApprL2_remark" 		invisible
+		set "bb_execImplApprL2" 			invisible
+		
+		set "bb_techApproverL1_group" 		invisible
+		set "bb_techApproverL1_status" 		invisible
+		set "bb_techApproverL1_remark" 		invisible
+		set "bb_techApproverL1" 			invisible
+		set "bb_techApproverL1_date" 		invisible
+		
+		set "bb_techApproverL2_group" 		invisible
+		set "bb_techApproverL2_status" 		invisible
+		set "bb_techApproverL2_remark" 		invisible
+		set "bb_techApproverL2" 			invisible
+		set "bb_techApproverL2_date" 		invisible
+		set "bb_techApprover_orgunit" 		invisible
+		
+		set "bb_owners_group" 				invisible
+		set "bb_reviewers_group" 			invisible
+		
+		set "bb_isTechSupportNeeded" 		invisible
+		
+		set "owner" 						invisible
+		set "reviewer" 						invisible
+		
+		set "bb_controlesCompensat"			invisible
+		set "bb_start_date"					invisible
+end
+
+#################################
+### Workflow state "PREPARED" ###
+
+rule "event import job - opened by creator --> init attribute states [I,V]"
+
+	salience 3300
+	no-loop true
+
+	when
+		( is in workflow state "PREPARED" AND
+          user is executing job with id "eventImportJob" )
+
+	then
+		set "name"                    editable
+		set "description"             editable
+		set "remediationMeasure"      editable
+
+		set "name"                    mandatory
+		set "description"             mandatory
+		set "remediationMeasure"      mandatory
+end
+
+rule "event import job - creator state set to 'released' --> set workflow fields mandatory for creator [I,V]"
+
+	salience 3200
+	no-loop true
+
+	when
+		( is in workflow state "PREPARED" AND
+          user is executing job with id "eventImportJob" )
+		value comparison fulfilled: ":transient:" attr_value "creator_status" "CONTAINS" value "released"
+
+	then
+		set "plannedenddate"           editable
+		set "owners"                   editable
+		set "reviewers"                editable
+
+	    set "plannedenddate"           mandatory
+		set "owners"                   mandatory
+		set "reviewers"                mandatory
+
+end
+
+#######################################################
+### Workflow state "openForCreation" ###
+
+rule "opened by creator --> init attribute states [I,V]"
+
+	salience 2100
+	no-loop true
+
+	when
+		( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" )
+		# during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		  
+	then
+		set "name"                    	editable
+		set "description"             	editable
+		set "creator_status"          	editable
+		set "issueRelevantObjects"    	editable
+		set "remediationMeasure"      	editable
+		
+		set "documents"               	editable
+
+		set "name"                    	mandatory
+		set "description"             	mandatory
+		set "remediationMeasure"      	mandatory
+
+		set "owner_status"            	invisible
+		set "owner_remark"            	invisible
+		set "reviewer_status"         	invisible
+		set "reviewer_remark"         	invisible
+		set "stateTime"               	invisible
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "owners"            	   		readonly
+		set "owner"            	   			readonly
+		set "reviewers"            			readonly
+		set "reviewer"            			readonly
+		
+		set "bb_issueType"            		editable
+		
+		set "bb_issueType"            		mandatory
+		
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "opened by creator --> check issuecreator role [I,V]"
+
+	salience 2100
+	no-loop true
+
+	when
+		( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" ) AND
+		( user has in_general not role "issuecreator" AND
+		  user has in_general not role "issuemanager" )
+		
+	then
+		add object "error" message "error.has.not.issuecreator.role.ERR"
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "opened by creator --> check bb_creators_group is filled [I,V]"
+
+	salience 2100
+	no-loop true
+
+	when
+		( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" ) AND
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS NOT" value "please_select"
+		"bb_creators_group" is_not filled
+		
+	then
+		set "bb_creators_group" invalid
+		add "error" message "error.has.not.issuecreator.role.ERR" to "bb_creators_group"
+
+end
+
+rule "hide field created by test case [I,V]"
+
+	salience 130
+	no-loop true
+
+	when
+		value comparison fulfilled: ":persistent:" attr_value "created_by_testcase" "EQUALS NOT" value "true"
+
+	then
+		set "created_by_testcase" invisible
+
+end
+
+rule "remediation does not be a thing of the past [V]"
+
+	salience 120
+	no-loop true
+
+	when
+		"plannedenddate" is dirty
+		"plannedenddate" is filled
+		value comparison fulfilled: ":transient:" attr_value "plannedenddate" "LESS THAN" value ":TODAY:"
+
+	then
+		set "plannedenddate" invalid
+		add "error" message "issue.remediation.planned.before.not.before.today.ERR" to "plannedenddate"
+
+end
+
+rule "'remediation planned before' changed and still >= TODAY --> check overdue state [V]"
+
+	salience 110
+	no-loop true
+
+	when
+		"plannedenddate" is dirty
+		"plannedenddate" is filled
+		value comparison fulfilled: ":transient:" attr_value "plannedenddate" "GREATER EQUAL" value ":TODAY:"
+
+	then
+		custom recalculate time dependent state
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "planning phase - creator segregation [I,V]"
+
+	salience 5
+	no-loop true
+	
+	when
+		(is_not in workflow state "PREPARED" AND is_not in workflow state "openForCreation")
+		value comparison fulfilled: ":transient:" attr_value "stateTime" "CONTAINS" value "planning"
+		object is opened by its creator
+		object cannot be modify with non approver
+		user is in approver group
+						
+	then
+		set object readonly
+		remove object messages	
+		add object "error" message "message.issue.creator.segregation.ERR"		
+
+end	
+
+rule "planning phase - L1L2 conflict [I,V]"
+
+	salience 4
+	no-loop true
+	
+	when
+		value comparison fulfilled: ":transient:" attr_value "stateTime" "CONTAINS" value "planning"
+		object can be modify with approver
+		user performed planning approver action
+		is planning L1L2 conflict
+								
+	then
+		set object readonly
+		remove object messages	
+		add object "error" message "message.issue.approver.segregation.ERR"		
+
+end	
+
+rule "execution phase - owner & reviewer segregation [I,V]"
+
+	salience 4
+	no-loop true
+	when
+		value comparison fulfilled: ":transient:" attr_value "stateTime" "CONTAINS NOT" value "planning"
+		#user is ":persistent:" member of group in list "bb_owners_group"
+		user performed non approver action
+		user is in approver group
+				
+	then
+		set object readonly
+		remove object messages	
+		add object "error" message "message.issue.approver.segregation.ERR"		
+
+end	
+
+rule "execution phase - approver segregation [I,V]"
+
+	salience 2
+	no-loop true
+	when
+		value comparison fulfilled: ":transient:" attr_value "stateTime" "CONTAINS NOT" value "planning"
+		user is in non approver group
+		user performed approver action
+				
+	then
+		set object readonly
+		remove object messages	
+		add object "error" message "message.issue.approver.segregation.ERR"		
+
+end	
+
+rule "execution phase - L1L2 conflict [I,V]"
+
+	salience 2
+	no-loop true
+	when
+		value comparison fulfilled: ":transient:" attr_value "stateTime" "CONTAINS NOT" value "planning"
+		object can be modify with approver
+		user performed approver action
+		is execution L1L2 conflict
+				
+	then
+		set object readonly
+		remove object messages	
+		add object "error" message "message.issue.approver.segregation.ERR"		
+
+end	

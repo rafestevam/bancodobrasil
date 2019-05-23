@@ -1,0 +1,2587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<list id="IssueMgmtApproverL1"
+          view.idref="IssueMgmtApproverL1"
+          filter.idref="issueMgmtApproverL1"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueMgmtApproverL1.DBI" >
+       <roleRestriction role="issuemgmtapproverl1"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<!-- 		
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="name"/>
+            <extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="creator_name"/>
+            <extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remediationPlannedBefore"/>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="deactivated"/>                       
+        </extendedFilterRow>  -->        
+               
+		<listHeaderRow>
+			<listHeader column="LC_IssueMgmtApproverL1_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_8" propertyKey="tableheader.description" width="21%"/>
+			<listHeader column="LC_IssueMgmtApproverL1_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="22%"/>
+		</listHeaderRow>
+		<column id="LC_IssueMgmtApproverL1_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_2" dataReference.idref="name" />
+		<column id="LC_IssueMgmtApproverL1_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueMgmtApproverL1_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL1_8" dataReference.idref="description" />
+		<column id="LC_IssueMgmtApproverL1_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueMgmtApproverL2"
+          view.idref="IssueMgmtApproverL2"
+          filter.idref="issueMgmtApproverL2"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueMgmtApproverL2.DBI" >
+       <roleRestriction role="issuemgmtapproverl2"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		
+		<!-- BdB CUSTOMIZATION - NEILA
+		<extendedFilterRow>
+		    <extendedFilter filterRow.idref="creator_name"/>
+			<extendedFilter filterRow.idref="creator_status"/>			
+		</extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="name"/>
+        	<extendedFilter filterRow.idref="description"/>            
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="remediationMeasure"/>
+        	<extendedFilter filterRow.idref="remediationPlannedBefore"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="created_by_testcase"/>            
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>            
+        </extendedFilterRow>        
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>        
+            <extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>                       
+        </extendedFilterRow>                      
+        <extendedFilterRow>        
+        	<extendedFilter filterRow.idref="deactivated"/>                       	
+        </extendedFilterRow>
+        -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueMgmtApproverL2_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_11" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_8" propertyKey="tableheader.description" width="20%"/>
+			<listHeader column="LC_IssueMgmtApproverL2_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="19%"/>
+		</listHeaderRow>
+		<column id="LC_IssueMgmtApproverL2_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_2" dataReference.idref="name" />
+		<column id="LC_IssueMgmtApproverL2_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueMgmtApproverL2_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_11" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueMgmtApproverL2_8" dataReference.idref="description" />
+		<column id="LC_IssueMgmtApproverL2_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueImplApproverL1"
+          view.idref="IssueImplApproverL1"
+          filter.idref="issueImplApproverL1"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueImplApproverL1.DBI" >
+       <roleRestriction role="issueimplapproverl1"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        	<extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+			<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="stateTime"/>
+        	<extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="remediationMeasure"/>
+        	<extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+            <extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow>  -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueImplApproverL1_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueImplApproverL1_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueImplApproverL1_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueImplApproverL1_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueImplApproverL1_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_11" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_12" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL1_8" propertyKey="tableheader.description" width="18%"/>
+			<listHeader column="LC_IssueImplApproverL1_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="17%"/>
+		</listHeaderRow>
+		<column id="LC_IssueImplApproverL1_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_2" dataReference.idref="name" />
+		<column id="LC_IssueImplApproverL1_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueImplApproverL1_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_11" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_12" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL1_8" dataReference.idref="description" />
+		<column id="LC_IssueImplApproverL1_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueTechApproverL1"
+          view.idref="IssueTechApproverL1"
+          filter.idref="issueTechApproverL1"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueTechApproverL1.DBI" >
+       <roleRestriction role="issuetechapproverl1"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        	<extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_techApproverL1_status"/>
+        	<extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        	<extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="remark"/>
+        	<extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="created_by_testcase"/>
+        	<extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/> 
+        	<extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>        	                        	
+        </extendedFilterRow>
+        <extendedFilterRow>                   
+            <extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>                        
+        </extendedFilterRow> -->               
+		<listHeaderRow>
+			<listHeader column="LC_IssueTechApproverL1_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueTechApproverL1_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueTechApproverL1_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueTechApproverL1_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueTechApproverL1_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_11" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_12" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_13" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL1_8" propertyKey="tableheader.description" width="16%"/>
+			<listHeader column="LC_IssueTechApproverL1_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="15%"/>
+		</listHeaderRow>
+		<column id="LC_IssueTechApproverL1_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_2" dataReference.idref="name" />
+		<column id="LC_IssueTechApproverL1_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueTechApproverL1_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_11" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_12" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_13" align="center" dataReference.idref="bb_techApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL1_8" dataReference.idref="description" />
+		<column id="LC_IssueTechApproverL1_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueTechApproverL2"
+          view.idref="IssueTechApproverL2"
+          filter.idref="issueTechApproverL2"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueTechApproverL2.DBI" >
+       <roleRestriction role="issuetechapproverl2"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        	<extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_techApproverL1_status"/>
+        	<extendedFilter filterRow.idref="bb_techApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+			<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="stateTime"/>
+        	<extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="remediationMeasure"/>
+        	<extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+            <extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow> -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueTechApproverL2_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueTechApproverL2_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+			<listHeader column="LC_IssueTechApproverL2_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueTechApproverL2_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueTechApproverL2_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_11" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_12" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_13" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_14" propertyKey="tableheader.issue.bb_techApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueTechApproverL2_8" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_IssueTechApproverL2_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="15%"/>
+		</listHeaderRow>
+		<column id="LC_IssueTechApproverL2_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_2" dataReference.idref="name" />
+		<column id="LC_IssueTechApproverL2_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueTechApproverL2_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_11" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_12" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_13" align="center" dataReference.idref="bb_techApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_14" align="center" dataReference.idref="bb_techApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueTechApproverL2_8" dataReference.idref="description" />
+		<column id="LC_IssueTechApproverL2_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueImplApproverL2"
+          view.idref="IssueImplApproverL2"
+          filter.idref="issueImplApproverL2"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueImplApproverL2.DBI" >
+       <roleRestriction role="issueimplapproverl2"/>
+	   <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        	<extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_techApproverL1_status"/>
+        	<extendedFilter filterRow.idref="bb_techApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_implApproverL2_status"/>
+        	<extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        	<extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="remark"/>
+        	<extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+        	<extendedFilter filterRow.idref="created_by_testcase"/>
+        	<extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>    
+        	<extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>                         	
+        </extendedFilterRow>
+        <extendedFilterRow>                  
+            <extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>         	                      
+        </extendedFilterRow>  -->               
+		<listHeaderRow>
+			<listHeader column="LC_IssueImplApproverL2_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_IssueImplApproverL2_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+			<listHeader column="LC_IssueImplApproverL2_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_4" propertyKey="tableheader.issue.creator.DBI" width="12%"/>
+			<listHeader column="LC_IssueImplApproverL2_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueImplApproverL2_10" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_11" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_12" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_13" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_14" propertyKey="tableheader.issue.bb_techApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_15" propertyKey="tableheader.issue.bb_implApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueImplApproverL2_8" propertyKey="tableheader.description" width="14%"/>
+			<listHeader column="LC_IssueImplApproverL2_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="14%"/>
+		</listHeaderRow>
+		<column id="LC_IssueImplApproverL2_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_2" dataReference.idref="name" />
+		<column id="LC_IssueImplApproverL2_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueImplApproverL2_10" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_11" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_12" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_13" align="center" dataReference.idref="bb_techApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_14" align="center" dataReference.idref="bb_techApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_15" align="center" dataReference.idref="bb_implApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueImplApproverL2_8" dataReference.idref="description" />
+		<column id="LC_IssueImplApproverL2_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueOwner"
+          view.idref="IssueOwner"
+          filter.idref="issueOwner"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.IssueOwner.DBI" >
+       <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>			
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>            
+		    <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+		    <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow> --> 
+		<listHeaderRow>
+			<listHeader column="LC_IssueOwner_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueOwner_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueOwner_10" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueOwner_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueOwner_4" propertyKey="tableheader.issue.creator.DBI" width="10%"/>
+			<listHeader column="LC_IssueOwner_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueOwner_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueOwner_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueOwner_8" propertyKey="tableheader.description" width="21%"/>
+			<listHeader column="LC_IssueOwner_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="21%"/>
+		</listHeaderRow>
+		<column id="LC_IssueOwner_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueOwner_2" dataReference.idref="name" />
+		<column id="LC_IssueOwner_10" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueOwner_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueOwner_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueOwner_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueOwner_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueOwner_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueOwner_8" dataReference.idref="description" />
+		<column id="LC_IssueOwner_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueExecImplApprL1"
+          view.idref="IssueExecImplApprL1"
+          filter.idref="issueExecImplApprL1"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueImplApproverL1.DBI" >
+       <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_execImplApprL1_status"/>
+        	<extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="creator_name"/>
+			<extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+			<extendedFilter filterRow.idref="created_by_testcase"/>
+			<extendedFilter filterRow.idref="priority"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="deactivated"/> 
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>        	                        	
+        </extendedFilterRow>
+        <extendedFilterRow>                   
+            <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>   
+            <extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>                     
+        </extendedFilterRow> -->             
+		<listHeaderRow>
+			<listHeader column="LC_IssueExecImplApprL1_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecImplApprL1_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueExecImplApprL1_11" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL1_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueExecImplApprL1_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueExecImplApprL1_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecImplApprL1_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL1_10" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL1_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL1_8" propertyKey="tableheader.description" width="17%"/>
+			<listHeader column="LC_IssueExecImplApprL1_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="17%"/>
+		</listHeaderRow>
+		<column id="LC_IssueExecImplApprL1_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_2" dataReference.idref="name" />
+		<column id="LC_IssueExecImplApprL1_11" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueExecImplApprL1_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_10" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL1_8" dataReference.idref="description" />
+		<column id="LC_IssueExecImplApprL1_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueExecImplApprL2"
+          view.idref="IssueExecImplApprL2"
+          filter.idref="issueExecImplApprL2"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueImplApproverL2.DBI" >
+       <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_execImplApprL1_status"/>
+        	<extendedFilter filterRow.idref="bb_execImplApprL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>           
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>			
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>        	
+		    <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+		    <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow> -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueExecImplApprL2_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecImplApprL2_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_IssueExecImplApprL2_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueExecImplApprL2_4" propertyKey="tableheader.issue.creator.DBI" width="14%"/>
+			<listHeader column="LC_IssueExecImplApprL2_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecImplApprL2_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL2_10" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL2_11" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL2_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecImplApprL2_8" propertyKey="tableheader.description" width="17%"/>
+			<listHeader column="LC_IssueExecImplApprL2_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="17%"/>
+		</listHeaderRow>
+		<column id="LC_IssueExecImplApprL2_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_2" dataReference.idref="name" />
+		<column id="LC_IssueExecImplApprL2_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueExecImplApprL2_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_10" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_11" align="center" dataReference.idref="bb_execImplApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecImplApprL2_8" dataReference.idref="description" />
+		<column id="LC_IssueExecImplApprL2_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueReviewer"
+          view.idref="IssueReviewer"
+          filter.idref="issueReviewer"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.IssueReviewer.DBI" >
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		 <extendedFilterRow>
+		 	<extendedFilter filterRow.idref="creator_name"/>
+            <extendedFilter filterRow.idref="owner_name"/>
+        </extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="reviewer_status"/>
+        	<extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+			<extendedFilter filterRow.idref="created_by_testcase"/> 
+			<extendedFilter filterRow.idref="priority"/>           
+        </extendedFilterRow>
+        <!-- BdB CUSTOMIZATION -->
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="deactivated"/>  
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>         	                        	
+        </extendedFilterRow>
+        <extendedFilterRow>                 
+            <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/> 
+            <extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>                       
+        </extendedFilterRow>            
+		<listHeaderRow>
+			<listHeader column="LC_IssueReviewer_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueReviewer_2" propertyKey="tableheader.issue.name.DBI" width="11%"/>
+			<listHeader column="LC_IssueReviewer_11" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueReviewer_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueReviewer_4" propertyKey="tableheader.issue.creator.DBI" width="11%"/>
+			<listHeader column="LC_IssueReviewer_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueReviewer_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="5%"/>
+			<listHeader column="LC_IssueReviewer_7" propertyKey="tableheader.issue.reviewerStatus.short.DBI" tooltip="tableheader.issue.reviewerStatus.DBI" width="5%"/>
+			<listHeader column="LC_IssueReviewer_8" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="5%"/>
+			<listHeader column="LC_IssueReviewer_9" propertyKey="tableheader.description" width="18%"/>
+			<listHeader column="LC_IssueReviewer_10" propertyKey="tableheader.issue.remediationMeasure.DBI" width="18%"/>
+		</listHeaderRow>
+		<column id="LC_IssueReviewer_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueReviewer_2" dataReference.idref="name" />
+		<column id="LC_IssueReviewer_11" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueReviewer_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueReviewer_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueReviewer_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueReviewer_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueReviewer_7" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueReviewer_8" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueReviewer_9" dataReference.idref="description" />
+		<column id="LC_IssueReviewer_10" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueExecMgmtApprL1"
+          view.idref="IssueExecMgmtApprL1"
+          filter.idref="issueExecMgmtApprL1"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueMgmtApproverL1.DBI" >
+       <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_execImplApprL1_status"/>
+        	<extendedFilter filterRow.idref="bb_execImplApprL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="reviewer_status"/>
+        	<extendedFilter filterRow.idref="bb_execMgmtApprL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>			
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>           
+		    <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+		    <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow>
+		 -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueExecMgmtApprL1_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_14" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_4" propertyKey="tableheader.issue.creator.DBI" width="10%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_10" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_11" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_12" propertyKey="tableheader.issue.reviewerStatus.short.DBI" tooltip="tableheader.issue.reviewerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_13" propertyKey="tableheader.issue.bb_execMgmtApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_8" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_IssueExecMgmtApprL1_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="14%"/>
+		</listHeaderRow>
+		<column id="LC_IssueExecMgmtApprL1_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_2" dataReference.idref="name" />
+		<column id="LC_IssueExecMgmtApprL1_14" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueExecMgmtApprL1_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_10" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_11" align="center" dataReference.idref="bb_execImplApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_12" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_13" align="center" dataReference.idref="bb_execMgmtApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL1_8" dataReference.idref="description" />
+		<column id="LC_IssueExecMgmtApprL1_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssueExecMgmtApprL2"
+          view.idref="IssueExecMgmtApprL2"
+          filter.idref="issueExecMgmtApprL2"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IssueMgmtApproverL2.DBI" >
+       <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="creator_status"/>
+			<extendedFilter filterRow.idref="owner_status"/>
+		</extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_execImplApprL1_status"/>
+        	<extendedFilter filterRow.idref="bb_execImplApprL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="bb_execMgmtApprL1_status"/>
+        	<extendedFilter filterRow.idref="bb_execMgmtApprL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+        	<extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>			
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>            
+		    <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+		    <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow>  -->
+		<listHeaderRow>
+			<listHeader column="LC_IssueExecMgmtApprL2_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_14" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_3" propertyKey="tableheader.issue.priority.DBI" width="7%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_4" propertyKey="tableheader.issue.creator.DBI" width="10%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_10" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_11" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_12" propertyKey="tableheader.issue.bb_execMgmtApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL1_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_13" propertyKey="tableheader.issue.bb_execMgmtApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL2_status.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_8" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_IssueExecMgmtApprL2_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="14%"/>
+		</listHeaderRow>
+		<column id="LC_IssueExecMgmtApprL2_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_2" dataReference.idref="name" />
+		<column id="LC_IssueExecMgmtApprL2_14" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_4" dataReference.idref="creator_ID" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_IssueExecMgmtApprL2_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_10" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_11" align="center" dataReference.idref="bb_execImplApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_12" align="center" dataReference.idref="bb_execMgmtApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_13" align="center" dataReference.idref="bb_execMgmtApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_IssueExecMgmtApprL2_8" dataReference.idref="description" />
+		<column id="LC_IssueExecMgmtApprL2_9" dataReference.idref="remediationMeasure" />
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="MyCreatedIssues"
+          view.idref="MyCreatedIssues"
+          filter.idref="myCreatedIssues"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.MyCreatedIssues.DBI" >
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		
+		<!-- BdB CUSTOMIZATION - NEILA
+		<extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_name"/>
+            <extendedFilter filterRow.idref="creator_status"/>
+        </extendedFilterRow>
+		<extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+            <extendedFilter filterRow.idref="bb_techApproverL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_techApproverL2_status"/>
+            <extendedFilter filterRow.idref="bb_implApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>            
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+            <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow>
+		-->
+        <listHeaderRow>
+            <listHeader column="LC_MyCreatedIssues_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+            <listHeader column="LC_MyCreatedIssues_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+            <listHeader column="LC_MyCreatedIssues_12" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+            <listHeader column="LC_MyCreatedIssues_3" propertyKey="tableheader.issue.priority.DBI" width="5%"/>
+            <listHeader column="LC_MyCreatedIssues_4" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+            <listHeader column="LC_MyCreatedIssues_5" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+            <listHeader column="LC_MyCreatedIssues_6" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_7" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_10" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_13" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_14" propertyKey="tableheader.issue.bb_techApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL2_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_15" propertyKey="tableheader.issue.bb_implApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL2_status.DBI" width="6%"/>
+            <listHeader column="LC_MyCreatedIssues_8" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="5%"/>
+            <listHeader column="LC_MyCreatedIssues_9" propertyKey="tableheader.description" width="15%"/>
+            <listHeader column="LC_MyCreatedIssues_11" propertyKey="tableheader.issue.assigned.DBI" width="5%"/>
+        </listHeaderRow>
+        <column id="LC_MyCreatedIssues_1" dataReference.idref="IssueID" template="openObject">
+            <parameter name="idColumn" value="IssueID"/>
+        </column>
+        <column id="LC_MyCreatedIssues_2" dataReference.idref="name" template="textFieldBB">
+			<parameter name="charLimit" value="32"/>
+		</column>	
+        <column id="LC_MyCreatedIssues_12" align="center" dataReference.idref="bb_issueType" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_3" align="center" dataReference.idref="priority" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_4" align="center" dataReference.idref="plannedenddate" />
+        <column id="LC_MyCreatedIssues_5" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+        <column id="LC_MyCreatedIssues_6" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_7" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_10" align="center" dataReference.idref="bb_implApproverL1_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_13" align="center" dataReference.idref="bb_techApproverL1_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_14" align="center" dataReference.idref="bb_techApproverL2_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_15" align="center" dataReference.idref="bb_implApproverL2_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_8" align="center" dataReference.idref="stateTime" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssues_9" dataReference.idref="description" template="textFieldBB">
+			<parameter name="charLimit" value="47"/>
+		</column>	
+        <column id="LC_MyCreatedIssues_11" align="center" dataReference.idref="owner_id" template="assignmentExist"/>
+        <listButtons>
+            <buttonReference button.idref="LIST_CREATE"/>
+            <buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+            <buttonReference button.idref="LISTROW_DELETE"/>
+        </rowButtons>
+    </list>
+    
+    <list id="MyCreatedIssuesExecution"
+          view.idref="MyCreatedIssuesExecution"
+          filter.idref="MyCreatedIssuesExecution"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.MyCreatedIssues.DBI" >
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<!-- 
+		<extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_name"/>
+            <extendedFilter filterRow.idref="creator_status"/>
+        </extendedFilterRow>
+		<extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_status"/>
+            <extendedFilter filterRow.idref="bb_execImplApprL1_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_execImplApprL2_status"/>
+            <extendedFilter filterRow.idref="reviewer_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_execMgmtApprL1_status"/>
+            <extendedFilter filterRow.idref="bb_execMgmtApprL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="description"/>
+        </extendedFilterRow>
+        <extendedFilterRow>       	
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<extendedFilterRow>            
+		    <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+		    <extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+		</extendedFilterRow>
+		<extendedFilterRow>			
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow>  -->
+        <listHeaderRow>
+            <listHeader column="LC_MyCreatedIssuesExecution_1" propertyKey="tableheader.issue.id.DBI" width="8%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_12" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_3" propertyKey="tableheader.issue.priority.DBI" width="5%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_4" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_5" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="4%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssuesExecution_7" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssuesExecution_10" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssuesExecution_13" propertyKey="tableheader.issue.reviewerStatus.short.DBI" tooltip="tableheader.issue.reviewerStatus.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssuesExecution_14" propertyKey="tableheader.issue.bb_execMgmtApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL1_status.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssuesExecution_15" propertyKey="tableheader.issue.bb_execMgmtApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL2_status.DBI" width="6%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_8" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="5%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_9" propertyKey="tableheader.description" width="15%"/>
+            <listHeader column="LC_MyCreatedIssuesExecution_11" propertyKey="tableheader.issue.assigned.DBI" width="5%"/>
+        </listHeaderRow>
+        <column id="LC_MyCreatedIssuesExecution_1" dataReference.idref="IssueID" template="openObject">
+            <parameter name="idColumn" value="IssueID"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_2" dataReference.idref="name" />
+        <column id="LC_MyCreatedIssuesExecution_12" align="center" dataReference.idref="bb_issueType" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_3" align="center" dataReference.idref="priority" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_4" align="center" dataReference.idref="plannedenddate" />
+        <column id="LC_MyCreatedIssuesExecution_5" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+        <column id="LC_MyCreatedIssuesExecution_6" align="center" dataReference.idref="owner_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_7" align="center" dataReference.idref="bb_execImplApprL1_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_10" align="center" dataReference.idref="bb_execImplApprL2_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_13" align="center" dataReference.idref="reviewer_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_14" align="center" dataReference.idref="bb_execMgmtApprL1_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_15" align="center" dataReference.idref="bb_execMgmtApprL2_status" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_8" align="center" dataReference.idref="stateTime" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_MyCreatedIssuesExecution_9" dataReference.idref="description" />
+        <column id="LC_MyCreatedIssuesExecution_11" align="center" dataReference.idref="owner_id" template="assignmentExist"/>
+        <listButtons>
+            <buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+            <buttonReference button.idref="LISTROW_DELETE"/>
+        </rowButtons>
+    </list>
+    
+    <list id="RelatedIssues"
+          view.idref="RelatedIssues"
+          filter.idref="RelatedIssues"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          destAttributeType.idref="issueRelevantObjects"
+          destDataType.idref="ISSUE"
+          frame="tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="ISSUE">
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="creator_name"/>
+			<simpleFilter filterRow.idref="description"/>
+		</simpleFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_name"/>
+            <extendedFilter filterRow.idref="reviewer_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1_status"/>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+            <extendedFilter filterRow.idref="bb_implApproverL2_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+            <extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+		</extendedFilterRow>
+		<listHeaderRow>
+            <listHeader column="LC_RelatedIssues_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_RelatedIssues_2" propertyKey="tableheader.issue.name.DBI" width="10%"/>
+			<listHeader column="LC_RelatedIssues_10" propertyKey="tableheader.issue.bb_issueType.DBI" width="4%"/>
+			<listHeader column="LC_RelatedIssues_3" propertyKey="tableheader.issue.priority.DBI" width="4%"/>
+			<listHeader column="LC_RelatedIssues_4" propertyKey="tableheader.issue.creator.DBI" width="10%"/>
+			<listHeader column="LC_RelatedIssues_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_RelatedIssues_6" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="5%"/>
+			<listHeader column="LC_RelatedIssues_11" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" width="5%"/>
+			<listHeader column="LC_RelatedIssues_12" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" width="5%"/>
+			<listHeader column="LC_RelatedIssues_13" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="5%"/>
+			<listHeader column="LC_RelatedIssues_14" propertyKey="tableheader.issue.bb_implApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL2_status.DBI" width="5%"/>
+			<listHeader column="LC_RelatedIssues_8" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="6%"/>
+			<listHeader column="LC_RelatedIssues_9" propertyKey="tableheader.description" width="27%"/>
+		</listHeaderRow>
+		<column id="LC_RelatedIssues_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_RelatedIssues_2" dataReference.idref="name" />
+		<column id="LC_RelatedIssues_10" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_4" dataReference.idref="creator_name" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_RelatedIssues_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_RelatedIssues_6" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_11" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_12" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_13" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_14" align="center" dataReference.idref="bb_implApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_8" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_RelatedIssues_9" dataReference.idref="description" />
+		<listButtons>
+			<buttonReference button.idref="PARENT_LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+	
+	<list id="Issues"
+          view.idref="Issues"
+          filter.idref="issues"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.Issues.DBI">
+        <roleRestriction role="issuemanager"/>
+        <roleRestriction role="issueauditor"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="creator_status"/>
+            <simpleFilter filterRow.idref="owner_status"/>
+        </simpleFilterRow>
+		<extendedFilterRow>
+            <extendedFilter filterRow.idref="creator_name"/>
+            <extendedFilter filterRow.idref="owner_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="reviewer_name" />
+            <extendedFilter filterRow.idref="reviewer_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+			<extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="deactivated"/>
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+        </extendedFilterRow>    
+        <!-- BdB CUSTOMIZATION -->
+        <extendedFilterRow>        	        	
+        	<extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>   
+        	<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>      	                        	
+        </extendedFilterRow>            
+		<listHeaderRow>
+			<listHeader column="LC_Issues_1" propertyKey="tableheader.issue.id.DBI" width="5%" rowSpan="2"/>
+			<listHeader column="LC_Issues_2" propertyKey="tableheader.issue.name.DBI" width="14%" rowSpan="2"/>
+			<listHeader column="LC_Issues_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="5%" rowSpan="2"/>
+			<listHeader column="LC_Issues_4" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="6%" rowSpan="2"/>
+			<listHeader propertyKey="tableheader.issue.creation.DBI" colSpan="7" align="center" width="35%"/>
+			<listHeader propertyKey="tableheader.issue.implementation.DBI" colSpan="6" align="center" width="30%"/>
+			<listHeader column="LC_Issues_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="5%" rowSpan="2"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_Issues_5a" propertyKey="tableheader.issue.creatorStatus.short.DBI" 			 tooltip="tableheader.issue.creatorStatus.DBI" 				width="5%"/>
+            <listHeader column="LC_Issues_5b" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI"   width="5%"/>
+			<listHeader column="LC_Issues_5c" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5d" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5e" propertyKey="tableheader.issue.bb_implApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL2_status.DBI"	width="5%"/>
+			<listHeader column="LC_Issues_5f" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5g" propertyKey="tableheader.issue.bb_techApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6a" propertyKey="tableheader.issue.ownerStatus.short.DBI" 			 tooltip="tableheader.issue.ownerStatus.DBI" 				width="5%"/>
+			<listHeader column="LC_Issues_6b" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6c" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6d" propertyKey="tableheader.issue.reviewerStatus.short.DBI" 			 tooltip="tableheader.issue.reviewerStatus.DBI" 			width="5%"/>
+			<listHeader column="LC_Issues_6e" propertyKey="tableheader.issue.bb_execMgmtApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6f" propertyKey="tableheader.issue.bb_execMgmtApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL2_status.DBI" 	width="5%"/>
+		</listHeaderRow>
+		<column id="LC_Issues_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_Issues_2" dataReference.idref="name" />
+		<column id="LC_Issues_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_4" align="center" dataReference.idref="plannedenddate" />
+        <column id="LC_Issues_5a" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5b" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5c" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5d" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5e" align="center" dataReference.idref="bb_implApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		
+		<column id="LC_Issues_5f" align="center" dataReference.idref="bb_techApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5g" align="center" dataReference.idref="bb_techApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		
+		<column id="LC_Issues_6a" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6b" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6c" align="center" dataReference.idref="bb_execImplApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6d" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6e" align="center" dataReference.idref="bb_execMgmtApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6f" align="center" dataReference.idref="bb_execMgmtApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons> 
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="IssuesApproverBB"
+          view.idref="IssuesApproverBB"
+          filter.idref="issuesapproverbb"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.IssuesApproverBB.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+		</simpleFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="stateTime"/>
+            <extendedFilter filterRow.idref="remark"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+			<extendedFilter filterRow.idref="created_by_testcase"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="priority"/>
+            <extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow>    
+        <listHeaderRow>
+			<listHeader column="LC_Issues_1" propertyKey="tableheader.issue.id.DBI" width="5%" rowSpan="2"/>
+			<listHeader column="LC_Issues_2" propertyKey="tableheader.issue.name.DBI" width="14%" rowSpan="2"/>
+			<listHeader column="LC_Issues_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="5%" rowSpan="2"/>
+			<listHeader column="LC_Issues_4" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="6%" rowSpan="2"/>
+			<listHeader propertyKey="tableheader.issue.creation.DBI" colSpan="7" align="center" width="35%"/>
+			<listHeader propertyKey="tableheader.issue.implementation.DBI" colSpan="6" align="center" width="30%"/>
+			<listHeader column="LC_Issues_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="5%" rowSpan="2"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_Issues_5a" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" 					  	width="5%"/>
+            <listHeader column="LC_Issues_5b" propertyKey="tableheader.issue.bb_mgmtApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5c" propertyKey="tableheader.issue.bb_mgmtApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_mgmtApproverL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5d" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5e" propertyKey="tableheader.issue.bb_implApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5f" propertyKey="tableheader.issue.bb_techApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_5g" propertyKey="tableheader.issue.bb_techApproverL2_status.short.DBI" tooltip="tableheader.issue.bb_techApproverL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6a" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" 							width="5%"/>
+			<listHeader column="LC_Issues_6b" propertyKey="tableheader.issue.bb_execImplApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6c" propertyKey="tableheader.issue.bb_execImplApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execImplApprL2_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6d" propertyKey="tableheader.issue.reviewerStatus.short.DBI" tooltip="tableheader.issue.reviewerStatus.DBI" 						width="5%"/>
+			<listHeader column="LC_Issues_6e" propertyKey="tableheader.issue.bb_execMgmtApprL1_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL1_status.DBI" 	width="5%"/>
+			<listHeader column="LC_Issues_6f" propertyKey="tableheader.issue.bb_execMgmtApprL2_status.short.DBI" tooltip="tableheader.issue.bb_execMgmtApprL2_status.DBI" 	width="5%"/>
+		</listHeaderRow>
+		
+		<column id="LC_Issues_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_Issues_2" dataReference.idref="name" />
+		<column id="LC_Issues_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_4" align="center" dataReference.idref="plannedenddate" />
+        <column id="LC_Issues_5a" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5b" align="center" dataReference.idref="bb_mgmtApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5c" align="center" dataReference.idref="bb_mgmtApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5d" align="center" dataReference.idref="bb_implApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5e" align="center" dataReference.idref="bb_implApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5f" align="center" dataReference.idref="bb_techApproverL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_5g" align="center" dataReference.idref="bb_techApproverL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6a" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6b" align="center" dataReference.idref="bb_execImplApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6c" align="center" dataReference.idref="bb_execImplApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6d" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6e" align="center" dataReference.idref="bb_execMgmtApprL1_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_6f" align="center" dataReference.idref="bb_execMgmtApprL2_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_Issues_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons> 
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="ATBReport"
+          view.idref="ATBReport"
+          filter.idref="ATBReport"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="false"
+          relatedObjectType.idref="ISSUE"
+          useCheckBoxes="false"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.ATBReport.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="name"/>
+		</simpleFilterRow>
+		<simpleFilterRow>			
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+			<simpleFilter filterRow.idref="creator_status"/>
+		</simpleFilterRow>
+        <simpleFilterRow>           
+            <simpleFilter filterRow.idref="owner_status"/>
+            <simpleFilter filterRow.idref="creator_name"/>
+        </simpleFilterRow>
+		<extendedFilterRow>            
+            <extendedFilter filterRow.idref="owner_name"/>
+            <extendedFilter filterRow.idref="reviewer_name" />
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="reviewer_status"/>
+            <extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>           
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>            
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+            <extendedFilter filterRow.idref="priority"/>
+        </extendedFilterRow>
+        <extendedFilterRow>                        
+            <extendedFilter filterRow.idref="bb_mgmtApproverL1Group_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+        	<extendedFilter filterRow.idref="bb_mgmtApproverL2Group_name"/>
+        	<extendedFilter filterRow.idref="bb_implApproverL1Group_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>        	
+			<extendedFilter filterRow.idref="bb_implApproverL1_status"/>
+			<extendedFilter filterRow.idref="bb_techApproverL1Group_name"/>
+		</extendedFilterRow>		
+        <extendedFilterRow>        	
+			<extendedFilter filterRow.idref="bb_mgmtApprover_orgunit"/>
+			<extendedFilter filterRow.idref="bb_implApprover_orgunit"/>
+		</extendedFilterRow>		
+		<listHeaderRow>
+			<listHeader column="LC_ATBReport_1" propertyKey="tableheader.issue.id.DBI" width="4%" />
+			<listHeader column="LC_ATBReport_3" propertyKey="tableheader.issue.bb_issueType.DBI" width="5%"/>
+<!-- 			<listHeader column="LC_ATBReport_2" propertyKey="tableheader.issue.name.DBI" width="7%"/> -->
+			<listHeader column="LC_ATBReport_2_0" propertyKey="tableheader.issue.atbreport.bb_codigoUOR_RIN1.DBI" width="8%"/>
+			<listHeader column="LC_ATBReport_2_1" propertyKey="tableheader.issue.atbreport.bb_codigoUOR.DBI" width="8%"/>
+			<listHeader column="LC_ATBReport_4" propertyKey="tableheader.issue.atbreport.responsible.short.DBI" tooltip="tableheader.issue.atbreport.responsible.DBI" width="8%"/>
+<!-- 			<listHeader column="LC_ATBReport_4_1" propertyKey="tableheader.issue.atbreport.issueDate" width="4%"/> -->
+			<listHeader column="LC_ATBReport_5" propertyKey="tableheader.issue.atbreport.bb_creator_date.DBI" width="5%"/>
+<!-- 			<listHeader column="LC_ATBReport_6" propertyKey="tableheader.issue.atbreport.bb_execStartDate.DBI" width="5%"/> -->
+			<listHeader column="LC_ATBReport_8" propertyKey="tableheader.issue.atbreport.firstPlannedEndDate.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_9" propertyKey="tableheader.issue.atbreport.plannedEndDate.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_10" propertyKey="tableheader.issue.atbreport.bb_execImplApprL1.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_13" propertyKey="tableheader.issue.atbreport.bb_execPlannedDays.short.DBI" tooltip="tableheader.issue.atbreport.bb_execPlannedDays.DBI" width="3%"/>
+			<listHeader column="LC_ATBReport_14" propertyKey="tableheader.issue.atbreport.bb_execWorkedDays.short.DBI" tooltip="tableheader.issue.atbreport.bb_execWorkedDays.DBI" width="3%"/>
+			<listHeader column="LC_ATBReport_15" propertyKey="tableheader.issue.atbreport.bb_execPercentDays.short.DBI" tooltip="tableheader.issue.atbreport.bb_execPercentDays.DBI" width="4%"/>
+			<listHeader column="LC_ATBReport_12" propertyKey="tableheader.issue.priority.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_ATBReport_16_0" propertyKey="tableheader.issue.atbreport.bb_certification_date.short.DBI" tooltip="tableheader.issue.atbreport.bb_certification_date.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_16" propertyKey="tableheader.issue.atbreport.bb_isOverdueExecution.short.DBI" tooltip="tableheader.issue.atbreport.bb_isOverdueExecution.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_17" propertyKey="tableheader.issue.atbreport.bb_implApprL2ATB_date.short.DBI" tooltip="tableheader.issue.atbreport.bb_implApprL2ATB_date.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_20" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL1ATB_date.short.DBI" tooltip="tableheader.issue.atbreport.bb_mgmtApprL1ATB_date.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_18" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL2ATB_date.short.DBI" tooltip="tableheader.issue.atbreport.bb_mgmtApprL2ATB_date.DBI" width="5%"/>
+			<listHeader column="LC_ATBReport_19" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL2ATB_status.short.DBI" tooltip="tableheader.issue.atbreport.bb_mgmtApprL2ATB_status.DBI" width="4%"/>
+<!-- 			<listHeader column="LC_ATBReport_21" propertyKey="tableheader.issue.bb_implApproverL1_status.short.DBI" tooltip="tableheader.issue.bb_implApproverL1_status.DBI" width="6%"/> -->
+		</listHeaderRow>
+		<column id="LC_ATBReport_1" dataReference.idref="IssueID">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_ATBReport_3" align="center" dataReference.idref="bb_issueType" >
+			<parameter name="showText" value="false"/>
+		</column>
+<!-- 		<column id="LC_ATBReport_2" dataReference.idref="name" /> -->
+		<column id="LC_ATBReport_2_0" dataReference.idref="bb_mgmtApproverL1Group_codUOR" />
+		<column id="LC_ATBReport_2_1" dataReference.idref="bb_implApproverL1Group_codUOR" />
+		<column id="LC_ATBReport_4" align="center" dataReference.idref="bb_techApproverL1Group_codUOR"/>
+<!-- 		<column id="LC_ATBReport_4_1" align="center" dataReference.idref= "create_date"  /> No correct, just put to work bb_creator_date -->
+		<column id="LC_ATBReport_5" align="center" dataReference.idref="bb_creator_date" />
+<!-- 		<column id="LC_ATBReport_6" align="center" dataReference.idref="bb_execStartDate" /> -->
+		<column id="LC_ATBReport_8" align="center" dataReference.idref="bb_firstPlannedEndDate" />
+		<column id="LC_ATBReport_9" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_ATBReport_10" align="center" dataReference.idref="bb_conclusionDate" />
+		<column id="LC_ATBReport_13" align="center" dataReference.idref="bb_execPlannedDays" />
+		<column id="LC_ATBReport_14" align="center" dataReference.idref="bb_execWorkedDays" />
+		<column id="LC_ATBReport_15" align="center" dataReference.idref="bb_execPercentDays" />
+		<column id="LC_ATBReport_12" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_ATBReport_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_ATBReport_16_0" align="center" dataReference.idref="bb_certification_date" />
+		<column id="LC_ATBReport_16" dataReference.idref="bb_isOverdueExecution" />
+		<column id="LC_ATBReport_17" align="center" dataReference.idref="bb_implApprL2ATB_date" />
+		<column id="LC_ATBReport_20" align="center" dataReference.idref="bb_mgmtApprL1ATB_date" />
+		<column id="LC_ATBReport_18" align="center" dataReference.idref="bb_mgmtApprL2ATB_date" />
+		<column id="LC_ATBReport_19" align="center" dataReference.idref="bb_mgmtApprL2ATB_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+<!-- 		<column id="LC_ATBReport_21" align="center" dataReference.idref="bb_implApproverL1_status" > -->
+<!--             <parameter name="showText" value="false"/> -->
+<!--         </column>		 -->
+        <listButtons> 
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons/>
+	</list>
+	
+	<list id="IssueRelevantObjectSelection"
+          view.idref="issueRelevantObjects_sel"
+          filter.idref="iro"
+          idColumn.idref="objectId"
+          versionColumn.idref="version"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="issueRelevantObjects"
+          destDataType.idref="ISSUE"
+          listType="selection">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="objectId"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="clientSigns"/>
+			<simpleFilter filterRow.idref="object_objtype"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+		    <listHeader column="LC_MyIRO_sel_4" propertyKey="tableheader.objectId.DBI" width="8%"/>
+			<listHeader column="LC_MyIRO_sel_1" propertyKey="tableheader.iro.name.DBI" width="30%"/>
+			<listHeader column="LC_MyIRO_sel_2a" propertyKey="tableheader.version.number" width="10%"/>
+			<listHeader column="LC_MyIRO_sel_2" propertyKey="tableheader.iro.clientsign.DBI" width="25%"/>
+			<listHeader column="LC_MyIRO_sel_3" propertyKey="tableheader.iro.objecttype.DBI" width="25%"/>
+		</listHeaderRow>
+		<column id="LC_MyIRO_sel_4" dataReference.idref="objectId" />
+		<column id="LC_MyIRO_sel_1" dataReference.idref="name" template="openObject">
+			<parameter name="deactivatedColumn" value="iro_deactivated"/>
+		</column>
+		<column id="LC_MyIRO_sel_2a" align="right" dataReference.idref="version" />
+		<column id="LC_MyIRO_sel_2" dataReference.idref="client_sign" />
+		<column id="LC_MyIRO_sel_3" dataReference.idref="object_objtype"  />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issuemgmtapproverl1_sel"
+          view.idref="issue_issuemgmtapproverl1_sel"
+          filter.idref="issue_issuemgmtapproverl1_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_mgmtApproverL1_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issuemgmtapproverl2_sel"
+          view.idref="issue_issuemgmtapproverl2_sel"
+          filter.idref="issue_issuemgmtapproverl2_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_mgmtApproverL2_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issueimplapproverl1_sel"
+          view.idref="issue_issueimplapproverl1_sel"
+          filter.idref="issue_issueimplapproverl1_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_implApproverL1_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issueimplapproverl2_sel"
+          view.idref="issue_issueimplapproverl2_sel"
+          filter.idref="issue_issueimplapproverl2_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_implApproverL2_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issuetechapproverl1_sel"
+          view.idref="issue_issuetechapproverl1_sel"
+          filter.idref="issue_issuetechapproverl1_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_techApproverL1_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_issue_ownergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issuetechapproverl2_sel"
+          view.idref="issue_issuetechapproverl2_sel"
+          filter.idref="issue_issuetechapproverl2_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_techApproverL2_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_issue_ownergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issueowner_sel"
+          view.idref="issue_issueowner_sel"
+          filter.idref="issue_issueowner_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_owners_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_issue_ownergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="issue_issuereviewers_sel"
+          view.idref="issue_issuereviewers_sel"
+          filter.idref="issue_issuereviewers_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="bb_reviewers_group"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_issue_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_issue_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_issue_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_issue_ownergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_issue_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_issue_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_issue_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_issue_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_issue_ownergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+
+    <list id="MyCreatedOpenIssues"
+          view.idref="MyCreatedOpenIssues"
+          filter.idref="MyCreatedOpenIssues"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="ISSUE"
+          propertyKey="list.MyCreatedOpenIssues.DBI" >
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="IssueID"/>
+			<simpleFilter filterRow.idref="bb_issueType"/>			
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="remediationPlannedBefore"/>
+			<simpleFilter filterRow.idref="name"/>			
+		</simpleFilterRow>
+		
+		<!-- BdB CUSTOMIZATION - NEILA
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="description"/>
+            <extendedFilter filterRow.idref="creator_status"/>            
+        </extendedFilterRow>
+        <extendedFilterRow>
+        	<extendedFilter filterRow.idref="remediationMeasure"/>   
+        	<extendedFilter filterRow.idref="priority"/>        
+        </extendedFilterRow>
+        -->
+		<listHeaderRow>
+			<listHeader column="LC_MyCreatedIssues_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_1a" propertyKey="tableheader.issue.bb_issueType.DBI" width="6%"/>
+			<listHeader column="LC_MyCreatedIssues_2" propertyKey="tableheader.issue.name.DBI" width="20%"/>
+			<listHeader column="LC_MyCreatedIssues_3" propertyKey="tableheader.issue.priority.DBI" width="5%"/>
+			<listHeader column="LC_MyCreatedIssues_4" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="8%"/>
+			<listHeader column="LC_MyCreatedIssues_5" propertyKey="tableheader.issue.creatorStatus.short.DBI" tooltip="tableheader.issue.creatorStatus.DBI" width="3%"/>
+			<listHeader column="LC_MyCreatedIssues_7" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="4%"/>
+			<listHeader column="LC_MyCreatedIssues_8" propertyKey="tableheader.description" width="20%"/>
+			<listHeader column="LC_MyCreatedIssues_9" propertyKey="tableheader.issue.remediationMeasure.DBI" width="20%"/>
+			<listHeader column="LC_MyCreatedIssues_10" propertyKey="tableheader.issue.assigned.DBI" width="8%"/>
+		</listHeaderRow>
+		<column id="LC_MyCreatedIssues_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_MyCreatedIssues_1a" dataReference.idref="bb_issueType"/>
+		<column id="LC_MyCreatedIssues_2" dataReference.idref="name" />
+		<column id="LC_MyCreatedIssues_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_MyCreatedIssues_4" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_MyCreatedIssues_5" align="center" dataReference.idref="creator_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_MyCreatedIssues_7" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_MyCreatedIssues_8" dataReference.idref="description" />
+		<column id="LC_MyCreatedIssues_9" dataReference.idref="remediationMeasure" />
+		<column id="LC_MyCreatedIssues_10" align="center" dataReference.idref="owner_id" template="assignmentExist"/>
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	
+	<!-- BdB CUSTOMIZATION -->
+	<list id="testcase2issue"
+          view.idref="testcase2issue"
+          filter.idref="testcase2issue"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          relatedObjectType.idref="TESTCASE"
+          rightsPath.datakind="transactiondata"
+		  destAttributeType.idref="bb_controlesCompensat"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          useCheckBoxes="false"
+            >
+		<simpleFilterRow>		 
+			<simpleFilter filterRow.idref="ta_id"/>		
+            <simpleFilter filterRow.idref="type"/>					
+		</simpleFilterRow>
+		<simpleFilterRow>		 
+			<simpleFilter filterRow.idref="start_test"/>		
+            <simpleFilter filterRow.idref="end_test"/>					
+		</simpleFilterRow>
+		<simpleFilterRow>		 
+			<simpleFilter filterRow.idref="start_control_date"/>		
+            <simpleFilter filterRow.idref="end_control_date"/>					
+		</simpleFilterRow>  
+		  
+		<simpleFilterRow>					
+            <simpleFilter filterRow.idref="execution_period_issue"/>
+            <simpleFilter filterRow.idref="walkthrough_name"/>
+		</simpleFilterRow>		
+			<listHeaderRow>
+				<listHeader column="LC_testdefinition2issue_1" propertyKey="tableheader.testcase" width="10%" forceInline="false" />
+                <listHeader column="LC_testdefinition2issue_2" propertyKey="tableheader.type" width="10%" forceInline="false" />                     
+				<listHeader column="LC_testdefinition2issue_3" propertyKey="tableheader.start.test" width="10%" forceInline="false" />
+				<listHeader column="LC_testdefinition2issue_4" propertyKey="tableheader.end.test" width="10%" forceInline="false" />
+				<listHeader column="LC_testdefinition2issue_5" propertyKey="tableheader.start.control.date" width="10%" forceInline="false" />
+				<listHeader column="LC_testdefinition2issue_6" propertyKey="tableheader.end.control.date" width="10%" forceInline="false" />
+				<listHeader column="LC_testdefinition2issue_7" propertyKey="tableheader.testing.date" width="10%" forceInline="false" />				
+                <listHeader column="LC_testdefinition2issue_8" propertyKey="tableheader.walkthrough.name" width="15%" forceInline="false" />				
+                <listHeader column="LC_testdefinition2issue_9" propertyKey="tableheader.walkthrough.counter" width="15%" forceInline="false" />                
+			</listHeaderRow>                           				
+			
+			<column id="LC_testdefinition2issue_1" dataReference.idref="ta_id" template="openObject">
+				<parameter name="idColumn" value="ta_id"/>
+			</column>
+            <column id="LC_testdefinition2issue_2" align="center" dataReference.idref="type"/>
+			<column id="LC_testdefinition2issue_3" align="center" dataReference.idref="plannedstartdate_from" />
+			<column id="LC_testdefinition2issue_4" align="center" dataReference.idref="plannedenddate_from" />
+            <column id="LC_testdefinition2issue_5" align="center" dataReference.idref="controlstartdate_from"/>			
+			<column id="LC_testdefinition2issue_6" align="center" dataReference.idref="controlenddate_from"/>           			
+			<column id="LC_testdefinition2issue_7" align="center" dataReference.idref="testdatefrom" />
+			<column id="LC_testdefinition2issue_8" align="center" dataReference.idref="walkthrough_name" />
+			<column id="LC_testdefinition2issue_9" align="center" dataReference.idref="walkthrough_counter" />
+			<listButtons/>
+			<rowButtons>
+				<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+			</rowButtons>			
+		</list>
+		
+		<list id="HierarchyRelatedIssues"
+          view.idref="RelatedIssues"
+          filter.idref="RelatedIssues"
+          idColumn.idref="IssueID"
+          defaultOrderColumn.idref="IssueID"
+          destAttributeType.idref="issueRelevantObjects"
+          destDataType.idref="ISSUE"
+          frame="content.tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="ISSUE"
+          useCheckBoxes="false">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="IssueID"/>
+            <simpleFilter filterRow.idref="remediationPlannedBefore"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="creator_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_name"/>
+            <extendedFilter filterRow.idref="reviewer_name"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="owner_status"/>
+            <extendedFilter filterRow.idref="reviewer_status"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="remark"/>
+            <extendedFilter filterRow.idref="remediationMeasure"/>
+        </extendedFilterRow>
+        <extendedFilterRow>
+            <extendedFilter filterRow.idref="created_by_testcase"/>
+            <extendedFilter filterRow.idref="stateTime"/>
+        </extendedFilterRow>
+        <extendedFilterRow>           
+            <extendedFilter filterRow.idref="deactivated"/>
+        </extendedFilterRow>
+		<listHeaderRow>
+            <listHeader column="LC_HierarchyRelatedIssues_1" propertyKey="tableheader.issue.id.DBI" width="6%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_2" propertyKey="tableheader.issue.name.DBI" width="13%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_3" propertyKey="tableheader.issue.priority.DBI" width="5%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_4" propertyKey="tableheader.issue.creator.DBI" width="10%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_5" propertyKey="tableheader.issue.remedationPlannedBefore.short.DBI" tooltip="tableheader.issue.remedationPlannedBefore.DBI" width="7%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_6" propertyKey="tableheader.issue.ownerStatus.short.DBI" tooltip="tableheader.issue.ownerStatus.DBI" width="6%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_7" propertyKey="tableheader.issue.reviewerStatus.short.DBI" tooltip="tableheader.issue.reviewerStatus.DBI" width="6%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_8" propertyKey="tableheader.issue.stateTime.short.DBI" tooltip="tableheader.issue.stateTime.DBI" width="7%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_9" propertyKey="tableheader.description" width="20%"/>
+			<listHeader column="LC_HierarchyRelatedIssues_10" propertyKey="tableheader.issue.remediationMeasure.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_HierarchyRelatedIssues_1" dataReference.idref="IssueID" template="openObject">
+			<parameter name="idColumn" value="IssueID"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_2" dataReference.idref="name" />
+		<column id="LC_HierarchyRelatedIssues_3" align="center" dataReference.idref="priority" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_4" dataReference.idref="creator_name" template="object">
+			<parameter name="deactivatedColumn" value="creator_deactivated"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_5" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_HierarchyRelatedIssues_6" align="center" dataReference.idref="owner_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_7" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_8" align="center" dataReference.idref="stateTime" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HierarchyRelatedIssues_9" dataReference.idref="description" />
+		<column id="LC_HierarchyRelatedIssues_10" dataReference.idref="remediationMeasure" />
+		<listButtons>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_VIEW" function="aam_objectcommand('popup', '[id]', '[objectType]', '_popup')"/>
+		</rowButtons>
+	</list>
+	
+	<list id="BB_mgmtApprover_orgunit_sel"
+          view.idref="BB_approver_orgunit_sel"
+          filter.idref="BB_approver_orgunit_sel"
+          idColumn.idref="hierarchy_id"
+          defaultOrderColumn.idref="hierarchy_name"
+          nameColumn.idref="hierarchy_name"
+          destAttributeType.idref="bb_mgmtApprover_orgunit"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="hierarchy_name"/>
+			<simpleFilter filterRow.idref="hierarchy_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_ior_uor"/>
+			<simpleFilter filterRow.idref="hierarchy_isroot"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_1" propertyKey="attribute.HIERARCHY.name.DBI" width="25%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_2" propertyKey="attribute.HIERARCHY.description.DBI" width="50%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_tipoUnidOrganizacional.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_5" propertyKey="filter.issue.bb_ior_uor.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_4" propertyKey="attribute.HIERARCHY.isroot.DBI" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_mgmtApprover_orgunit_sel_1" dataReference.idref="hierarchy_name" template="openObject"/>
+		<column id="LC_mgmtApprover_orgunit_sel_2" dataReference.idref="hierarchy_description" />
+		<column id="LC_mgmtApprover_orgunit_sel_3" dataReference.idref="bb_tipoUnidOrganizacional" />
+		<column id="LC_mgmtApprover_orgunit_sel_5" dataReference.idref="bb_ior_uor" />
+		<column id="LC_mgmtApprover_orgunit_sel_4" dataReference.idref="hierarchy_isroot" />	
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+
+<list id="BB_implApprover_orgunit_sel"
+          view.idref="BB_implApprover_orgunit_sel"
+          filter.idref="BB_implApprover_orgunit_sel"
+          idColumn.idref="hierarchy_id"
+          defaultOrderColumn.idref="hierarchy_name"
+          nameColumn.idref="hierarchy_name"
+          destAttributeType.idref="bb_implApprover_orgunit"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="hierarchy_name"/>
+			<simpleFilter filterRow.idref="hierarchy_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_ior_uor"/>
+			<simpleFilter filterRow.idref="hierarchy_isroot"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_1" propertyKey="attribute.HIERARCHY.name.DBI" width="25%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_2" propertyKey="attribute.HIERARCHY.description.DBI" width="50%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_tipoUnidOrganizacional.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_5" propertyKey="filter.issue.bb_ior_uor.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_4" propertyKey="attribute.HIERARCHY.isroot.DBI" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_mgmtApprover_orgunit_sel_1" dataReference.idref="hierarchy_name" template="openObject"/>
+		<column id="LC_mgmtApprover_orgunit_sel_2" dataReference.idref="hierarchy_description" />
+		<column id="LC_mgmtApprover_orgunit_sel_3" dataReference.idref="bb_tipoUnidOrganizacional" />
+		<column id="LC_mgmtApprover_orgunit_sel_5" dataReference.idref="bb_ior_uor" />
+		<column id="LC_mgmtApprover_orgunit_sel_4" dataReference.idref="hierarchy_isroot" />	
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="bb_techApprover_orgunit_sel"
+          view.idref="bb_techApprover_orgunit_sel"
+          filter.idref="bb_techApprover_orgunit_sel"
+          idColumn.idref="hierarchy_id"
+          defaultOrderColumn.idref="hierarchy_name"
+          nameColumn.idref="hierarchy_name"
+          destAttributeType.idref="bb_techApprover_orgunit"
+          destDataType.idref="ISSUE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="hierarchy_name"/>
+			<simpleFilter filterRow.idref="hierarchy_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_ior_uor"/>
+			<simpleFilter filterRow.idref="hierarchy_isroot"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_1" propertyKey="attribute.HIERARCHY.name.DBI" width="25%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_2" propertyKey="attribute.HIERARCHY.description.DBI" width="50%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_tipoUnidOrganizacional.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_5" propertyKey="filter.issue.bb_ior_uor.DBI" width="15%"/>
+			<listHeader column="LC_mgmtApprover_orgunit_sel_4" propertyKey="attribute.HIERARCHY.isroot.DBI" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_mgmtApprover_orgunit_sel_1" dataReference.idref="hierarchy_name" template="openObject"/>
+		<column id="LC_mgmtApprover_orgunit_sel_2" dataReference.idref="hierarchy_description" />
+		<column id="LC_mgmtApprover_orgunit_sel_3" dataReference.idref="bb_tipoUnidOrganizacional" />
+		<column id="LC_mgmtApprover_orgunit_sel_5" dataReference.idref="bb_ior_uor" />
+		<column id="LC_mgmtApprover_orgunit_sel_4" dataReference.idref="hierarchy_isroot" />	
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+</custom>

@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<filter id="control" dataSource.idref="control">
+		<filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="process_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="control_process_name"  />
+        </filterRow>
+        <filterRow id="controls">
+            <filterElement dataReference.idref="controls"  />
+        </filterRow>
+        <filterRow id="userGroup_name" propertyKey="filter.row.control.manager.DBI">
+            <filterElement dataReference.idref="userGroup_name"  />
+        </filterRow>
+		<filterRow id="control_key">
+            <filterElement dataReference.idref="control_key" default="-1"  />
+        </filterRow>
+		<filterRow id="control_type">
+        	<filterElement dataReference.idref="control_type" default=""  />
+		</filterRow>
+		<filterRow id="control_frequency">
+            <filterElement dataReference.idref="control_frequency" default="-1"  />
+        </filterRow>
+		<filterRow id="control_execution">
+           <filterElement dataReference.idref="control_execution" default=""  />
+        </filterRow>
+		<filterRow id="control_effect">
+            <filterElement dataReference.idref="control_effect" default="-1"  />
+        </filterRow>
+        <filterRow id="bb_afirmacoesControle">
+            <filterElement dataReference.idref="bb_afirmacoesControle" default=""  />
+        </filterRow>
+        <filterRow id="bb_controlAssertions">
+            <filterElement dataReference.idref="bb_controlAssertions" default=""  />
+        </filterRow>
+        <filterRow id="bb_appSystems" propertyKey="filter.row.control.bb_appSystems.DBI">
+            <filterElement dataReference.idref="bb_appSystems" />
+        </filterRow>
+        <filterRow id="bb_evidenciasControle">
+            <filterElement dataReference.idref="bb_evidenciasControle" />
+        </filterRow>
+        <filterRow id="bb_nivelControle">
+            <filterElement dataReference.idref="bb_nivelControle" default="-1" />
+        </filterRow>
+        <filterRow id="bb_scope">
+            <filterElement dataReference.idref="bb_scope" default=""/>
+        </filterRow>
+        <filterRow id="bb_salvaAtivos">
+            <filterElement dataReference.idref="bb_salvaAtivos" default="-1"/>
+        </filterRow>
+        <filterRow id="bb_controleAntifraude">
+            <filterElement dataReference.idref="bb_controleAntifraude" default="-1"/>
+        </filterRow>
+        <filterRow id="bb_riscoFalha">
+            <filterElement dataReference.idref="bb_riscoFalha" default="-1"/>
+        </filterRow>
+        <filterRow id="guid">
+            <filterElement dataReference.idref="guid" default="" filterType="string" compareType="equals"/>
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="control2appsystem" dataSource.idref="HIERARCHY" dataSourceType="object">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+    </filter>
+
+	<filter id="control2appsystem_sel" dataSource.idref="control_appsystem_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="BB_control2deficiencies" dataSource.idref="BB_control2deficiencies">
+		<!-- BEGIN : Issue #113859 : TC.GD.157 - Explorer/Gestão de deficiência/Deficiências - ID -->
+		<!-- <filterRow id="deficiency_id" propertyKey="filter.row.deficiency.deficiency_id">
+			<filterElement dataReference.idref="deficiency_id"  />
+		</filterRow> -->
+		<filterRow id="deficiency_id" propertyKey="filter.row.deficiency.deficiency_id">
+			<filterElement dataReference.idref="id"  />
+		</filterRow>
+		<!-- END -->
+        <filterRow id="clientSign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="company" propertyKey="filter.row.deficiency.company.DBI">
+			<filterElement dataReference.idref="company"  />
+		</filterRow>
+        <filterRow id="ta_id" propertyKey="filter.row.testactions.id.DBI">
+            <filterElement dataReference.idref="ta_id"  />
+        </filterRow>
+        <filterRow id="savestate">
+            <filterElement dataReference.idref="savestate" default="" filterType="deficiencyLevel" />
+		</filterRow>
+        <filterRow id="savestate_l2">
+            <filterElement dataReference.idref="savestate_l2" default="" filterType="deficiencyLevel" />
+        </filterRow>
+        <filterRow id="savestate_l3">
+            <filterElement dataReference.idref="savestate_l3" default="" filterType="deficiencyLevel" />
+        </filterRow>
+        <filterRow id="descr_l1">
+            <filterElement dataReference.idref="descr_l1"  />
+        </filterRow>
+        <filterRow id="likelihood">
+             <filterElement dataReference.idref="likelihood" default="-1"  />
+        </filterRow>
+		<filterRow id="unit_type">
+			<filterElement dataReference.idref="unit_type"  />
+		</filterRow>
+		<filterRow id="unit">
+			<filterElement dataReference.idref="unit"  />
+		</filterRow>
+		<filterRow id="country">
+			<filterElement dataReference.idref="country"  />
+		</filterRow>
+		<filterRow id="control_level">
+			<filterElement dataReference.idref="control_level" default="-1"  />
+		</filterRow>
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default=""  />
+		</filterRow>
+		<filterRow id="createdate" propertyKey="filter.row.createdate.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="changedate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="changedate2"/>
+				</filterElement>
+				<filterElement dataReference.idref="changedate2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.ciclo.period.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.ciclo.period.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="identifiedbyid">
+		 	<filterElement dataReference.idref="identifiedbyid" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l1">
+		 	<filterElement dataReference.idref="classification_l1" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l2">
+		 	<filterElement dataReference.idref="classification_l2" default="-1"  />
+		</filterRow>
+		<filterRow id="classification_l3">
+		 	<filterElement dataReference.idref="classification_l3" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l1">
+		 	<filterElement dataReference.idref="categorisation_l1" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l2">
+		 	<filterElement dataReference.idref="categorisation_l2" default="-1"  />
+		</filterRow>
+		<filterRow id="categorisation_l3">
+		 	<filterElement dataReference.idref="categorisation_l3" default="-1"  />
+		</filterRow>
+        <filterRow id="remedied_by_mgmt">
+            <filterElement dataReference.idref="remedied_by_mgmt" default="-1"  />
+        </filterRow>
+        <filterRow id="still_exists_at_yearend">
+            <filterElement dataReference.idref="still_exists_at_yearend" default="-1"  />
+        </filterRow>
+        <filterRow id="process_name" propertyKey="attribute.DEFICIENCY.process.DBI">
+			<filterElement dataReference.idref="process_name"  />
+		</filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+		
+	<filter id="testdefinition" dataSource.idref="testdefinition,riskassessment2testdefinitions,risk2testdefinition">
+		<filterRow id="testdefinition_obj_id">
+            <filterElement dataReference.idref="testdefinition_obj_id"  />
+        </filterRow>
+        <filterRow id="sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="testdefinition_name">
+            <filterElement dataReference.idref="testdefinition_name"  />
+        </filterRow>
+        <filterRow id="control_name" propertyKey="filter.row.control.DBI">
+            <filterElement dataReference.idref="control_name"  />
+        </filterRow>
+        <filterRow id="groupname" propertyKey="filter.row.responsibleUsergroup.DBI">
+            <filterElement dataReference.idref="groupname"  />
+        </filterRow>
+        <filterRow id="reviewergroup_name" propertyKey="filter.row.reviewerGroup.DBI">
+            <filterElement dataReference.idref="reviewergroup_name"  />
+        </filterRow>
+        <filterRow id="managergroup_name" propertyKey="filter.row.managerGroup.DBI">
+            <filterElement dataReference.idref="managergroup_name"  />
+        </filterRow>
+        <filterRow id="testfrequency">
+            <filterElement dataReference.idref="testfrequency" default="-1"  />
+        </filterRow>
+		<filterRow id="test_nature">
+			<filterElement dataReference.idref="test_nature" default=""  />
+		</filterRow>
+		<filterRow id="testtype">
+			<filterElement dataReference.idref="testtype" default="" >
+				<javaScriptEvent expression="aam_filterApply()" name="onClick"/>
+				<dependentFilterAttribute attribute.idref="bb_validacaoFrente"/>
+				<dependentFilterAttribute attribute.idref="bb_validacaoAmbito"/>
+				<dependentFilterAttribute attribute.idref="bb_validacaoObjeto"/>
+				<dependentFilterAttribute attribute.idref="bb_validacaoSecao"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="startdate" propertyKey="filter.row.testdefinition.startdate.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="startdate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="startdate_2"/>
+                </filterElement>
+				<filterElement dataReference.idref="startdate_2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="enddate" propertyKey="filter.row.testdefinition.enddate.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="enddate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="enddate_2"/>
+                </filterElement>
+				<filterElement dataReference.idref="enddate_2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="bb_finalidadeTeste">
+			<filterElement dataReference.idref="bb_finalidadeTeste" />
+		</filterRow>
+		<filterRow id="bb_validacaoFrente">
+			<filterElement dataReference.idref="bb_validacaoFrente" default="-1" filterType="testdefinitionEnumFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_validacaoAmbito">
+			<filterElement dataReference.idref="bb_validacaoAmbito" default="-1" filterType="testdefinitionEnumFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_validacaoObjeto">
+			<filterElement dataReference.idref="bb_validacaoObjeto" filterType="testdefinitionStringFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_validacaoSecao">
+			<filterElement dataReference.idref="bb_validacaoSecao" filterType="testdefinitionStringFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_testeValidacao">
+			<filterElement dataReference.idref="bb_testeValidacao" default="-1"/>
+		</filterRow>
+		<filterRow id="process_name" propertyKey="form.row.process.DBI">
+			<filterElement dataReference.idref="control_process_name" />
+		</filterRow>
+		<filterRow id="guid">
+            <filterElement dataReference.idref="guid" default="" filterType="string" compareType="equals"/>
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="testactionCommon" dataSource.idref="testdefinition2testaction">
+	   <filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-1"  />
+		</filterRow>
+        <filterRow id="reviewer_status">
+			<filterElement dataReference.idref="reviewer_status" default="-1"  />
+		</filterRow>
+        <filterRow id="measure">
+			<filterElement dataReference.idref="measure" default="-1"  />
+		</filterRow>
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="0"  />
+		</filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="ta_deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="testdefinition2orgunit_sel" dataSource.idref="testdefinition2orgunit_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="description">
+            <filterElement dataReference.idref="description" />
+        </filterRow>
+        <filterRow id="bb_prefixo">
+            <filterElement dataReference.idref="bb_prefixo"  />
+        </filterRow>
+        <filterRow id="bb_codigoUOR">
+            <filterElement dataReference.idref="bb_codigoUOR"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="TD_dependenciaAmostra2orgunit_sel" dataSource.idref="TD_dependenciaAmostra2orgunit_sel">
+        <filterRow id="name"> 
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="description">
+            <filterElement dataReference.idref="description" />
+        </filterRow>
+        <filterRow id="bb_prefixo">
+            <filterElement dataReference.idref="bb_prefixo"  />
+        </filterRow>
+        <filterRow id="bb_codigoUOR">
+            <filterElement dataReference.idref="bb_codigoUOR"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="TD_dependExecutaControle2orgunit_sel" dataSource.idref="TD_dependExecutaControle2orgunit_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="description">
+            <filterElement dataReference.idref="description" />
+        </filterRow>
+        <filterRow id="bb_prefixo">
+            <filterElement dataReference.idref="bb_prefixo"  />
+        </filterRow>
+        <filterRow id="bb_codigoUOR">
+            <filterElement dataReference.idref="bb_codigoUOR"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="tester_usergroup_sel" dataSource.idref="testdefinition_ownergroup_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="tester_reviewer_usergroup_sel" dataSource.idref="testdefinition_reviewergroup_sel">
+        <filterRow id="reviewergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="reviewergroup_name"  />
+        </filterRow>
+        <filterRow id="reviewergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="reviewergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="control_manager_group_sel" dataSource.idref="control_manager_group_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="createdTestactions" dataSource.idref="createdTestactions">
+        <filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="testactionstate">
+			<filterElement dataReference.idref="testactionstate" default="0"  />
+		</filterRow>
+        <filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+                </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow>
+        <filterRow id="measure">
+            <filterElement dataReference.idref="measure" default="0"  />
+        </filterRow>
+		<filterRow id="username" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="username"  />
+        </filterRow>
+		<!--  <filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="substitute"  />
+		</filterRow> -->
+        <filterRow id="ta_id" propertyKey="filter.row.testcase.DBI">
+            <filterElement dataReference.idref="ta_id"  />
+		</filterRow>
+        <filterRow id="testactiontype">
+            <filterElement dataReference.idref="testactiontype" default="0"  />
+        </filterRow>
+        <filterRow id="function_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="control_process_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <filterRow id="control_name" propertyKey="filter.row.control.DBI">
+			<filterElement dataReference.idref="control_name"  />
+		</filterRow>
+        <filterRow id="tester_group_name" propertyKey="filter.row.tester.group.DBI">
+			<filterElement dataReference.idref="tester_group_name"  />
+		</filterRow>
+        <filterRow id="reviewer_group_name" propertyKey="filter.row.reviewer.group.DBI">
+			<filterElement dataReference.idref="reviewer_group_name"  />
+		</filterRow>
+		<!--  
+		<filterRow id="recommendations_name" propertyKey="attribute.TESTCASE.recommendations.DBI">
+            <filterElement dataReference.idref="recommendations_name" />
+        </filterRow>
+        -->
+        <filterRow id="count_recommendation" propertyKey="attribute.TESTCASE.recommendations.DBI">
+			<filterElement dataReference.idref="count_recommendation" filterType="count" template="count" />
+		</filterRow>
+		<filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="tester_group_id,reviewer_group_id"/>
+			</filterElement>	
+		</filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="testcaseStatistic" dataSource.idref="testcase_statistic_tester">
+		<filterRow id="statisticClient" propertyKey="filter.row.client.sign.DBI">
+			<filterElement name="statisticClient" default="-1" filterType="statisticClient" template="predefinedValues">
+				<filterType.parameter name="mode" value="all"/>
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="testcaseStatisticStructure"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="testcaseStatisticStructure" propertyKey="filter.row.structureelementtext.DBI">
+			<filterElement name="testcaseStatisticStructure" default="-1" filterType="testcaseStatisticStructure" template="predefinedValuesExtendedBB">
+				<filterType.parameter name="mode" value="all"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="calculation" propertyKey="filter.row.calculation.DBI">
+			<filterCell>
+				<filterElement default="true" filterType="calculator" enumeration.idref="accumulate" />
+			</filterCell>
+			<filterCell>
+				<filterElement default="withoutPredecessor" filterType="calculator" enumeration.idref="statistictesttype" />
+			</filterCell>
+		</filterRow>
+		<filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="hnumber">
+            <filterElement dataReference.idref="hnumber"/>
+        </filterRow>
+        <filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+	</filter>
+	
+	<filter id="testactionTester" dataSource.idref="testactionMineView">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+				</filterElement>
+				<filterElement dataReference.idref="plannedstartdate" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="testactionstate">
+			<filterElement dataReference.idref="testactionstate" default="0"  />
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow>
+        <filterRow id="measure">
+            <filterElement dataReference.idref="measure" default="0"  />
+        </filterRow>
+        <filterRow id="username" propertyKey="filter.row.performed.by.DBI">
+			<filterElement dataReference.idref="username"  />
+		</filterRow>
+		<!--  <filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="substitute"  />
+		</filterRow>  -->
+		<filterRow id="ta_id" propertyKey="filter.row.testcase.DBI">
+			<filterElement dataReference.idref="ta_id" default="" filterType="string" />
+		</filterRow>
+		<filterRow id="testactiontype">
+			<filterElement dataReference.idref="testactiontype" default="0" />
+		</filterRow>
+		<filterRow id="function_name" propertyKey="filter.row.function.DBI">
+			<filterElement dataReference.idref="control_process_name"  />
+		</filterRow>
+		<filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+			<filterElement dataReference.idref="risk_name"  />
+		</filterRow>
+		<filterRow id="control_name" propertyKey="filter.row.control.DBI">
+			<filterElement dataReference.idref="control_name"  />
+		</filterRow>
+		<filterRow id="tester_group_name" propertyKey="filter.row.tester.group.DBI">
+			<filterElement dataReference.idref="tester_group_name"  />
+		</filterRow>
+		<filterRow id="reviewer_group_name" propertyKey="filter.row.reviewer.group.DBI">
+			<filterElement dataReference.idref="reviewer_group_name"  />
+		</filterRow>
+		<filterRow id="count_recommendation" propertyKey="attribute.TESTCASE.recommendations.DBI">
+			<filterElement dataReference.idref="count_recommendation" filterType="count" template="count" />
+		</filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated">
+				<parameter name="showAll" value="false"/>
+            </filterElement>
+		</filterRow>
+		
+	<!--  	<filterRow id="responsible" propertyKey="filter.row.responsibleUsergroup.DBI">
+			<filterElement dataReference.idref="responsible" default="0" filterType="testerHierarchyFilter" template="predefinedValues"/>
+		</filterRow> -->
+	</filter>
+	
+	<filter id="testactionReviewer" dataSource.idref="testactionReviewer">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="testactionstate">
+            <filterElement dataReference.idref="testactionstate" default="4"  />
+        </filterRow>
+        <filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlstartdate" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-4"  />
+        </filterRow>
+        <filterRow id="measure">
+            <filterElement dataReference.idref="measure" default="-2"  />
+        </filterRow>
+        <filterRow id="username" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="username"  />
+        </filterRow>
+       <!--   <filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="substitute"  />
+		</filterRow> -->
+		<filterRow id="ta_id" propertyKey="filter.row.testcase.DBI">
+            <filterElement dataReference.idref="ta_id"  />
+        </filterRow>
+        <filterRow id="testactiontype">
+            <filterElement dataReference.idref="testactiontype" default="0"  />
+        </filterRow>
+        <filterRow id="function_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="control_process_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <filterRow id="control_name" propertyKey="filter.row.control.DBI">
+			<filterElement dataReference.idref="control_name"  />
+		</filterRow>
+		<filterRow id="tester_group_name" propertyKey="filter.row.tester.group.DBI">
+			<filterElement dataReference.idref="tester_group_name"  />
+		</filterRow>
+		<filterRow id="reviewer_group_name" propertyKey="filter.row.reviewer.group.DBI">
+			<filterElement dataReference.idref="reviewer_group_name"  />
+		</filterRow>
+		<filterRow id="count_recommendation" propertyKey="attribute.TESTCASE.recommendations.DBI">
+			<filterElement dataReference.idref="count_recommendation" filterType="count" template="count" />
+		</filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+        
+      <!--    <filterRow id="reviewer_group_obj_id" propertyKey="filter.row.test.reviewer.DBI">
+				  <filterElement dataReference.idref="reviewer_group_obj_id" default="-1" filterType="testreviewerGroupFilter" template="predefinedValues"/>
+		      </filterRow>  -->
+        
+	</filter>
+	
+	<filter id="testcase_defManagerL1_group_sel" dataSource.idref="testcase_defManagerL1_group_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+	
+
+</custom>

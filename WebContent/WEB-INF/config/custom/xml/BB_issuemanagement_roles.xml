@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+	
+		<base licensedComponentIds="im">
+			<system component.idref="view.issue.open"/>
+			<system component.idref="view.issue.review"/>     		
+	        <object right.idref="r----" objectType.id="USER">
+	            <relation right.idref="ar" listAttrType.id="substitutes"/>
+	        </object> 
+	        <object right.idref="r----" objectType.id="NEWSMESSAGE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/>
+	            <relation right.idref="ar" listAttrType.id="documents"/>
+	            <relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	            
+	            <!-- BdB CUSTOMIZATION -->
+	            <relation right.idref="ar" listAttrType.id="bb_implDocuments"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_owners_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_reviewers_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_controlesCompensat" />
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_implApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_techApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_creators_group"/> 
+	        </object>
+	        <object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="rwc--" objectType.id="DOCUMENT"/>
+	        
+	        <object right.idref="rwcd-" objectType.id="ISSUERELEVANTOBJECT"/>
+	        <object right.idref="r----" objectType.id="DOCUMENTLINKTYPE"/>
+	        <object right.idref="r----" objectType.id="TASKITEM"/>
+	        <object right.idref="r--d-" objectType.id="INTERNALMESSAGE"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="HIERARCHY"/>
+	    </base>
+	    
+	    <role id="issuecreator" level="O" licensedComponentIds="im" userLicenses="operate">
+	    	<system component.idref="view.issue.creator"/>
+	    	<system component.idref="view.issue.issuesapproverbb"/>
+	        <object right.idref="r----" objectType.id="USER">
+	            <relation right.idref="ar" listAttrType.id="substitutes"/>
+	        </object> 
+	        <object right.idref="r----" objectType.id="NEWSMESSAGE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/>	            
+	            <relation right.idref="ar" listAttrType.id="documents"/>
+	            <relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	            <!-- BdB CUSTOMIZATION -->
+	            <relation right.idref="ar" listAttrType.id="bb_implDocuments"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_owners_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_reviewers_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_controlesCompensat" />
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_implApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_techApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_creators_group"/>
+	        </object>
+	        <object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="rwc--" objectType.id="DOCUMENT"/>
+	        
+	        <object right.idref="rwcd-" objectType.id="ISSUERELEVANTOBJECT"/>
+	        <object right.idref="r----" objectType.id="DOCUMENTLINKTYPE"/>
+	        <object right.idref="r----" objectType.id="TASKITEM"/>
+	        <object right.idref="rwcd-" objectType.id="INTERNALMESSAGE"/>
+	        <object right.idref="r----" objectType.id="HIERARCHY"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+    	</role>
+	    
+	    <role id="issuemgmtapproverl1" level="O" licensedComponentIds="im" userLicenses="operate">
+			<system component.idref="view.issue.mgmtapprl1"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+    	
+    	<role id="issuemgmtapproverl2" level="O" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.mgmtapprl2"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+    	
+    	<role id="issueimplapproverl1" level="O" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.implapprl1"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+				<relation right.idref="ar" listAttrType.id="bb_techApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL2_group"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+    	
+    	<role id="issueimplapproverl2" level="O" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.implapprl2"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+    	
+    	<role id="issuetechapproverl1" level="O" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.techapprl1"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+    	
+    	<role id="issuetechapproverl2" level="O" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.techapprl2"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<system component.idref="view.issue.issuesapproverbb"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+	            <relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/> 
+	            <!-- BdB wants usergroups assignment instead of users assignment in issuemanagement, but it couldn't possible.
+	            <relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/> -->
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+	    
+		<role id="issuemanager" level="XC" licensedComponentIds="im" userLicenses="operate">
+			<system component.idref="view.issues"/>
+			<system component.idref="check.issue"/>
+			<system component.idref="view.monitoring"/>
+			<system component.idref="view.object.in.process"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="rwcdu" objectType.id="ISSUE">
+				<relation right.idref="ar" listAttrType.id="creator"/>
+	            <relation right.idref="ar" listAttrType.id="owners"/>
+	            <relation right.idref="ar" listAttrType.id="reviewers"/>	            
+	            <relation right.idref="ar" listAttrType.id="documents"/>
+	            <relation right.idref="ar" listAttrType.id="issueRelevantObjects"/>
+	            <!-- BdB CUSTOMIZATION -->
+	            <relation right.idref="ar" listAttrType.id="bb_implDocuments"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_implApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL1_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_techApproverL2_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_owners_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_reviewers_group"/>
+	            <relation right.idref="ar" listAttrType.id="bb_controlesCompensat" />
+	            <relation right.idref="ar" listAttrType.id="bb_mgmtApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_implApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_techApprover_orgunit" />
+	            <relation right.idref="ar" listAttrType.id="bb_creators_group"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+    	</role>
+
+		<role id="issueauditor" level="XCO" licensedComponentIds="im" userLicenses="operate">
+			<system component.idref="view.issues"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="r----" objectType.id="USER">
+	            <relation right.idref="ar" listAttrType.id="substitutes"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		</role>
+		
+		<role id="issueowner" level="O" licensedComponentIds="im" userLicenses="operate">
+			<system component.idref="view.issue.issueowner"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="r----" objectType.id="USER">
+	            <relation right.idref="ar" listAttrType.id="substitutes"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		</role>	
+		
+		<role id="issuereviewer" level="O" licensedComponentIds="im" userLicenses="operate">
+			<system component.idref="view.issue.issuereviewer"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="r----" objectType.id="USER">
+	            <relation right.idref="ar" listAttrType.id="substitutes"/>
+	        </object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		</role>
+		
+		<role id="issueatbreport" level="C" licensedComponentIds="im" userLicenses="operate">
+    		<system component.idref="view.issue.atbreport"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+	        <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="r----" objectType.id="ISSUE"/>
+			<object right.idref="r----" objectType.id="DOCUMENT"/>
+    	</role>
+    </roles>	
+</custom>	

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<tabMapping id="sotask" >
+		<tTab page="1" id="sotask" propertyKey="tab.sotask.DBI" action="object.do?__commandId=cache&amp;__objectType=sotask&amp;__formPage=1"  />
+		<tTab id="soprocess" propertyKey="tab.soprocess.DBI"  action="list.do?__commandId=init&amp;__listName=sotask2soprocess" objectType="SOPROCESS" />
+		<tTab id="issue" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" action="object.do?__objectType=sotask&amp;__commandId=protocol" />
+    </tabMapping>
+    
+    <tabMapping id="soprocess" restrictionAttributeId="deactivated">
+		<tTab page="1" id="soprocess" propertyKey="tab.soprocess.DBI" action="object.do?__commandId=cache&amp;__objectType=soprocess&amp;__formPage=1"  />
+		<tTab id="testcaseselect" propertyKey="tab.testactions.DBI" action="list.do?__commandId=init&amp;__listName=soprocess_control2testaction_refs"   objectType="TESTCASE"/>
+		<tTab id="hierarchy" propertyKey="tab.so.hierarchy.DBI" action="treeList.do?__commandId=init&amp;__listName=tree_sohierarchy" restrictionValue="false" />
+        <tTab id="statistic_testcase" propertyKey="tab.so.statistics.testaction.DBI" action="evaluation.do?__commandId=init&amp;__evaluationId=soprocessTestcaseStatistic"  objectType="TESTCASE"/>
+        <tTab id="statistic_deficiency" propertyKey="tab.so.statistics.deficiency.DBI"  action="evaluation.do?__commandId=init&amp;__evaluationId=soprocessDeficiencyStatistic"  objectType="DEFICIENCY"/>
+        <tTab id="issue" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" action="object.do?__objectType=soprocess&amp;__commandId=protocol" />
+	</tabMapping>
+</custom>

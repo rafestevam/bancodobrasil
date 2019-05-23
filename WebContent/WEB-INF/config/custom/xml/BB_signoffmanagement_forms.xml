@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_SOTASK">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_RESET"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="sotask" licensedComponentIds="so">
+            <rowGroup id="sotask.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="obj_id" propertyKey="form.row.sotask.id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="element">
+                    <element attribute.idref="element" >
+                        <parameter name="selectionList" value="signoff_element_sel"/>
+                    </element>
+                </row>
+                <row id="done">
+                    <element attribute.idref="done" />
+                </row>
+                <!-- BdB CUSTOMIZATION -->
+                <!-- propertyKey="form.row.control.period.DBI" -->
+                <row id="control_period" propertyKey="form.row.so_control.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="controlstartdate" />
+                        <element attribute.idref="controlenddate" />
+                    </cell>
+                </row>
+                <row id="so_period" propertyKey="form.row.signoff.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="plannedstartdate" />
+                        <element attribute.idref="plannedenddate" />
+                    </cell>
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    <form id="FORM_SOPROCESS">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="soprocess" licensedComponentIds="so">
+            <rowGroup id="soprocess.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="obj_id" propertyKey="form.row.soprocess.id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="sotask">
+                    <element attribute.idref="sotask" />
+                </row>
+                <row id="element">
+                    <element attribute.idref="element" />
+                </row>
+                <!-- BdB CUSTOMIZATION -->
+                <!-- propertyKey="form.row.control.period.DBI" -->
+                <row id="control_period" propertyKey="form.row.so_control.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="controlstartdate" />
+                        <element attribute.idref="controlenddate" />
+                    </cell>
+                </row>
+                <row id="so_period" propertyKey="form.row.signoff.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="plannedstartdate" />
+                        <element attribute.idref="plannedenddate" />
+                    </cell>
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" />
+                </row>
+                 <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+                <row id="owner_status">
+                    <element attribute.idref="owner_status" />
+                </row> 
+                <row id="execution_date">
+                    <element attribute.idref="execution_date" />
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" />
+                </row>
+                 <row id="reviewer">
+                    <element attribute.idref="reviewer">
+                        <parameter name="substitute" value="name"/>
+                    </element>
+                </row>
+                <row id="reviewer_status">
+                    <element attribute.idref="reviewer_status">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="review_date">
+                    <element attribute.idref="review_date" />
+                </row>
+                 <row id="remark">
+                    <element attribute.idref="remark" />
+                </row>
+                <row id="reopenremark">
+                    <element attribute.idref="reopenremark" />
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+</custom>

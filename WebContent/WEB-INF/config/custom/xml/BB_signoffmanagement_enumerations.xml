@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <enum id="signOffOwnerStatus" isMultiple="false" type="Number">
+        <enumitem id="all" value="0" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="open" value="1" image="iconlib/icons/states/state_new_16.png"/>
+        <enumitem id="not_released" value="2" image="iconlib/icons/states/state_noneffective_16.png"/>
+        <enumitem id="released" value="3" image="iconlib/icons/states/state_effective_16.png"/>
+        <enumitem id="auto_performed" value="4" formRelevant="false" filterRelevant="false" image="iconlib/icons/states/state_auto_tested_16.png" />
+        <enumitem id="not_performed" value="5" formRelevant="false" image="iconlib/icons/states/state_not_processed_16.png"/>
+        <!-- workflow states -->
+        <enumitem id="openForReview" value="-1" formRelevant="false" filterRelevant="false" virtualScope.idrefs="not_released,released,auto_performed"/>
+        <!-- / workflow states -->
+    </enum>
+    
+</custom>

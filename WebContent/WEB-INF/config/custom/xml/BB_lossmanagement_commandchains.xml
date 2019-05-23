@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!--
+    *
+    *   INCIDENT
+    *
+    -->
+    <catalog id="incident">
+
+        <commandchain id="prepare">
+            <command id="createObjectDialog">
+                <parameter name="dialogID" value="incident_create"/>
+            </command>
+            <command id="copyDialogAttributesToAppObj"/>
+            <command id="setIncidentReviewer" />
+            <command id="setDefaultCurrency" />
+        </commandchain>
+
+        <commandchain id="insert">
+            <command id="update">
+                <parameter name="owner_status" value="in_progress" />
+            </command>
+        </commandchain>
+
+        <commandchain id="insertReview">
+            <command id="closeIncidentAsLossOwner" >
+                <parameter name="dialogID" value="incident_autoreview" />
+            </command>
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="setIncidentOperator"/>
+
+        </commandchain>
+
+        <commandchain id="executionInProgress"/>
+
+        <commandchain id="executionClosed">
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified"/>
+            </command>
+            <command id="closeIncidentAsLossOwner" >
+                <parameter name="dialogID" value="incident_autoreview" />
+            </command>
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!--
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            -->
+            <command id="setIncidentOperator" />
+
+        </commandchain>
+
+        <commandchain id="reviewRejected">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+
+        </commandchain>
+
+        <commandchain id="reviewAccepted">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+
+        </commandchain>
+
+        <commandchain id="delete">
+            <command id="checkRole">
+                <parameter name="roles" value="incidentmanager"/>
+            </command>
+            <command id="hasParentAppObj">
+                <parameter name="attribute" value="LOSS.incident"/>
+                <parameter name="okIfParentExists" value="false"/>
+                <parameter name="unexpectedRelationPropertyKey" value="command.delete.incident.with.assigned.loss.DBI"/>
+            </command>
+
+        </commandchain>
+
+        <commandchain id="recover">
+            <command id="checkRole">
+                <parameter name="roles" value="incidentmanager"/>
+            </command>
+
+        </commandchain>
+
+    </catalog>
+
+    <!--
+    *
+    *   LOSS
+    *
+    -->
+    <catalog id="loss">
+
+        <commandchain id="prepare">
+            <command id="createObjectDialog">
+                <parameter name="dialogID" value="loss_create"/>
+            </command>
+            <command id="copyDialogAttributesToAppObj"/>
+            <command id="setDefaultCurrency" />
+        </commandchain>
+
+        <commandchain id="insertExecution">
+            <command id="update">
+                <parameter name="owner_status" value="in_progress" />
+            </command>
+            <command id="resetLossTypeDependentAttributes" />
+        </commandchain>
+
+        <commandchain id="insertReview">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="resetLossTypeDependentAttributes" />
+
+        </commandchain>
+
+        <commandchain id="executionInProgress">
+            <command id="resetLossTypeDependentAttributes" />
+        </commandchain>
+
+        <commandchain id="executionExecuted">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!--
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            -->
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified" />
+            </command>
+            <command id="resetLossTypeDependentAttributes" />
+
+        </commandchain>
+
+        <commandchain id="delete" />
+
+
+        <commandchain id="reviewRejected">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+
+        </commandchain>
+
+        <commandchain id="reviewAccepted">
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+<!--        <command id="sendLossAcceptedMessage" >
+				<parameter name="template" value="lossdb_loss_accepted"/>
+			</command> -->
+        </commandchain>
+
+    </catalog>
+
+</custom>

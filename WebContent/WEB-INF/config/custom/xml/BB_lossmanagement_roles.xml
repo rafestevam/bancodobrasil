@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+	<role id="incidentowner" level="O" licensedComponentIds="il in" userLicenses="operate contribute">
+		<system component.idref="view.open.incidents" />
+		<system component.idref="view.statistic"/>
+		<system component.idref="view.mashzone.url.builder"/>
+		<object right.idref="r----" objectType.id="USERGROUP"/>
+		<object right.idref="r----" objectType.id="HIERARCHY"/>
+		<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+		<object right.idref="rwc--" objectType.id="INCIDENT">
+			<relation right.idref="ar" listAttrType.id="process"/>
+			<relation right.idref="ar" listAttrType.id="orgunit"/>
+			<relation right.idref="ar" listAttrType.id="finaccount"/>
+			<relation right.idref="ar" listAttrType.id="appsystem"/>
+			<relation right.idref="ar" listAttrType.id="risk_category"/>
+			<relation right.idref="ar" listAttrType.id="risks"/>
+			<relation right.idref="ar" listAttrType.id="controls"/>
+			<relation right.idref="ar" listAttrType.id="policies"/>
+			<relation right.idref="ar" listAttrType.id="audits"/>
+			<relation right.idref="ar" listAttrType.id="owner_group"/>
+			<relation right.idref="ar" listAttrType.id="reviewer_group"/>
+			<relation right.idref="ar" listAttrType.id="documents"/>			
+			<!-- BdB CUSTOMIZATION -->
+            <relation right.idref="ar" listAttrType.id="bb_product"/>            			
+            <relation right.idref="ar" listAttrType.id="bb_jurisdDiretoria"/>
+            <relation right.idref="ar" listAttrType.id="bb_gestorPerda"/>
+		</object>
+        <object right.idref="r----" objectType.id="RISK"/>
+        <object right.idref="r----" objectType.id="CONTROL"/>
+        <object right.idref="r----" objectType.id="POLICY"/>
+        <object right.idref="r----" objectType.id="AUDIT"/>
+	</role>
+</roles>	
+</custom>	

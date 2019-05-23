@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!-- BdB CUSTOMIZATION -->
+    <filter id="incident2hierarchies_bb_product_sel" dataSource.idref="incident2hierarchies_bb_product_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>                     
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>         
+        <filterRow id="hierarchy_type">
+            <filterElement dataReference.idref="hierarchy_type" default="101" >
+                <filterType.parameter name="hidden" value="true" />
+            </filterElement>
+        </filterRow>
+    </filter>
+
+	<filter id="incidents" dataSource.idref="createdIncidents">
+		 <filterRow id="client_sign">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow> 
+		
+		<!-- <filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow> -->
+		
+        <filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+		<filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+				</filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        <!-- BdB CUSTOMIZATION - NETO - 25/08-->
+        <!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"  />
+        </filterRow>       
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow> -->		 
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+			<filterElement dataReference.idref="incident_id"  />
+		</filterRow>
+		<filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>         
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+         -->
+        
+        <!-- BdB CUSTOMIZATION - NETO - 25/08--> 
+		<!-- <filterRow id="appSys_name" propertyKey="filter.row.incident.relevant.appsys.DBI">
+            <filterElement dataReference.idref="appSys_name"  />
+        </filterRow>
+		<filterRow id="finAcc_name" propertyKey="filter.row.incident.relevant.finacc.DBI">
+            <filterElement dataReference.idref="finAcc_name"  />
+        </filterRow>
+         -->
+		<filterRow id="orgunit_name" propertyKey="filter.row.incident.relevant.orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+		<filterRow id="process_name" propertyKey="filter.row.incident.relevant.process.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION 
+        <filterRow id="bb_product_name" propertyKey="filter.row.incident.relevant.bb_product.DBI">
+            <filterElement dataReference.idref="bb_product_name"  />
+        </filterRow>  -->
+        
+        <!-- BdB CUSTOMIZATION - NETO - 25/08-->        
+        <!-- <filterRow id="category_name" propertyKey="filter.row.incident.relevant.category.DBI">
+            <filterElement dataReference.idref="category_name"  />
+        </filterRow> -->
+        <filterRow id="risk_name" propertyKey="filter.row.incident.relevant.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <!-- <filterRow id="control_name" propertyKey="filter.row.incident.relevant.control.DBI">
+            <filterElement dataReference.idref="control_name"  />
+        </filterRow> 
+        <filterRow id="audit_name" propertyKey="filter.row.incident.relevant.audit.DBI">
+            <filterElement dataReference.idref="audit_name"  />
+        </filterRow>
+        <filterRow id="policy_name" propertyKey="filter.row.incident.relevant.policy.DBI">
+            <filterElement dataReference.idref="policy_name"  />
+        </filterRow>-->
+        <!-- <filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>-->
+		<!-- <filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>                       
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow> -->
+        
+		<!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_qtdeEventos_int" propertyKey="filter.row.incident.bb_qtdeEventos_int.DBI">
+            <filterElement dataReference.idref="bb_qtdeEventos_int"  />
+        </filterRow>
+        <filterRow id="bb_qtdePerdasRelevantes_int" propertyKey="filter.row.incident.bb_qtdePerdasRelevantes_int.DBI">
+            <filterElement dataReference.idref="bb_qtdePerdasRelevantes_int" />            
+        </filterRow>
+        <filterRow id="bb_tipoEvento" propertyKey="filter.row.incident.bb_tipoEvento.DBI">
+			<filterElement dataReference.idref="bb_tipoEvento" default="-1" />
+		</filterRow>
+        <filterRow id="bb_vincOperacaoCred" propertyKey="filter.row.incident.bb_vincOperacaoCred.DBI">
+            <filterElement dataReference.idref="bb_vincOperacaoCred" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_sobreposRiscoMercado" propertyKey="filter.row.incident.bb_sobreposRiscoMercado.DBI">
+            <filterElement dataReference.idref="bb_sobreposRiscoMercado" default="-1" />            
+        </filterRow>
+        <filterRow id="bb_canal" propertyKey="filter.row.incident.bb_canal.DBI">
+            <filterElement dataReference.idref="bb_canal" />            
+        </filterRow>
+		<filterRow id="bb_jurisdDiretoria" propertyKey="filter.row.incident.relevant.bb_jurisdDiretoria.DBI">
+            <filterElement dataReference.idref="bb_jurisdDiretoria_name"  />
+        </filterRow>
+		<filterRow id="bb_gestorPerda" propertyKey="filter.row.incident.relevant.bb_gestorPerda.DBI">
+            <filterElement dataReference.idref="bb_gestorPerda_name"  />
+        </filterRow>     
+        <filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="ownerGroupID,reviewerGroupID"/>
+			</filterElement>	
+		</filterRow>
+		
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter>
+    
+	<filter id="openincidents" dataSource.idref="openIncidents">
+		<filterRow id="client_sign">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+				</filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+				</filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+		<filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+				</filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-2"  />
+        </filterRow> -->
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+            <filterElement dataReference.idref="incident_id"  />
+        </filterRow>
+		<filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        -->
+        <!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_product_name" propertyKey="filter.row.incident.relevant.bb_product.DBI">
+            <filterElement dataReference.idref="bb_product_name"  />
+        </filterRow>  
+        
+		<!-- <filterRow id="appSys_name" propertyKey="filter.row.incident.relevant.appsys.DBI">
+            <filterElement dataReference.idref="appSys_name"  />
+        </filterRow>
+		<filterRow id="finAcc_name" propertyKey="filter.row.incident.relevant.finacc.DBI">
+            <filterElement dataReference.idref="finAcc_name"  />
+        </filterRow> -->
+		<filterRow id="orgunit_name" propertyKey="filter.row.incident.relevant.orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+		<filterRow id="process_name" propertyKey="filter.row.incident.relevant.process.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>
+        <filterRow id="category_name" propertyKey="filter.row.incident.relevant.category.DBI">
+            <filterElement dataReference.idref="category_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.incident.relevant.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <!-- 
+        <filterRow id="control_name" propertyKey="filter.row.incident.relevant.control.DBI">
+            <filterElement dataReference.idref="control_name"  />
+        </filterRow>
+        <filterRow id="audit_name" propertyKey="filter.row.incident.relevant.audit.DBI">
+            <filterElement dataReference.idref="audit_name"  />
+        </filterRow>
+        <filterRow id="policy_name" propertyKey="filter.row.incident.relevant.policy.DBI">
+            <filterElement dataReference.idref="policy_name"  />
+        </filterRow>
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow> -->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+		<!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_qtdeEventos_int">
+            <filterElement dataReference.idref="bb_qtdeEventos_int"  />
+        </filterRow>
+        <filterRow id="bb_qtdePerdasRelevantes_int" propertyKey="filter.row.incident.bb_qtdePerdasRelevantes_int.DBI">
+            <filterElement dataReference.idref="bb_qtdePerdasRelevantes_int" />            
+        </filterRow>
+        <filterRow id="bb_tipoEvento">
+			<filterElement dataReference.idref="bb_tipoEvento" default="-1" />
+		</filterRow>
+        <filterRow id="bb_vincOperacaoCred">
+            <filterElement dataReference.idref="bb_vincOperacaoCred" default="-1" />
+        </filterRow>
+        <filterRow id="bb_sobreposRiscoMercado">
+            <filterElement dataReference.idref="bb_sobreposRiscoMercado" default="-1" />            
+        </filterRow>
+        <filterRow id="bb_canal">
+            <filterElement dataReference.idref="bb_canal" />            
+        </filterRow>
+		<filterRow id="bb_jurisdDiretoria" propertyKey="filter.row.incident.relevant.bb_jurisdDiretoria.DBI">
+            <filterElement dataReference.idref="bb_jurisdDiretoria_name"  />
+        </filterRow>
+		<filterRow id="bb_gestorPerda" propertyKey="filter.row.incident.relevant.bb_gestorPerda.DBI">
+            <filterElement dataReference.idref="bb_gestorPerda_name"  />
+        </filterRow>                       
+	</filter>
+
+
+	<filter id="acceptedincidents" dataSource.idref="acceptedIncidents">
+		<filterRow id="client_sign">
+            <filterElement dataReference.idref="client_sign" default="-1" filterType="lossClientSign" template="predefinedValues">
+	            <filterType.parameter name="mode" value="all"/>    
+            </filterElement>
+        </filterRow>
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"  />
+        </filterRow>       
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow> -->        
+		<filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION 
+		<filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        
+		<filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+            <filterElement dataReference.idref="incident_id"  />
+        </filterRow>
+		<filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION 
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        -->
+        <!-- 
+		<filterRow id="appSys_name" propertyKey="filter.row.incident.relevant.appsys.DBI">
+			<filterElement dataReference.idref="appSys_name"  />
+		</filterRow>
+		<filterRow id="finAcc_name" propertyKey="filter.row.incident.relevant.finacc.DBI">
+		    <filterElement dataReference.idref="finAcc_name"  />
+	    </filterRow> -->
+		<filterRow id="orgunit_name" propertyKey="filter.row.incident.relevant.orgunit.DBI">
+			<filterElement dataReference.idref="orgunit_name"  />
+		</filterRow>
+		<filterRow id="process_name" propertyKey="filter.row.incident.relevant.process.DBI">
+			<filterElement dataReference.idref="process_name"  />
+		</filterRow>
+
+        <!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_product_name" propertyKey="filter.row.incident.relevant.bb_product.DBI">
+            <filterElement dataReference.idref="bb_product_name"  />
+        </filterRow>  
+				
+        <filterRow id="category_name" propertyKey="filter.row.incident.relevant.category.DBI">
+            <filterElement dataReference.idref="category_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.incident.relevant.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        
+       <!--  <filterRow id="control_name" propertyKey="filter.row.incident.relevant.control.DBI">
+            <filterElement dataReference.idref="control_name"  />
+        </filterRow>
+        <filterRow id="audit_name" propertyKey="filter.row.incident.relevant.audit.DBI">
+            <filterElement dataReference.idref="audit_name"  />
+        </filterRow>
+        <filterRow id="policy_name" propertyKey="filter.row.incident.relevant.policy.DBI">
+            <filterElement dataReference.idref="policy_name"  />
+        </filterRow>
+
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow> -->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+        
+		<!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_qtdeEventos_int">
+            <filterElement dataReference.idref="bb_qtdeEventos_int"  />
+        </filterRow>
+        <filterRow id="bb_qtdePerdasRelevantes_int">
+            <filterElement dataReference.idref="bb_qtdePerdasRelevantes_int" />            
+        </filterRow>
+        <filterRow id="bb_tipoEvento" >
+			<filterElement dataReference.idref="bb_tipoEvento" default="-1" />
+		</filterRow>
+        <filterRow id="bb_vincOperacaoCred">
+            <filterElement dataReference.idref="bb_vincOperacaoCred" default="-1" />            
+        </filterRow>
+        <filterRow id="bb_sobreposRiscoMercado">
+            <filterElement dataReference.idref="bb_sobreposRiscoMercado" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_canal">
+            <filterElement dataReference.idref="bb_canal" />            
+        </filterRow>
+		<filterRow id="bb_jurisdDiretoria" propertyKey="filter.row.incident.relevant.bb_jurisdDiretoria.DBI">
+            <filterElement dataReference.idref="bb_jurisdDiretoria_name"  />
+        </filterRow>
+		<filterRow id="bb_gestorPerda" propertyKey="filter.row.incident.relevant.bb_gestorPerda.DBI">
+            <filterElement dataReference.idref="bb_gestorPerda_name"  />
+        </filterRow>               
+	</filter>
+
+	<filter id="hierarchy2incidents" dataSource.idref="hierarchy2Incidents">
+		<filterRow id="subordinated" propertyKey="filter.row.subordinate.title.DBI">
+            <filterElement name="subordinated" default="0" filterType="simpleSubordinated" template="predefinedValues" isQueryFilterAttribute="true"/>
+        </filterRow>
+		<filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"  />
+        </filterRow>
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+			<filterElement dataReference.idref="incident_id"  />
+		</filterRow>
+		<filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+         -->
+         
+		<filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+         -->
+        
+        <!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_product_name" propertyKey="filter.row.incident.relevant.bb_product.DBI">
+            <filterElement dataReference.idref="bb_product_name"  />
+        </filterRow>  
+        
+        <filterRow id="riskName" propertyKey="filter.row.incident.relevant.risk.DBI">
+            <filterElement dataReference.idref="riskName"  />
+        </filterRow>
+        <!-- <filterRow id="controlName" propertyKey="filter.row.incident.relevant.control.DBI">
+            <filterElement dataReference.idref="controlName"  />
+        </filterRow>
+        <filterRow id="audit_name" propertyKey="filter.row.incident.relevant.audit.DBI">
+            <filterElement dataReference.idref="audit_name"  />
+        </filterRow>
+        <filterRow id="policyName" propertyKey="filter.row.incident.relevant.policy.DBI">
+            <filterElement dataReference.idref="policyName"  />
+        </filterRow>
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow> -->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+        
+		<!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_qtdeEventos_int">
+            <filterElement dataReference.idref="bb_qtdeEventos_int"  />
+        </filterRow>
+        <filterRow id="bb_qtdePerdasRelevantes_int">
+            <filterElement dataReference.idref="bb_qtdePerdasRelevantes_int" />            
+        </filterRow>
+        <filterRow id="bb_tipoEvento">
+			<filterElement dataReference.idref="bb_tipoEvento" default="-1" />
+		</filterRow>
+        <filterRow id="bb_vincOperacaoCred">
+            <filterElement dataReference.idref="bb_vincOperacaoCred" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_sobreposRiscoMercado">
+            <filterElement dataReference.idref="bb_sobreposRiscoMercado" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_canal">
+            <filterElement dataReference.idref="bb_canal" />            
+        </filterRow>
+		<filterRow id="bb_jurisdDiretoria" propertyKey="filter.row.incident.relevant.bb_jurisdDiretoria.DBI">
+            <filterElement dataReference.idref="bb_jurisdDiretoria_name"  />
+        </filterRow>
+		<filterRow id="bb_gestorPerda" propertyKey="filter.row.incident.relevant.bb_gestorPerda.DBI">
+            <filterElement dataReference.idref="bb_gestorPerda_name"  />
+        </filterRow>                      
+	</filter>
+	
+	<filter id="loss2incident_sel" dataSource.idref="loss2incident_sel">
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+            <filterElement dataReference.idref="incident_id"  />
+        </filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+         
+		<filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+        
+		<!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_product_name" propertyKey="filter.row.incident.relevant.bb_product.DBI">
+            <filterElement dataReference.idref="bb_product_name"  />
+        </filterRow>  		
+        <filterRow id="bb_qtdeEventos_int">
+            <filterElement dataReference.idref="bb_qtdeEventos_int"  />
+        </filterRow>
+        <filterRow id="bb_qtdePerdasRelevantes_int">
+            <filterElement dataReference.idref="bb_qtdePerdasRelevantes_int" />            
+        </filterRow>
+        <filterRow id="bb_tipoEvento">
+			<filterElement dataReference.idref="bb_tipoEvento" default="-1" />
+		</filterRow>
+        <filterRow id="bb_vincOperacaoCred">
+            <filterElement dataReference.idref="bb_vincOperacaoCred" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_sobreposRiscoMercado">
+            <filterElement dataReference.idref="bb_sobreposRiscoMercado" default="-1"/>            
+        </filterRow>
+        <filterRow id="bb_canal">
+            <filterElement dataReference.idref="bb_canal" />            
+        </filterRow>
+		<filterRow id="bb_jurisdDiretoria" propertyKey="filter.row.incident.relevant.bb_jurisdDiretoria.DBI">
+            <filterElement dataReference.idref="bb_jurisdDiretoria_name"  />
+        </filterRow>
+		<filterRow id="bb_gestorPerda" propertyKey="filter.row.incident.relevant.bb_gestorPerda.DBI">
+            <filterElement dataReference.idref="bb_gestorPerda_name"  />
+        </filterRow>                      
+        
+	</filter>	
+	
+    <filter id="assignment2incidents" dataSource.idref="risk2incidents, control2incidents, policy2incidents, policyreview2incidents, audit2incidents">
+        
+        <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1" />
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>        
+         
+        <filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+            <filterElement dataReference.idref="incident_id"  />
+        </filterRow>
+        <filterRow id="name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="creationdate" propertyKey="filter.row.incident.creationdate.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+                <filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+        <filterRow id="discoverydate" propertyKey="filter.row.incident.discoverydate.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+                <filterElement dataReference.idref="discoveryDateTo"  >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+         -->
+         
+        <filterRow id="entrydate" propertyKey="filter.row.incident.entrydate.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+                <filterElement dataReference.idref="entryDateTo"  >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+        <filterRow id="pendingLoss" propertyKey="filter.row.incident.pending.loss.DBI">
+            <filterElement dataReference.idref="pendingLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        <filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+        <filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+         
+        <filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+        <filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+        <filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+        <filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>        
+        -->
+        <filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+        <filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>        
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>       
+    </filter>
+    
+    <!-- LOSS related filters -->
+    
+	<filter id="losses" dataSource.idref="createdLosses">
+		<!-- <filterRow id="client_sign">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> -->
+		
+        <!-- <filterRow id="creationdate" propertyKey="filter.row.loss.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow> -->
+		
+        <!--  BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        <!--  BB CUSTOMIZATION - NETO - 25/08 -->
+		<!-- <filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow> -->
+        
+		<filterRow id="type" propertyKey="filter.row.type.DBI">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+        
+        <filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BDB CUSTOMIZATION
+        <filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+			<filterElement dataReference.idref="incident_id"  />
+		</filterRow>
+		-->
+		
+        <filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+			<filterElement dataReference.idref="loss_id"  />
+		</filterRow>		
+		
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="netActTotalLoss" propertyKey="filter.row.incident.netTotalLoss.DBI">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="bb_saldo" propertyKey="filter.row.incident.bb_saldo.DBI">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+		
+		<filterRow id="bb_qtdeEventos_int" propertyKey="filter.row.incident.bb_qtdeEventos_int.DBI">
+			<filterElement dataReference.idref="bb_qtdeEventos_int"  />
+		</filterRow>
+        
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-2"  />
+        </filterRow>        
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow>      
+         
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+			<filterElement dataReference.idref="loss_id"  />
+		</filterRow> -->
+		
+		<!-- <filterRow id="reserves">
+            <filterElement dataReference.idref="reserves" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow> 
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow> 
+		<filterRow id="netActTotalLoss">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow> -->
+        
+        <!-- BdB CUSTOMIZATION 
+		<filterRow id="bb_saldo">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow> -->
+        
+		<!-- <filterRow id="creditDefault">
+			<filterElement dataReference.idref="creditDefault" default="-1"  />
+		</filterRow>
+		<filterRow id="insurancePayment">
+			<filterElement dataReference.idref="insurancePayment" default="-1"  />
+		</filterRow> 
+		<filterRow id="risk_name" propertyKey="filter.row.loss.related.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow> -->
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="appSys_name" propertyKey="filter.row.loss.related.appl.system.DBI">
+            <filterElement dataReference.idref="appSys_name"  />
+        </filterRow>
+
+		<filterRow id="finAcc_name" propertyKey="filter.row.loss.related.fin.acc.DBI">
+            <filterElement dataReference.idref="finAcc_name"  />
+        </filterRow>
+        
+		<filterRow id="orgunit_name" propertyKey="filter.row.loss.related.org.unit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+
+		<filterRow id="process_name" propertyKey="filter.row.loss.related.processes.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>-->
+
+		<filterRow id="incident_name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="incident_name"  />
+        </filterRow> 
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+         
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow> -->
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        -->
+		<!-- <filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>                 
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>          
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow> 
+        <filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="ownerGroupID,reviewerGroupID"/>
+			</filterElement>	
+		</filterRow> -->
+	</filter>
+	
+    <filter id="openlosses" dataSource.idref="openLosses">
+		<filterRow id="client_sign">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="type">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+            <filterElement dataReference.idref="loss_id"  />
+        </filterRow>
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-2"  />
+        </filterRow>
+		<filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> -->
+		<filterRow id="creationdate" propertyKey="filter.row.loss.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+         -->
+         
+		<filterRow id="netActTotalLoss">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION -->
+		<filterRow id="bb_saldo">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+		<!-- <filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<filterRow id="creditDefault">
+			<filterElement dataReference.idref="creditDefault" default="-1"  />
+		</filterRow>
+		<filterRow id="insurancePayment">
+			<filterElement dataReference.idref="insurancePayment" default="-1"  />
+		</filterRow> -->
+		<filterRow id="risk_name" propertyKey="filter.row.loss.related.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="appSys_name" propertyKey="filter.row.loss.related.appl.system.DBI">
+            <filterElement dataReference.idref="appSys_name"  />
+        </filterRow>
+
+		<filterRow id="finAcc_name" propertyKey="filter.row.loss.related.fin.acc.DBI">
+            <filterElement dataReference.idref="finAcc_name"  />
+        </filterRow>
+        -->
+
+		<filterRow id="orgunit_name" propertyKey="filter.row.loss.related.org.unit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+
+		<filterRow id="process_name" propertyKey="filter.row.loss.related.processes.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>
+
+		<filterRow id="incident_id" propertyKey="filter.row.incident.id.DBI">
+			<filterElement dataReference.idref="incident_id"  />
+		</filterRow>
+		<filterRow id="incident_name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="incident_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+		<filterRow id="incident_entrydate" propertyKey="filter.row.loss.incident.entry.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        -->
+		<!-- <filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>                
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow> -->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>                
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+
+	<filter id="reviewlosses" dataSource.idref="reviewLosses">
+		<filterRow id="client_sign">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="type">
+            <filterElement dataReference.idref="type" default="-1"  />
+        </filterRow>
+		<filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>                
+        <!-- <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow> -->        
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+			<filterElement dataReference.idref="loss_id"  />
+		</filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.loss.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="3"  />
+        </filterRow> -->
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+         -->
+         
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<!-- <filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>-->
+		<filterRow id="netActTotalLoss">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION -->
+		<filterRow id="bb_saldo">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>        
+        
+		<!-- <filterRow id="creditDefault">
+			<filterElement dataReference.idref="creditDefault" default="-1"  />
+		</filterRow>
+		<filterRow id="insurancePayment">
+			<filterElement dataReference.idref="insurancePayment" default="-1"  />
+		</filterRow> -->
+		<filterRow id="risk_name" propertyKey="filter.row.loss.related.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="appSys_name" propertyKey="filter.row.loss.related.appl.system.DBI">
+            <filterElement dataReference.idref="appSys_name"  />
+        </filterRow>
+		<filterRow id="finAcc_name" propertyKey="filter.row.loss.related.fin.acc.DBI">
+            <filterElement dataReference.idref="finAcc_name"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="orgunit_name" propertyKey="filter.row.loss.related.org.unit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+		<filterRow id="process_name" propertyKey="filter.row.loss.related.processes.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>
+		<filterRow id="incident_name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="incident_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        
+		<filterRow id="incident_entrydate" propertyKey="filter.row.loss.incident.entry.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_entryDateFrom"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>        
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>-->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>                
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+	
+	<filter id="risk2losses" dataSource.idref="risk2Losses">
+		<filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.loss.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+         -->
+         
+		<!-- <filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow> -->
+		<filterRow id="type">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+		<filterRow id="incident_name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="incident_name"  />
+        </filterRow>
+		<!-- <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="3"  />
+        </filterRow>
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="1"  />
+        </filterRow> -->
+
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+            <filterElement dataReference.idref="loss_id"  />
+        </filterRow>
+		<!-- <filterRow id="reserves">
+            <filterElement dataReference.idref="reserves" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<filterRow id="creditDefault">
+			<filterElement dataReference.idref="creditDefault" default="-1"  />
+		</filterRow>
+		<filterRow id="insurancePayment">
+			<filterElement dataReference.idref="insurancePayment" default="-1"  />
+		</filterRow> -->
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<filterRow id="netActTotalLoss">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        <!-- BdB CUSTOMIZATION -->
+		<filterRow id="bb_saldo">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>        
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        
+		<filterRow id="incident_entrydate" propertyKey="filter.row.loss.incident.entry.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION        
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+
+        <!-- BdB CUSTOMIZATION        
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>
+        
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>-->
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>       
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+	</filter>
+
+	<filter id="hierarchy2losses" dataSource.idref="hierarchy2Losses">
+		<filterRow id="subordinated" propertyKey="filter.row.subordinate.title.DBI">
+            <filterElement name="subordinated" default="0" filterType="simpleSubordinated" template="predefinedValues" isQueryFilterAttribute="true"/>
+        </filterRow>
+		<filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+		<filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="-1"  />
+        </filterRow>
+		<filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>
+		<filterRow id="type">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+            <filterElement dataReference.idref="loss_id"  />
+        </filterRow>
+		<filterRow id="creationdate" propertyKey="filter.row.loss.creationdate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="creationDateFrom" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="creationDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="creationDateTo" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        
+		<filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+		<filterRow id="netActTotalLoss">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+
+        <!-- BdB CUSTOMIZATION -->
+		<filterRow id="bb_saldo">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+		<filterRow id="creditDefault">
+			<filterElement dataReference.idref="creditDefault" default="-1"  />
+		</filterRow>
+		<filterRow id="insurancePayment">
+			<filterElement dataReference.idref="insurancePayment" default="-1"  />
+		</filterRow>
+		<filterRow id="incident_name" propertyKey="filter.row.incident.name.DBI">
+            <filterElement dataReference.idref="incident_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION        
+		<filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        -->
+        
+		<filterRow id="incident_entrydate" propertyKey="filter.row.loss.incident.entry.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="businessLineLvl1">
+            <filterElement dataReference.idref="businessLineLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="businessLineLvl2">
+            <filterElement dataReference.idref="businessLineLvl2" default="-1"  />
+        </filterRow>
+        -->
+        
+		<filterRow id="eventTypeLvl1">
+            <filterElement dataReference.idref="eventTypeLvl1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventTypeLvl2">
+            <filterElement dataReference.idref="eventTypeLvl2" default="-1"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<filterRow id="eventCauseClass1">
+            <filterElement dataReference.idref="eventCauseClass1" default="-1"  />
+        </filterRow>
+		<filterRow id="eventCauseClass2">
+            <filterElement dataReference.idref="eventCauseClass2" default="-1"  />
+        </filterRow>        
+        -->
+		<filterRow id="ownerGroupName" propertyKey="filter.row.owner.group.DBI">
+            <filterElement dataReference.idref="ownerGroupName"  />
+        </filterRow>        
+		<filterRow id="performedBy_name" propertyKey="filter.row.performed.by.DBI">
+            <filterElement dataReference.idref="performedBy_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>        
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+
+	</filter>
+
+	<filter id="incident2losses" dataSource.idref="incident2Losses">
+		<filterRow id="type" propertyKey="filter.row.type.DBI">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+        
+        <filterRow id="incident_discoverydate" propertyKey="filter.row.loss.incident.discovery.date.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="in_discoveryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="in_discoveryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="in_discoveryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+
+		<filterRow id="loss_id" propertyKey="filter.row.loss.id.DBI">
+			<filterElement dataReference.idref="loss_id" />
+		</filterRow>		
+		
+		<filterRow id="grossActTotalLoss">
+            <filterElement dataReference.idref="grossActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="netActTotalLoss" propertyKey="filter.row.incident.netTotalLoss.DBI">
+            <filterElement dataReference.idref="netActTotalLoss" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="bb_saldo" propertyKey="filter.row.incident.bb_saldo.DBI">
+            <filterElement dataReference.idref="bb_saldo" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+		
+		<filterRow id="bb_qtdeEventos_int" propertyKey="filter.row.incident.bb_qtdeEventos_int.DBI">
+			<filterElement dataReference.idref="bb_qtdeEventos_int"  />
+		</filterRow>
+	</filter>
+	
+	<filter id="incident2hierarchies_assignment" dataSource.idref="incident2hierarchies_assignment">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+        <filterRow id="hierarchy_type">
+            <filterElement dataReference.idref="hierarchy_type" default="0" >
+                <filterType.parameter name="hidden" value="true" />
+            </filterElement>
+        </filterRow>
+    </filter>
+    
+    <filter id="riskassessment2LossesPopup" storable="false" dataSource.idref="riskassessment2Losses">
+		<filterRow id="type">
+            <filterElement dataReference.idref="type" default="-2"  />
+        </filterRow>
+		<filterRow id="entrydate" propertyKey="filter.row.loss.entrydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="entryDateFrom"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="entryDateTo"/>
+                </filterElement>
+				<filterElement dataReference.idref="entryDateTo"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+		<filterRow id="owner_status" propertyKey="filter.row.loss.owner.status.DBI">
+            <filterElement dataReference.idref="owner_status" default="-1"  />
+        </filterRow>
+		<filterRow id="reviewer_status" propertyKey="filter.row.loss.reviewer.status.DBI">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>
+        <filterRow id="discoverydate" propertyKey="filter.row.loss.discoverydate.DBI">
+            <filterCell>
+				<filterElement dataReference.idref="controlstartdate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlenddate"/>
+                </filterElement>
+				<filterElement dataReference.idref="controlenddate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+        </filterRow>
+        <filterRow id="currency">
+            <filterElement dataReference.idref="currency" default="-5"  />
+        </filterRow>
+        <filterRow id="name" propertyKey="filter.row.loss.name.DBI">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="lossIds">
+            <filterElement dataReference.idref="lossIds" filterType="objIds" >
+                <filterType.parameter name="hidden" value="true" />
+            </filterElement>
+        </filterRow>
+	</filter>
+</custom>

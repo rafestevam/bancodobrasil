@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">    
+    <!--
+    *
+    *   QUESTIONNAIRE
+    *
+    -->
+    <catalog id="questionnaire">
+
+        <commandchain id="prepare"/>
+
+        <commandchain id="insert">
+        	<!-- 
+            <command id="prepareJobMessage">
+                <parameter name="message_template" value="questionnaire_generatorjob" />
+                <parameter name="list_name" value="questionnaires_owner" />
+                <parameter name="filter_name" value="questionnaire_status" />
+                <parameter name="filter_value" value="open" />
+            </command>
+            -->
+            <command id="sendMailBB">
+                <parameter name="template" value="questionnaire_generatorjob"/>
+                <parameter name="from" value="manager_group"/>
+                <parameter name="to" value="owner_group"/>
+            </command>
+             
+        </commandchain>
+
+        <commandchain id="executionInProgress">
+            <command id="update">
+                <parameter name="owner_status" value="inprocess"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+        </commandchain>
+
+        <commandchain id="executionCompleted">
+            <command id="questionnaireCheckCompleted">
+                <parameter name="viewID" value="questionnaireOwnerCompleteness" />
+            </command>    
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="reviewer_status" value="please_select"/>
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="clearOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+            <command id="questionnaireCalculateIntervieweeActualScore" />
+            <command id="sendMailBB">
+                <parameter name="template" value="questionnaire_closed_complete"/>
+                <parameter name="from" value="owner_group"/>
+                <parameter name="to" value="reviewer_group"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="executionNotAnswerable">
+            <command id="requestDialog">
+                <parameter name="messagePropertyKeys" value="warning.answers.will.be.reset.WRG" />
+                <parameter name="questionPropertyKey" value="warning.object.closing.DBI" />
+                <parameter name="dialogID" value="questionnaire_resetAnswers" />
+            </command>
+            <command id="clearAnswersForQuestionnaireNotAnswerable" />
+            <command id="update">
+                <parameter name="reviewer_status" value="please_select"/>
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+            <command id="sendMailBB">
+                <parameter name="template" value="questionnaire_closed_not_answerable"/>
+                <parameter name="from" value="owner_group"/>
+                <parameter name="to" value="reviewer_group"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="executionNotCompleted" />
+
+        <commandchain id="reviewInProgress">
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command> 
+            <command id="update">
+                <parameter name="reviewer_status" value="inprocess"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+        </commandchain>
+
+        <commandchain id="reviewAccepted">
+            <command id="questionnaireCheckCompleted">
+                <parameter name="viewID" value="questionnaireReviewerCompleteness" />
+            </command>   
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+        </commandchain>
+
+        <commandchain id="reviewNotAccepted">                     
+            <command id="detailedClosingObjectDialog">
+                <parameter name="propertyKey" value="warning.reviewed.answers.will.be.reset.WRG" />
+            </command>
+            <command id="questionnaireReopenForOwner" />
+            <command id="update">
+                <parameter name="owner_status" value="inprocess"/>
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewner_role_uploaded"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="questionnaireExtendSurveyExecutionPeriod" />
+            <command id="sendMailBB">
+                <parameter name="template" value="questionnaire_reopened"/>
+                <parameter name="from" value="reviewer_group"/>
+                <parameter name="to" value="owner_group"/>
+                <parameter name="cc" value="reviewer_group"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="delete">
+            <command id="checkQuestionnaireDeletionPossible" />
+        </commandchain>
+
+        <commandchain id="recover">
+            <command id="questionnaireRecover" />
+        </commandchain>
+
+    </catalog>
+    
+    <!--
+    *
+    *   SURVEY
+    *
+    -->
+    <catalog id="survey">
+
+        <commandchain id="prepareJob">
+            <command id="dueCheck" />
+            <command id="assignedUsergroupsCheck" />
+            <command id="sectionsCheck" />
+            <command id="surveyGenerate" />
+        </commandchain>
+
+        <commandchain id="prepareManual">
+        	<command id="createObjectDialog" />
+            <command id="checkObjectPersistent" />
+            <command id="assignedUsergroupsCheck" />
+            <command id="requestDialog" >
+                <parameter name="dialogID" value="survey_create" />
+            </command>
+            <command id="dueCheck" />
+            <command id="sectionsCheck" />
+            <command id="surveyGenerate" />
+        </commandchain>
+
+        <commandchain id="insertJob"/>
+
+        <commandchain id="insertManual"/>
+
+        <commandchain id="executionInProgress">
+            <command id="surveyProlongAssignedQuestionnaires" />
+        </commandchain>
+
+        <commandchain id="executionFinished">
+            <command id="surveyCloseAssignedQuestionnairesCommand" />
+        </commandchain>
+
+        <commandchain id="delete">
+            <command id="checkSurveyDeletionPossible" />
+            <command id="surveyDeleteQuestionnaire" />
+        </commandchain>
+
+        <commandchain id="recover">
+            <command id="surveyRecoverQuestionnaire" />
+        </commandchain>
+
+        <commandchain id="reactivate"/>
+
+    </catalog>
+    
+</custom>

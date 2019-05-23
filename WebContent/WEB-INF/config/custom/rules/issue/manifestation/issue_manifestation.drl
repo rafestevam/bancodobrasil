@@ -1,0 +1,140 @@
+package ISSUE_MANIFESTATION_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+#######################################################
+### Workflow state "openForCreation" ###
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'manifestation' --> set workflow actors mandatory for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" )
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"
+
+	then
+		
+		set "bb_mgmtApproverL1_group" 	editable
+		set "bb_mgmtApprover_orgunit" 	editable
+		set "bb_implApprover_orgunit" 	editable
+		
+		set "remark"                  	editable
+		set "immediateMeasure"        	editable
+		set "bb_anotherImportantInfo" 	editable
+		set "bb_confidentialityLevel" 	editable
+		
+		set "bb_mgmtApproverL1_group" 	mandatory
+		set "bb_confidentialityLevel" 	mandatory
+		
+		execute manifestation rules
+		
+end
+
+###############################################
+### All workflow states - after state rules ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'manifestation' --> attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"
+
+	then
+		
+		set "bb_mgmtApproverL1_group" 	visible
+		set "bb_mgmtApproverL1_aware" 	visible
+		set "bb_mgmtApproverL1" 		visible
+		set "bb_mgmtApproverL1_date" 	visible
+		set "bb_mgmtApprover_orgunit"	visible
+		
+		set "bb_implApproverL1_group" 	visible
+		set "bb_implApproverL1_status" 	visible
+		set "bb_implApproverL1_remark" 	visible
+		set "bb_implApproverL1" 		visible
+		set "bb_implApproverL1_date" 	visible
+		set "bb_implApprover_orgunit"	visible
+		
+		set "remark"                  	visible
+		set "immediateMeasure"        	visible
+		set "bb_anotherImportantInfo" 	visible
+		set "bb_confidentialityLevel" 	visible
+		
+		set "owners" 					invisible
+		set "owner" 					invisible
+		set "reviewers" 				invisible
+		set "reviewer" 					invisible
+		
+		add object "information" message "info.issuemanagement.execution.phase.not.needed.INF"
+		
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "issueRelevantObjects"    	mandatory
+				
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'manifestation' and bb_implApproverL1_status set to 'please_select' --> hide approver attributes for creator [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"
+		value comparison fulfilled: ":transient:" attr_value "bb_implApproverL1_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_implApproverL1_status" 	invisible
+		set "bb_implApproverL1_remark" 	invisible
+		set "bb_implApproverL1" 		invisible
+		set "bb_implApproverL1_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'manifestation' and bb_mgmtApproverL1_status set to 'please_select' --> hide approver attributes for creator [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "manifestation"
+		value comparison fulfilled: ":transient:" attr_value "bb_mgmtApproverL1_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_mgmtApproverL1_aware" 	invisible
+		set "bb_mgmtApproverL1" 		invisible
+		set "bb_mgmtApproverL1_date" 	invisible
+		
+end

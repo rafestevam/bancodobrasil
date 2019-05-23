@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<list id="questionnaire_template"
+          view.idref="questionnaire_template"
+          filter.idref="questionnaire_template"
+          idColumn.idref="template_id"
+          defaultOrderColumn.idref="name"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="QUESTIONNAIRE_TEMPLATE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.questionnaire_templates.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="sign"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_QUESTIONNAIRE_TEMPLATE_1" propertyKey="tableheader.name" width="30%"/>
+			<listHeader column="LC_QUESTIONNAIRE_TEMPLATE_0" propertyKey="tableheader.client" width="10%"/>
+			<listHeader column="LC_QUESTIONNAIRE_TEMPLATE_2" propertyKey="tableheader.description" width="50%"/>
+			<listHeader column="LC_QUESTIONNAIRE_TEMPLATE_4" propertyKey="tableheader.questionnaire.target.score.DBI" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION -->
+			<!-- <listHeader column="LC_QUESTIONNAIRE_TEMPLATE_3" propertyKey="tableheader.workingcopy.DBI" width="5%"/> -->
+			
+		</listHeaderRow>
+		<column id="LC_QUESTIONNAIRE_TEMPLATE_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="template_id"/>
+		</column>
+		<column id="LC_QUESTIONNAIRE_TEMPLATE_0" align="center" dataReference.idref="client_sign" />
+		<column id="LC_QUESTIONNAIRE_TEMPLATE_2" dataReference.idref="description" />
+		<column id="LC_QUESTIONNAIRE_TEMPLATE_4" align="right" dataReference.idref="targetscore" />
+		
+		<!-- BdB CUSTOMIZATION -->
+		<!-- <column id="LC_QUESTIONNAIRE_TEMPLATE_3" align="center" dataReference.idref="isworkingcopy" /> -->
+		
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="surveytask2orgunit_sel"
+          view.idref="surveytask2orgunit_sel"
+          filter.idref="surveytask2orgunit_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="relatedOrgunits"
+          destDataType.idref="SURVEYTASK"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_prefixo"/>
+			<simpleFilter filterRow.idref="bb_codigoUOR"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_surveytask2orgunit_sel_1" propertyKey="tableheader.name" width="20%"/>
+			<listHeader column="LC_surveytask2orgunit_sel_2" propertyKey="tableheader.description" width="40%"/>
+			<listHeader column="LC_surveytask2orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_prefixo.DBI" width="20%"/>
+			<listHeader column="LC_surveytask2orgunit_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_surveytask2orgunit_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="LC_surveytask2orgunit_sel_2" dataReference.idref="description" />
+		<column id="LC_surveytask2orgunit_sel_3" dataReference.idref="bb_prefixo" />
+		<column id="LC_surveytask2orgunit_sel_4" dataReference.idref="bb_codigoUOR" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="surveytask2testdefinition_sel"
+          view.idref="surveytask2testdefinition_sel"
+          filter.idref="surveytask2testdefinition_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="test_definitions"
+          destDataType.idref="SURVEYTASK"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="TESTDEFINITION">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="obj_id"/>
+			<simpleFilter filterRow.idref="name"/>		
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="testfrequency"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_surveytas2testdefinition_sel_2" propertyKey="tableheader.id" width="10%"/>
+			<listHeader column="LC_surveytas2testdefinition_sel_1" propertyKey="tableheader.name" width="25%"/>
+			<listHeader column="LC_surveytas2testdefinition_sel_4" propertyKey="attribute.TESTDEFINITION.frequency.DBI" width="30%"/>
+			<listHeader column="LC_surveytas2testdefinition_sel_5" propertyKey="attribute.TESTDEFINITION.duration.DBI" width="35%"/>
+			<listHeader column="LC_surveytas2testdefinition_sel_6" propertyKey="tableheader.start" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_surveytas2testdefinition_sel_2" dataReference.idref="obj_id" template="openObject" />
+		<column id="LC_surveytas2testdefinition_sel_1" dataReference.idref="name" />
+		<column id="LC_surveytas2testdefinition_sel_4" align="center" dataReference.idref="testfrequency"/>
+		<column id="LC_surveytas2testdefinition_sel_5" align="center" dataReference.idref="testduration" />
+		<column id="LC_surveytas2testdefinition_sel_6" align="center" dataReference.idref="startdate" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="surveytask2questionnaireTemplate_sel"
+          view.idref="surveytask2questionnaireTemplate_sel"
+          filter.idref="surveytask2questionnaireTemplate_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="questionnaireTemplate"
+          destDataType.idref="SURVEYTASK"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_surveytask2questionnaireTemplate_sel_1" propertyKey="tableheader.name" width="50%"/>
+			<listHeader column="LC_surveytask2questionnaireTemplate_sel_2" propertyKey="tableheader.description" width="50%"/>
+		</listHeaderRow>
+		<column id="LC_surveytask2questionnaireTemplate_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="LC_surveytask2questionnaireTemplate_sel_2" dataReference.idref="description" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="section_question_sel"
+          view.idref="qtSection_questions_sel"
+          filter.idref="section_question_sel"
+          idColumn.idref="question_id"
+          nameColumn.idref="question_text"
+          defaultOrderColumn.idref="question_text"
+          destAttributeType.idref="questions"
+          destDataType.idref="SECTION"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="SECTION">
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="question_text"/>
+			<simpleFilter filterRow.idref="question_type"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="question_description"/>
+        </simpleFilterRow>  
+		<listHeaderRow>
+			<listHeader column="LC_SECTION_QUESTION_SEL_1" propertyKey="tableheader.question" width="50%"/>
+			<listHeader column="LC_SECTION_QUESTION_SEL_2" propertyKey="tableheader.question.type.DBI" width="10%"/>
+			<listHeader column="LC_SECTION_QUESTION_SEL_3" propertyKey="tableheader.description" width="40%"/>
+		</listHeaderRow>
+		<column id="LC_SECTION_QUESTION_SEL_1" dataReference.idref="question_text" template="object"/>
+		<column id="LC_SECTION_QUESTION_SEL_2" align="center" dataReference.idref="question_type"  />
+		<column id="LC_SECTION_QUESTION_SEL_3" dataReference.idref="question_description" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="surveytask_questionnaireowner_sel"
+          view.idref="surveytask_questionnaireowner_sel"
+          filter.idref="surveytask_questionnaireowner_sel"
+          idColumn.idref="usergroup_id"
+          defaultOrderColumn.idref="usergroup_name"
+          nameColumn.idref="usergroup_name"
+          destAttributeType.idref="owner_group"
+          destDataType.idref="SURVEYTASK"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="usergroup_name"/>
+			<simpleFilter filterRow.idref="usergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_surveytask_questionnaireowner_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_surveytask_questionnaireowner_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_surveytask_questionnaireowner_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_surveytask_questionnaireowner_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_surveytask_questionnaireowner_sel_1" dataReference.idref="usergroup_name" template="openObject"/>
+		<column id="LC_surveytask_questionnaireowner_sel_2" dataReference.idref="description" />
+		<column id="LC_surveytask_questionnaireowner_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_surveytask_questionnaireowner_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="surveytask_surveyreviewer_sel"
+          view.idref="surveytask_surveyreviewer_sel"
+          filter.idref="surveytask_surveyreviewer_sel"
+          idColumn.idref="usergroup_id"
+          defaultOrderColumn.idref="usergroup_name"
+          nameColumn.idref="usergroup_name"
+          destAttributeType.idref="reviewer_group"
+          destDataType.idref="SURVEYTASK"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="usergroup_name"/>
+			<simpleFilter filterRow.idref="usergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_surveytask_surveyreviewer_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_surveytask_surveyreviewer_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_surveytask_surveyreviewer_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_surveytask_surveyreviewer_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_surveytask_surveyreviewer_sel_1" dataReference.idref="usergroup_name" template="openObject"/>
+		<column id="LC_surveytask_surveyreviewer_sel_2" dataReference.idref="description" />
+		<column id="LC_surveytask_surveyreviewer_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_surveytask_surveyreviewer_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+</custom>

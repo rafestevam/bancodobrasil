@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <task id="tester" objectType.idref="TESTCASE" role.idref="tester">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="owner_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForExecution"/>
+            <completed workflowState.idrefs="openForReview"/>
+            <notCompleted workflowState.idrefs="executedAsNotTested"/>
+        </taskState>
+        <monitorStrategy>
+            <monitorLevel type="percentage" value="75"/>
+            <monitorLevel type="percentage" value="100">
+                <monitorChange objectAttribute.idref="owner_status" value="nottested"/>
+            </monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <task id="testreviewer" objectType.idref="TESTCASE" role.idref="testreviewer">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="reviewer_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForReview"/>
+            <completed workflowState.idrefs="reviewAccepted,openForExecution"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+</custom>

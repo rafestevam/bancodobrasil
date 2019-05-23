@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<actionCommands>
+		<listCommands>				
+			<commandSet name="riskassessment2LossesPopup">
+            	<actionCommand commandId="copyLossValues"	clsName="com.idsscheer.webapps.arcm.ui.components.riskmanagement.actioncommands.RiskassessmentCopyLossValuesActionCommandBB"/>
+        	</commandSet>
+		</listCommands>
+	</actionCommands>
+</custom>

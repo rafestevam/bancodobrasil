@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<filter id="risk" dataSource.idref="risk">
+		<filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="filter.row.risk.organizational.unit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+        <filterRow id="model_name" propertyKey="filter.row.process.DBI">
+            <filterElement dataReference.idref="model_name"  />
+        </filterRow>
+         <filterRow id="sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+<!--         <filterRow id="function_name" propertyKey="filter.row.function.DBI"> -->
+<!--             <filterElement dataReference.idref="function_name"  /> -->
+<!--         </filterRow> -->
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+                <!-- 
+		<filterRow id="risk_type">
+			<filterElement dataReference.idref="risk_type" default=""  />
+		</filterRow>
+		-->
+		<!-- <filterRow id="assertion">
+			<filterElement dataReference.idref="assertion" default=""  />
+		</filterRow> -->
+
+		<filterRow id="mgmt_relevant">
+			<filterElement dataReference.idref="mgmt_relevant" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="event_driven">
+			<filterElement dataReference.idref="event_driven" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="activities">
+			<filterElement dataReference.idref="activities"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="frequency">
+			<filterElement dataReference.idref="frequency" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="duration">
+			<filterElement dataReference.idref="duration"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="startdate">
+			<filterCell>
+				<filterElement dataReference.idref="startdate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="startdate2"/>
+                    <filterType.parameter name="LicensedComponent" value="rm"/>
+				</filterElement>
+				<filterElement dataReference.idref="startdate2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+					<filterType.parameter name="LicensedComponent" value="rm"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="enddate">
+			<filterCell>
+				<filterElement dataReference.idref="enddate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="enddate2"/>
+					<filterType.parameter name="LicensedComponent" value="rm"/>
+				</filterElement>
+				<filterElement dataReference.idref="enddate2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+					<filterType.parameter name="LicensedComponent" value="rm"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<!--  <filterRow id="bb_pendencia">
+			<filterElement dataReference.idref="bb_pendencia" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>-->
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="data_source">
+			<filterElement dataReference.idref="data_source" default="-1"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="ownergroup_name" propertyKey="filter.row.risk.assessments.owner.group.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>
+		<filterRow id="reviewergroup_name" propertyKey="filter.row.risk.reviewer.group.DBI">
+            <filterElement dataReference.idref="reviewergroup_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>
+		<filterRow id="category_name" propertyKey="filter.row.risk.category.DBI">
+            <filterElement dataReference.idref="category_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>
+		<!--  <filterRow id="orgunit_name" propertyKey="filter.row.risk.organizational.unit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>-->
+		<filterRow id="appsystype_name" propertyKey="filter.row.risk.application.system.type.DBI">
+            <filterElement dataReference.idref="appsystype_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>
+        <filterRow id="bb_business_line_name" propertyKey="filter.row.risk.bb_business_line.DBI">
+            <filterElement dataReference.idref="bb_business_line_name"  >
+				<filterType.parameter name="LicensedComponent" value="rm"/>
+			</filterElement>
+        </filterRow>
+        <filterRow id="bb_criticidadeInicial">
+			<filterElement dataReference.idref="bb_criticidadeInicial"></filterElement>
+		</filterRow>
+		<filterRow id="bb_datapromocao_1" propertyKey="filter.row.risk.bb_datapromocao.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_datapromocao_1"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="bb_datapromocao_2"/>
+				</filterElement>
+				<filterElement dataReference.idref="bb_datapromocao_2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+		<filterRow id="guid">
+            <filterElement dataReference.idref="guid" default="" filterType="string" compareType="equals" />
+		</filterRow>
+	</filter>
+    
+    <filter id="risk_riskmanager_sel" dataSource.idref="risk_riskmanager_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter> 
+    
+    <filter id="risk_riskowner_sel" dataSource.idref="risk_riskowner_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="risk_riskreviewer_sel" dataSource.idref="risk_riskreviewer_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="assessment_owner" dataSource.idref="risk_assessment_owner">
+        <filterRow id="obj_id" propertyKey="filter.row.risk.assessment.id.DBI">
+            <filterElement dataReference.idref="obj_id"  />
+        </filterRow>
+        <filterRow id="clientSign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="groupname" propertyKey="filter.row.risk.assessments.owner.group.DBI">
+            <filterElement dataReference.idref="groupname"  />
+        </filterRow>
+        <filterRow id="performedby_name" propertyKey="filter.row.risk.assessment.assessor.DBI">
+            <filterElement dataReference.idref="performedby_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+        <filterRow id="assessment_period" propertyKey="filter.row.risk.assessment.period.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedstartdate"  >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="owner_status">
+            <filterElement dataReference.idref="owner_status" default="0"  />
+        </filterRow>
+        <filterRow id="loss_value" propertyKey="filter.row.risk.assessment.expected.average.loss.DBI">
+            <filterElement dataReference.idref="loss_value" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        <filterRow id="type" propertyKey="filter.row.risk.assessment.type.DBI">
+            <filterElement dataReference.idref="type" default="-1"  />
+        </filterRow>
+        <filterRow id="function_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="function_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <filterRow id="bb_criticidadeFinal" propertyKey="filter.row.risk.assessment.bb_criticidadeFinal.DBI">
+            <filterElement dataReference.idref="bb_criticidadeFinal"/>
+        </filterRow>
+        <filterRow id="reviewer_status" propertyKey="filter.row.risk.assessment.reviewer_status.DBI">
+            <filterElement dataReference.idref="reviewer_status"  />
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+    </filter>
+    
+    <filter id="assessment_reviewer" dataSource.idref="risk_assessment_reviewer">
+        <filterRow id="obj_id" propertyKey="filter.row.risk.assessment.id.DBI">
+            <filterElement dataReference.idref="obj_id"  />
+        </filterRow>
+        <filterRow id="clientSign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="assessment_period" propertyKey="filter.row.risk.assessment.period.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedstartdate"  >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="owner_status" propertyKey="filter.row.risk.assessment.state.DBI">
+            <filterElement dataReference.idref="owner_status" default="-2"  />
+        </filterRow>
+        <filterRow id="review_state" propertyKey="filter.row.risk.review.state.DBI">
+            <filterElement dataReference.idref="review_state" default="0"  />
+        </filterRow>
+        <filterRow id="groupname" propertyKey="filter.row.risk.assessments.owner.group.DBI">
+            <filterElement dataReference.idref="groupname"  />
+        </filterRow>
+        <filterRow id="performedby_name" propertyKey="filter.row.risk.assessment.assessor.DBI">
+            <filterElement dataReference.idref="performedby_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+        <filterRow id="loss_value" propertyKey="filter.row.risk.assessment.expected.average.loss.DBI">
+            <filterElement dataReference.idref="loss_value" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        <filterRow id="type" propertyKey="filter.row.risk.assessment.type.DBI">
+            <filterElement dataReference.idref="type" default="-1"  />
+        </filterRow>
+        <filterRow id="function_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="function_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <filterRow id="deactivated" propertyKey="filter.row.deactivated.DBI">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+    </filter>
+    
+    <!-- BdB CUSTOMIZATION -->
+    <filter id="assessment" dataSource.idref="risk_assessment">
+        <filterRow id="obj_id" propertyKey="filter.row.risk.assessment.id.DBI">
+            <filterElement dataReference.idref="obj_id"  />
+        </filterRow>
+        <filterRow id="clientSign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="performedby_name" propertyKey="filter.row.risk.assessment.assessor.DBI">
+            <filterElement dataReference.idref="performedby_name"  />
+        </filterRow>
+        <filterRow id="substitute_name" propertyKey="filter.row.substitute.DBI">
+            <filterElement dataReference.idref="substitute_name"  />
+        </filterRow>
+        <filterRow id="assessment_period" propertyKey="filter.row.risk.assessment.period.DBI">
+            <filterCell>
+                <filterElement dataReference.idref="plannedenddate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+                <filterElement dataReference.idref="plannedstartdate"  >
+                    <parameter name="propertyKey" value="filter.to.DBI"/>
+                </filterElement>
+            </filterCell>
+        </filterRow>
+        <filterRow id="owner_status" propertyKey="filter.row.risk.assessment.state.DBI">
+            <filterElement dataReference.idref="owner_status" default="1"  />
+        </filterRow>
+        <filterRow id="review_state" propertyKey="filter.row.risk.review.state.DBI">
+            <filterElement dataReference.idref="review_state" default="-1"  />
+        </filterRow>
+        <filterRow id="loss_value" propertyKey="filter.row.risk.assessment.expected.average.loss.DBI">
+            <filterElement dataReference.idref="loss_value" default="" filterType="numberRange" template="numberRange"/>
+        </filterRow>
+        <filterRow id="type" propertyKey="filter.row.risk.assessment.type.DBI">
+            <filterElement dataReference.idref="type" default="-1"  />
+        </filterRow>
+        <filterRow id="function_name" propertyKey="filter.row.function.DBI">
+            <filterElement dataReference.idref="function_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <filterRow id="bb_criticidadeFinal" propertyKey="filter.row.risk.assessment.bb_criticidadeFinal.DBI">
+            <filterElement dataReference.idref="bb_criticidadeFinal"  />
+        </filterRow>
+        
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+    </filter>
+       
+</custom>

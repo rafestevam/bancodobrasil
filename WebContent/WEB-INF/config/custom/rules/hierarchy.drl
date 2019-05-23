@@ -1,0 +1,807 @@
+package HIERARCHY_RuleSet
+expander hierarchy.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.administration.re.HierarchyHelper;
+
+# OBJECT    client_objid         LONG       Client ID                                                                                                                                                             
+# OBJECT    client_sign          CLIENTSIGN Client                                                                                                                                                                
+# OBJECT    create_date          DATE       Creation date                                                                                                                                                         
+# OBJECT    creator_user_id      LONG       User ID (creator)                                                                                                                                                     
+# OBJECT    delete_date          DATE       Deletion date                                                                                                                                                         
+# OBJECT    guid                 STRING     GUID                                                                                                                                                                  
+# OBJECT    obj_id               LONG       ID                                                                                                                                                                    
+# OBJECT    obj_type             OBJECTTYPE Object type                                                                                                                                                           
+# OBJECT    root_guid            STRING     Root GUID                                                                                                                                                             
+# OBJECT    versions             LONG       Number of versions                                                                                                                                                    
+# VERSION   aris_change_date     DATE       ARIS change date                                                                                                                                                      
+# VERSION   change_date          DATE       Change date                                                                                                                                                           
+# VERSION   change_type          ENUM       Change type                               changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                               
+# VERSION   change_user_id       LONG       User ID (editor)                                                                                                                                                      
+# VERSION   deactivated          BOOLEAN    Deactivated                                                                                                                                                           
+# VERSION   id                   LONG       ID                                                                                                                                                                    
+# VERSION   substitute_user_id   LONG       User ID (substitute)                                                                                                                                                  
+# VERSION   version_active       BOOLEAN    Current version                                                                                                                                                       
+# VERSION   version_number       LONG       Version number                                                                                                                                                        
+# RECURRING control_period       ENUM       Attribute not supported for the hierarchy controlperiod (unspecified=0,day=1,week=2,month=3,quarter=4,semiannual=5,year=6)                                            
+# RECURRING duration             LONG       Time limit for execution in days                                                                                                                                      
+# RECURRING enddate              DATE       End date of review                                                                                                                                                    
+# RECURRING event_driven_allowed BOOLEAN    Event-driven review allowed                                                                                                                                           
+# RECURRING frequency            ENUM       Frequency                                 frequency (all=-1,unspecified=0,oneoff=1,daily=2,weekly=3,monthly=4,quarterly=5,semiannually=6,annually=7,everysecondyear=8)
+# RECURRING control_period_offset LONG       Attribute not supported for the hierarchy                                                                                                                             
+# RECURRING owner_group          LIST       Hierarchy owner                           to 1 USERGROUP (LT=3113)                                                                                                    
+# RECURRING reviewer_group       LIST       Attribute not supported for the hierarchy to * USERGROUPs (LT=3114)                                                                                                   
+# RECURRING startdate            DATE       Start date of review                                                                                                                                                  
+# HIERARCHY activities           TEXT       Activities                                                                                                                                                            
+# HIERARCHY auditor              LIST       Test auditor                              to * USERGROUPs (LT=3112)                                                                                                   
+# HIERARCHY children             LIST       Subordinate hierarchy elements            to 200 HIERARCHYs (LT=46)                                                                                                   
+# HIERARCHY description          TEXT       Description                                                                                                                                                           
+# HIERARCHY hnumber              STRING     Number                                                                                                                                                                
+# HIERARCHY isroot               BOOLEAN    Root                                                                                                                                                                  
+# HIERARCHY model_name           STRING     Model name                                                                                                                                                            
+# HIERARCHY modelguid            STRING     Model GUID                                                                                                                                                            
+# HIERARCHY modellink            STRING     Model link                                                                                                                                                            
+# HIERARCHY name                 STRING     Name                                                                                                                                                                  
+# HIERARCHY objectguid           STRING     Object GUID                                                                                                                                                           
+# HIERARCHY objectlink           STRING     Object link                                                                                                                                                           
+# HIERARCHY reviewRelevant       BOOLEAN    Review-relevant                                                                                                                                                       
+# HIERARCHY signoff              BOOLEAN    Sign-off-relevant                                                                                                                                                     
+# HIERARCHY so_owner             LIST       Sign-off owner                            to 1 USERGROUP (LT=51)                                                                                                      
+# HIERARCHY tester               LIST       Tester groups                             to * USERGROUPs (LT=69)                                                                                                     
+# HIERARCHY type                 ENUM       Type                                      hierarchy_type (all=0,tester=1,financialaccount=2,orgunit=3,process=4,category=10,applicationsystemtype=11)                 
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "define all standard attributes editable [I,V]"
+
+    salience 10800
+	no-loop true
+
+	when
+
+	then
+		set "name"                 editable
+		set "description"          editable
+		set "tester"               editable
+		set "signoff"              editable
+		set "so_owner"             editable
+		set "auditor"              editable
+		set "objectguid"           editable
+		set "objectlink"           editable
+		set "model_name"           editable
+		set "modelguid"            editable
+		set "modellink"            editable
+		set "children"             editable
+		
+		set "owner_group"          editable
+		set "reviewRelevant"       editable
+        set "activities"           editable
+        set "frequency"            editable
+        set "event_driven_allowed" editable
+        set "duration"             editable
+        set "startdate"            editable
+        set "enddate"              editable
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_scope"			   						 invisible
+		set "bb_deptManager"	   						 invisible
+		set "bb_product"	   	   						 invisible
+		set "bb_financcount"                             invisible
+		set "bb_scopeSelection"	   						 invisible
+		set "bb_codDependResp"     						 invisible
+		set "bb_nomeDependResp"    						 invisible
+		set "bb_codDivisaoResp"    						 invisible
+		set "bb_codNucleoResp"     						 invisible		
+		set "bb_codigoEstadoModal"	  				     invisible
+		set	"bb_inicioComercModalidade"	 				 invisible
+		set "bb_fimComercModalidade"	 				 invisible
+		set	"bb_codAbragModalidade"		 				 invisible
+		set	"bb_indModalidadeTesouraria" 				 invisible
+		set "bb_dicionarioDeRisco"						 invisible
+		
+		set "hierarchy_type"							 invisible
+		set "bb_tipoUnidOrganizacional"  				 invisible
+		set "bb_codigoIOR"		 		 				 invisible
+		set "bb_mapFreeSH2"				 				 invisible
+		set "bb_fundoGarantiaInvest"				 	 invisible
+		set "bb_eloParSA"				 				 invisible
+		set "bb_previ"		 		 					 invisible
+		set "bb_BB_USA_Hold"		 		 			 invisible
+		set "bb_BB_Seguros_Part"		 		 		 invisible
+		set "bb_TesouroNacional"		 		 		 invisible
+		set "bb_BB_Leasing_Co"		 		 			 invisible
+		set "bb_BB_BI"		 		 					 invisible
+		set "bb_MapFreeSegurosGerais"		 		  	 invisible
+		set "bb_BB"		 		 						 invisible
+		set "bb_AcaoTesouroria"		 		 			 invisible
+		set "bb_BB_mapFreeSH1"		 		 			 invisible
+		set "bb_fundoFiscalInvEstab"		 		 	 invisible
+		set "bb_BB_cartoesPart"		 		 			 invisible
+		set "bb_BB_AG"		 		 					 invisible
+		set "bb_corPart"		 		 				 invisible
+		set "bb_cxFIGarantConstNaval"		 		 	 invisible
+		set "bb_BAMB"		 		 					 invisible
+		set "bb_segPart"		 		 				 invisible 
+		set "bb_BB_DTVM"		 		 				 invisible
+		set "bb_freeFloat"		 		 				 invisible
+		set "bb_BNDESPar"		 		 				 invisible
+		set "bb_codigoUOR"		 		 				 invisible
+		set "bb_codigoTipologia"		 		 		 invisible
+		set "bb_sigla"		 		 					 invisible
+		set "bb_prefixo"		 		 				 invisible
+		set "bb_ior"									 invisible
+		set "bb_uor"									 invisible
+		set "bb_notaTecnicaAprova"						 invisible
+		set "bb_periodicidadeRevisa"				     invisible
+		set "bb_tipoFatorControle"						 invisible
+		set "bb_participacaoCalculoCapital"			  	 invisible
+		set "bb_valorLimiteCritico"						 invisible
+		set "bb_dataFimValidFator" 						 invisible
+		set "bb_valorLimiteInferior"					 invisible
+		set "bb_valorLimiteSuperior"					 invisible
+		set "bb_metodoAgregacao"						 invisible
+		set "bb_metodoPrevisao"							 invisible
+		set "bb_estadoRegControl"						 invisible
+		set "bb_mesesParaTotalizacao"					 invisible
+		set "bb_codClassifFatorContrInt"				 invisible
+		set "bb_valFatorContrApurado"					 invisible
+		set "bb_numRecomendRisco"						 invisible
+		set "bb_businessline"							 invisible
+		set "bb_nivel"                                   invisible
+		set "bb_caminho"								 invisible
+		
+		### Financial Account ###
+		set "bb_tipoFinancialAccount"                    invisible
+		set "bb_codIOR_contaContabil"                    invisible		
+		set "bb_consolidado"                             invisible
+		set "bb_eliminado"                               invisible
+		set "bb_aglutinado"                              invisible
+		set "bb_avalMaterialidadeContas"                 invisible
+		set "bb_grauExposicao"                           invisible
+		set "bb_suscetibFraude"                          invisible
+		set "bb_avalQuantitativa"                        invisible
+		set "bb_valBaseMaterialidade"                    invisible
+		set "bb_percentAplicRiscoAlto"                   invisible
+		set "bb_percentAplicRiscoMedio"                  invisible
+		set "bb_finaccountAssertions"					 invisible
+		set "bb_company"			   					 invisible
+		set "hnumber"              						 invisible		
+		#set "bb_relatedUserGroup"              			 invisible
+		set "bb_classificacaoQuant"              		 invisible
+		set "bb_classificacaoQual"              		 invisible
+		set "bb_classificacaoFinal"              		 invisible
+		set "bb_dataBalancete"							 invisible
+		
+		
+		### Risk Factor ###
+		set "bb_riskFactorType"                          invisible
+		
+		
+end 
+
+rule "mark_name_mandatory_[I,V]"
+
+    salience 10800
+	no-loop true
+
+	when
+
+	then
+		set "name" mandatory
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "mark_icr_mandatory_[I,V]"
+
+    salience 10800
+	no-loop true
+
+	when
+
+	then
+		set "bb_deptManager" 			mandatory
+		#set "bb_notaTecnicaAprova"   	mandatory
+		#set "bb_periodicidadeRevisa" 	mandatory
+end
+    
+rule "enddate_invalid_[V]"
+
+	salience 10800
+	no-loop true
+
+	when
+		"startdate" is filled
+		"enddate" is filled
+		attribute comparison fulfilled: ":transient:" attr_value "startdate" "GREATER THAN" ":transient:" attr_value "enddate"
+
+	then
+		set "enddate" invalid
+		add "error" message "error.date.range.DBI" to "enddate"
+
+end
+           	                                                 
+rule "change_management relevant --> some fields more mandatory [I,V]"
+
+    salience 10700
+	no-loop true
+	
+    when
+   	    value comparison fulfilled: ":transient:" attr_value "reviewRelevant" "EQUALS" value "true"
+   	        
+	then
+        set "owner_group"          mandatory
+        set "activities"           mandatory
+        set "frequency"            mandatory
+        set "event_driven_allowed" mandatory
+        set "duration"             mandatory
+        set "startdate"            mandatory
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_bb_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "process"
+
+	then
+		set "bb_scope" 			visible
+		set "bb_deptManager" 	visible
+		set "bb_product" 		visible
+		set "bb_financcount"    visible
+		set "bb_scopeSelection" visible
+		set "bb_company" 		visible
+		set "bb_caminho"		visible
+		set "bb_caminho"		readonly
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_bb_product_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_product"
+
+	then
+		set "bb_codigoEstadoModal"   		visible
+		set "bb_inicioComercModalidade" 	visible
+		set "bb_fimComercModalidade" 		visible
+		set "bb_codAbragModalidade" 		visible
+		set "bb_indModalidadeTesouraria" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_bb_unidadeorg_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "orgunit"
+
+	then
+
+		set "bb_tipoUnidOrganizacional"						visible
+		set "bb_codigoTipologia"							visible
+		set "bb_sigla"										visible
+		#set "bb_relatedUserGroup"							visible
+		#set "bb_relatedUserGroup"							editable
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_bb_financialAccount_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "financialaccount"
+
+	then
+	    set "bb_tipoFinancialAccount"                    visible
+		set "bb_codIOR_contaContabil"                    visible		
+		set "bb_consolidado"                             visible
+		set "bb_eliminado"                               visible
+		set "bb_aglutinado"                              visible
+		set "bb_avalMaterialidadeContas"                 visible
+		set "bb_grauExposicao"                           visible
+		set "bb_suscetibFraude"                          visible
+		set "bb_avalQuantitativa"                        visible
+		set "bb_valBaseMaterialidade"                    visible
+		set "bb_percentAplicRiscoAlto"                   visible
+		set "bb_percentAplicRiscoMedio"                  visible
+		set "bb_classificacaoQuant"                  	 visible
+		set "bb_classificacaoQual"                  	 visible
+		set "bb_classificacaoFinal"                  	 visible
+		set "bb_dataBalancete"							 visible
+			
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "show_bb_icr_hierarchy_attributes_[I,V]"
+
+    salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_icr"
+
+	then
+		set "bb_deptManager" 				visible
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "show_bb_businessline_hierarchy_attributes_[I,V]"
+
+    salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_businessline"
+
+	then
+		set "bb_sigla" 				visible
+end
+                
+########################
+### BB CUSTOMIZATION ###
+rule "define_invisible_attributes_for_hierarchy_type_bb_uor_[I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "bb_tipoUnidOrganizacional" "CONTAINS" value "bb_uor"
+
+	then
+		set "bb_codigoUOR"									visible
+		set "bb_nomeUORReduzido"							visible
+		set "bb_codigoTipologia"							visible
+		set "bb_sigla"										visible
+		set "bb_prefixo"									visible
+		set "bb_emailUOR"									visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "define_invisible_attributes_for_hierarchy_type_bb_ior_[I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "bb_tipoUnidOrganizacional" "CONTAINS" value "bb_ior"
+
+	then
+		set "bb_codigoIOR" 					visible
+		set "bb_mapFreeSH2" 				visible
+		set "bb_fundoGarantiaInvest" 		visible
+		set "bb_eloParSA" 					visible
+		set "bb_previ" 						visible
+		set "bb_BB_USA_Hold" 				visible
+		set "bb_BB_Seguros_Part" 			visible
+		set "bb_TesouroNacional" 			visible
+		set "bb_BB_Leasing_Co" 				visible
+		set "bb_BB_BI" 						visible
+		set "bb_MapFreeSegurosGerais" 		visible
+		set "bb_BB" 						visible
+		set "bb_AcaoTesouroria" 			visible
+		set "bb_BB_mapFreeSH1" 				visible
+		set "bb_fundoFiscalInvEstab" 		visible
+		set "bb_BB_cartoesPart"			 	visible
+		set "bb_BB_AG" 						visible
+		set "bb_corPart" 					visible
+		set "bb_cxFIGarantConstNaval"  		visible
+		set "bb_BAMB" 						visible
+		set "bb_segPart" 					visible
+		set "bb_BB_DTVM" 					visible
+		set "bb_freeFloat" 					visible
+		set "bb_BNDESPar" 					visible
+		set "bb_emailUOR"					visible
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_hierarchy_applicationsystemtype_bb_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "applicationsystemtype"
+
+	then
+	    set "bb_codDependResp"     visible
+		set "bb_nomeDependResp"    visible
+		set "bb_codDivisaoResp"    visible
+		set "bb_codNucleoResp"     visible
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "show_bb_dicionarioDeRisco_hierarchy_attribute_[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "category"
+
+	then
+		set "bb_dicionarioDeRisco" 	visible
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "show_applicationsystemtype_hierarchy_attributes_[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "applicationsystemtype"
+
+	then
+		set "bb_deptManager" 	visible
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_hierarchy_unitorg_bb_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "orgunit"
+
+	then
+        set "bb_codigoIOR"		 		 				 invisible
+		set "bb_codigoMCI"				 				 invisible
+		set "bb_mapFreeSH2"			 	     			 invisible
+		set "bb_fundoGarantiaInvest"		    	 	 invisible
+		set "bb_eloParSA"				 				 invisible
+		set "bb_previ"		 		 					 invisible
+		set "bb_BB_USA_Hold"		 		 			 invisible
+		set "bb_BB_Seguros_Part"		 		 		 invisible
+		set "bb_TesouroNacional"		 		 		 invisible
+		set "bb_BB_Leasing_Co"		 		 			 invisible
+		set "bb_BB_BI"		 		 					 invisible
+		set "bb_MapFreeSegurosGerais"		 		  	 invisible
+		set "bb_BB"		 		 			    		 invisible
+		set "bb_AcaoTesouroria"		 	    			 invisible
+		set "bb_BB_mapFreeSH1"		 		 			 invisible
+		set "bb_fundoFiscalInvEstab"		 		 	 invisible
+		set "bb_BB_cartoesPart"	 		 	    		 invisible
+		set "bb_BB_AG"		 		 					 invisible
+		set "bb_corPart"		 		 				 invisible
+		set "bb_cxFIGarantConstNaval"		 		 	 invisible
+		set "bb_BAMB"		 		 					 invisible
+		set "bb_segPart"		 		 				 invisible 
+		set "bb_BB_DTVM"		 		 				 invisible
+		set "bb_freeFloat"		 		 				 invisible
+		set "bb_BNDESPar"		 		 				 invisible
+		set "bb_codigoUOR"		 		 				 invisible
+		set "bb_codigoIORassocia"		 		 		 invisible
+		set "bb_nomeUORReduzido"		 		 		 invisible
+		set "bb_codigoTipologia"		 		 		 invisible
+		set "bb_sigla"		 		 					 invisible
+		set "bb_prefixo"		 		 				 invisible
+		set "bb_ior"									 invisible
+		set "bb_uor"									 invisible
+		set "bb_emailUOR"								 invisible
+		
+		
+end
+
+rule "hide_tester_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "tester"
+
+	then
+		set "tester" visible
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide_bb_bb_icr_attributes_[I,V]"
+
+    salience 10600
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_icr"
+
+	then
+		set "bb_notaTecnicaAprova"						 visible
+		set "bb_periodicidadeRevisa"				     visible
+		set "bb_tipoFatorControle"						 visible
+		set "bb_participacaoCalculoCapital"			  	 visible
+		set "bb_valorLimiteCritico"						 visible
+		set "bb_dataFimValidFator" 						 visible
+		set "bb_valorLimiteInferior"					 visible
+		set "bb_valorLimiteSuperior"					 visible
+		set "bb_metodoAgregacao"						 visible
+		set "bb_metodoPrevisao"							 visible
+		set "bb_estadoRegControl"						 visible
+		set "bb_mesesParaTotalizacao" 					 visible
+		set "bb_codClassifFatorContrInt"				 visible
+		set "bb_valFatorContrApurado"					 visible
+		set "bb_numRecomendRisco"						 visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "show_bb_product_hierarchy_attributes_[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_product"
+
+	then
+		set "bb_deptManager" 	visible
+
+end
+
+rule "hide_hnumber[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	     ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "process" OR	    
+           value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "financialaccount" OR
+           value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "category" )
+	then
+		set "hnumber"  visible				
+end
+
+rule "hide_bb_nivel[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "process"
+	then
+		set "bb_nivel"      visible
+		set "bb_riskfactor" visible				
+end
+
+rule "hide_bb_finaccountAssertions[I,V]"
+
+    salience 10500
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "financialaccount"
+
+	then
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_finaccountAssertions"		visible
+
+end
+
+rule "hide signoff adn so_owner_[I,V]"
+
+    salience 10400
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "category" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "applicationsystemtype" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_product" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "tester" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "financialaccount" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_businessline" OR
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_icr"
+
+	then
+		set "signoff" invisible
+		set "so_owner" invisible
+
+end
+
+#complementary rule to "hide_signoff_[I,V]"
+rule "mark_signoff_mandatory_[I,V]"
+
+    salience 10300
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "category" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "applicationsystemtype" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "bb_product" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "tester" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "financialaccount" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "bb_businessline" AND
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "bb_icr"
+
+	then
+		set "signoff" mandatory
+
+end
+
+rule "set all attributes readonly for hierarchyowner [I,V]"
+
+    salience 10100
+	no-loop true
+
+	when
+        user has at object role "hierarchyowner"
+
+	then
+		set "owner_group"              readonly
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_scope"		 		   		readonly
+		set "bb_deptManager" 		   		readonly
+		set "bb_product" 			   		readonly
+		set "bb_scopeSelection" 	   		readonly
+		set "bb_finaccountAssertions" 	   	readonly
+		set "bb_codDependResp"     			readonly
+		set "bb_nomeDependResp"    			readonly
+		set "bb_codDivisaoResp"    			readonly
+		set "bb_codNucleoResp"     			readonly
+		set "bb_codigoEstadoModal" 	    	readonly
+		set "bb_inicioComercModalidade" 	readonly
+		set "bb_fimComercModalidade" 		readonly
+		set "bb_codAbragModalidade" 		readonly
+		set "bb_indModalidadeTesouraria" 	readonly
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "set all attributes readonly for test manager and signoff manager [I,V]"
+
+    salience 10100
+	no-loop true
+
+	when
+        user has in_general role "testmanager" OR
+        user has in_general role "signoffmanager"
+
+	then
+		set "name"                readonly
+		set "hnumber"             readonly
+		set "description"         readonly
+		set "signoff"             readonly
+		set "tester"              readonly
+		set "owner_group"         readonly
+		set "so_owner"            readonly
+		set "auditor"             readonly
+		set "objectguid"          readonly
+		set "objectlink"          readonly
+		set "model_name"          readonly
+		set "modelguid"           readonly
+		set "modellink"           readonly
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_scope"		 	  			readonly
+		set "bb_deptManager"	  			readonly
+		set "bb_product" 		  			readonly
+		set "bb_scopeSelection"   			readonly
+		set "bb_finaccountAssertions" 	   	readonly
+		set "bb_codDependResp"     			readonly
+		set "bb_nomeDependResp"    			readonly
+		set "bb_codDivisaoResp"    			readonly
+		set "bb_codNucleoResp"     			readonly
+		set "bb_codigoEstadoModal" 	    	readonly
+		set "bb_inicioComercModalidade" 	readonly
+		set "bb_fimComercModalidade" 		readonly
+		set "bb_codAbragModalidade" 		readonly
+		set "bb_indModalidadeTesouraria" 	readonly
+end
+
+
+rule "set children attributes readonly for test manager  [I,V]"
+	salience 10100
+	no-loop true
+
+	when
+        user has in_general role "testmanager"
+
+    then
+    	set "children" readonly
+end
+
+rule "test manager is only allowed to edit tester attribute [I,V]"
+
+    salience 10000
+	no-loop true
+
+	when
+        user has in_general role "testmanager"
+        value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "tester"
+
+	then
+		set "tester"			editable
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "name"              editable
+		set "description"       editable
+		
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "signoff manager is only allowed to edit signoff attribute [I,V]"
+
+    salience 10000
+	no-loop true
+
+	when
+        user has in_general role "signoffmanager"
+        ( value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "category" AND
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "applicationsystemtype" AND
+	      value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS NOT" value "bb_product")
+
+	then
+		set "signoff" 	editable
+		set "signoff" 	mandatory
+		set "so_owner"	editable
+		#set "so_owner"	mandatory
+
+end
+rule "from signoff manager value depend so_owner true [I,V]"
+
+	salience 9000
+	no-loop true
+	
+	when
+      user has in_general role "signoffmanager"
+   	  value comparison fulfilled: ":transient:" attr_value "signoff" "EQUALS" value "true"
+
+	then
+		set "so_owner"	mandatory
+				
+end		
+########################
+### BB CUSTOMIZATION ###
+rule "show_bb_riskfactor_hierarchy_attributes_[I,V]"
+
+   salience 10000
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "type" "CONTAINS" value "bb_riskfactor"
+
+	then
+		set "bb_riskFactorType" 	visible	    
+end

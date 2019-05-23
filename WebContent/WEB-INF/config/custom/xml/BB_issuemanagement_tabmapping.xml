@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<tabMapping id="issue" restrictionAttributeId="bb_issueType">
+       	<tTab page="1" id="issue" propertyKey="tab.issue.DBI" action="object.do?__commandId=cache&amp;__objectType=issue&amp;__formPage=1"  />
+       	<!-- 
+       	<tTab page="2" id="sadquestionnaire" propertyKey="tab.sad.questionnaire.DBI" action="object.do?__commandId=cache&amp;__objectType=issue&amp;__formPage=2" restrictionValue="6" access=""/>
+       	 -->
+		<tTab id="issues" propertyKey="tab.related.issues.DBI" action="list.do?__commandId=init&amp;__listName=RelatedIssues" objectType="ISSUE"/>
+		<tTab id="protocol" propertyKey="tab.protocol.DBI" action="object.do?__objectType=issue&amp;__commandId=protocol"/>
+	</tabMapping>
+</custom>

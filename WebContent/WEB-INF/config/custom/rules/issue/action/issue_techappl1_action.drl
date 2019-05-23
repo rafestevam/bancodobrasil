@@ -1,0 +1,276 @@
+package ISSUE_TECHAPPL1_ACTION_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+
+#################################################################
+### Workflow state "openForCreationExecutableIssueTechApprL1" ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and workflow state is 'openForCreationExecutableIssueTechApprL1' and bb_isTechSupportNeeded is 'true' --> attributes for issuetechapproverl1 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    is in workflow state "openForCreationExecutableIssueTechApprL1"
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_isTechSupportNeeded" "EQUALS" value "true"
+
+	then
+		
+		set "bb_techApproverL1_group" 	visible
+		set "bb_techApproverL1_status" 	visible
+		set "bb_techApproverL1_remark" 	visible
+		set "bb_techApproverL1" 		visible
+		
+		set "bb_techApproverL2_group" 	visible
+		set "bb_techApprover_orgunit" 	visible
+		
+		set "bb_techApproverL1_status" 	editable
+		set "bb_techApproverL1_remark" 	editable
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "ISSUE has been rejected by the techApproverL1 workflow state is 'openForCreationExecutableIssueTechApprL1' --> 'bb_techApproverL1_remark' is mandatory [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		is in workflow state "openForCreationExecutableIssueTechApprL1" 
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_techApproverL1_status" "CONTAINS" value "rejected"
+
+	then
+		
+		set "bb_techApproverL1_remark" 	mandatory
+end
+
+###############################################
+### All workflow states - after state rules ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set 'action' --> readonly attributes for issuetechapproverl1 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action" OR
+		  value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "tech_recommendation" )
+
+	then
+		
+		set "bb_mgmtApproverL1_group" 		visible
+		set "bb_mgmtApproverL1_status" 		visible
+		set "bb_mgmtApproverL1_remark" 		visible
+		set "bb_mgmtApproverL1" 			visible
+		set "bb_mgmtApproverL1_date"		visible
+		
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date"		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "bb_implApproverL1_group" 		visible
+		set "bb_implApproverL1_status" 		visible
+		set "bb_implApproverL1_remark" 		visible
+		set "bb_implApproverL1" 			visible
+		set "bb_implApproverL1_date"		visible
+		
+		set "bb_implApproverL2_group" 		visible
+		set "bb_implApproverL2_status" 		visible
+		set "bb_implApproverL2_remark" 		visible
+		set "bb_implApproverL2" 			visible
+		set "bb_implApproverL2_date"		visible
+		set "bb_implApprover_orgunit"		visible
+		
+		set "bb_isTechSupportNeeded" 		visible
+		set "remark"                  		visible
+		set "priority"                		visible
+		set "immediateMeasure"        		visible
+		set "bb_firstPlannedEndDate" 		visible
+		set "plannedenddate"          		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_projectServiceRequest" 		visible
+		set "bb_start_date"					visible
+		
+		set "bb_issueOrign"					visible
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and 'bb_isTechSupportNeeded' equals 'true' --> readonly attributes for issuetechapproverl1 [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_isTechSupportNeeded" "EQUALS" value "true"
+
+	then
+		
+		set "bb_techApproverL1_group" 		visible
+		set "bb_techApproverL1_status" 		visible
+		set "bb_techApproverL1_remark" 		visible
+		set "bb_techApproverL1" 			visible
+		set "bb_techApproverL1_date" 		visible
+		
+		set "bb_techApproverL2_group" 		visible
+		set "bb_techApproverL2_status" 		visible
+		set "bb_techApproverL2_remark" 		visible
+		set "bb_techApproverL2" 			visible
+		set "bb_techApproverL2_date" 		visible
+		set "bb_techApprover_orgunit" 		visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_mgmtApproverL1_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_mgmtApproverL1_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_mgmtApproverL1_status" 	invisible
+		set "bb_mgmtApproverL1_remark" 	invisible
+		set "bb_mgmtApproverL1" 		invisible
+		set "bb_mgmtApproverL1_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_mgmtApproverL2_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_mgmtApproverL2_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_mgmtApproverL2_status" 	invisible
+		set "bb_mgmtApproverL2_remark" 	invisible
+		set "bb_mgmtApproverL2" 		invisible
+		set "bb_mgmtApproverL2_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_implApproverL1_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_implApproverL1_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_implApproverL1_status" 	invisible
+		set "bb_implApproverL1_remark" 	invisible
+		set "bb_implApproverL1" 		invisible
+		set "bb_implApproverL1_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_techApproverL1_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_techApproverL1_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_techApproverL1_status" 	invisible
+		set "bb_techApproverL1_remark" 	invisible
+		set "bb_techApproverL1" 		invisible
+		set "bb_techApproverL1_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_techApproverL2_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_techApproverL2_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_techApproverL2_status" 	invisible
+		set "bb_techApproverL2_remark" 	invisible
+		set "bb_techApproverL2" 		invisible
+		set "bb_techApproverL2_date" 	invisible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'action' and bb_implApproverL2_status set to 'please_select' --> hide approver attributes for issuetechapproverl1 [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( user has at object role "issuetechapproverl1" OR
+		  user has in_general role "issuemanager" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "action"
+		value comparison fulfilled: ":transient:" attr_value "bb_implApproverL2_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_implApproverL2_status" 	invisible
+		set "bb_implApproverL2_remark" 	invisible
+		set "bb_implApproverL2" 		invisible
+		set "bb_implApproverL2_date" 	invisible
+		
+end

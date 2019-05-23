@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="migrationPlan" type="migrationElement">
+    <xs:annotation>
+        <xs:documentation>
+            Contains the migration plan. The Server consider this plan on startup and calculates a way to migrate
+            the found dbms schema (defined inside runtimeconfig.xml) to the current schema defined inside meta data (taken from objectTypes.xml)
+        </xs:documentation>
+    </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="migrationElement">
+      <xs:sequence>
+        <xs:element type="migrationAttributes" name="migration" maxOccurs="unbounded" minOccurs="1">
+          <xs:annotation>
+              <xs:documentation>
+                  the migration tag contains a migration element which stores all information to migrate form one schema version to another
+              </xs:documentation>
+          </xs:annotation>
+          </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+  <xs:complexType name="migrationAttributes">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+
+          <xs:attribute type="xs:string" name="name" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    name of the migration step will be logged into the db table A_SCHEMAPROPERTY_TBL
+                </xs:documentation>
+            </xs:annotation>
+            </xs:attribute>
+
+        <xs:attribute type="xs:string" name="source" use="required">
+          <xs:annotation>
+              <xs:documentation>
+                  define here the source version stored inside A_SCHEMAPROPERTY_TBL before this step is executed
+              </xs:documentation>
+          </xs:annotation>
+          </xs:attribute>
+
+        <xs:attribute type="xs:string" name="target" use="required">
+          <xs:annotation>
+              <xs:documentation>
+                  define here the target version which has to be stored inside A_SCHEMAPROPERTY_TBL after this step is executed
+              </xs:documentation>
+          </xs:annotation>
+          </xs:attribute>
+
+          <xs:attribute type="xs:string" name="approach" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    define here which approach the migration should follow.
+                    possible values are "rba" or "cba"
+                </xs:documentation>
+            </xs:annotation>
+            </xs:attribute>
+
+        <xs:attribute type="xs:string" name="implementation" use="required">
+          <xs:annotation>
+              <xs:documentation>
+                  define here where to find the migration source under config path extended with "migration":
+                  Code: Metadata.getMetadata().getConfigPath() + File.separator + "migration"
+              </xs:documentation>
+          </xs:annotation>
+          </xs:attribute>
+
+          <xs:attribute type="xs:boolean" name="fix" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    define here if the step is a fix for an existing step
+                </xs:documentation>
+            </xs:annotation>
+            </xs:attribute>
+
+
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+</xs:schema>

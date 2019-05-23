@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<!--
+			filter attributes for lists.
+			    * name clsNames are use in filtes*.xml
+			    * every mapping must implement IFilterAttribute, see IFilterAttribute JavaDoc for details, name clsNames are used in filtes*.xml
+		-->
+		<mappingType name="Filter">
+	        <!-- common -->
+	        <mapping name="testdefinitionEnumFilterBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.testmanagement.TestdefinitionEnumFilterAttributeBB"/>
+	        <mapping name="testdefinitionStringFilterBB"	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.testmanagement.TestdefinitionStringFilterAttributeBB"/>
+	        <mapping name="count"						        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.testmanagement.ExistFilterAttribute"/>
+	    </mappingType>
+
+
+	</blClassMapping>
+</custom>

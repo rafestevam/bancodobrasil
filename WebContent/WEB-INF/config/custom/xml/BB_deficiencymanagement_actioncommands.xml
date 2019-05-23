@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<actionCommands>
+		<objectTypeCommands>
+			<commandSet name="deficiency">
+				<actionCommand commandId="cache" 			clsName="com.idsscheer.webapps.arcm.ui.components.deficiencymanagement.actioncommands.DeficiencyCacheActionCommandBB"/>
+			</commandSet>
+		</objectTypeCommands>
+		<evaluationCommands>
+			<!-- statistic -->
+			<commandSet name="deficiencyStatistic">
+            	<actionCommand commandId="report"       clsName="com.idsscheer.webapps.arcm.ui.components.deficiencymanagement.actioncommands.DeficiencyStatisticArisReportActionCommandBB" />
+        	</commandSet>
+		</evaluationCommands>
+	</actionCommands>
+</custom>

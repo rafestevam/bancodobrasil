@@ -1,0 +1,875 @@
+
+.ARCM_FORM {
+
+    color:              #555555;
+    font-style:         normal;
+    font-variant:       normal;
+    font-size:          14px;
+    margin-left:        20px;
+    margin-right:       20px;
+    z-index:            1;      /* "below" the main form toolbar */
+}
+
+.ARCM_FORM_CONTENT {
+    max-width:          100%;
+}
+
+.ARCM_FORM_CONTENT a {
+    text-decoration: none;
+    color: #555555;
+}
+
+.ARCM_FORM_CONTENT a.DEACTIVATED {
+    text-decoration:line-through;
+}
+
+.ARCM_FORM_CONTENT a span,
+.ARCM_FORM_CONTENT a div{
+    vertical-align: middle;
+    padding-left: 5px;
+    text-decoration: underline;
+}
+
+.ARCM_FORM_CONTENT a:hover span, .ARCM_FORM_CONTENT a:active span,
+.ARCM_FORM_CONTENT a:hover div, .ARCM_FORM_CONTENT a:active div{
+    color: #158eb7;
+    text-decoration: underline;
+}
+
+.contentfont {
+    font-size:          14px;
+    font-weight:        400;
+}
+
+.NO_BORDER {
+    border: 0 none;
+}
+.NO_MARGIN  {
+    margin: 0;
+}
+.NO_PADDING  {
+    padding: 0;
+}
+
+/* =======================================  info, warning, error, messages   ======================================== */
+
+.NOTIFICATION_SIZES_ATTR {
+    padding:            2px 4px !important;
+    border-radius:      2px;
+    font-size:          12px;
+}
+
+.NOTIFICATION_SPACER {
+    height: 5px;
+}
+
+.NOTIFICATION_SAVE_MESSAGE {
+    z-index:     20;
+    position:    fixed;
+    width:       95%;
+    margin-left: 20px;
+    margin-top:  48px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* ==============================================   Toolbar  ====================================== */
+
+.ARCM_FORM .TOOLBAR_BUTTON_SPACER {
+    vertical-align: middle;
+}
+
+.TOOLBAR_BUTTON img a:hover,
+.TOOLBAR_BUTTON img a,
+.TOOLBAR_BUTTON img,
+.TOOLBAR_BUTTON {
+    width:  16px;
+    height: 16px;
+    border: 1px;
+    top: 0;
+}
+
+/** fix image position of image icons in toolbar **/
+.ARCM_FORM .TOOLBAR .TOOLBAR_BUTTON > img,
+.ARCM_FORM .TOOLBAR  img.INACTIVE {
+    vertical-align: bottom;  
+    margin-bottom: 2px;
+}
+
+.ARCM_FORM .MAIN_TOOLBAR {
+    vertical-align:     middle;
+    height:             36px;
+    padding-left:       4px;
+    background-color:   #F8F8F8;
+    width:              100%;
+}
+
+/* no underlines for toolbar anchors */
+.ARCM_FORM .MAIN_TOOLBAR a {
+    padding: 0 6px;
+    text-decoration: none;
+}
+.ARCM_FORM .MAIN_TOOLBAR a span {
+    text-decoration: none;
+}
+
+.ARCM_FORM .MAIN_TOOLBAR td {
+    border-bottom: 1px solid #E8E8E8;
+    padding-top: 1px;
+}
+
+.ARCM_FORM .TOOLBAR {
+    vertical-align:     middle;
+    text-align: left;
+    min-height:         28px;
+    height:             28px;
+    background-color:   #EAEAEA;
+    background-image:   url(../images/icons/backgroundHatching.png);
+}
+
+.ARCM_FORM .TOOLBAR .TOOLBAR-RELATION-CONNECTION {
+    padding-left:       4px;
+}
+
+.ARCM_FORM table.TOOLBAR td,
+.ARCM_FORM table.TOOLBAR td.BUTTON,
+.ARCM_FORM table.TOOLBAR a img {
+    padding:        5px;
+}
+
+.ARCM_FORM table.MAIN_TOOLBAR a img {
+    padding:        5px;
+}
+
+/* main toolbar anchors have never an underline */
+.ARCM_FORM table.MAIN_TOOLBAR a span {
+    font-size:      12px;
+    text-decoration: none;
+}
+
+/* fixed main toolbar on forms */
+.FIXED {
+    position:           fixed;
+    background-color:   #FFFFFF;
+    width:              100%;
+    margin-left:        0;
+    padding-left:       20px;
+    z-index:            2;      /* "atop" the form content */
+}
+
+/* ==============================================   form layout ======================================  */
+
+.ARCM_FORM .ATTR_LABEL_WIDTH {
+    min-width:        220px;
+    width:            20%;
+}
+
+.ARCM_FORM .ATTR_MANDATORY_WIDTH {
+    width:            20px;
+    min-width:        20px;
+    max-width:        20px;
+}
+
+.ARCM_FORM .ATTR_VALUE_WIDTH {
+    width:            77%;
+}
+
+.ARCM_FORM .RELATION_ATTR_VALUE_WIDTH {
+    width:            100%;
+    max-width:        100%;
+}
+
+/* ==============================================   version & role selection   ====================================== */
+
+.ARCM_FORM .FORM_HEADER_TABLE {
+    background-color: #F2F2F2;
+    background-image: url(../images/icons/backgroundHatching.png);
+    height: 32px;
+    width:  100%;
+}
+
+.ARCM_FORM .FORM_HEADER_LABEL {
+    text-align:       right;
+    padding:          4px 0;
+}
+
+.ARCM_FORM .FORM_HEADER_BUTTON {
+    padding:          4px 0 4px 6px;
+}
+
+.ARCM_FORM .FORM_HEADER_DATE,
+.ARCM_FORM .FORM_HEADER_VERSION,
+.ARCM_FORM .FORM_HEADER_ROLE {
+    text-align:       left;
+    font-weight:      normal;
+    padding:          4px 4px 4px 6px;
+}
+
+.ARCM_FORM .FORM_HEADER_DATE {
+    color: #909090;
+}
+
+.ARCM_FORM .FORM_HEADER_MESSAGE {
+    text-align:       right;
+    font-weight:      normal;
+    padding:          4px 4px;
+    color:            #7F9DB9;
+    padding-right:    10px;
+}
+
+.ARCM_FORM .HEADER_BUTTON_WIDTH {
+    width:          40px;
+    min-width:      40px;
+    max-width:      40px;
+}
+
+.ARCM_FORM .HEADER_ROLE_WIDTH {
+    width:            260px;
+    min-width:        260px;
+    max-width:        260px;
+}
+
+.ARCM_FORM .HEADER_SELECTION a span {
+    text-decoration: none;
+}
+
+.ARCM_FORM .HEADER_VERSION_WIDTH {
+    width:            50px;
+    min-width:        50px;
+    max-width:        50px;
+}
+
+.ARCM_FORM .HEADER_DATE_WIDTH {
+    width:            200px;
+    min-width:        200px;
+    max-width:        200px;
+}
+
+/* ==============================================   form content   ====================================== */
+
+.ATTR_LABEL_COLUMN {
+    min-height:     36px;
+    height:         36px;
+}
+
+.ATTR_MARK_NOT_MANDATORY_COLUMN,
+.ATTR_MARK_MANDATORY_COLUMN {
+}
+
+.ATTR_MARK_MANDATORY_COLUMN {
+    background-image: url(../images/iconlib/icons/misc/required_16.png);
+    background-repeat:   no-repeat;
+    background-position: -1px 0.5px;
+}
+
+.ATTR_MARK_RECOMMENDEDMANDATORY_COLUMN {
+    background-image: url(../images/iconlib/icons/misc/recommended_16.png);
+    background-repeat:   no-repeat;
+    background-position: -1px 0.5px;;
+}
+
+.CONTENT_ATTR_DATA_WRITE {
+    min-height:     36px;
+    height:         36px;
+    vertical-align: middle;
+    padding-top:    5px;
+    padding-bottom: 5px;
+    padding-left:   6px;
+}
+
+.CONTENT_ATTR_DATA_READ {
+    min-height:     36px;
+    height:         36px;
+    vertical-align: middle;
+    padding-top:    5px;
+    padding-bottom: 5px;
+    padding-left:   6px;
+}
+
+.ARCM_FORM .ATTRIBUTE_ROW {
+    font-size:      14px;
+    font-weight:    normal;
+}
+
+.ARCM_FORM .ATTRIBUTE_ROW:hover {
+    background-color: #f8f8f8;
+}
+
+.ARCM_FORM .ATTRIBUTE_ROW .fieldEditSelected {
+    vertical-align: top;
+    padding: 5px 0 0 0;
+}
+
+.ARCM_FORM .CONTENT_ATTR_LABEL_ERROR,
+.ARCM_FORM .CONTENT_ATTR_LABEL_WRITE,
+.ARCM_FORM .CONTENT_ATTR_LABEL_READ {
+    font-size:      14px;
+    font-weight:    normal;
+    text-align:     right;
+    vertical-align: top;
+    min-height:     36px;
+    height:         36px;
+    padding-top:    9px;
+}
+
+.ARCM_FORM .CONTENT_ATTR_LABEL_READ {
+    color:  #909090;
+}
+
+.ARCM_FORM .CONTENT_ATTR_LABEL_ERROR {
+    color:  #ff4444;
+}
+
+.ARCM_FORM .CONTENT_ATTR_LABEL_WRITE {
+    color:  #909090; /*#555555;*/
+}
+
+.ATTR_DATA_TABLE {
+    width: 100%;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.ATTR_DATA_TABLE td,
+.ATTR_DATA_TABLE th,
+.ATTR_DATA_TABLE tr {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+/* attribute values */
+
+.w100 {
+    width: 100%;
+    min-width: 400px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+
+.w80 {
+    width: 400px;
+    padding-left: 4px;
+}
+
+.w75 {
+    width: 374px;
+    margin-left: 4px;
+}
+
+.w50 {
+    width: 200px;
+    padding-left: 4px;
+}
+
+.ARCM_FORM table.anchor td.anchor_image {
+    padding-right: 4px;
+    vertical-align: top;
+    width: 18px;
+}
+.ARCM_FORM table.anchor td.anchor_text {
+    vertical-align: top;
+    width:100%;
+}
+
+.ARCM_FORM a table.anchor:hover td {
+    color: #158eb7;
+}
+
+.ARCM_FORM table.anchor td {
+    width: 0px;
+    border: 0px;
+    padding: 0px 2px 0px 0px;
+    margin: 0px;
+    text-align: left;
+}
+
+.ARCM_FORM select {
+    min-width: 300px;
+}
+
+/* ==== error values === */
+
+.ERROR select,
+.ERROR textarea,
+.ERROR input{
+    color:        #555555;
+    border:       1px solid #ff4444;
+}
+
+/* ==============================================   relation  ====================================== */
+
+.ARCM_FORM .DATA .RELATION .TOOLBAR,
+.ARCM_FORM .ARIS_RELATION_FORM .DATA tr.LINE .RELATION .TOOLBAR,
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM .BUTTON_HEADER {
+    background-color:   #f2f2f2;
+    background-image:   url(../images/icons/backgroundHatching.png);
+    vertical-align:     middle;
+    min-height:         28px;
+}
+
+.ARCM_FORM .RELATION td.TOOLBAR a,
+.ARCM_FORM .RELATION td.TOOLBAR img,
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM th.TOOLBAR a,
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM th.TOOLBAR img {
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+.ARCM_FORM .RELATION td.TOOLBAR a img,
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM th.TOOLBAR a img {
+    padding-bottom: 3px;
+}
+
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM .ELEMENT_CHECKBOX {
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+.RELATION {
+    width: 100%;
+}
+
+.RELATION_ELEMENT {
+    padding-top: 4px;
+    font-size: 12px; /*ACR-2735*/
+}
+
+.RELATION_ELEMENT table.NOTIFICATION_SIZES_ATTR {
+    margin-top: 4px;
+}
+
+.RELATION_BUTTON_ELEMENT {
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.ARCM_FORM .RELATION_SELECTION_COLUMN {
+    width:        26px;
+    max-width:    26px;
+    padding-left: 6px;
+}
+
+.ARCM_FORM .RELATION_BUTTONS_COLUMN {
+    text-align: right;
+}
+
+.ARCM_FORM .EVEN {
+    background-color: transparent;
+}
+
+.ARCM_FORM .ODD {
+    /* background-color: #F8F8F8; */
+}
+
+.ARCM_FORM .deactivated {
+    text-decoration:line-through;
+    color:yellow;
+}
+
+.ARCM_FORM .DATA .RELATION a.deactivated:hover {
+    text-decoration:line-through;
+    color:#009dce;
+}
+
+.ARCM_FORM .ARCM_RELATION_CONNECTION_FORM {
+    margin-top: 5px;
+}
+
+
+/* ==============================================   separators   ====================================== */
+
+td.VERSION_TO_FORM_SEPARATOR {
+    height: 20px;
+    /*margin:     5px -10px 5px 20px;*/
+}
+
+/* used to separate relation attributes */
+hr.CONTENT_RELATION_SEPARATOR {
+    border :    none;
+    border-top: 1px dotted #736B63;
+    height:     1px;
+    margin:     5px -10px 5px 20px;
+}
+
+/* used to attribute groups (forms.xml configuration) */
+hr.CONTENT_ROW_GROUP_SEPARATOR {
+    border :    none;
+    border-top: 1px dotted #736B63;
+    height:     1px;
+    margin:     20px 0 20px 10px
+}
+
+hr.CONTENT_ROW_GROUP_EMPTY_SEPARATOR {
+    border :    none;
+    border-top: 1px;
+    height:     1px;
+    margin:     20px 0 20px 10px
+}
+
+hr.CONTENT_GROUP_SEPARATOR {
+    border :    none;
+    border-top: 1px dotted #736B63;
+    height:     1px;
+    margin:     20px 0 20px 10px
+}
+
+.CONTENT_ROW_GROUP_TITLE {
+    color:          #158eb7;
+    font-size:      16px;
+    text-align:     left;
+    vertical-align: top;
+    padding:        2px 10px 18px 20px
+}
+
+.CONTENT_GROUP_TITLE {
+    color:          #158eb7;
+    font-size:      23px;
+    text-align:     left;
+    vertical-align: top;
+    padding:        2px 10px 14px 20px
+}
+
+
+
+.ARCM_FORM .ARIS_CXN_TITLE {
+    text-align:     left;
+    font-size:      14px;
+}
+
+.ARCM_FORM .ATTRIBUTE_ROW {
+    font-size:      14px;
+    font-weight:    normal;
+    padding-top:    15px;
+    color:          #555555;
+}
+
+.ARCM_FORM .ROWHEADER,
+.ARCM_FORM .ELEMENTHEADER {
+    width:          250px;
+}
+
+.ARIS_FORM_PROTOCOL .PROTOCOL_ELEMENTHEADER,
+.ARIS_FORM_PROTOCOL .PROTOCOL_ROWHEADER,
+.ARCM_FORM .ROWHEADER,
+.ARCM_FORM .ELEMENTHEADER {
+    font-size:      14px;
+    font-weight:    normal;
+    vertical-align: top;
+    text-align:     left;
+    min-height:     30px;
+    padding-top:    4px;
+    padding-bottom: 4px;
+    background-color: #f2f2f2;
+    background-image:   url(../images/icons/backgroundHatching.png);
+
+}
+
+/**  ======================================= renderer specific styles =============================================  **/
+
+.ARCM_FORM  .TEXTAREA_WRITE {
+    padding-right: 20px;
+}
+
+.ARCM_FORM .ENUM_MULTIPLE_READ {
+}
+
+.ARCM_FORM td.USERSUBSTITUTE_READ {
+    padding-left: 6px;
+}
+
+.ARCM_FORM .ENUM_ITEM {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    padding-top: 1px;
+}
+
+.ARCM_FORM .ENUM_ICON {
+}
+
+.ARCM_FORM .HTML_READ {
+    padding-top: 4px;
+}
+
+.ARCM_FORM .ANCHOR_READ a span,
+.ARCM_FORM .ANCHOR_READ a div{
+    vertical-align: top;
+}
+
+.ARCM_FORM .ICON {
+    padding-right: 6px;
+    vertical-align: middle;
+}
+
+.ARCM_FORM .CLIENTSIGN_READ img,
+.ARCM_FORM .CLIENTSIGN_WRITE img {
+    vertical-align: middle;
+}
+.ARCM_FORM td.CLIENTSIGN_WRITE {
+    padding-top: 3px;
+}
+
+td.BOOLEAN_WRITE input.radio {
+    min-height: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    height: inherit;
+}
+
+.ARCM_FORM td.BOOLEAN_WRITE {
+    padding-top: 4px;
+}
+
+.ARCM_FORM td.BOOLEAN_READ img {
+    position:relative;
+    top:3px;
+}
+
+.ARCM_FORM td.DOCLINK_LINKTYPESELECTION {
+    padding-top: 6px;
+    padding-left: 6px;
+}
+
+.ARCM_FORM .CONTENT_ATTR_DATA_RELATION_WRITE {
+    padding-top: 5px;
+}
+
+.ARCM_FORM td.LABEL_READ,
+.ARCM_FORM td.LABEL_WRITE {
+    text-align: right;
+}
+
+.ARCM_FORM td.MODELLINK_READ img {
+    padding-right: 8px;
+}
+.ARCM_FORM td.MODELLINK_WRITE img {
+    padding-right: 8px;
+}
+
+.ARCM_FORM td.MODELLINK_WRITE .w80 {
+    width: 376px;
+}
+
+.ARCM_FORM .CELL_SEPARATOR input {
+    margin: 1px 0;
+}
+
+.ARCM_FORM td.CHECKBOX_WRITE input {
+    position: relative;
+    top:5px;
+    margin-right:4px;
+}
+
+.ARCM_FORM div.colorTextDiv {
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px
+}
+
+.ARCM_FORM div.colorTableDiv {
+    padding-left: 20px;
+}
+
+.ARCM_FORM table.colorTable {
+    table-layout: fixed;
+}
+
+.ARCM_FORM table.colorTable td.colorCell {
+    border: 1px solid #FFFFFF;
+}
+
+.ARCM_FORM table.colorTable td.empty {
+    background-image: url(../images/empty_color.png);
+    background-repeat: repeat;
+}
+
+.ARCM_FORM table.colorTable td.y-axis {
+    /*border-right: 1px solid #000000;*/
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    word-wrap: break-word;
+}
+
+.ARCM_FORM table.colorTable td.x-axis {
+    /*border-top: 1px solid #000000;*/
+    vertical-align: top;
+    padding-top: 4px;
+    text-align: center;
+    word-wrap: break-word;
+    text-overflow:ellipsis;
+    max-height:150px;
+}
+
+/**  ========= ROW CONTENT =========  **/
+
+.ARCM_RELATION_FORM {
+    margin-top: 5px;
+}
+
+.ARCM_RELATION_DIV {
+    margin-top: 5px;
+}
+
+.RELATION_ATTR_LABEL_COLUMN {
+    font-weight:    normal;
+    font-size:      14px;
+    text-align:     left;
+    padding-right:  5px;
+
+}
+
+.ARCM_RELATION_FORM .w50,
+.ARCM_RELATION_CONNECTION_FORM .w50,
+.ARCM_RELATION_FORM .w80,
+.ARCM_RELATION_CONNECTION_FORM .w80,
+.ARCM_RELATION_FORM .w100,
+.ARCM_RELATION_CONNECTION_FORM .w100 {
+    width: 200px;
+}
+
+.ARCM_FORM .RELATION_TOOLBAR {
+    margin-left:30px;
+    top:-3px;
+}
+
+.RELATION_ELEMENT_SEPARATOR {
+    border-bottom:  1px dotted #F2F2F2;
+}
+
+.ARCM_FORM .ARIS_RELATION_FORM .ROWHEADER input.radio {
+    top:3px;
+}
+
+.ELEMENT_MANDATORY {
+    background-image: url(../images/iconlib/icons/misc/required_16.png);
+    background-position: top left;
+    background-repeat:no-repeat;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+/** SPECIAL STYLES FOR CONTENT CREATED BY RELATION RENDERER **/
+
+.RELATION .EVEN ,
+.RELATION .ODD {
+    background-color: transparent;
+    border-bottom:  1px dotted #F2F2F2;
+}
+
+/** remove bottom line from last row  **/
+.RELATION .EVEN:last-child, .RELATION .ODD:last-child {
+    border-bottom: 0;
+}
+
+.RELATION .EVEN > td, .RELATION .ODD > td {
+    padding: 6px 6px 6px 6px;
+}
+
+.RELATION .RELATION_SELECTION_COLUMN input.radio {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 0;
+    vertical-align: top;
+}
+
+
+
+
+.RELATION .EVEN:hover,
+.RELATION .ODD:hover {
+    background-color: #EAEAEA;
+}
+
+.EVEN .RELATION_BUTTONS_COLUMN > a,
+.ODD .RELATION_BUTTONS_COLUMN > a,
+.EVEN .RELATION_BUTTONS_COLUMN > img,
+.ODD .RELATION_BUTTONS_COLUMN > img,
+.EVEN .RELATION_BUTTONS_COLUMN > span,
+.ODD .RELATION_BUTTONS_COLUMN > span{
+    visibility: hidden;
+    margin-right: 8px;
+}
+
+.EVEN:hover .RELATION_BUTTONS_COLUMN > a,
+.ODD:hover .RELATION_BUTTONS_COLUMN > a,
+.EVEN:hover .RELATION_BUTTONS_COLUMN > img,
+.ODD:hover .RELATION_BUTTONS_COLUMN > img,
+.EVEN:hover .RELATION_BUTTONS_COLUMN > span,
+.ODD:hover .RELATION_BUTTONS_COLUMN > span{
+    visibility: visible;
+}
+
+.ARCM_FORM .DATA .RELATION .TOOLBAR {
+    background-color:   #f2f2f2;
+    padding:            0 0 5px 5px;
+    vertical-align:     middle;
+    min-height:         28px;
+}
+
+.ARCM_FORM .DATA .RELATION a {
+    text-decoration:underline;
+    color:#009dce;
+}
+
+.ARCM_FORM .DATA .RELATION a:hover {
+    text-decoration:underline;
+    color:#009dce;
+}
+
+.ARCM_FORM .DATA .RELATION a.deactivated {
+    text-decoration:line-through;
+    color:gray;
+}
+
+.ARCM_FORM .DATA .RELATION a.deactivated:hover {
+    text-decoration:line-through;
+    color:#009dce;
+}
+
+.ARCM_FORM_CONTENT .RELATION a span,.ARCM_FORM_CONTENT .RELATION a div {
+    vertical-align: top;
+}
+
+.ARCM_FORM_CONTENT .RELATION img {
+    padding-top: 3px;
+    padding-left: 1px;
+}
+
+.ARCM_FORM .ARIS_RELATION_FORM .DATA tr.LINE .RELATION .ODD td,
+.ARCM_FORM .ARIS_RELATION_FORM .DATA tr.LINE .RELATION .EVEN td,
+.ARCM_FORM .ARIS_RELATION_FORM .DATA tr.LINE .RELATION td {
+    border: 0 none;
+}
+
+.ARCM_FORM_CONTENT .CHILD_READ_ONLY_RELATION img {
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+
+/* ============================ version selection ================================*/
+.POPUP_VERSION_SELECT_BACKGROUND {
+    background-color: #F8F8F8;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.ARCM_FORM .CELL_SEPARATOR {
+    /*
+    padding-top:5px;
+    */
+}
+
+.ARCM_FORM .FORM_HEADER_BUTTON a {
+    opacity: 0.75;
+}
+
+.ARCM_FORM .FORM_HEADER_BUTTON a:hover {
+    opacity: 0.95;
+}

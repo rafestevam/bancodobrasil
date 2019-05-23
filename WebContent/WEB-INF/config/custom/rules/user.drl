@@ -1,0 +1,113 @@
+package USER_RuleSet
+expander user.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.administration.re.UserHelper;
+
+# OBJECT  client_objid       LONG       Client ID                                                                                                               
+# OBJECT  client_sign        CLIENTSIGN Client                                                                                                                  
+# OBJECT  create_date        DATE       Creation date                                                                                                           
+# OBJECT  creator_user_id    LONG       User ID (creator)                                                                                                       
+# OBJECT  delete_date        DATE       Deletion date                                                                                                           
+# OBJECT  guid               STRING     GUID                                                                                                                    
+# OBJECT  obj_id             LONG       ID                                                                                                                      
+# OBJECT  obj_type           OBJECTTYPE Object type                                                                                                             
+# OBJECT  root_guid          STRING     Root GUID                                                                                                               
+# OBJECT  versions           LONG       Number of versions                                                                                                      
+# VERSION aris_change_date   DATE       ARIS change date                                                                                                        
+# VERSION change_date        DATE       Change date                                                                                                             
+# VERSION change_type        ENUM       Change type                changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)
+# VERSION change_user_id     LONG       User ID (editor)                                                                                                        
+# VERSION deactivated        BOOLEAN    Deactivated                                                                                                             
+# VERSION id                 LONG       ID                                                                                                                      
+# VERSION substitute_user_id LONG       User ID (substitute)                                                                                                    
+# VERSION version_active     BOOLEAN    Current version                                                                                                         
+# VERSION version_number     LONG       Version number                                                                                                          
+# USER    description        TEXT       Description                                                                                                             
+# USER    email              STRING     E-mail                                                                                                                  
+# USER    first_name         STRING     First name                                                                                                              
+# USER    last_name          STRING     Last name                                                                                                               
+# USER    name               STRING     Name                                                                                                                    
+# USER    phone              STRING     Telephone                                                                                                               
+# USER    substitutes        LIST       Performed by (substitutes) to * USERs (LT=28)                                                                           
+# USER    userid             STRING     User ID                                                                                                                 
+# USER    visible            BOOLEAN    Visible                                                                                                                 
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+import com.idsscheer.webapps.arcm.common.util.guid.SystemGUID;
+
+rule "mark_substitutes_editable_for_own_user_or_sysadmin_or_client_admin_[I,V]"
+
+	salience 10100
+
+	no-loop true
+
+	when
+        user working on its own user object OR
+        user has in_general role "sysadmin" OR
+        user has in_general role "clientadmin"
+
+	then
+		set "substitutes" editable
+
+end
+
+# only relevant for XML import - must set the fields editable because they cannot be mandatory otherwise
+rule "mark_mandatory_fields_[I,V]"
+
+	salience 10000
+	no-loop true
+
+	when
+	    is in import mode
+
+	then
+	    set "userid"        editable
+        set "name"          editable
+        set "first_name"    editable
+        set "last_name"     editable
+        set "email"         editable
+
+		set "userid"        mandatory
+		set "name"          mandatory
+		set "first_name"    mandatory
+		set "last_name"     mandatory
+		set "email"         mandatory
+
+end
+
+rule "mark_email_editable_for_internal_users[I,V]"
+
+    salience 10000
+	no-loop true
+
+	when
+	    user has in_general role "sysadmin"
+        value comparison fulfilled: ":transient:" attr_value "visible" "EQUALS" value "false"
+
+	then
+        set "email"         editable
+        set "email"         mandatory
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "mark_name_editable_for_internal_users_and_only_to_job_user[I,V]"
+
+    salience 10000
+	no-loop true
+
+	when
+	    user has in_general role "sysadmin"
+        (value comparison fulfilled: ":transient:" attr_value "visible" "EQUALS" value "false" AND
+        value comparison fulfilled: ":transient:" attr_value "name" "EQUALS" value "Job User" AND
+        value comparison fulfilled: ":transient:" attr_value "userid" "EQUALS" value "jobUser")
+
+	then
+        set "name"         editable
+end

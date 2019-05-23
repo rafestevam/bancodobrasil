@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<arisreport reportID="ATBReport" format="EXCEL" datasourceType="VIEW" datasourceID="ATBReport_view">
+		<arisreportsection pageFormat="landscape">
+			<arisreporttable tableNameProperty="report.general.sheetname.datasheet">
+				
+				<arisreporttablerow>
+                    <arisreporttablecell absoluteWidth="50" colSpan="24" relativeWidth="50.0" >
+                        <arisreportoutput newLine="false" propertyKey="pdf.author" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" outputText=" - " styleID="reportheader"/>
+                        <arisreportoutput newLine="false" propertyKey="pdf.subject.atbreport.DBI" styleID="reportheader" />
+                    </arisreporttablecell>
+                    <arisreporttablecell absoluteWidth="30" styleID="reporttitle_dummy"/>
+                </arisreporttablerow>
+                
+                <arisreporttablerow>
+                    <arisreporttablecell absoluteWidth="50" colSpan="24" styleID="noborders"/>
+                </arisreporttablerow>
+				<arisreporttablerow>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.id.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.bb_issueType.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="30" propertyKey="tableheader.issue.atbreport.bb_issueOrign.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="30" propertyKey="tableheader.issue.name.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="30" propertyKey="tableheader.issue.atbreport.bb_codigoUOR_RIN1.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_codigoUOR.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="20" propertyKey="tableheader.issue.atbreport.responsible.DBI" styleID="header"/>
+<!-- 					<arisreporttablecell absoluteWidth="20" propertyKey="tableheader.issue.atbreport.issueDate" styleID="header"/> -->
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_creator_date.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="20" propertyKey="tableheader.issue.atbreport.issueDate" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_execStartDate.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.firstPlannedEndDate.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.plannedEndDate.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_execImplApprL1.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_execPlannedDays.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_execWorkedDays.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_execPercentDays.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.priority.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.stateTime.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_certification_date.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_isOverdueExecution.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_implApprL2ATB_date.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL1ATB_date.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL2ATB_date.DBI" styleID="header"/>
+					<arisreporttablecell absoluteWidth="15" propertyKey="tableheader.issue.atbreport.bb_mgmtApprL2ATB_status.DBI" styleID="header"/>
+				</arisreporttablerow>
+				
+				<arisreporttablerow dynamicContent="true">
+					<arisreporttablecell absoluteWidth="10" dataReference="IssueID"  styleID="default_list_data_left_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_issueType"  styleID="default_list_data_left_top"/>
+					<arisreporttablecell absoluteWidth="30" dataReference="bb_issueOrign" styleID="default_list_data_center_top" />
+					<arisreporttablecell absoluteWidth="30" dataReference="name"  styleID="default_list_data_left_top"/>
+					<arisreporttablecell absoluteWidth="20" dataReference="bb_mgmtApproverL1Group_codUOR"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="20" dataReference="bb_implApproverL1Group_codUOR"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="20" dataReference="bb_techApproverL1Group_codUOR"  styleID="default_list_data_center_top"/>
+<!-- 					<arisreporttablecell absoluteWidth="15" dataReference="create_date"  styleID="default_list_data_center_top"/> -->
+<!-- 					<arisreporttablecell absoluteWidth="15" dataReference="bb_execStartDate"  styleID="default_list_data_center_top"/> -->
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_creator_date"  styleID="default_list_data_center_top"/>					
+					<arisreporttablecell absoluteWidth="15" dataReference="create_date"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_execStartDate"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_firstPlannedEndDate"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="plannedenddate"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_conclusionDate"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_execPlannedDays"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_execWorkedDays"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_execPercentDays"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="priority"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="20" dataReference="stateTime"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_certification_date"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_isOverdueExecution"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_implApprL2ATB_date"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_mgmtApprL1ATB_date"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_mgmtApprL2ATB_date"  styleID="default_list_data_center_top"/>
+					<arisreporttablecell absoluteWidth="15" dataReference="bb_mgmtApprL2ATB_status"  styleID="default_list_data_center_top"/>
+				</arisreporttablerow>
+				<arisreporttablerow >
+                    <arisreporttablecell dataReference="~list_entry_counter" absoluteWidth="50" colSpan="24" styleID="list_entry_counter"/>
+                </arisreporttablerow>	
+			</arisreporttable>
+		</arisreportsection>
+	</arisreport>
+</custom>

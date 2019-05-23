@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<mappingType name="Command">
+			<mapping name="createDeficiency"                    	clsName="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.CreateDeficiencyCommandBB" />
+			<mapping name="deficiencyReactivateDependentTestcase"   clsName="com.idsscheer.webapps.arcm.bl.component.deficiencymanagement.commands.DeficiencyReactivateDependentTestcaseCommandBB" />
+			<mapping name="deficiencySetOperator"           		clsName="com.idsscheer.webapps.arcm.bl.component.deficiencymanagement.commands.DeficiencySetOperatorCommandBB"/>
+			<mapping name="deficiencyClearOperator"           		clsName="com.idsscheer.webapps.arcm.bl.component.deficiencymanagement.commands.DeficiencyClearOperatorCommandBB"/>
+		</mappingType>
+	</blClassMapping>
+</custom>

@@ -1,0 +1,452 @@
+package ISSUE_SAD_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+#######################################################
+### Workflow state "openForCreation" ###
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' --> set workflow actors mandatory for creator [I,V]"
+
+	salience 2060
+	no-loop true
+
+	when
+	    ( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" )
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+
+	then
+		
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date" 		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "remark"                  		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_probAndMagnitQst01" 		visible
+		set "bb_probAndMagnitQst02" 		visible
+		set "bb_probAndMagnitQst03" 		visible
+		set "bb_probAndMagnitQst04" 		visible
+		set "bb_probAndMagnitQst05" 		visible
+		set "bb_compControlsQst01" 			visible
+		set "bb_otherConsidQst01" 			visible
+		set "bb_otherConsidQst02" 			visible
+		set "bb_otherConsidQst03" 			visible
+		set "bb_otherConsidQst04" 			visible
+		set "bb_deficiencyGravityQst01" 	visible
+		
+		set "bb_mgmtApproverL2_group" 		editable
+		set "bb_mgmtApprover_orgunit"		editable
+		set "remark"                  		editable
+		set "bb_anotherImportantInfo" 		editable
+		set "bb_confidentialityLevel" 		editable
+		set "bb_probAndMagnitQst01" 		editable
+		set "bb_probAndMagnitQst02" 		editable
+		set "bb_probAndMagnitQst03" 		editable
+		set "bb_probAndMagnitQst04" 		editable
+		set "bb_probAndMagnitQst05" 		editable
+		set "bb_compControlsQst01" 			editable
+		set "bb_otherConsidQst01" 			editable
+		set "bb_otherConsidQst02"			editable
+		set "bb_otherConsidQst03" 			editable
+		set "bb_otherConsidQst04" 			editable
+		set "bb_deficiencyGravityQst01" 	editable
+		
+		set "bb_mgmtApproverL2_group" 		mandatory
+		set "remediationMeasure"       		not_mandatory
+		set "remediationMeasure"       		invisible
+		set "bb_confidentialityLevel" 		mandatory
+		set "bb_deficiencyGravityQst01" 	mandatory
+		
+		set "owners" 						invisible
+		set "owner" 						invisible
+		set "reviewers" 					invisible
+		set "reviewer" 						invisible
+		
+		set "bb_controlesCompensat"			visible
+		set "bb_controlesCompensat"			editable
+		
+		execute sad rules
+		
+		add object "information" message "info.issuemanagement.execution.phase.not.needed.INF"
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' 'bb_deficiencyGravityQst01' is filled [I,V]"
+
+	salience 2100
+	no-loop true
+
+	when
+	    ( is in workflow state "PREPARED" OR
+		  is in workflow state "openForCreation" )
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		  ( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"  )
+
+		"bb_deficiencyGravityQst01" is filled
+	then
+		check sad deficiency_gravity questions
+		
+		
+end
+
+#####################################################
+### Workflow state "openForCreationSADMgmtApprL2" ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+		( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+
+	then
+		
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date" 		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "remark"                  		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_probAndMagnitQst01" 		visible
+		set "bb_probAndMagnitQst02" 		visible
+		set "bb_probAndMagnitQst03" 		visible
+		set "bb_probAndMagnitQst04" 		visible
+		set "bb_probAndMagnitQst05" 		visible
+		set "bb_compControlsQst01" 			visible
+		set "bb_otherConsidQst01" 			visible
+		set "bb_otherConsidQst02" 			visible
+		set "bb_otherConsidQst03" 			visible
+		set "bb_otherConsidQst04" 			visible
+		set "bb_deficiencyGravityQst01" 	visible
+		
+		
+		set "remediationMeasure"       		not_mandatory
+		set "remediationMeasure"       		invisible
+		
+		set "owners" 						invisible
+		set "owner" 						invisible
+		set "reviewers" 					invisible
+		set "reviewer" 						invisible
+		
+		### BdB CUSTOMIZATION ###
+		set "bb_controlesCompensat"			visible
+		
+		add object "information" message "info.issuemanagement.execution.phase.not.needed.INF"
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst01' is 'true' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+	    # during creation the issue manager has the same rights as the creator
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "true" )
+
+	then
+		
+		set "bb_deficiencyGravityQst02" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst01' is 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst01" "EQUALS" value "false" )
+
+	then
+		
+		
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst02' is 'true' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst03" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst02' is 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst02" "EQUALS" value "false" )
+
+	then
+		
+		 
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst03' is 'true' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst03" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst04" 	visible
+		set "bb_defGravityRmrk04" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst03' is 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst03" "EQUALS" value "false" )
+
+	then
+		
+		
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst04' is 'true' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst04" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst05" 	visible
+		set "bb_defGravityRmrk05" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst04' is 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst04" "EQUALS" value "false" )
+
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst05' is 'true' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst05" "EQUALS" value "true" )
+
+	then
+	
+		set "bb_deficiencyGravityQst06" 	visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst05' is 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst05" "EQUALS" value "false" )
+
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+# rule engine needs to be executed when the attribute value of "bb_issueType" is changed.
+rule "bb_issueType set to 'sad' and workflow state is 'openForCreationSADMgmtApprL2' and 'bb_deficiencyGravityQst06' is 'true' or 'false' --> readonly attributes for creator [I,V]"
+
+	salience 2000
+	no-loop true
+
+	when
+	    ( is in workflow state "openForCreationSADMgmtApprL2" OR
+		  is in workflow state "creationSADClosedByMgmtApprL2" )
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		( value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad" AND
+		  ( value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst06" "EQUALS" value "true" OR
+		    value comparison fulfilled: ":transient:" attr_value "bb_deficiencyGravityQst06" "EQUALS" value "false") )
+	then
+	
+		set "bb_defGravitySuggResult" 		visible
+		set "bb_defGravityResult" 			visible
+		
+end
+
+###############################################
+### All workflow states - after state rules ###
+
+########################
+### BB CUSTOMIZATION ###
+rule "bb_issueType set to 'sad' and bb_mgmtApproverL2_status set to 'please_select' --> hide approver attributes [I,V]"
+
+	salience 1900
+	no-loop true
+
+	when
+		( object is opened by its creator OR
+		  user has in_general role "issuemanager" OR
+		  user is ":persistent:" member of group in list "bb_creators_group" )
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"
+		value comparison fulfilled: ":transient:" attr_value "bb_mgmtApproverL2_status" "CONTAINS" value "please_select"
+
+	then
+		
+		set "bb_mgmtApproverL2_status" 		invisible
+		set "bb_mgmtApproverL2_remark" 		invisible
+		set "bb_mgmtApproverL2" 			invisible
+		set "bb_mgmtApproverL2_date" 		invisible
+		
+		
+end

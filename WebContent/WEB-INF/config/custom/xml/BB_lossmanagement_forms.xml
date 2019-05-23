@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_INCIDENT">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        
+        <page id="incident" licensedComponentIds="il,in">
+            <rowGroup id="incident.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+            </rowGroup>
+            
+            <rowGroup id="incident.2" propertyKey="rowgroup.incident.incident2.DBI">
+            	<row id="obj_id" propertyKey="form.row.incident.id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>    
+                     
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row> 
+                
+                <row id="bb_tipoEvento">
+                    <element attribute.idref="bb_tipoEvento" />
+                </row>
+                
+                <row id="bb_jurisdDiretoria">
+                    <element attribute.idref="bb_jurisdDiretoria" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row> 
+                
+                <row id="bb_gestorPerda">
+                    <element attribute.idref="bb_gestorPerda" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                
+                <row id="bb_canal">
+                    <element attribute.idref="bb_canal" />
+                </row>                                                                                                       
+            </rowGroup>
+            
+            <rowGroup id="incident.3" propertyKey="rowgroup.incident.incident3.DBI">
+            	<row id="entryDate">
+                    <element attribute.idref="entryDate" />
+                </row>
+                
+            	<row id="discoveryDate" propertyKey="form.row.incident.discoveryDate.DBI">
+                	<element attribute.idref="discoveryDate" />
+                </row>
+                
+                <row id="bb_qtdeEventos_int">
+                    <element attribute.idref="bb_qtdeEventos_int" template="textField" />
+                </row>
+                
+                <row id="bb_qtdePerdasRelevantes_int">
+                    <element attribute.idref="bb_qtdePerdasRelevantes_int" template="textField"/>
+                </row>
+                
+                <row id="pendingLoss" propertyKey="form.row.incident.pendingLoss.DBI">
+                    <cell separator="{td}">
+                        <element attribute.idref="pendingLoss" >
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                        <element attribute.idref="currency"  name="pending_loss_currency"/>
+                    </cell>
+                </row>
+                
+                <row id="bb_vincOperacaoCred">
+                    <element attribute.idref="bb_vincOperacaoCred" />
+                </row>
+                <row id="bb_sobreposRiscoMercado">
+                    <element attribute.idref="bb_sobreposRiscoMercado" />
+                </row>
+                
+            </rowGroup>
+      
+            <rowGroup id="incident.4" propertyKey="rowgroup.incident.incident4.DBI">        
+                <row id="create_date" propertyKey="form.row.incident.create_date.DBI">
+                    <element attribute.idref="create_date" />
+                </row> 
+                 <row id="ownerRemark" propertyKey="form.row.incident.ownerRemark.DBI">
+                    <element attribute.idref="ownerRemark" />
+                </row>                        
+             </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_LOSS">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_INFORM_MANAGEMENT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        
+        <page id="loss" licensedComponentIds="il" >
+            <rowGroup id="loss.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+            </rowGroup>
+            
+            <rowGroup id="loss.2" propertyKey="rowgroup.loss.loss2.DBI">
+                <row id="incident" propertyKey="form.row.loss.relevant.incident.DBI">
+                    <element attribute.idref="incident">
+                        <parameter name="selectionList" value="loss2incident_sel"/>
+                    </element>
+                </row>
+                
+                <row id="type" propertyKey="form.row.loss.type.DBI">
+                    <element attribute.idref="type" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+
+				<row id="entryDate" propertyKey="form.row.loss.relevant.incident.entryDate.DBI">
+                    <element attribute.idref="entryDate" />
+                </row>
+				
+                <row id="occurrenceDate">
+                    <element attribute.idref="occurrenceDate" />
+                </row>                
+                              
+                <row id="bb_qtdeEventos_int">
+                    <element attribute.idref="bb_qtdeEventos_int" />
+                </row>
+                
+                <row id="bb_qtdePerdasRelevantes_int">
+                    <element attribute.idref="bb_qtdePerdasRelevantes_int" />
+                </row>
+                
+                 <row id="pendingLoss">
+                    <element attribute.idref="pendingLoss" />
+                </row>
+                
+            </rowGroup>
+            
+            <rowGroup id="loss.3" propertyKey="rowgroup.loss.loss3.DBI">
+            	<row id="obj_id" propertyKey="form.row.loss.obj_id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                
+                <row id="discoveryDate" propertyKey="form.row.loss.discoverydate.DBI">
+                    <element attribute.idref="discoveryDate" />
+                </row>
+                
+                <row id="grossTotalLoss" propertyKey="form.row.loss.grossTotalLoss.DBI">
+                    <element attribute.idref="grossTotalLoss" template="stringEnum">
+                        <parameter name="enumProperty" value="currency"/>
+                        <parameter name="maxLength" value="20"/>
+                        <parameter name="size" value="20"/>
+                    </element>
+                </row>
+                                
+                <row id="bb_saldo">
+                    <element attribute.idref="bb_saldo" template="stringEnum">
+                        <parameter name="enumProperty" value="currency"/>
+                        <parameter name="maxLength" value="20"/>
+                        <parameter name="size" value="20"/>
+                    </element>
+                </row>
+
+                <row id="netTotalLoss" propertyKey="form.row.loss.netTotalLoss.DBI">
+                    <element attribute.idref="netTotalLoss" template="stringEnum">
+                        <parameter name="enumProperty" value="currency"/>
+                        <parameter name="maxLength" value="20"/>
+                        <parameter name="size" value="20"/>
+                    </element>
+                </row>
+                
+                <row id="bb_URL">
+                    <element attribute.idref="bb_URL" template="anchor">
+                    	<parameter name="propertyKey" value="constant.incidentmanagement.bb_URL"/>
+                    </element>
+                </row>              
+            </rowGroup>
+            
+            <rowGroup id="loss.4" propertyKey="rowgroup.loss.loss4.DBI">
+                <row id="relevantForRiskEval">
+                    <element attribute.idref="relevantForRiskEval" />
+                </row>
+                
+                <row id="relRisks" attribute.idref="relRisks" 
+                	protocolTemplate="protocolRelation" template="formRelation">
+                    <cell>
+                        <element attribute.idref="relRisks_grossActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                        <element attribute.idref="relRisks_netActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                    </cell>
+                    <parameter name="selectionList" value="loss2risk_sel"/>
+                    <button.add button.idref="INFORM_RISK_RESPONSIBLES" location="toolbar"/>
+                </row>
+                
+                <row id="relevantForProcessEval">
+                    <element attribute.idref="relevantForProcessEval" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                
+                <row id="process" attribute.idref="process"  
+                	protocolTemplate="protocolRelation" template="formRelation">
+                    <cell>
+                        <element attribute.idref="process_grossActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                        <element attribute.idref="process_netActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                    </cell>
+                    <parameter name="selectionList" value="AUTO"/>
+                </row>
+                
+                <row id="relevantForOrgUnitEval">
+                    <element attribute.idref="relevantForOrgUnitEval" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                
+                <row id="orgunit" attribute.idref="orgunit" 
+                	protocolTemplate="protocolRelation" template="formRelation">
+                    <cell>
+                        <element attribute.idref="orgunit_grossActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                        <element attribute.idref="orgunit_netActual" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                        </element>
+                    </cell>
+                    <parameter name="selectionList" value="AUTO"/>
+                </row>
+            </rowGroup>
+             
+            <rowGroup id="loss.5" propertyKey="rowgroup.loss.loss5.DBI">
+                <row id="create_date" propertyKey="form.row.loss.create_date.DBI">
+                    <element attribute.idref="create_date" />
+                </row>
+                
+                <row id="ownerRemark" propertyKey="form.row.loss.ownerRemark.DBI">
+                    <element attribute.idref="ownerRemark" />
+                </row>
+            </rowGroup>       
+        </page>
+    </form>    
+</custom>

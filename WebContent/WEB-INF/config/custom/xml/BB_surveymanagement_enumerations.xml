@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <enum id="question_type" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>
+        <enumitem id="single_choice_combobox" value="5"/>
+        <!-- not used in Standard :( -->
+        <enumitem id="single_choice_radio" formRelevant="false" filterRelevant="false" value="6"/>
+        <enumitem id="multiple_choice" value="7"/>
+        <enumitem id="text" value="2"/>
+        <enumitem id="long" value="3"/>
+        <enumitem id="double" value="4"/>
+        <enumitem id="date" value="1"/>
+        <enumitem id="daterange" value="8"/>
+    </enum> 
+    
+    <enum id="reviewer_evaluation" isMultiple="false" type="String">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="-2" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="ok" value="1"/>
+        <enumitem id="partially_ok" value="0.5"/>
+        <enumitem id="not_ok" value="0"/>
+    </enum> 
+    
+    <enum id="questionnaire_status" isMultiple="false" type="Number" itemClass="ColoredEnumerationItem">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="open" value="99" virtualScope.idrefs="new,inprocess">
+            <parameter name="Background" value="0094E9"/> <!-- blue -->
+        </enumitem>
+        <enumitem id="closed" value="-2" virtualScope.idrefs="completed,notanswerable,notcompleted"/>
+        <enumitem id="to_be_reviewed" value="-3" evaluationRelevant="false"  virtualScope.idrefs="completed,notanswerable"/>
+        <enumitem id="offlineprocessable" value="-4" filterRelevant="false" evaluationRelevant="false"
+                  virtualScope.idrefs="new,inprocess,completed,notanswerable" />
+        <enumitem id="new" value="1" formRelevant="false" image="iconlib/icons/states/state_new_16.png"/>
+        <enumitem id="inprocess" value="2" image="iconlib/icons/states/state_in_process_16.png"/>
+        <enumitem id="completed" value="4" image="iconlib/icons/states/state_effective_16.png">
+            <parameter name="Background" value="ADCF00"/>  <!-- green -->
+        </enumitem>
+        <enumitem id="notanswerable" value="5" formRelevant="false" filterRelevant="false" evaluationRelevant="false" image="iconlib/icons/states/state_not_testable_16.png">
+            <parameter name="Background" value="EBB585"/>  <!-- orange -->
+        </enumitem>
+        <enumitem id="notcompleted" value="6" formRelevant="false" image="iconlib/icons/states/state_not_processed_16.png">
+            <parameter name="Background" value="CA5252"/>  <!-- red -->
+        </enumitem>
+    </enum>
+
+</custom>

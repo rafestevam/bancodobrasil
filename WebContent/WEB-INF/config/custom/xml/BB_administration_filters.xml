@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<filter id="hierarchy" dataSource.idref="hierarchy">
+		<filterRow id="name" propertyKey="filter.row.name.DBI">
+			<filterElement dataReference.idref="name" />
+		</filterRow>
+		<filterRow id="description">
+			<filterElement dataReference.idref="description" />
+		</filterRow>
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="0" filterType="hierarchyTypeFilter">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_scope"/>
+				<dependentFilterAttribute attribute.idref="org_name"/>
+				<dependentFilterAttribute attribute.idref="bb_codDependResp"/>
+				<dependentFilterAttribute attribute.idref="bb_nomeDependResp"/>
+				<dependentFilterAttribute attribute.idref="bb_codDivisaoResp"/>				
+                <dependentFilterAttribute attribute.idref="bb_codNucleoResp"/>		
+				<dependentFilterAttribute attribute.idref="bb_finaccountAssertions"/>                
+				<dependentFilterAttribute attribute.idref="bb_codigoEstadoModal"/>
+				<dependentFilterAttribute attribute.idref="bb_codAbragModalidade"/>
+				<dependentFilterAttribute attribute.idref="bb_indModalidadeTesouraria"/>
+				<dependentFilterAttribute attribute.idref="bb_tipoUnidOrganizacional"/>
+				<dependentFilterAttribute attribute.idref="bb_notaTecnicaAprova"/>
+				<dependentFilterAttribute attribute.idref="bb_participacaoCalculoCapital"/>
+				<dependentFilterAttribute attribute.idref="bb_valorLimiteCritico"/> 
+			    <dependentFilterAttribute attribute.idref="bb_valorLimiteInferior"/>
+			    <dependentFilterAttribute attribute.idref="bb_valorLimiteSuperior"/>
+			    <dependentFilterAttribute attribute.idref="bb_metodoAgregacao"/>
+			    <dependentFilterAttribute attribute.idref="bb_tipoFinancialAccount"/>	
+			    <dependentFilterAttribute attribute.idref="bb_avalMaterialidadeContas"/> 
+			    <dependentFilterAttribute attribute.idref="bb_grauExposicao"/>
+			    <dependentFilterAttribute attribute.idref="bb_codIOR_contaContabil"/>	
+				<dependentFilterAttribute attribute.idref="bb_consolidado"/>	
+				<dependentFilterAttribute attribute.idref="bb_eliminado"/>		
+				<dependentFilterAttribute attribute.idref="bb_aglutinado"/>	
+				<dependentFilterAttribute attribute.idref="bb_suscetibFraude"/>			
+				<dependentFilterAttribute attribute.idref="bb_avalQuantitativa"/>			
+				<dependentFilterAttribute attribute.idref="bb_valBaseMaterialidade"/>
+				<dependentFilterAttribute attribute.idref="bb_percentAplicRiscoAlto"/>
+				<dependentFilterAttribute attribute.idref="bb_percentAplicRiscoMedio"/>		
+				<dependentFilterAttribute attribute.idref="hnumber"/>
+				<dependentFilterAttribute attribute.idref="ta_bb_fimClicloAvaliatorio"/>
+				<dependentFilterAttribute attribute.idref="ta_bb_inicioClicloAvaliatorio"/>																															    					    	        			    		    			    	    
+			</filterElement> 
+		</filterRow>
+		<filterRow id="isroot">
+			<filterElement dataReference.idref="isroot" default="-1" />
+		</filterRow>
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign" default="" filterType="clientSign">
+				<filterType.parameter name="hidden" value="true" />
+			</filterElement>
+		</filterRow>
+		<filterRow id="hnumber" propertyKey="filter.row.hierarchy.hnumber.DBI">
+			<filterElement dataReference.idref="hnumber" filterType="hierarchyStringFilterBB" default=""/>
+		</filterRow> 
+		<!--  BdB CUSTOMIZATIONS -->
+		<filterRow id="bb_scope" propertyKey="filter.row.hierarchy.bb_scope.DBI">
+			<filterElement dataReference.idref="bb_scope" default="" filterType="hierarchyEnumFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_deptmanager" propertyKey="filter.row.hierarchy.bb_deptmanager.DBI">
+			<filterElement dataReference.idref="org_name" filterType="hierarchyStringFilterBB" default=""/>
+		</filterRow> 
+		<filterRow id="bb_codDependResp" propertyKey="filter.row.hierarchy.bb_codDependResp.DBI">
+			<filterElement dataReference.idref="bb_codDependResp" filterType="applicationSystemHierarchyStringFilterBB"/>
+		</filterRow> 		
+		<filterRow id="bb_nomeDependResp" propertyKey="filter.row.hierarchy.bb_nomeDependResp.DBI">
+			<filterElement dataReference.idref="bb_nomeDependResp" filterType="applicationSystemHierarchyStringFilterBB"/>
+		</filterRow> 		
+		<filterRow id="bb_codDivisaoResp" propertyKey="filter.row.hierarchy.bb_codDivisaoResp.DBI">
+			<filterElement dataReference.idref="bb_codDivisaoResp" filterType="applicationSystemHierarchyStringFilterBB"/>
+		</filterRow> 		
+		<filterRow id="bb_codNucleoResp" propertyKey="filter.row.hierarchy.bb_codNucleoResp.DBI">
+			<filterElement dataReference.idref="bb_codNucleoResp" filterType="applicationSystemHierarchyStringFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_finaccountAssertions" >
+			<filterElement dataReference.idref="bb_finaccountAssertions" default="" filterType="finAccountHierarchyEnumFilterBB"/>
+		</filterRow>
+		<filterRow id="bb_codigoEstadoModal" >
+			<filterElement dataReference.idref="bb_codigoEstadoModal"  filterType="prodModalityHierarchyEnumFilterAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_codAbragModalidade" >
+			<filterElement dataReference.idref="bb_codAbragModalidade"  filterType="prodModalityHierarchyStringFilterAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_indModalidadeTesouraria" >
+			<filterElement dataReference.idref="bb_indModalidadeTesouraria" default="" filterType="prodModalityHierarchyBooleanFilterAttributeBB"/>
+		</filterRow>
+		<filterRow  id="bb_tipoUnidOrganizacional"  propertyKey="filter.row.hierarchy.bb_tipoUnidOrganizacional.DBI" >
+			<filterElement dataReference.idref="bb_tipoUnidOrganizacional" default="-1" filterType="organizationUnitHierarchyEnumFilterAttributeBB">
+				<javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+				<dependentFilterAttribute attribute.idref="bb_codigoIOR"/>
+				<dependentFilterAttribute attribute.idref="bb_mapFreeSH2"/>
+				<dependentFilterAttribute attribute.idref="bb_fundoGarantiaInvest"/>
+				<dependentFilterAttribute attribute.idref="bb_eloParSA"/>
+				<dependentFilterAttribute attribute.idref="bb_previ"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_USA_Hold"/>
+				<dependentFilterAttribute attribute.idref="bb_TesouroNacional"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_Leasing_Co"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_BI"/>
+				<dependentFilterAttribute attribute.idref="bb_MapFreeSegurosGerais"/>
+				<dependentFilterAttribute attribute.idref="bb_BB"/>
+				<dependentFilterAttribute attribute.idref="bb_AcaoTesouroria"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_mapFreeSH1"/>
+				<dependentFilterAttribute attribute.idref="bb_fundoFiscalInvEstab"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_cartoesPart"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_AG"/>
+				<dependentFilterAttribute attribute.idref="bb_corPart"/>
+				<dependentFilterAttribute attribute.idref="bb_cxFIGarantConstNaval"/>
+				<dependentFilterAttribute attribute.idref="bb_BAMB"/>
+				<dependentFilterAttribute attribute.idref="bb_segPart"/>
+				<dependentFilterAttribute attribute.idref="bb_BB_DTVM"/>
+				<dependentFilterAttribute attribute.idref="bb_freeFloat"/>
+				<dependentFilterAttribute attribute.idref="bb_BNDESPar"/>
+				<dependentFilterAttribute attribute.idref="bb_codigoUOR"/>
+				<dependentFilterAttribute attribute.idref="bb_codigoTipologia"/>
+				<dependentFilterAttribute attribute.idref="bb_sigla"/>
+				<dependentFilterAttribute attribute.idref="bb_prefixo"/>
+				<dependentFilterAttribute attribute.idref="bb_emailUOR"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="bb_codigoIOR" >
+			<filterElement dataReference.idref="bb_codigoIOR" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_mapFreeSH2" >
+			<filterElement dataReference.idref="bb_mapFreeSH2" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_fundoGarantiaInvest" >
+			<filterElement dataReference.idref="bb_fundoGarantiaInvest" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_eloParSA" >
+			<filterElement dataReference.idref="bb_eloParSA" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_previ" >
+			<filterElement dataReference.idref="bb_previ" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+	    <filterRow id="bb_BB_USA_Hold" >
+			<filterElement dataReference.idref="bb_BB_USA_Hold" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_TesouroNacional" >
+			<filterElement dataReference.idref="bb_TesouroNacional" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB_Leasing_Co" >
+			<filterElement dataReference.idref="bb_BB_Leasing_Co" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB_BI" >
+			<filterElement dataReference.idref="bb_BB_BI" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_MapFreeSegurosGerais" >
+			<filterElement dataReference.idref="bb_MapFreeSegurosGerais" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB" >
+			<filterElement dataReference.idref="bb_BB" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_AcaoTesouroria" >
+			<filterElement dataReference.idref="bb_AcaoTesouroria" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB_mapFreeSH1" >
+			<filterElement dataReference.idref="bb_BB_mapFreeSH1" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_fundoFiscalInvEstab" >
+			<filterElement dataReference.idref="bb_fundoFiscalInvEstab" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB_cartoesPart" >
+			<filterElement dataReference.idref="bb_BB_cartoesPart" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BB_AG" >
+			<filterElement dataReference.idref="bb_BB_AG" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_corPart" >
+			<filterElement dataReference.idref="bb_corPart" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_cxFIGarantConstNaval" >
+			<filterElement dataReference.idref="bb_cxFIGarantConstNaval" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BAMB" >
+			<filterElement dataReference.idref="bb_BAMB" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_segPart" >
+			<filterElement dataReference.idref="bb_segPart" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow> 
+		<filterRow id="bb_BB_DTVM" >
+			<filterElement dataReference.idref="bb_BB_DTVM" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_freeFloat" >
+			<filterElement dataReference.idref="bb_freeFloat" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_BNDESPar" >
+			<filterElement dataReference.idref="bb_BNDESPar" default="" filterType="organizationUnitHierarchyFilterIORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_codigoUOR">
+			<filterElement dataReference.idref="bb_codigoUOR" default="" filterType="organizationUnitHierarchyFilterUORAttributeBB"/>
+		</filterRow>
+
+		<filterRow id="bb_codigoTipologia">
+			<filterElement dataReference.idref="bb_codigoTipologia" default="" filterType="organizationUnitHierarchyFilterUORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_sigla">
+			<filterElement dataReference.idref="bb_sigla" default="" filterType="organizationUnitHierarchyFilterUORAttributeBB"/>
+		</filterRow>
+		<filterRow id="bb_emailUOR">
+			<filterElement dataReference.idref="bb_emailUOR" default="" filterType="organizationUnitHierarchyFilterUORAttributeBB"/>
+		</filterRow>	
+		<filterRow id="bb_prefixo">
+			<filterElement dataReference.idref="bb_prefixo" default="" filterType="organizationUnitHierarchyFilterUORAttributeBB"/>
+		</filterRow>	
+		<filterRow id="bb_notaTecnicaAprova">
+			<filterElement dataReference.idref="bb_notaTecnicaAprova" default="" filterType="iCRHierarchyStringFilterAttributeBB"/>
+		</filterRow>		
+		<filterRow id="bb_participacaoCalculoCapital">
+			<filterElement dataReference.idref="bb_participacaoCalculoCapital" default="" filterType="iCRHierarchyStringFilterAttributeBB"/>
+		</filterRow>
+	  	<filterRow id="bb_valorLimiteCritico" >
+            <filterElement dataReference.idref="bb_valorLimiteCritico" default="" filterType="iCRHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow> 
+	  	<filterRow id="bb_valorLimiteInferior">
+            <filterElement dataReference.idref="bb_valorLimiteInferior" default="-1" filterType="iCRHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>
+		<filterRow id="bb_valorLimiteSuperior">
+            <filterElement dataReference.idref="bb_valorLimiteSuperior" default="-1" filterType="iCRHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>
+		<filterRow id="bb_metodoAgregacao" propertyKey="filter.row.hierarchy.bb_icr.DBI">
+			<filterElement dataReference.idref="bb_metodoAgregacao" default="-1" filterType="iCRHierarchyEnumFilterAttributeBB"/>
+		</filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated">
+				<parameter name="showAll" value="false" />
+			</filterElement>
+		</filterRow>
+		
+		<!-- BdB CUSTOMIZATION - FINANCIAL ACCOUNT -->
+		<filterRow id="bb_tipoFinancialAccount">
+			<filterElement dataReference.idref="bb_tipoFinancialAccount" default="-1" filterType="finAccountHierarchyEnumFilterBB"/>
+		</filterRow>
+	    <filterRow id="bb_codIOR_contaContabil" propertyKey="filter.row.hierarchy.bb_codIOR_contaContabil.DBI">
+			<filterElement dataReference.idref="bb_codIOR_contaContabil" filterType="finAccountHierarchyStringFilterBB" default=""/>
+		</filterRow>
+        <filterRow id="bb_avalMaterialidadeContas">
+			<filterElement dataReference.idref="bb_avalMaterialidadeContas" default="-1" filterType="finAccountHierarchyEnumFilterBB"/>
+		</filterRow>
+	    <filterRow id="bb_grauExposicao">
+			<filterElement dataReference.idref="bb_grauExposicao" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>
+	        </filterElement>    			
+		</filterRow>				 		 				
+	  	<filterRow id="bb_consolidado" >
+            <filterElement dataReference.idref="bb_consolidado" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow> 
+	  	<filterRow id="bb_eliminado" >
+            <filterElement dataReference.idref="bb_eliminado" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>
+	  	<filterRow id="bb_aglutinado" >
+            <filterElement dataReference.idref="bb_aglutinado" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow> 
+	  	<filterRow id="bb_suscetibFraude" >
+            <filterElement dataReference.idref="bb_suscetibFraude" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow> 
+	  	<filterRow id="bb_avalQuantitativa" >
+            <filterElement dataReference.idref="bb_avalQuantitativa" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow> 
+	  	<filterRow id="bb_valBaseMaterialidade" >
+            <filterElement dataReference.idref="bb_valBaseMaterialidade" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>          
+	  	<filterRow id="bb_percentAplicRiscoAlto" >
+            <filterElement dataReference.idref="bb_percentAplicRiscoAlto" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>          
+	  	<filterRow id="bb_percentAplicRiscoMedio" >
+            <filterElement dataReference.idref="bb_percentAplicRiscoMedio" default="" filterType="finAccountHierarchyNumberRangeFilterAttribute" template="numberRange">
+	            <filterType.parameter name="enumProperty" value="currency"/>    
+            </filterElement>
+        </filterRow>
+		<filterRow id="bb_ClicloAvaliatorio" propertyKey="filter.row.hierarchy.bb_clicloAvaliatorio.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="ta_bb_fimClicloAvaliatorio" filterType="clicloAvaliatorioFilterAttribute" template="date">
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="ta_bb_inicioClicloAvaliatorio"/>
+				</filterElement>
+				<filterElement dataReference.idref="ta_bb_inicioClicloAvaliatorio" filterType="clicloAvaliatorioFilterAttribute" template="date">
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+	</filter>
+	
+	<filter id="usergroup" dataSource.idref="usergroup">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="sign" filterType="clientSignText" />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="role">
+            <filterElement dataReference.idref="role" default="-1" filterType="userrole" >
+	            <filterType.parameter name="sorted" value="true"/>
+            </filterElement>
+        </filterRow>
+        <filterRow id="rolelevel">
+            <filterElement dataReference.idref="rolelevel" default="-1"  />
+        </filterRow>
+        <filterRow id="bb_prefixo">
+            <filterElement dataReference.idref="bb_prefixo"  />
+        </filterRow>
+        <filterRow id="bb_codigoUOR">
+            <filterElement dataReference.idref="bb_codigoUOR"  />
+        </filterRow>
+        <filterRow id="guid">
+            <filterElement dataReference.idref="guid" default="" filterType="string" compareType="equals"/>
+        </filterRow>
+        <filterRow id="deactivated">
+            <filterElement dataReference.idref="deactivated"  >
+                <parameter name="showAll" value="false"/>
+            </filterElement>
+        </filterRow>
+    </filter>
+	
+	<filter id="hierarchy_testergroup_sel" dataSource.idref="hierarchy_testergroup_sel">
+        <filterRow id="ownergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="ownergroup_name"  />
+        </filterRow>
+        <filterRow id="ownergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="ownergroup_description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="hierarchy_signoffowner_sel" dataSource.idref="hierarchy_signoffowner_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    <!-- BEGIN : Issue #113856 : TC.GD.156 - Explorer/Gestão de deficiência/Deficiências - Preencher o campo processo -->
+    <filter id="deficiency_process" dataSource.idref="hierarchy">
+		<filterRow id="name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="name"  />
+      	</filterRow>
+		<filterRow id="description">
+			<filterElement dataReference.idref="description"  />
+		</filterRow>
+		<filterRow id="isroot">
+			<filterElement dataReference.idref="isroot" default="-1"  />
+		</filterRow>
+		<filterRow id="hnumber">
+			<filterElement dataReference.idref="hnumber"/>
+		</filterRow>
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated" >
+				<parameter name="showAll" value="false"/>
+            </filterElement>
+		</filterRow>
+	</filter>
+    <!-- END -->
+    
+   	<filter id="hierarchy2testdefinition" dataSource.idref="hierarchy2testdef_refs_1">
+        <filterRow id="subordinatedMasterData" propertyKey="filter.row.subordinate.title.DBI">
+			<filterElement name="subordinatedMasterData" default="0" filterType="subordinatedMasterDataBB" template="predefinedValues"  isQueryFilterAttribute="true"/>
+		</filterRow>
+        <filterRow id="testdefinition_name">
+            <filterElement dataReference.idref="testdefinition_name"  />
+        </filterRow>
+		<filterRow id="startdate" propertyKey="filter.row.testdefinition.startdate.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="startdate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="startdate_2"/>
+				</filterElement>
+				<filterElement dataReference.idref="startdate_2"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+    </filter>
+	
+	<filter id="hierarchy2testaction_refs" dataSource.idref="TESTCASE" dataSourceType="object">
+		<filterRow id="subordinated" propertyKey="filter.row.subordinate.title.DBI">
+			<filterElement name="subordinated" default="0" filterType="subordinatedBB" template="predefinedValues" isQueryFilterAttribute="true"/>
+		</filterRow>
+		<filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate" default="01.01" filterType="daterange" >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+				</filterElement>
+				<filterElement dataReference.idref="plannedstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="controlenddate"  >
+                    <parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="controlstartdate"/>
+				</filterElement>
+				<filterElement dataReference.idref="controlstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="state">
+			<filterElement dataReference.idref="owner_status" default="-1"  />
+		</filterRow>
+		<filterRow id="type">
+			<filterElement dataReference.idref="type" default="0"  />
+		</filterRow>
+	</filter>
+	
+	<filter id="hierarchy2risk" dataSource.idref="hierarchy2risk_refs_1">
+        <filterRow id="subordinatedMasterDataRisk" propertyKey="filter.row.subordinate.title.DBI">
+			<filterElement name="subordinatedMasterDataRisk" default="0" filterType="subordinatedMasterDataRiskBB" template="predefinedValues"  isQueryFilterAttribute="true">
+				<filterType.parameter name="isRiskFilter" value="true"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="hierarchy2control" dataSource.idref="hierarchy2control_refs_1">
+		<filterRow id="subordinatedMasterData" propertyKey="filter.row.subordinate.title.DBI">
+			<filterElement name="subordinatedMasterData" default="0" filterType="subordinatedMasterDataBB" template="predefinedValues" isQueryFilterAttribute="true"/>
+		</filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="controls">
+            <filterElement dataReference.idref="controls"  />
+        </filterRow>
+    </filter>
+    
+        <filter id="hierarchy2process" dataSource.idref="hierarchy2process_refs_1">
+		<filterRow id="subordinatedMasterData" propertyKey="filter.row.subordinate.title.DBI">
+			<filterElement name="subordinatedMasterData" default="0" filterType="subordinatedMasterDataBB" template="predefinedValues" isQueryFilterAttribute="true"/>
+		</filterRow>
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+    </filter>
+    
+	
+</custom>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!--
+    *
+    *   SIGNOFF PROCESS
+    *
+    -->
+    <workflow objectType.id="soprocess">
+
+        <state.initial>
+            <prepare chain.id="prepare">
+                <permission.job id="generatorJob" />
+            </prepare>
+        </state.initial>
+
+        <state.prepared>
+            <insert chain.id="insert" to.state.id="openForExecution">
+                <permission.job id="generatorJob" />
+                <attribute.change id="owner_status"     to="open"/>
+            </insert>
+            <!-- if the generator creates the process in owner state "auto_performed" -->
+            <insert chain.id="insert" to.state.id="reviewCompleted">
+                <permission.job id="generatorJob" />
+                <attribute.change id="owner_status"     to="auto_performed"/>
+                <attribute.change id="reviewer_status"  to="autoAccepted"/>
+            </insert>
+        </state.prepared>
+
+        <state id="openForExecution">
+            <attribute id="owner_status" value="open"/>
+            <attribute id="reviewer_status" value="to_be_reviewed"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="executionInProgress">
+                    <attribute.change id="owner_status"     to="open"/>
+                </update>
+                <update to.state.id="openForReview" chain.id="executed">
+                    <attribute.change id="owner_status"     to="not_released"/>
+                </update>
+                <update to.state.id="openForReview" chain.id="executed">
+                    <attribute.change id="owner_status"     to="released"/>
+                </update>
+                <update to.state.id="reviewCompleted" chain.id="autoExecuted">
+                    <attribute.change id="owner_status"     to="auto_performed"/>
+                    <attribute.change id="reviewer_status"  to="autoAccepted"/>
+                </update>
+                <update to.state.id="executionNotPerformed" chain.id="notPerformed">
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="owner_status"     to="not_performed"/>
+                </update>
+                <delete to.state.id="executionDeleted" chain.id="delete"/>
+                <!--     <permission.workflow id="sotask"/>
+                </delete> -->
+            </transitions>
+        </state>
+
+        <state id="openForReview">
+            <attribute id="owner_status" value="openForReview"/>
+            <attribute id="reviewer_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="reviewCompleted" chain.id="reviewAccept">
+                    <attribute.change id="reviewer_status"  to="accepted"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="reviewReject">
+                    <attribute.change id="reviewer_status"  to="rejected"/>
+                </update>
+                <reset to.state.id="openForExecution" chain.id="reviewReject">
+                    <permission.workflow id="soprocess"/>
+                </reset>
+                <delete to.state.id="executionDeleted" chain.id="delete">
+                    <permission.workflow id="sotask"/>
+                </delete>
+            </transitions>
+        </state>
+
+        <state id="executionNotPerformed">
+            <attribute id="owner_status" value="not_performed"/>
+            <transitions>
+                <delete to.state.id="executionDeleted" chain.id="delete">
+                    <permission.workflow id="sotask"/>
+                </delete>
+            </transitions>
+        </state>
+
+        <state id="reviewCompleted">
+            <attribute id="owner_status" value="openForReview"/>
+            <attribute id="reviewer_status" value="completed"/>
+            <transitions>
+                <reset to.state.id="openForExecution" chain.id="reviewReject" >
+                    <permission.workflow id="soprocess"/>
+                </reset>
+                <delete to.state.id="executionDeleted" chain.id="delete">
+                    <permission.workflow id="sotask"/>
+                </delete>
+            </transitions>
+        </state>
+
+        <state.deleted id="executionDeleted">
+        </state.deleted>
+
+    </workflow>
+    <!--
+    *
+    *   SIGNOFF TASK
+    *
+    -->
+    <workflow objectType.id="sotask">
+
+        <state.initial>
+            <prepare chain.id="prepare"/>
+        </state.initial>
+
+        <state.prepared>
+            <insert chain.id="insert" to.state.id="open"/>
+        </state.prepared>
+
+        <state id="open">
+            <attribute id="done" value="false"/>
+            <transitions>
+                <update to.state.id="executed" chain.id="execute">
+                    <permission.job id="generatorJob"/>
+                    <attribute.change id="done" to="true"/>
+                </update>
+                <reset to.state.id="open" chain.id="reset"/>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+
+        <state id="executed">
+            <attribute id="done" value="true"/>
+            <transitions>
+            	<!-- BEGIN BDB : Enhancement #112828 : TC.SO.49 - Explorer/Gestão Sign off/Tarefas de Sign off - Testar bloquear e desbloquear -->
+                <reset to.state.id="open, executed" chain.id="reset"/>
+                <!-- END BDB -->
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+
+        <state.deleted id="deleted">
+            <recover to.state.id="open, executed" chain.id="recover"/>
+        </state.deleted>
+
+    </workflow>
+</custom>

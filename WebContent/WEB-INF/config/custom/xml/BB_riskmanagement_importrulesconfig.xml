@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+<rulesconfig>
+<imp_object type="RISK" extendedValidation="true">
+        <imp_ignore name="risk_management_relevant" />
+        <imp_condition type="value" attrname="risk_management_relevant" attrvalue="true">
+            <imp_mandatory>
+                <imp_attr name="assessment_activities" />
+                <imp_attr name="frequency" />
+                <imp_attr name="event_driven_allowed" />
+                <imp_attr name="startdate" />
+                <imp_attr name="duration" />
+                <imp_link name="LT_3160" />
+                <imp_link name="LT_3161" />
+            </imp_mandatory>
+        </imp_condition>
+
+        <imp_condition type="value" attrname="risktype" attrvalue="@enum=1">
+            <imp_mandatory>
+                <imp_attr name="assertions" />
+            </imp_mandatory>
+        </imp_condition>
+    </imp_object>
+</rulesconfig>
+</custom>    

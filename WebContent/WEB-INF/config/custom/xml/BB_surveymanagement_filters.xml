@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<filter id="questionnaire_template" dataSource.idref="questionnaire_template">
+		 <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow>
+       <filterRow id="sign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+        <filterRow id="description">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+		 <filterRow id="targetscore">
+            <filterElement dataReference.idref="targetscore"  />
+        </filterRow>
+        
+        <!-- BdB CUSTOMIZATION -->
+		<!-- <filterRow id="isworkingcopy">
+	        <filterElement dataReference.idref="isworkingcopy" default="-1"  />
+	    </filterRow>
+	    -->
+	    <filterRow id="guid">
+            <filterElement dataReference.idref="guid" default="" filterType="string" compareType="equals"/>
+        </filterRow>
+        <filterRow id="manager_group" propertyKey="filter.row.survey.manager.group.DBI">
+            <filterElement dataReference.idref="manager_group_name"  default="" filterType="string" compareType="equals"/>
+        </filterRow>
+	    <filterRow id="deactivated">
+	        <filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+	    </filterRow>
+	</filter>
+	
+	<filter id="surveytask2orgunit_sel" dataSource.idref="surveytask2orgunit_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="description">
+            <filterElement dataReference.idref="description" />
+        </filterRow>
+        <filterRow id="bb_prefixo">
+            <filterElement dataReference.idref="bb_prefixo"  />
+        </filterRow>
+        <filterRow id="bb_codigoUOR">
+            <filterElement dataReference.idref="bb_codigoUOR"  />
+        </filterRow>
+    </filter>
+	
+   	<filter id="surveytask2testdefinition_sel" dataSource.idref="surveytask2testdefinition_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="obj_id">
+            <filterElement dataReference.idref="obj_id" />
+        </filterRow>
+        <filterRow id="testfrequency">
+            <filterElement dataReference.idref="testfrequency" default="-1"  />
+        </filterRow>
+	</filter>
+	
+	<filter id="surveytask2questionnaireTemplate_sel" dataSource.idref="surveytask2questionnaireTemplate_sel">
+        <filterRow id="name">
+            <filterElement dataReference.idref="name"  />
+        </filterRow> 
+        <filterRow id="description">
+            <filterElement dataReference.idref="description" />
+        </filterRow>
+    </filter>
+    
+    <filter id="createdSurveysFilter" dataSource.idref="createdsurveys">
+		<filterRow id="clientsign" propertyKey="filter.row.client.sign.DBI">
+            <filterElement dataReference.idref="client_sign"  />
+        </filterRow>
+		<filterRow id="survey_period" propertyKey="filter.row.survey.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="survey_end" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="survey_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="survey_start" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="survey_status">
+			<filterElement dataReference.idref="survey_status" default="1"  />
+		</filterRow>
+		<filterRow id="template_name" propertyKey="filter.row.questionnaire.questionnaire.template.DBI">
+			<filterElement dataReference.idref="template_name"  />
+		</filterRow>
+		<filterRow id="avgscore" propertyKey="filter.row.questionnaire.average.score.DBI">
+			<filterElement dataReference.idref="avgscore" default="" filterType="numberRange" template="numberRange"/>
+		</filterRow>
+		<filterRow id="survey_targetScore">
+			<filterElement dataReference.idref="survey_targetScore" default="" filterType="numberRange" template="numberRange"/>
+		</filterRow>
+		<filterRow id="survey_id">
+			<filterElement dataReference.idref="survey_id"  />
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.questionnaire.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="survey_control_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="survey_control_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="survey_control_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+        <filterRow id="manager_group" propertyKey="filter.row.survey.manager.group.DBI">
+            <filterElement dataReference.idref="manager_group_name"  default="" filterType="string" compareType="equals"/>
+        </filterRow>
+		<filterRow id="ownerGroup_name" propertyKey="filter.row.questionnaire.questionnaire.owner.group.DBI">
+			<filterElement dataReference.idref="ownerGroup_name"  />
+		</filterRow>
+		<filterRow id="reviewerGroup_name" propertyKey="filter.row.survey.surveyreviewer.DBI">
+			<filterElement dataReference.idref="reviewerGroup_name"  />
+		</filterRow>
+        <filterRow id="appSystem_name" propertyKey="filter.row.survey.related.appSystem.DBI">
+            <filterElement dataReference.idref="appSystem_name"  />
+        </filterRow>
+        <filterRow id="regulation_name" propertyKey="filter.row.survey.related.regulation.DBI">
+            <filterElement dataReference.idref="regulation_name"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="filter.row.survey.related.orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+        <filterRow id="process_name" propertyKey="filter.row.survey.related.process.DBI">
+            <filterElement dataReference.idref="process_name"  />
+        </filterRow>
+        <filterRow id="category_name" propertyKey="filter.row.survey.related.category.DBI">
+            <filterElement dataReference.idref="category_name"  />
+        </filterRow>
+        <filterRow id="risk_name" propertyKey="filter.row.survey.related.risk.DBI">
+            <filterElement dataReference.idref="risk_name"  />
+        </filterRow>
+        <filterRow id="control_name" propertyKey="filter.row.survey.related.control.DBI">
+            <filterElement dataReference.idref="control_name"  />
+        </filterRow>
+        <filterRow id="testdefinition_name" propertyKey="filter.row.survey.related.testdefinition.DBI">
+            <filterElement dataReference.idref="testdefinition_name"  />
+        </filterRow>
+        <filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="ownerGroup_id,reviewerGroup_id"/>
+			</filterElement>	
+		</filterRow>
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter> 
+    
+    <filter id="section_question_sel" dataSource.idref="qtSection_questions_sel">
+        <filterRow id="question_text" propertyKey="tableheader.question">
+            <filterElement dataReference.idref="question_text"  />
+        </filterRow> 
+        <filterRow id="question_type" propertyKey="tableheader.question.type.DBI">
+            <filterElement dataReference.idref="question_type" />
+        </filterRow>
+        <filterRow id="question_description" propertyKey="tableheader.description">
+            <filterElement dataReference.idref="question_description" />
+        </filterRow>
+    </filter>
+	
+	<filter id="surveytask_questionnaireowner_sel" dataSource.idref="surveytask_questionnaireowner_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="surveytask_surveyreviewer_sel" dataSource.idref="surveytask_surveyreviewer_sel">
+        <filterRow id="usergroup_name" propertyKey="filter.row.name.DBI">
+            <filterElement dataReference.idref="usergroup_name"  />
+        </filterRow>
+        <filterRow id="usergroup_description" propertyKey="filter.row.description.DBI">
+            <filterElement dataReference.idref="description"  />
+        </filterRow>
+        <filterRow id="orgunit_codigoUOR" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI">
+            <filterElement dataReference.idref="orgunit_codigoUOR"  />
+        </filterRow>
+        <filterRow id="orgunit_name" propertyKey="attribute.USERGROUP.bb_orgunit.DBI">
+            <filterElement dataReference.idref="orgunit_name"  />
+        </filterRow>
+    </filter>
+    
+    <filter id="questionnaireHierarchyStatisticDefinition" dataSource.idref="questionnaire_statistic_applicationsystemtype">
+        <filterRow id="statisticClient" propertyKey="filter.row.client.sign.DBI">
+			<filterElement name="statisticClient" default="-1" filterType="statisticClient" template="predefinedValues">
+				<filterType.parameter name="LicensedComponent" value="sm"/>
+                <filterType.parameter name="mode" value="all"/>
+                <javaScriptEvent expression="aam_filterApply()" name="onChange"/>
+                <dependentFilterAttribute attribute.idref="statisticStructure"/>
+            </filterElement>
+		</filterRow>
+        <filterRow id="statisticStructure" propertyKey="filter.row.structureelementtext.DBI">
+			<filterElement name="statisticStructure" default="-1" filterType="statisticStructure" template="predefinedValuesExtendedBB">
+                <filterType.parameter name="mode" value="all"/>
+                <filterType.parameter name="acceptUnassignedNodes" value="true"/>
+            </filterElement>
+		</filterRow>
+		<filterRow id="survey_period" propertyKey="filter.row.survey.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="survey_endDate" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="survey_startDate"/>
+                </filterElement>
+				<filterElement dataReference.idref="survey_startDate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+	    <filterRow id="questionnaire_name">
+		    <filterElement dataReference.idref="questionnaire_name"  />
+	    </filterRow>
+	</filter>
+	
+</custom>

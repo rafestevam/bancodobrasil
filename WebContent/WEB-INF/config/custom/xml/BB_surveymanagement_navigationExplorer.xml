@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+		<nav.module module.id="module.explorer" propertyKey="module.explorer.DBI">
+	        <nav.item item.idref="item.explorer.audit.management"/>
+	        <nav.item item.idref="item.explorer.change.management"/>
+	        <nav.item item.idref="item.explorer.deficiency.management"/>
+	        <nav.item item.idref="item.explorer.incident.management"/>
+	        <nav.item item.idref="item.explorer.policy.management"/>
+	        <nav.item item.idref="item.explorer.risk.management"/>
+	        <nav.item item.idref="item.explorer.signoff.management"/>
+	        <nav.item item.idref="item.explorer.survey.management"/>
+	        <nav.item item.idref="item.explorer.test.management"/>
+	        <nav.item item.idref="item.explorer.offline.processing"/>
+	        <!-- 
+	        <nav.item item.idref="item.explorer.control.management"/>  -->
+	        <nav.item item.idref="item.explorer.issue.management"/>
+	    </nav.module>
+
+	    <!-- SURVEY MANAGEMENT -->
+	    <nav.item item.id="item.explorer.survey.management" propertyKey="item.explorer.survey.management.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="sm"/>
+	        </nav.access>
+	        <!-- for survey managers, auditors -->
+	        <nav.data.grid dataGrid.idref="questionnaire_template">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveymanagement.baseobjects"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="question">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveymanagement.baseobjects"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="optionset">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveymanagement.baseobjects"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="option">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveymanagement.baseobjects"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="surveytask">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveymanagement.baseobjects"/>
+	            </nav.access>
+	        </nav.data.grid>
+	
+	        <nav.data.grid dataGrid.idref="surveyreviewer_surveys">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.review.questionnaires"/>
+	            </nav.access>
+	        </nav.data.grid>
+	
+	        <!-- for survey managers, reviewers, auditors -->
+	        <nav.data.grid dataGrid.idref="createdSurveys">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.surveys"/>
+	            </nav.access>
+	        </nav.data.grid>
+	
+	        <!-- for questionnaire owners -->
+	        <nav.data.grid dataGrid.idref="questionnaires_owner">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.open.questionnaires"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for survey reviewers -->
+	        <nav.data.grid dataGrid.idref="questionnaires_reviewer">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.review.questionnaires"/>
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for survey managers, auditors -->
+	        <nav.data.grid dataGrid.idref="createdQuestionnaires">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.questionnaires"/>
+	            </nav.access>
+	        </nav.data.grid>
+	    </nav.item>	    
+	    
+	</navigation>
+</custom>

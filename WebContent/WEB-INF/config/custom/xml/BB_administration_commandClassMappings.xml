@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<mappingType name="Command">
+			<mapping name="assignedUsergroupsCheck" 	clsName="com.idsscheer.webapps.arcm.bl.component.common.command.job.AssignedUsergroupsCheckCommandBB"/>
+			<mapping name="assignedUsergroupsSend" 		clsName="com.idsscheer.webapps.arcm.bl.component.common.command.AssignedUsergroupsSendBB"/>
+			<mapping name="prepareJobMessageBB"         clsName="com.idsscheer.webapps.arcm.bl.component.common.command.job.PrepareJobMessageCommandBB"/>
+			<mapping name="sendMailBB"					clsName="com.idsscheer.webapps.arcm.bl.component.common.command.SendMailCommandBB"/>
+			<mapping name="updateRootHierarchies" 		clsName="com.idsscheer.webapps.arcm.bl.component.administration.commands.client.UpdateRootHierarchiesCommand"/>
+			<mapping name="isEventDrivenCheckBB"        clsName="com.idsscheer.webapps.arcm.bl.component.common.command.job.IsEventDrivenCheckCommandBB" />
+		</mappingType>
+	</blClassMapping>
+</custom>

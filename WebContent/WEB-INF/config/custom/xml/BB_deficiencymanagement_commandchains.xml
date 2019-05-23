@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	
+    <catalog id="deficiency">
+    
+    	<commandchain id="insertToLevel1">
+    		<command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL1" />
+            </command>
+        </commandchain>
+        
+        <commandchain id="insertToLevel2">
+        	<command id="closingObjectDialog" />
+    		<command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL2" />
+            </command>
+            <command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL1" />
+            </command>
+        </commandchain>
+    
+    	<commandchain id="performToLevel_2">
+    		<command id="closingObjectDialog" />
+    		<command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL2" />
+            </command>
+            <command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL1" />
+            </command>
+        </commandchain>
+        
+        <commandchain id="performToLevel_3">
+        	<command id="closingObjectDialog" />
+        	<command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL3" />
+            </command>
+            <command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL2" />
+            </command>
+        </commandchain>
+        
+        <commandchain id="close">
+        	<command id="closingObjectDialog" />
+        	<command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL3" />
+            </command>  
+        </commandchain>
+        
+        <commandchain id="resetToLevel_1">  
+            <command id="checkRole">
+                <parameter name="roles"        value="deficiencymanager_l2"/>
+                <parameter name="failedMsgKey" value="command.deficiency.reset.toLevel1.DBI"/>
+            </command>
+            <command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL1" />
+            </command>
+            <command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL2" />
+            </command>
+            <command id="update">
+                <parameter name="savestate"    value="in_process"/>
+            </command>
+        </commandchain>
+        
+        <commandchain id="resetToLevel_2">  
+            <command id="checkRole">
+                <parameter name="roles"        value="deficiencymanager_l3"/>
+                <parameter name="failedMsgKey" value="command.deficiency.reset.toLevel2.DBI"/>
+            </command>
+            <command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL2" />
+            </command>
+            <command id="deficiencySetOperator">
+                <parameter name="operator" value="deficiencyManagerL3" />
+            </command>
+            <command id="update">
+                <parameter name="savestate_l2" value="in_process"/>
+            </command>
+        </commandchain>
+    
+    	<commandchain id="resetToLevel_3">  
+            <command id="checkRole">
+                <parameter name="roles"        value="deficiencymanager_l3"/>
+                <parameter name="failedMsgKey" value="command.deficiency.reset.toLevel3.DBI"/>
+            </command>
+            <command id="deficiencyClearOperator">
+                <parameter name="operator" value="deficiencyManagerL3" />
+            </command>
+            <command id="update">
+                <parameter name="savestate_l3" value="in_process"/>
+            </command>
+        </commandchain>  
+        
+		<commandchain id="recover">
+			<command id="deficiencyReactivateDependentTestcase" />
+		</commandchain>
+    </catalog>
+
+</custom>
+    

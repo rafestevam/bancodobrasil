@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<actionCommands>
+		<objectTypeCommands>
+			<commandSet name="issue">
+				<actionCommand commandId="cache"		 	clsName="com.idsscheer.webapps.arcm.ui.components.issuemanagement.actioncommands.IssueCacheActionCommandBB"/>
+				<!--<actionCommand commandId="edit"		 	    clsName="com.idsscheer.webapps.arcm.ui.framework.actioncommands.object.NoRoleSelectionOpenActionCommand"/>
+			    must not be used, because BB has customized issue management which requires role-selection dialog -->
+				<actionCommand commandId="edit"		 	    clsName="com.idsscheer.webapps.arcm.ui.framework.actioncommands.object.BaseOpenActionCommand"/>
+				<actionCommand commandId="report" 		    clsName="com.idsscheer.webapps.arcm.ui.components.issuemanagement.actioncommands.IssueObjectArisReportActionCommandBB"/>
+			</commandSet>
+		</objectTypeCommands>
+		<listCommands>
+			<commandSet name="MyCreatedIssues,IssueOwner,IssueReviewer,Issues,MyIssueRelevantObjects,RelatedIssues,HierarchyRelatedIssues">
+				<actionCommand commandId="report"       clsName="com.idsscheer.webapps.arcm.ui.components.issuemanagement.actioncommands.IssueListArisReportActionCommand" />
+			</commandSet>
+		</listCommands>
+	</actionCommands>
+</custom>

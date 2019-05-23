@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<migrationPlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="./xsd/migrationPlan.xsd">
+
+    <!-- 9.8.4 => 9.8.6.0 -->
+    <migration name="9.8.5.1_RBA_STD_to_SoftwareAG" source="9.8.5.1_rba_standard" target="9.8.5.1_rba_SoftwareAG" approach="rba" implementation="mig9851SAG" />
+
+</migrationPlan>

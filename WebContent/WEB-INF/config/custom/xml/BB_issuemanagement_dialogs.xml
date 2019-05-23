@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <dialog id="issue_mgmtapprl1_autoreview" type="okCancel" />
+    <dialog id="issue_mgmtapprl2_autoreview" type="okCancel" />
+    <dialog id="issue_techapprover_needed" type="okCancel" />
+    <dialog id="issue_injured_detected" type="okCancel" />
+
+</custom>

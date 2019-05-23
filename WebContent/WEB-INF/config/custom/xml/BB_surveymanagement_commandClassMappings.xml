@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<blClassMapping>
+		<mappingType name="Command">
+	        <!-- ANSWER -->                                     
+	        <mapping name="answerSetScore"                      			clsName="com.idsscheer.webapps.arcm.bl.component.surveymanagement.commands.answer.AnswerSetScoreCommandBB" />
+	        <mapping name="answerMarkAsReviewed"                			clsName="com.idsscheer.webapps.arcm.bl.component.surveymanagement.commands.answer.AnswerMarkAsReviewedCommandBB" />
+	        <mapping name="questionnaireReopenedSendMail"       			clsName="com.idsscheer.webapps.arcm.bl.component.surveymanagement.commands.questionnaire.QuestionnaireReopenedForOwnerSendMailCommandBB" />
+	        <mapping name="questionnaireCalculateIntervieweeActualScore"    clsName="com.idsscheer.webapps.arcm.bl.component.surveymanagement.commands.questionnaire.QuestionnaireCalculateIntervieweeActualScoreCommandBB" />
+
+        	<mapping name="sectionsCheck"                                   clsName="com.idsscheer.webapps.arcm.bl.component.surveymanagement.commands.job.generator.SectionsCheckBB" />	
+    	</mappingType>
+   	</blClassMapping>
+</custom>

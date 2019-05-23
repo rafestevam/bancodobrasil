@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<view id="testcase2hierarchies" view.parameter="DISTINCT" relevantForMashzoneIntegration="true">
+        <viewObject id="VO_testcase2hierarchies_testcase" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="tc_client" attributeType="client_sign" isSortable="true" isSelectColumn="false"/>
+            <viewColumn id="tc_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="tc_owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testcase_version_active" attributeType="version_active" mashzoneRelevant="false"/>
+            <viewColumn id="deactivated" attributeType="deactivated" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_testcasedata_risk" objectType="RISK">
+            <viewColumn id="r_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="r_risk_id" attributeType="risk_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_testcase2hierarchies_hierarchy" objectType="HIERARCHY">
+            <viewColumn id="h_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_number" attributeType="hnumber" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_nivel" attributeType="bb_nivel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_testcase2hierarchies_hierarchy_2" objectType="HIERARCHY">
+             <viewColumn id="bb_deptManager" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="19" firstViewObject="VO_testcase2hierarchies_testcase" secondViewObject="VO_testcasedata_risk" joinType="LEFT"/>
+        <link linktype.id="54,72,74,75" firstViewObject="VO_testcase2hierarchies_testcase" secondViewObject="VO_testcase2hierarchies_hierarchy" joinType="LEFT"/>
+        <link linktype.id="10002" firstViewObject="VO_testcase2hierarchies_hierarchy" secondViewObject="VO_testcase2hierarchies_hierarchy_2" joinType="LEFT"/>
+        <conditions>
+          <compoundCondition conditionConnect="AND">
+                <condition column.id="testcase_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+		  </compoundCondition>
+        </conditions>
+    </view>
+    
+
+    <view id="issuedata" view.parameter="DISTINCT" relevantForMashzoneIntegration="true" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.MashzoneIssueViewHandler">
+		<viewObject id="VO_issuedata_issue" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="is_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="is_name" attributeType="name" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_prio" attributeType="priority" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_cat" attributeType="category" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_rem_date" attributeType="plannedenddate" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_own_stat" attributeType="owner_status" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_rev_stat" attributeType="reviewer_status" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_due_stat" attributeType="stateTime" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>
+			<viewColumn id="is_created_by_tc" attributeType="created_by_testcase" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="is_related_tc" attributeType="relatedTestcaseID" isSortable="true" isSelectColumn="false"/>
+			<viewColumn id="issue_version_active" attributeType="version_active" mashzoneRelevant="false"/>
+			<viewColumn id="deactivated" attributeType="deactivated" mashzoneRelevant="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_issuedata_creator" objectType="USER">
+			<viewColumn id="is_creator_id" attributeType="obj_id" mashzoneRelevant="false"/>
+			<viewColumn id="is_creator" attributeType="name" isSortable="true" isSelectColumn="false"/>
+		</viewObject>
+		<viewObject id="VO_issuedata_perf_by" objectType="USER">
+			<viewColumn id="is_perf_by" attributeType="name" isSortable="true" isSelectColumn="false"/>
+		</viewObject>
+		<viewObject id="VO_issuedata_owner" objectType="USER">
+			<viewColumn id="is_own_id" attributeType="obj_id" mashzoneRelevant="false"/>
+			<viewColumn id="is_own" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_issuedata_reviewer" objectType="USER">
+			<viewColumn id="is_rev_id" attributeType="obj_id" mashzoneRelevant="false"/>
+			<viewColumn id="is_rev" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_issuedata_iro" objectType="OBJECT">
+			<viewColumn id="iro_client" attributeType="client_sign" mashzoneRelevant="false"/>
+			<viewColumn id="iro_obj_type" attributeType="obj_type" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<link linktype.id="3103"  firstViewObject="VO_issuedata_issue" secondViewObject="VO_issuedata_creator"/>
+		<link linktype.id="3105"  firstViewObject="VO_issuedata_issue" secondViewObject="VO_issuedata_perf_by" joinType="LEFT"/>
+		<link linktype.id="3100"  firstViewObject="VO_issuedata_issue" secondViewObject="VO_issuedata_owner" joinType="LEFT"/>
+		<link linktype.id="3101"  firstViewObject="VO_issuedata_issue" secondViewObject="VO_issuedata_reviewer" joinType="LEFT"/>
+		<link linktype.id="3102"  firstViewObject="VO_issuedata_issue" secondViewObject="VO_issuedata_iro" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition column.id="issue_version_active" compareType="EQ" value="true"/>
+				<condition column.id="deactivated" compareType="EQ" value="false"/>
+			</compoundCondition>
+		</conditions> 
+	</view>
+	    
+    	
+    <view id="radata" view.parameter="DISTINCT" relevantForMashzoneIntegration="true">
+        <viewObject id="VO_radata_assessment" objectType="RISKASSESSMENT" isMainViewObject="true">
+            <viewColumn id="ra_client" attributeType="client_sign" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+            <viewColumn id="ra_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+            <viewColumn id="ra_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+            <viewColumn id="ra_date" attributeType="execution_date" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>
+            <viewColumn id="ra_bb_riskAssessmentStatus" attributeType="bb_riskAssessmentStatus" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>
+            <viewColumn id="ra_basis" attributeType="basis_of_valuation" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+            <viewColumn id="ra_source" attributeType="data_source" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>   
+            <viewColumn id="ra_curr" attributeType="currency" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>         
+            <viewColumn id="assessment_version_active" attributeType="version_active" mashzoneRelevant="false"/>
+            <viewColumn id="deactivated" attributeType="deactivated" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_ra2risk_risk" objectType="RISK">
+        	<viewColumn id="r_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        	<viewColumn id="r_risk_id" attributeType="risk_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="r_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="r_startdate" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="r_enddate" attributeType="enddate" isSortable="true" isSelectColumn="true"/>
+            <!--Alteração de campo realizada, de acordo com o Enhancement #120626: DASHBOARD – AVALIAÇÃO DE RISCO – Tabela Resumo Analítico – Perda Esperada – Origem Dados  
+            OBS: Não foi realizado a troca do id, para não atrapalhar os scripts do mashzone-->
+            <viewColumn id="ra_perda_esp_liq_med" attributeType="th_red_exp_avg_loss" isSortable="true" isSelectColumn="true" />
+        </viewObject>
+        <viewObject id="VO_radata_reviewer" objectType="USERGROUP">
+            <viewColumn id="ra_rev_id" attributeType="obj_id" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+            <viewColumn id="ra_rev" attributeType="name" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_radata_assessor" objectType="USER">
+            <viewColumn id="ra_perf_by" attributeType="name" isSortable="true" isSelectColumn="true" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_radata_process" objectType="HIERARCHY">
+            <viewColumn id="h_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_number" attributeType="hnumber" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="h_nivel" attributeType="bb_nivel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_radata_manager" objectType="HIERARCHY">
+        	<viewColumn id="bb_deptManager" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_radata_finacc" objectType="HIERARCHY">
+            <viewColumn id="ra_fsi" attributeType="name" isSelectColumn="true" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_radata_riskcat" objectType="HIERARCHY">
+            <viewColumn id="ra_cat" attributeType="name" mashzoneRelevant="false" />
+        </viewObject>
+        <viewObject id="VO_radata_orgunit" objectType="HIERARCHY">
+            <viewColumn id="ra_org" attributeType="name" isSelectColumn="true" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_radata_appsys" objectType="HIERARCHY">
+            <viewColumn id="ra_app" attributeType="name" isSelectColumn="true" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_radata_type" objectType="RA_IMPACTTYPE">
+            <viewColumn id="rait_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_exp_loss_min" attributeType="exp_min_loss" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_exp_loss_avg" attributeType="exp_avg_loss" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_exp_loss_max" attributeType="exp_max_loss" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_criticidade_final" attributeType="bb_criticidadeFinal" isSortable="true" isSelectColumn="true"/>  
+            <!-- Alteração de campo realizada, de acordo com o Enhancement #120633: DASHBOARD – AVALIAÇÃO DE RISCO – Tabela Resumo Analítico – Perda Efetiva – Origem Dados  
+            OBS: Não foi realizado a troca do id, para não atrapalhar os scripts do mashzone-->
+            <viewColumn id="ra_perda_efet_liq_med" attributeType="bb_red_sum_loss" isSortable="true" isSelectColumn="true" />                                   
+        </viewObject>
+        <viewObject id="LOSSQUAL" objectType="QUOTATION">
+            <viewColumn id="ra_dmg_qual" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_dmg_qual_val" attributeType="value" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="FREQULOSSQUAL" objectType="FREQUENCY">
+            <viewColumn id="ra_occ_frq" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ra_occ_frq_val" attributeType="value" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="3166" firstViewObject="VO_radata_assessment" secondViewObject="VO_ra2risk_risk"/>
+        <link linktype.id="3167" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_reviewer"/>
+        <link linktype.id="3169" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_assessor" joinType="LEFT"/>
+        <link linktype.id="3165" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_process" joinType="LEFT"/>
+        <link linktype.id="3173" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_finacc" joinType="LEFT"/>
+        <link linktype.id="3170" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_riskcat" joinType="LEFT"/>
+        <link linktype.id="3171" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_orgunit" joinType="LEFT"/>
+        <link linktype.id="3172" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_appsys" joinType="LEFT"/>
+        <link linktype.id="5822" firstViewObject="VO_radata_assessment" secondViewObject="VO_radata_type" joinType="LEFT"/>
+        <link linktype.id="5811" firstViewObject="VO_radata_type" secondViewObject="LOSSQUAL" joinType="LEFT"/>
+        <link linktype.id="5812" firstViewObject="VO_radata_type" secondViewObject="FREQULOSSQUAL" joinType="LEFT"/>
+	    <link linktype.id="10002" firstViewObject="VO_radata_process" secondViewObject="VO_radata_manager" joinType="LEFT"/>
+      	<conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="assessment_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+     
+    <view id="issue2Object" view.parameter="DISTINCT" relevantForMashzoneIntegration="true" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.MashzoneIssueViewHandler">
+    	<viewObject id="VO_issue2Object_issue" objectType="ISSUE" isMainViewObject="true">
+            <viewColumn id="is_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_issueType" attributeType="bb_issueType" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="is_due_stat" attributeType="stateTime" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>
+            <viewColumn id="issue_version_active" attributeType="version_active" mashzoneRelevant="false"/>
+            <viewColumn id="deactivated" attributeType="deactivated" mashzoneRelevant="false"/>
+            <viewColumn id="is_creator_id" attributeType="creator" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_issue2Object_iro" objectType="OBJECT">
+            <viewColumn id="iro_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="iro_client" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="iro_obj_type" attributeType="obj_type" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_issue2Object_owner" objectType="USER">
+            <viewColumn id="is_own_id" attributeType="obj_id" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_issue2Object_reviewer" objectType="USER">
+            <viewColumn id="is_rev_id" attributeType="obj_id" mashzoneRelevant="false"/>
+        </viewObject>
+        <link linktype.id="3102" firstViewObject="VO_issue2Object_issue" secondViewObject="VO_issue2Object_iro" joinType="LEFT"/>
+        <link linktype.id="3100" firstViewObject="VO_issue2Object_issue" secondViewObject="VO_issue2Object_owner" joinType="LEFT"/>
+        <link linktype.id="3101" firstViewObject="VO_issue2Object_issue" secondViewObject="VO_issue2Object_reviewer" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="issue_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue2ObjectMZ" view.parameter="DISTINCT" relevantForMashzoneIntegration="true">
+    	<viewObject id="VO_issue2Object_issue" objectType="ISSUE" isMainViewObject="true">
+            <viewColumn id="is_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_issueType" attributeType="bb_issueType" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="is_due_stat" attributeType="stateTime" isSortable="true" isSelectColumn="true" mashzoneRelevant="true"/>
+            <viewColumn id="issue_version_active" attributeType="version_active" mashzoneRelevant="false"/>
+            <viewColumn id="deactivated" attributeType="deactivated" mashzoneRelevant="false"/>
+            <viewColumn id="is_creator_id" attributeType="creator" mashzoneRelevant="false"/>
+        </viewObject>
+        <viewObject id="VO_issue2Object_iro" objectType="OBJECT">
+            <viewColumn id="iro_id" attributeType="obj_id" isSortable="true" isSelectColumn="true" />
+            <viewColumn id="iro_client" attributeType="client_sign" isSortable="true" isSelectColumn="true" />
+            <viewColumn id="iro_obj_type" attributeType="obj_type" isSortable="true" isSelectColumn="true" />
+        </viewObject>
+        <link linktype.id="3102" firstViewObject="VO_issue2Object_issue" secondViewObject="VO_issue2Object_iro" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="issue_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="iro_id" compareType="ISNOTNULL"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+     
+</custom>

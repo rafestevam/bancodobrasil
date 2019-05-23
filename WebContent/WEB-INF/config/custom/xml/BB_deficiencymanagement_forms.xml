@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_DEFICIENCY">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="OBJECT_DUPLICATE"/>
+            <buttonReference button.idref="OBJECT_RESET"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="organisation" licensedComponentIds="dm">
+            <rowGroup id="organisation.1">
+            	<!-- BEGIN : Issue #113859 : TC.GD.157 - Explorer/Gestão de deficiência/Deficiências - ID -->
+                <row id="deficiency_id" propertyKey="form.row.deficiency.deficiency_id.DBI">
+                	<!-- <element name="deficiency_id" attribute.idref="deficiency_id" /> -->
+                    <element name="deficiency_id" attribute.idref="obj_id" />
+                </row>
+                <!-- END -->
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <!--
+                    <row id="FR_4_3" name="timestamp"  propertyKey="form.row.deficiency.timestamp">
+                        <element name="timestamp" attribute="A_O_7" />
+                    </row>
+                    -->
+                <row id="company" propertyKey="form.row.deficiency.company.DBI">
+                    <element attribute.idref="company" />
+                </row>
+                
+                <row id="audit_scope">
+                    <element attribute.idref="audit_scope"/>
+                </row>
+                <row id="country">
+                    <element attribute.idref="country" />
+                </row>
+                <row id="location">
+                    <element attribute.idref="location" />
+                </row>
+                <row id="unittype">
+                    <element attribute.idref="unittype" />
+                </row>
+                <row id="unit">
+                    <element attribute.idref="unit" />
+                </row>
+                <row id="orgunit">
+                    <element attribute.idref="orgunit" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+        <page id="description">
+            <rowGroup id="description.1">
+            	<!-- BEGIN : Issue #113856 : TC.GD.156 - Explorer/Gestão de deficiência/Deficiências - Preencher o campo processo -->
+                <row id="process">
+                    <element attribute.idref="process" >
+                        <parameter name="selectionList" value="deficiency2listprocess"/>
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <!-- END -->
+                <row id="risk">
+                    <element attribute.idref="risk">
+                    	<button.remove button.idref="RELATION_ATTACH" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="testcase">
+                    <element attribute.idref="testcase" />
+                </row>
+                <!--  
+                <row id="testcase_description">
+                    <element attribute.idref="testcase_description" />
+                </row>
+                -->
+                <!-- BdB CUSTOMIZATION -->
+                <row id="bb_testcase">
+                    <element attribute.idref="bb_testcase">
+                    	<parameter name="selectionList" value="testcase2def"/>
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="control_level">
+                    <element attribute.idref="control_level" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="type">
+                    <element attribute.idref="type" />
+                </row>
+                <row id="bb_scope">
+                    <element attribute.idref="bb_scope" />
+                </row>
+                <row id="periodo_amosta" propertyKey="attribute.TESTCASE.periodo_amosta.DBI">
+                    <cell separator="{td}">
+                        <element name="controlstartdate_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="controlstartdate" />
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="controlenddate_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="controlenddate" />
+                    </cell>
+                </row>              
+                <row id="ciclo_avaliatorio" propertyKey="attribute.TESTCASE.ciclo_avaliatorio.DBI">
+                    <cell separator="{td}">
+                        <element name="bb_inicioClicloAvaliatorio_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_inicioClicloAvaliatorio" />
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="bb_fimClicloAvaliatorio_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="bb_fimClicloAvaliatorio" />
+                    </cell>
+                </row>
+                <row id="descr_l1">
+                    <element attribute.idref="descr_l1" />
+                </row>
+                <row id="descr_l2">
+                    <element attribute.idref="descr_l2" />
+                </row>
+                <row id="descr_l3">
+                    <element attribute.idref="descr_l3" />
+                </row>
+                <row id="finaccount"> 
+                    <element attribute.idref="finaccount" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_controlAssertions">
+					<element attribute.idref="bb_controlAssertions" />
+				</row>
+				<row id="bb_finAccountAssertions">
+					<element attribute.idref="bb_finAccountAssertions" />
+				</row>
+                <row id="assertions">
+                    <element attribute.idref="assertions" />
+                </row>
+                <row id="control_type">
+                    <element attribute.idref="control_type" />
+                </row>
+                <row id="bb_plan_departamental">
+					<element attribute.idref="bb_plan_departamental" />
+				</row>
+                <row id="rel_app">
+                    <element attribute.idref="rel_app" />
+                </row>
+                <row id="bb_appSystems">
+					<element attribute.idref="bb_appSystems">
+						<parameter name="selectionList" value="AUTO" />
+					</element>
+				</row>
+                <row id="identified_by_id" propertyKey="form.row.deficiency.identified_by.DBI">
+                    <cell>
+                        <element attribute.idref="identified_by_id" >
+                            <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                        </element>
+                    </cell>
+                    <cell>
+                        <element attribute.idref="identified_by" />
+                    </cell>
+                </row>
+                <row id="likelihood">
+                    <element name="likelihood" attribute.idref="likelihood" >
+                        <javaScriptEvent name="onChange" expression="aam_objectcommand('cache');"/>
+                    </element>
+                </row>
+                <row id="magn" propertyKey="form.row.deficiency.magn.DBI">
+                    <cell separator=" ">
+                        <element attribute.idref="magn" >
+                            <parameter name="maxLength" value="20"/>
+                        </element>
+                        <element attribute.idref="currency" />
+                    </cell>
+                    <cell>
+                        <element attribute.idref="magn_na">
+                            <parameter name="propertyKey" value="form.row.deficiency.magn_na.DBI"/>
+                            <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="magn_comment">
+                    <element attribute.idref="magn_comment" />
+                </row>
+            </rowGroup>
+        </page>
+        <page id="evaluation" licensedComponentIds="dm">
+            <rowGroup id="evaluation.1">
+                <row id="compensating_ctl_l1">
+                    <element attribute.idref="compensating_ctl_l1" >
+                        <parameter name="selectionList" value="deficiency_compCtrl_sel_L1"/>
+                    </element>
+                </row>
+                <row id="compensating_ctl_rem_l1">
+                    <element attribute.idref="compensating_ctl_rem_l1" />
+                </row>
+                <row id="compensating_tested_l1">
+                    <element attribute.idref="compensating_tested_l1"/>
+                </row>
+                <row id="magn_after_comp_l1" propertyKey="form.row.deficiency.magn_after_comp_l1.DBI">
+                    <cell separator=" ">
+                        <element attribute.idref="magn_after_comp_l1" >
+                            <parameter name="maxLength" value="20"/>
+                        </element>
+                        <element attribute.idref="currency_after_comp_l1" />
+                    </cell>
+                    <cell>
+                        <element attribute.idref="magn_after_comp_l1_nap">
+                            <parameter name="propertyKey" value="form.row.deficiency.magn_na.DBI"/>
+                            <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="magn_cmt_after_comp_l1">
+                    <element attribute.idref="magn_cmt_after_comp_l1" />
+                </row>
+                <row id="compensating_ctl_l2">
+                    <element attribute.idref="compensating_ctl_l2" >
+                        <parameter name="selectionList" value="deficiency_compCtrl_sel_L2"/>
+                    </element>
+                </row>
+                <row id="compensating_ctl_rem_l2">
+                    <element attribute.idref="compensating_ctl_rem_l2" />
+                </row>
+                <row id="compensating_tested_l2">
+                    <element attribute.idref="compensating_tested_l2"/>
+                </row>
+                <row id="magn_after_comp_l2" propertyKey="form.row.deficiency.magn_after_comp_l2.DBI">
+                    <cell separator=" ">
+                        <element attribute.idref="magn_after_comp_l2" >
+                            <parameter name="maxLength" value="20"/>
+                        </element>
+                        <element attribute.idref="currency_after_comp_l2" />
+                    </cell>
+                    <cell>
+                        <element attribute.idref="magn_after_comp_l2_nap">
+                            <parameter name="propertyKey" value="form.row.deficiency.magn_na.DBI"/>
+                            <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="magn_cmt_after_comp_l2">
+                    <element attribute.idref="magn_cmt_after_comp_l2" />
+                </row>
+                <row id="compensating_ctl_l3">
+                    <element attribute.idref="compensating_ctl_l3" >
+                        <parameter name="selectionList" value="deficiency_compCtrl_sel_L3"/>
+                    </element>
+                </row>
+                <row id="compensating_ctl_rem_l3">
+                    <element attribute.idref="compensating_ctl_rem_l3" />
+                </row>
+                <row id="compensating_tested_l3">
+                    <element attribute.idref="compensating_tested_l3"/>
+                </row>
+                <row id="magn_after_comp_l3" propertyKey="form.row.deficiency.magn_after_comp_l3.DBI">
+                    <cell separator=" ">
+                        <element attribute.idref="magn_after_comp_l3" >
+                            <parameter name="maxLength" value="20"/>
+                        </element>
+                        <element attribute.idref="currency_after_comp_l3" />
+                    </cell>
+                    <cell>
+                        <element attribute.idref="magn_after_comp_l3_nap">
+                            <parameter name="propertyKey" value="form.row.deficiency.magn_na.DBI"/>
+                            <javaScriptEvent expression="aam_objectcommand('cache')" name="onClick"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="magn_cmt_after_comp_l3">
+                    <element attribute.idref="magn_cmt_after_comp_l3" />
+                </row>
+                <row id="categorisation_l1">
+                    <element attribute.idref="categorisation_l1" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+                <row id="categorisation_l2">
+                    <element attribute.idref="categorisation_l2" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+                <row id="categorisation_l3">
+                    <element attribute.idref="categorisation_l3" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+                <row id="classification_l1">
+                    <element attribute.idref="classification_l1" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+                <row id="classification_l2">
+                    <element attribute.idref="classification_l2" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+                <row id="classification_l3">
+                    <element attribute.idref="classification_l3" >
+                        <parameter name="showUnspecified" value="false"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+        <page id="state" licensedComponentIds="dm">
+            <rowGroup id="state.1">
+                <row id="remediation_ctrl">
+                    <element name="remediation_ctrl" attribute.idref="remediation_ctrl" >
+                        <parameter name="selectionList" value="deficiency_remediationCtrl_sel"/>
+                    </element>
+                </row>
+                <row id="remediation_ctrl_rem">
+                    <element attribute.idref="remediation_ctrl_rem" />
+                </row>
+                <!-- FR_14_2 war doppelt belegt -->
+                <row id="remedied_by_mgmt">
+                    <element attribute.idref="remedied_by_mgmt">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                <row id="remediation_forecast">
+                    <element attribute.idref="remediation_forecast" />
+                </row>
+                <row id="planed_remidiation_date">
+                    <element attribute.idref="planed_remidiation_date" />
+                </row>
+                <row id="still_exists_at_yearend">
+                    <element attribute.idref="still_exists_at_yearend">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                <row id="savestate">
+                    <element attribute.idref="savestate" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="savestate_l2">
+                    <element attribute.idref="savestate_l2" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="savestate_l3">
+                    <element attribute.idref="savestate_l3" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="manager_group_l1">
+                    <element attribute.idref="manager_group_l1" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="manager_user_l1">
+                    <element attribute.idref="manager_user_l1" />
+                </row>
+                <row id="manager_group_l2">
+                    <element attribute.idref="manager_group_l2" >
+                        <parameter name="selectionList" value="deficiency_managerl2_sel"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="manager_user_l2">
+                    <element attribute.idref="manager_user_l2" />
+                </row>
+                <row id="manager_group_l3">
+                    <element attribute.idref="manager_group_l3" >
+                        <parameter name="selectionList" value="deficiency_managerl3_sel"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="manager_user_l3">
+                    <element attribute.idref="manager_user_l3" />
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+</custom>

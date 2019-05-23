@@ -1,0 +1,349 @@
+package TESTDEFINITION_RuleSet
+expander testdefinition.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.testmanagement.re.TestdefinitionHelperBB;
+
+# OBJECT         client_objid         LONG       Client ID                                                                                                                                                                          
+# OBJECT         client_sign          CLIENTSIGN Client                                                                                                                                                                             
+# OBJECT         create_date          DATE       Creation date                                                                                                                                                                      
+# OBJECT         creator_user_id      LONG       User ID (creator)                                                                                                                                                                  
+# OBJECT         delete_date          DATE       Deletion date                                                                                                                                                                      
+# OBJECT         guid                 STRING     GUID                                                                                                                                                                               
+# OBJECT         obj_id               LONG       ID                                                                                                                                                                                 
+# OBJECT         obj_type             OBJECTTYPE Object type                                                                                                                                                                        
+# OBJECT         root_guid            STRING     Root GUID                                                                                                                                                                          
+# OBJECT         versions             LONG       Number of versions                                                                                                                                                                 
+# VERSION        aris_change_date     DATE       ARIS change date                                                                                                                                                                   
+# VERSION        change_date          DATE       Change date                                                                                                                                                                        
+# VERSION        change_type          ENUM       Change type                      changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                                     
+# VERSION        change_user_id       LONG       User ID (editor)                                                                                                                                                                   
+# VERSION        deactivated          BOOLEAN    Deactivated                                                                                                                                                                        
+# VERSION        id                   LONG       ID                                                                                                                                                                                 
+# VERSION        substitute_user_id   LONG       User ID (substitute)                                                                                                                                                               
+# VERSION        version_active       BOOLEAN    Current version                                                                                                                                                                    
+# VERSION        version_number       LONG       Version number                                                                                                                                                                     
+# RECURRING      control_period       ENUM       Length of control period         controlperiod (unspecified=0,day=1,week=2,month=3,quarter=4,semiannual=5,year=6)                                                                  
+# RECURRING      duration             LONG       Time limit for execution in days                                                                                                                                                   
+# RECURRING      enddate              DATE       End date                                                                                                                                                                           
+# RECURRING      event_driven_allowed BOOLEAN    Event-driven test cases allowed                                                                                                                                                    
+# RECURRING      frequency            ENUM       Test frequency                   frequency_including_none (all=-1,unspecified=0,oneoff=1,daily=2,weekly=3,monthly=4,quarterly=5,semiannually=6,annually=7,everysecondyear=8,none=9)
+# RECURRING      control_period_offset LONG      Offset in days
+# RECURRING      owner_group          LIST       Tester group                     to 1 USERGROUP (LT=3)                                                                                                                             
+# RECURRING      reviewer_group       LIST       Reviewer group                   to 1 USERGROUP (LT=53)                                                                                                                            
+# RECURRING      startdate            DATE       Start date                                                                                                                                                                         
+# TESTDEFINITION isfollowup           BOOLEAN    Follow-up                                                                                                                                                                          
+# TESTDEFINITION name                 STRING     Name                                                                                                                                                                               
+# TESTDEFINITION orgunit              LIST       Affected organizational unit     to 1 HIERARCHY (LT=49)                                                                                                                            
+# TESTDEFINITION test_nature          ENUM       Nature of test                   natureoftest (inquiry=1,observation=2,examination=3,reperformance=4)                                                                              
+# TESTDEFINITION testextend           TEXT       Test size                                                                                                                                                                          
+# TESTDEFINITION testingsteps         TEXT       Test activities                                                                                                                                                                    
+# TESTDEFINITION testtype             ENUM       Test type                        testtype (testofdesign=1,testofeffectiveness=2)                                                                                                   
+# TESTDEFINITION walkthroughCounter   STRING     Walkthrough counter                                                                                                                                                                
+# TESTDEFINITION walkthroughName      STRING     Walkthrough name                                                                                                                                                                   
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "define all standard attributes editable [I,V]"
+
+    salience 10400
+	no-loop true
+
+	when
+
+	then
+		set "client_objid"          editable
+		set "client_sign"           editable
+		set "create_date"           editable
+		set "creator_user_id"       editable
+		set "delete_date"           editable
+		set "guid"                  editable
+		set "obj_id"                readonly
+		set "obj_type"              editable
+		set "versions"              editable
+		set "control_period"        editable
+		set "duration"              editable
+		set "enddate"               editable
+		set "frequency"             editable
+		set "event_driven_allowed"  editable
+		set "control_period_offset" editable
+		set "owner_group"           editable
+		set "reviewer_group"        editable
+		set "manager_group"         editable
+		set "startdate"             editable
+		set "isfollowup"            editable
+		set "name"                  editable
+		#set "orgunit"              editable
+		set "test_nature"           editable
+		set "testextend"            editable
+		set "testingsteps"          editable
+		set "testtype"              editable
+		set "walkthroughCounter"    editable
+		set "walkthroughName"       editable
+		set "bb_walkthroughName"    editable
+		set "aris_change_date"      editable
+		set "change_date"           editable
+		set "change_type"           editable
+		set "change_user_id"        editable
+		set "deactivated"           editable
+		set "id"                    editable
+		set "obsolete_date"         editable
+		set "substitute_user_id"    editable
+		set "version_active"        editable
+		set "version_number"        editable
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_finalidadeTeste"				   editable
+		set "bb_origemAmostra"					   editable
+		set "bb_criterioAmostra"				   editable
+		#set "bb_dependenciaAmostra"			       editable
+		set "bb_funcFornecAmostra"				   editable
+		set "bb_testeValidacao"					   editable
+		#set "bb_periodoBaseSelecao" 			   editable 
+		set "bb_detalDependExecutaControle"  	   editable
+		#set "bb_detalPerioBaseSelecao"			   editable
+		#set "bb_dtInicioBaseSelecao"			   editable
+		#set "bb_dtFimBaseSelecao"			   	   editable
+		set "control_frequency"			   	   	   editable
+		set "bb_depeFornecAmostra"			       editable	
+		set "orgunitDepenCtl"  					   editable
+		
+		
+end
+
+rule "mark_mandatory_fields_[I,V]"
+
+	salience 10300
+	no-loop true
+
+	when
+
+	then
+		set "reviewer_group"        mandatory
+		set "control_period"        mandatory
+		set "testtype"              mandatory
+		set "owner_group"           mandatory
+		set "control_period_offset" mandatory
+		set "isfollowup"            mandatory
+		set "testingsteps"          mandatory
+		set "test_nature"           mandatory
+		#set "orgunit"               mandatory
+		set "duration"              mandatory
+		set "testextend"            mandatory
+		set "frequency"             mandatory
+		set "event_driven_allowed"  mandatory
+		set "startdate"             mandatory
+		set "name"                  mandatory
+		set "control_frequency"		mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_finalidadeTeste"					mandatory
+		set "bb_origemAmostra"						mandatory
+		set "bb_criterioAmostra"					mandatory
+		#set "bb_dependenciaAmostra"				mandatory
+		set "bb_funcFornecAmostra"					mandatory
+		set "bb_testeValidacao"						mandatory
+		#set "bb_dtInicioBaseSelecao"			    mandatory
+		#set "bb_dtFimBaseSelecao"			   	    mandatory
+		#set "bb_detalPerioBaseSelecao"		  		mandator
+		set "bb_depeFornecAmostra"             		mandatory
+		set "orgunitDepenCtl"						mandatory
+		
+end
+
+########################
+### BB CUSTOMIZATION ###
+
+rule "define invisible attributes [I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+
+	then
+		set "bb_periodoBaseSelecao" 		invisible
+		set "bb_detalPerioBaseSelecao"		invisible
+		set "bb_dtInicioBaseSelecao"		invisible
+		set "bb_dtFimBaseSelecao"			invisible
+end
+
+
+rule "define invisible attributes --> testtype=bb_validacao [I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "bb_testeValidacao" "EQUALS" value "false"
+
+	then
+		set "bb_validacaoFrente" 		invisible
+		set "bb_validacaoAmbito" 		invisible
+		set "bb_validacaoObjeto" 		invisible
+		set "bb_validacaoSecao" 		invisible
+		set "bb_validacaoReferencia" 	invisible
+end
+
+
+########################
+### BB CUSTOMIZATION ###
+
+rule "define editable_attributes --> testtype=testofdesign [I,V]"
+
+    salience 10250
+	no-loop true
+
+	when
+		
+		value comparison fulfilled: ":transient:" attr_value "testtype" "CONTAINS" value "testofdesign" AND
+        "testingsteps" is_not filled 
+	
+	then
+	    set "testingsteps" to value "Executar procedimentos de walkthrough" 
+end
+
+########################
+### BB CUSTOMIZATION ###
+
+rule "define editable_attributes --> testtype=testofeffectiveness [I,V]"
+
+    salience 10250
+	no-loop true
+
+	when
+		
+		value comparison fulfilled: ":transient:" attr_value "testtype" "CONTAINS" value "testofeffectiveness" AND
+		"testingsteps" is filled AND
+		is testingsteps default value
+	then
+		reset "testingsteps" to default_value
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "define control_frequency empty --> warning message [I,V]"
+
+    salience 10250
+    no-loop true
+
+    when
+       value comparison fulfilled: ":transient:" attr_value "control_frequency" "CONTAINS" value "unspecified"
+
+    then
+       set "control_frequency" invalid
+       add "warning" message "warning.testdefinition.control_frequency.WRG" to "control_frequency"
+       
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "define editable attributes --> testtype=bb_validacao [I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "bb_testeValidacao" "EQUALS" value "true"
+	then
+		set "bb_validacaoFrente" 		editable
+		set "bb_validacaoAmbito" 		editable
+		set "bb_validacaoObjeto" 		editable
+		set "bb_validacaoSecao"			editable
+		set "bb_validacaoReferencia"	editable
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "define mandatory attributes --> testtype=bb_validacao [I,V]"
+
+	salience 10250
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "bb_testeValidacao" "EQUALS" value "true"
+	then
+		set "bb_validacaoFrente" 		mandatory
+		set "bb_validacaoAmbito" 		mandatory
+		set "bb_validacaoObjeto" 		mandatory
+		set "bb_validacaoSecao" 		mandatory
+		set "bb_validacaoReferencia" 	mandatory
+
+end
+
+rule "testcase_frequency=none --> event_driven_allowed:=true [I,V]"
+
+	salience 10200
+	no-loop true
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "frequency" "CONTAINS" value "none"
+
+	then
+		set "event_driven_allowed" to value "true"
+		set "event_driven_allowed" not_mandatory
+		set "event_driven_allowed" readonly
+		# deactivated for GW, CABI - 27.3.12
+		#set "testtype" to value "testofeffectiveness"
+		#set "testtype" not_mandatory
+		#set "testtype" readonly
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+#rule "bb_dtInicioBaseSelecao after bb_dtFimBaseSelecao not allowed [V]"
+
+	#salience 10150
+	#no-loop true
+
+	#when
+		#"bb_dtInicioBaseSelecao" is filled
+		#"bb_dtFimBaseSelecao" is filled
+		#attribute comparison fulfilled: ":transient:" attr_value "bb_dtInicioBaseSelecao" "GREATER THAN" ":transient:" attr_value "bb_dtFimBaseSelecao"
+
+	#then
+		#set "bb_dtInicioBaseSelecao" invalid
+		#set "bb_dtFimBaseSelecao"   invalid
+		#add "error" message "error.date.range.DBI" to "bb_dtInicioBaseSelecao"
+		#add "error" message "error.date.range.DBI" to "bb_dtFimBaseSelecao"
+
+#end
+
+rule "startdate_invalid_[V]"
+
+	salience 10000
+	no-loop true
+
+	when
+		"startdate" is filled
+		"enddate" is filled
+		attribute comparison fulfilled: ":transient:" attr_value "startdate" "GREATER THAN" ":transient:" attr_value "enddate"
+
+	then
+		set "startdate" invalid
+		add "error" message "error.date.range.DBI" to "startdate"
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "control_period_offset is invalid [V]"
+
+	salience 10000
+	no-loop true
+
+	when
+		"control_period" is filled
+		"control_period_offset" is filled
+		
+	then
+		check offset by control_period 
+
+end

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<objectType id="ISSUE" extends="MONITORABLE" xmlexport="false" clientDependent="false" displayAttribute="name"
+                licensedComponentIds="im" dataKind="transactiondata"
+                mashzoneId="220" image="iconlib/icons/content/issue_16.png">
+
+        <listAttrType id="creator" maxSize="1" objectType.idref="USER" linkType="3103"/>
+        <enumAttrType id="creator_status" enumeration="issue_creator_status" defaultValue="1"/>
+
+        <listAttrType id="owners" objectType.idref="USER" linkType="3100" />
+        <listAttrType id="owner_group" objectType.idref="USERGROUP" linkType="4019" maxSize="-1"/>
+        <enumAttrType id="owner_status" enumeration="issue_owner_status" defaultValue="-3"/>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3105"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3106"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3118"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <listAttrType id="reviewers" objectType.idref="USER" linkType="3101" />
+        <listAttrType id="reviewer_group" objectType.idref="USERGROUP" linkType="4021" maxSize="-1"/>
+        <listAttrType id="reviewer" objectType.idref="USER" linkType="4022" maxSize="1"/>
+        <listAttrType id="reviewer_substitute" objectType.idref="USER" linkType="4023"/>
+        <enumAttrType id="reviewer_status" enumeration="issue_reviewer_status" defaultValue="0"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3119"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+		<!-- Added on 98.5.1.10 -->
+		
+        <!-- for IRO rendering -->
+        <longAttrType id="relatedTestcaseID"  objectType.idref="TESTCASE"/>
+        <!-- for issue list filter and mashzone view -->
+        <booleanAttrType id="created_by_testcase" defaultValue="false"/>
+
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="description"/>
+        <textAttrType id="remark"/>
+        <textAttrType id="immediateMeasure"/>
+        <textAttrType id="remediationMeasure" isMassEditable="true"/>
+        <textAttrType id="owner_remark"/>
+        <textAttrType id="reviewer_remark"/>
+        <listAttrType id="issueRelevantObjects"
+                  objectType.idref="CLIENT,USERGROUP,USER,RISK,CONTROL,TESTDEFINITION,TESTCASE,DOCUMENT,RECOMMENDATION,DEFICIENCY,QUESTIONNAIRE_TEMPLATE,SECTION,QUESTION,OPTIONSET,OPTION,NEWSMESSAGE,SURVEYTASK,SURVEY,QUESTIONNAIRE,ANSWER,HIERARCHY,SOTASK,SOPROCESS,ISSUE,SITE,RISKASSESSMENT,INCIDENT,LOSS,AUDITTEMPLATE,AUDITSTEPTEMPLATE,AUDIT,AUDITSTEP,POLICYDEFINITION,POLICY,POLICYAPPROVAL,POLICYCONFIRMATION,EXCEPTION,POLICYREVIEW,CHANGEREVIEW,IMPACTTYPE,QUOTATION,FREQUENCY,CONTROLEXECUTIONTASK,CONTROLEXECUTION"
+                  linkType="3102" orderType="auto"/>
+        <enumAttrType id="category" enumeration="issue_category" defaultValue="0"/>
+        <enumAttrType id="stateTime" enumeration="issueStateTime" defaultValue="3"/>
+        <enumAttrType id="priority" enumeration="issuePriority" defaultValue="0"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3104"/>
+
+        <index id="I_ISSUE_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_ISSUE_2" type="normal">
+            <attributeRef attribute="category"/>
+        </index>
+        <index id="I_ISSUE_5" type="normal">
+            <attributeRef attribute="stateTime"/>
+        </index>
+        <index id="I_ISSUE_7" type="normal">
+            <attributeRef attribute="priority"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <enumAttrType id="bb_issueType" enumeration="bb_issueType" defaultValue="0"/>
+        <enumAttrType id="bb_issueGrade" enumeration="bb_issueGrade" defaultValue="0"/>
+        <enumAttrType id="bb_faultLogCategory" enumeration="bb_faultLogCategory" defaultValue="0"/>
+        <textAttrType id="bb_anotherImportantInfo"/>
+        <enumAttrType id="bb_confidentialityLevel" enumeration="bb_confidentialityLevel" defaultValue="0"/> 
+        <stringAttrType id="bb_specificKpiLimit" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <doubleAttrType id="bb_specificKpiLimitAmount">
+            <validate name="double" arg0="gt:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_kpiLimitCurrentAmount">
+            <validate name="double" arg0="gt:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <textAttrType id="bb_specificKpiLimitDocs"/>
+        <booleanAttrType id="bb_probAndMagnitQst01"/>
+        <doubleAttrType id="bb_probAndMagnitQst02">
+            <validate name="double" arg0="gt:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_probAndMagnitQst03">
+            <validate name="double" arg0="gt:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <booleanAttrType id="bb_probAndMagnitQst04"/>
+        <textAttrType id="bb_probAndMagnitQst05"/>
+        <booleanAttrType id="bb_compControlsQst01"/>
+        <booleanAttrType id="bb_otherConsidQst01"/>
+        <textAttrType id="bb_otherConsidQst02"/>
+        <booleanAttrType id="bb_otherConsidQst03"/>
+        <textAttrType id="bb_otherConsidQst04"/>
+        <booleanAttrType id="bb_deficiencyGravityQst01" />
+        <booleanAttrType id="bb_deficiencyGravityQst02" />
+        <booleanAttrType id="bb_deficiencyGravityQst03" />
+        <booleanAttrType id="bb_deficiencyGravityQst04" />
+        <textAttrType id="bb_defGravityRmrk04" />
+        <booleanAttrType id="bb_deficiencyGravityQst05" />
+        <textAttrType id="bb_defGravityRmrk05" />
+        <booleanAttrType id="bb_deficiencyGravityQst06" />
+        <enumAttrType id="bb_defGravitySuggResult" enumeration="bb_deficiencyGravityResult" defaultValue="0"/>
+        <enumAttrType id="bb_defGravityResult" enumeration="bb_deficiencyGravityResult" defaultValue="0"/>
+        <dateAttrType id="bb_firstPlannedEndDate">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <stringAttrType id="bb_projectServiceRequest" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="bb_issueOrign" enumeration="bb_issueOrign" defaultValue="0"/>
+        <enumAttrType id="bb_conclusionPercentage" enumeration="bb_conclusionPercentage" defaultValue="20"/>
+        <booleanAttrType id="bb_injuredIssue" />
+        <listAttrType id="bb_implDocuments" objectType.idref="DOCUMENT" linkType="10029"/>
+        <dateAttrType id="bb_dealingDeadlineDate">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <listAttrType id="bb_controlesCompensat" objectType.idref="TESTCASE" linkType="20160607">
+        	<listRestriction>
+        		<attributeRestriction attribute="owner_status" value="effective"/>
+        		<attributeRestriction attribute="reviewer_status" value="accepted"/> 
+        	</listRestriction>
+        </listAttrType>
+        
+        <!-- Management - Approver L1 (Creation) -->
+        <listAttrType id="bb_mgmtApproverL1_group" objectType.idref="USERGROUP" linkType="10008" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuemgmtapproverl1"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_mgmtApproverL1_status" enumeration="bb_standardApproverL1_status" defaultValue="-2"/>
+        <listAttrType id="bb_mgmtApproverL1" objectType.idref="USER" linkType="10009" maxSize="1"/>
+        <listAttrType id="bb_mgmtApproverL1_subs" objectType.idref="USER" linkType="10010" maxSize="1"/>
+        <dateAttrType id="bb_mgmtApproverL1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_mgmtApproverL1_remark" />
+        <booleanAttrType id="bb_mgmtApproverL1_aware" defaultValue="false"/>
+        <!-- Management - Approver L1 (Execution) -->
+        <enumAttrType id="bb_execMgmtApprL1_status" enumeration="bb_executionApproverL1_status" defaultValue="-2"/>
+        <listAttrType id="bb_execMgmtApprL1" objectType.idref="USER" linkType="10034" maxSize="1"/>
+        <listAttrType id="bb_execMgmtApprL1_subs" objectType.idref="USER" linkType="10035" maxSize="1"/>
+        <dateAttrType id="bb_execMgmtApprL1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_execMgmtApprL1_remark" />
+        <booleanAttrType id="bb_execMgmtApprL1_aware" />
+
+
+        <!-- Management - Approver L2 (Creation) -->
+        <listAttrType id="bb_mgmtApproverL2_group" objectType.idref="USERGROUP" linkType="10011" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuemgmtapproverl2"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_mgmtApproverL2_status" enumeration="bb_standardApproverL2_status" defaultValue="-2"/>
+        <listAttrType id="bb_mgmtApproverL2" objectType.idref="USER" linkType="10012" maxSize="1"/>
+        <listAttrType id="bb_mgmtApproverL2_subs" objectType.idref="USER" linkType="10013" maxSize="1"/>
+        <dateAttrType id="bb_mgmtApproverL2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_mgmtApproverL2_remark" />
+        <listAttrType id="bb_mgmtApprover_orgunit" objectType.idref="HIERARCHY" linkType="10046" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <!-- Management - Approver L2 (Execution) -->
+        <enumAttrType id="bb_execMgmtApprL2_status" enumeration="bb_executionApproverL2_status" defaultValue="-2"/>
+        <listAttrType id="bb_execMgmtApprL2" objectType.idref="USER" linkType="10036" maxSize="1"/>
+        <listAttrType id="bb_execMgmtApprL2_subs" objectType.idref="USER" linkType="10037" maxSize="1"/>
+        <dateAttrType id="bb_execMgmtApprL2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_execMgmtApprL2_remark" />
+        
+
+        <!-- Implementation - Approver L1 (Creation) -->
+        <listAttrType id="bb_implApproverL1_group" objectType.idref="USERGROUP" linkType="10014" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issueimplapproverl1"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_implApproverL1_status" enumeration="bb_standardApproverL1_status" defaultValue="-2"/>
+        <listAttrType id="bb_implApproverL1" objectType.idref="USER" linkType="10015" maxSize="1"/>
+        <listAttrType id="bb_implApproverL1_subs" objectType.idref="USER" linkType="10016" maxSize="1"/>
+        <dateAttrType id="bb_implApproverL1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <booleanAttrType id="bb_implApproverL1_aware" defaultValue="false"/>
+        <textAttrType id="bb_implApproverL1_remark" />
+        <!-- Implementation - Approver L1 (Execution) -->
+        <enumAttrType id="bb_execImplApprL1_status" enumeration="bb_executionApproverL1_status" defaultValue="-2"/>
+        <listAttrType id="bb_execImplApprL1" objectType.idref="USER" linkType="10030" maxSize="1"/>
+        <listAttrType id="bb_execImplApprL1_subs" objectType.idref="USER" linkType="10031" maxSize="1"/>
+        <dateAttrType id="bb_execImplApprL1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+		<textAttrType id="bb_execImplApprL1_remark" />
+		
+		
+        <!-- Implementation - Approver L2 (Creation) -->
+        <listAttrType id="bb_implApproverL2_group" objectType.idref="USERGROUP" linkType="10017" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issueimplapproverl2"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_implApproverL2_status" enumeration="bb_standardApproverL2_status" defaultValue="-2"/>
+        <listAttrType id="bb_implApproverL2" objectType.idref="USER" linkType="10018" maxSize="1"/>
+        <listAttrType id="bb_implApproverL2_subs" objectType.idref="USER" linkType="10019" maxSize="1"/>
+        <dateAttrType id="bb_implApproverL2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_conclusionDate"></dateAttrType>
+        
+        <booleanAttrType id="bb_implApproverL2_aware" defaultValue="false"/>
+        <textAttrType id="bb_implApproverL2_remark" />
+        <listAttrType id="bb_implApprover_orgunit" objectType.idref="HIERARCHY" linkType="10047" maxSize="1" >
+        	<listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <!-- Implementation - Approver L2 (Execution) -->
+        <enumAttrType id="bb_execImplApprL2_status" enumeration="bb_executionApproverL2_status" defaultValue="-2"/>
+        <listAttrType id="bb_execImplApprL2" objectType.idref="USER" linkType="10032" maxSize="1"/>
+        <listAttrType id="bb_execImplApprL2_subs" objectType.idref="USER" linkType="10033" maxSize="1"/>
+        <dateAttrType id="bb_execImplApprL2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+		<textAttrType id="bb_execImplApprL2_remark" />
+        
+
+        <!-- Tech Support - Approver L1 --> 
+        <booleanAttrType id="bb_isTechSupportNeeded" defaultValue="false"/>
+        <listAttrType id="bb_techApproverL1_group" objectType.idref="USERGROUP" linkType="10020" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuetechapproverl1"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_techApproverL1_status" enumeration="bb_standardApproverL1_status" defaultValue="-2"/>
+        <listAttrType id="bb_techApproverL1" objectType.idref="USER" linkType="10021" maxSize="1"/>
+        <listAttrType id="bb_techApproverL1_subs" objectType.idref="USER" linkType="10022" maxSize="1"/>
+        <dateAttrType id="bb_techApproverL1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_techApproverL1_remark" />
+        
+
+        <!-- Tech Support - Approver L2 -->
+        <listAttrType id="bb_techApproverL2_group" objectType.idref="USERGROUP" linkType="10023" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuetechapproverl2"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="bb_techApproverL2_status" enumeration="bb_standardApproverL2_status" defaultValue="-2"/>
+        <listAttrType id="bb_techApproverL2" objectType.idref="USER" linkType="10024" maxSize="1"/>
+        <listAttrType id="bb_techApproverL2_subs" objectType.idref="USER" linkType="10025" maxSize="1"/>
+        <dateAttrType id="bb_techApproverL2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="bb_techApproverL2_remark" />
+        <listAttrType id="bb_techApprover_orgunit" objectType.idref="HIERARCHY" linkType="10048" maxSize="1" >
+        	<listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!--  BdB's Issue Creators -->
+         <listAttrType id="bb_creators_group" objectType.idref="USERGROUP" linkType="20161104" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuecreator"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!-- BdB's Issue Owners -->
+        <listAttrType id="bb_owners_group" objectType.idref="USERGROUP" linkType="10043" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issueowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!-- BdB's Issue Reviewers -->
+        <listAttrType id="bb_reviewers_group" objectType.idref="USERGROUP" linkType="10044" maxSize="1">
+        	<listRestriction>
+                <attributeRestriction attribute="role" value="issuereviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!-- ATB Report -->
+        <dateAttrType id="bb_creator_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_execStartDate">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <longAttrType id="bb_execPlannedDays"/>
+        <longAttrType id="bb_execWorkedDays"/>
+        <doubleAttrType id="bb_execPercentDays">
+            <validate name="double" arg0="ge:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <booleanAttrType id="bb_isOverdueExecution" defaultValue="false"/>
+        <dateAttrType id="bb_implApprL2ATB_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_mgmtApprL2ATB_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <enumAttrType id="bb_mgmtApprL2ATB_status" enumeration="bb_standardApproverL2_status" defaultValue="-2"/>
+        <dateAttrType id="bb_mgmtApprL1ATB_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_start_date">
+        	<validate name="date"/>
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="bb_certification_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+                
+        <!-- TaskItem -->
+        <dateAttrType id="bb_taskItemStartDate">
+            <modify name="beginOfDay" />
+        </dateAttrType>
+        <dateAttrType id="bb_taskItemEndDate">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+    </objectType>
+</custom>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	
+    <ruleContext objectType="ISSUE" ruleSet.idrefs="rs_27 rs_issue_fl rs_issue_mf rs_issue_tr rs_issue_dd rs_issue_sad rs_issue_es rs_issue_ac rs_mgmtappl1_fl rs_mgmtappl2_fl rs_implappl1_fl rs_implappl1_mf rs_mgmtappl1_mf rs_mgmtappl1_es rs_implappl2_es rs_mgmtappl2_sad rs_mgmtappl1_tr rs_mgmtappl2_tr rs_implappl1_tr rs_techappl1_tr rs_techappl2_tr rs_implappl2_tr rs_execowners_tr rs_execreviewers_tr rs_implappl1_ac rs_techappl1_ac rs_techappl2_ac rs_implappl2_ac rs_mgmtappl1_ac rs_execowners_ac rs_execreviewers_ac rs_mgmtappl2_ac rs_implappl2_dd rs_techappl1_dd rs_mgmtappl1_dd rs_mgmtappl2_dd rs_issue_mg rs_iro_ac rs_iro_dd rs_iro_es rs_iro_fl rs_iro_mf rs_iro_sad rs_iro_tr"/> 
+
+	<ruleSet id="rs_issue_fl" drl="issue_faultlog.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_mf" drl="issue_manifestation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_tr" drl="issue_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_dd" drl="issue_dealingdeadline.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_sad" drl="issue_sad.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_es" drl="issue_extrapolation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_ac" drl="issue_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_fl" drl="issue_mgmtappl1_faultlog.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl2_fl" drl="issue_mgmtappl2_faultlog.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl1_fl" drl="issue_implappl1_faultlog.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl1_mf" drl="issue_implappl1_manifestation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_mf" drl="issue_mgmtappl1_manifestation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_es" drl="issue_mgmtappl1_extrapolation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl2_es" drl="issue_implappl2_extrapolation.drl" dsl="issue.dsl"/>
+	<!-- 15.08.2016 there is no more execution phase for extrapolation 
+	<ruleSet id="rs_execowners_es" drl="issue_execowners_extrapolation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_execreviewers_es" drl="issue_execreviewers_extrapolation.drl" dsl="issue.dsl"/>
+	 -->
+	<ruleSet id="rs_mgmtappl2_sad" drl="issue_mgmtappl2_sad.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_tr" drl="issue_mgmtappl1_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl2_tr" drl="issue_mgmtappl2_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl1_tr" drl="issue_implappl1_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_techappl1_tr" drl="issue_techappl1_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_techappl2_tr" drl="issue_techappl2_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl2_tr" drl="issue_implappl2_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_execowners_tr" drl="issue_execowners_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_execreviewers_tr" drl="issue_execreviewers_techrecommendation.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl1_ac" drl="issue_implappl1_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_techappl1_ac" drl="issue_techappl1_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_techappl2_ac" drl="issue_techappl2_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl2_ac" drl="issue_implappl2_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_ac" drl="issue_mgmtappl1_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_execowners_ac" drl="issue_execowners_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_execreviewers_ac" drl="issue_execreviewers_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl2_ac" drl="issue_mgmtappl2_action.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_implappl2_dd" drl="issue_implappl2_dealingdeadline.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_techappl1_dd" drl="issue_techappl1_dealingdeadline.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl1_dd" drl="issue_mgmtappl1_dealingdeadline.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_mgmtappl2_dd" drl="issue_mgmtappl2_dealingdeadline.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_issue_mg" drl="issue_manager.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_ac" drl="issue_action_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_dd" drl="issue_dealingdeadline_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_es" drl="issue_extrapolation_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_fl" drl="issue_faultlog_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_mf" drl="issue_manifestation_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_sad" drl="issue_sad_iro.drl" dsl="issue.dsl"/>
+	<ruleSet id="rs_iro_tr" drl="issue_techrecommendation_iro.drl" dsl="issue.dsl"/>
+</custom>

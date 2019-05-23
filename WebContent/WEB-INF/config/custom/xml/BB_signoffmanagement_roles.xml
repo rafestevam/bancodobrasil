@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+		<role id="signoffmanager" level="CO" licensedComponentIds="so" userLicenses="operate">
+			<system component.idref="check.soprocess"/>
+			<system component.idref="generate.soprocess"/>
+			<system component.idref="view.monitoring"/>
+			<system component.idref="view.signoff"/>
+			<system component.idref="view.mashzone.url.builder"/>
+	        <system component.idref="view.home.dashboards"/>
+			<object right.idref="rwcdu" objectType.id="SOTASK">
+				<action actionRight.idref="reset"/>
+				<relation right.idref="ar" listAttrType.id="element"/>
+				<relation right.idref="ar" listAttrType.id="manager_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/>
+			</object>
+			<object right.idref="rwcd-" objectType.id="SOPROCESS">
+				<action actionRight.idref="reset"/>
+	            <action actionRight.idref="extend"/>
+			</object>
+			<object right.idref="rw---" objectType.id="HIERARCHY">
+				<relation right.idref="ar" listAttrType.id="so_owner"/>
+			</object>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+		    <object right.idref="r----" objectType.id="TESTCASE"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+	        <object right.idref="r----" objectType.id="DEFICIENCY"/>
+	        <object right.idref="r----" objectType.id="DASHBOARDCONNECTION"/>
+	    </role>
+		<role id="signoffauditor" level="C" licensedComponentIds="so" userLicenses="operate">
+			<system component.idref="view.signoff"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="r----" objectType.id="SOTASK"/>
+			<object right.idref="r----" objectType.id="SOPROCESS"/>
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+		    <object right.idref="r----" objectType.id="TESTCASE"/>
+			<object right.idref="r----" objectType.id="DOCUMENT"/>
+	        <object right.idref="r----" objectType.id="DEFICIENCY"/>
+	        <object right.idref="r----" objectType.id="DASHBOARDCONNECTION"/>
+	    </role>
+	</roles>
+</custom>	

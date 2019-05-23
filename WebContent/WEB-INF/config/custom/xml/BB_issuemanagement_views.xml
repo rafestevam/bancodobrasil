@@ -1,0 +1,2109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	
+	<view id="IssueMgmtApproverL1" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueMgmtApproverL1_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<!-- BdB CUSTOMIZATION - NEILA -->
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>												
+		</viewObject>
+		<viewObject id="VO_IssueMgmtApproverL1_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueMgmtApproverL1_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueImplApproverL1_IMPAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->		
+		<viewObject id="VO_IssueMgmtApproverL1_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+		<link linktype.id="10008" firstViewObject="VO_IssueMgmtApproverL1_ISSUE" secondViewObject="VO_IssueMgmtApproverL1_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="3103" firstViewObject="VO_IssueMgmtApproverL1_ISSUE" secondViewObject="VO_IssueMgmtApproverL1_CREATOR"/>
+		<!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10014" firstViewObject="VO_IssueMgmtApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_IMPAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueMgmtApproverL1_ISSUE" secondViewObject="VO_IssueMgmtApproverL1_TECHAPPROVERL1" joinType="LEFT"/>        		       
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="bb_issueType" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL1_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueMgmtApproverL2" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueMgmtApproverL2_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<!-- BdB CUSTOMIZATION - NEILA -->
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>														
+		</viewObject>
+		<viewObject id="VO_IssueMgmtApproverL2_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueMgmtApproverL2_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+            <viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>					
+		</viewObject>
+		<viewObject id="VO_IssueMgmtApproverL2_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->			
+		<viewObject id="VO_IssueMgmtApproverL2_IMPAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>	
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueMgmtApproverL2_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+				
+		<link linktype.id="3103" firstViewObject="VO_IssueMgmtApproverL2_ISSUE" secondViewObject="VO_IssueMgmtApproverL2_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueMgmtApproverL2_ISSUE" secondViewObject="VO_IssueMgmtApproverL2_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueMgmtApproverL2_ISSUE" secondViewObject="VO_IssueMgmtApproverL2_MGMTAPPROVERL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10014" firstViewObject="VO_IssueMgmtApproverL2_ISSUE" secondViewObject="VO_IssueMgmtApproverL2_IMPAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueMgmtApproverL2_ISSUE" secondViewObject="VO_IssueMgmtApproverL2_TECHAPPROVERL1" joinType="LEFT"/>        		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="bb_issueType" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueMgmtApproverL2_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueImplApproverL1" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueImplApproverL1_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL1_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL1_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL1_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>					
+		</viewObject>		
+		<viewObject id="VO_IssueImplApproverL1_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<!--  BdB CUSTOMIZATION -->		
+		<viewObject id="VO_IssueImplApproverL1_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+		
+		<link linktype.id="3103" firstViewObject="VO_IssueImplApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueImplApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueImplApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_MGMTAPPROVERL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10014" firstViewObject="VO_IssueImplApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueImplApproverL1_ISSUE" secondViewObject="VO_IssueImplApproverL1_TECHAPPROVERL1" joinType="LEFT"/>		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL1_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueTechApproverL1" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueTechApproverL1_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL1_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL1_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL1_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL1_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+     		<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>				
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL1_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="techApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>	
+		<link linktype.id="3103" firstViewObject="VO_IssueTechApproverL1_ISSUE" secondViewObject="VO_IssueTechApproverL1_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueTechApproverL1_ISSUE" secondViewObject="VO_IssueTechApproverL1_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueTechApproverL1_ISSUE" secondViewObject="VO_IssueTechApproverL1_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_IssueTechApproverL1_ISSUE" secondViewObject="VO_IssueTechApproverL1_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueTechApproverL1_ISSUE" secondViewObject="VO_IssueTechApproverL1_TECHAPPROVERL1" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL1_ISSUE" column.id="bb_techApproverL1_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueTechApproverL2" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueTechApproverL2_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_techApproverL2_status" attributeType="bb_techApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL2_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL2_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL2_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL2_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_IssueTechApproverL2_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="techApproverL1Group_ID" attributeType="obj_id"/>
+			<!--  BdB CUSTOMIZATION -->
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueTechApproverL2_TECHAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="techApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<link linktype.id="3103" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_TECHAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10023" firstViewObject="VO_IssueTechApproverL2_ISSUE" secondViewObject="VO_IssueTechApproverL2_TECHAPPROVERL2" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_techApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueTechApproverL2_ISSUE" column.id="bb_techApproverL2_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueImplApproverL2" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueImplApproverL2_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" />
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_techApproverL2_status" attributeType="bb_techApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_implApproverL2_status" attributeType="bb_implApproverL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>							
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="techApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_TECHAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="techApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueImplApproverL2_IMPLAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="implApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<link linktype.id="3103" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_TECHAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10023" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_TECHAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_IssueImplApproverL2_ISSUE" secondViewObject="VO_IssueImplApproverL2_IMPLAPPROVERL2" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_techApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_techApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueImplApproverL2_ISSUE" column.id="bb_implApproverL2_status" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueOwner" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueOwner_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueOwner_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueOwner_OWNER" objectType="USER" restrictToCurrentUser.id="obj_id">
+			<viewColumn id="owner_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueOwner_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_IssueOwner_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>	
+		<viewObject id="VO_IssueOwner_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>				
+		<link linktype.id="3100" firstViewObject="VO_IssueOwner_ISSUE" secondViewObject="VO_IssueOwner_OWNER"/>
+		<link linktype.id="3103" firstViewObject="VO_IssueOwner_ISSUE" secondViewObject="VO_IssueOwner_CREATOR"/>
+        <!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10008" firstViewObject="VO_IssueOwner_ISSUE" secondViewObject="VO_IssueOwner_MGMTAPPROVERL1" joinType="LEFT"/>		
+        <link linktype.id="10014" firstViewObject="VO_IssueOwner_ISSUE" secondViewObject="VO_IssueOwner_IMPLAPPROVERL1" joinType="LEFT"/>
+        <link linktype.id="10020" firstViewObject="VO_IssueOwner_ISSUE" secondViewObject="VO_IssueOwner_TECHAPPROVERL1" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueOwner_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueOwner_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueOwner_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueExecImplApprL1" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueExecImplApprL1_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" />
+			<viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL1_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL1_OWNER" objectType="USER">
+			<viewColumn id="owner_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL1_EXECIMPLAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueExecImplApprL1_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->		
+		<viewObject id="VO_IssueExecImplApprL1_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+
+		<link linktype.id="3103" firstViewObject="VO_IssueExecImplApprL1_ISSUE" secondViewObject="VO_IssueExecImplApprL1_CREATOR"/>
+		<link linktype.id="3100" firstViewObject="VO_IssueExecImplApprL1_ISSUE" secondViewObject="VO_IssueExecImplApprL1_OWNER"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10008" firstViewObject="VO_IssueExecImplApprL1_ISSUE" secondViewObject="VO_IssueExecImplApprL1_MGMTAPPROVERL1"/>	        	
+		<link linktype.id="10014" firstViewObject="VO_IssueExecImplApprL1_ISSUE" secondViewObject="VO_IssueExecImplApprL1_EXECIMPLAPPRL1"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueExecImplApprL1_ISSUE" secondViewObject="VO_IssueExecImplApprL1_TECHAPPROVERL1" joinType="LEFT"/>		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="bb_execImplApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL1_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueExecImplApprL2" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueExecImplApprL2_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" />
+			<viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL2_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL2_OWNER" objectType="USER">
+			<viewColumn id="owner_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->		
+		<viewObject id="VO_IssueExecImplApprL2_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+		<viewObject id="VO_IssueExecImplApprL2_EXECIMPLAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecImplApprL2_EXECIMPLAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execImplApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueExecImplApprL2_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+				
+		<link linktype.id="3103" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_CREATOR"/>
+		<link linktype.id="3100" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_OWNER"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_MGMTAPPROVERL1" joinType="LEFT"/>		
+		<link linktype.id="10014" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_EXECIMPLAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_EXECIMPLAPPRL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10020" firstViewObject="VO_IssueExecImplApprL2_ISSUE" secondViewObject="VO_IssueExecImplApprL2_TECHAPPROVERL1" joinType="LEFT"/>		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="bb_execImplApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="bb_execImplApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecImplApprL2_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueReviewer" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueReviewer_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" />
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueReviewer_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueReviewer_OWNER" objectType="USER">
+			<viewColumn id="owner_name" attributeType="name"/>
+			<viewColumn id="owner_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_IssueReviewer_REVIEWER" objectType="USER" restrictToCurrentUser.id="obj_id">
+			<viewColumn id="reviewer_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueReviewer_MGMTAPPROVERL1" objectType="USERGROUP" >		
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueReviewer_IMPAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueReviewer_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+						
+		<link linktype.id="3100" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_OWNER"/>
+		<link linktype.id="3101" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_REVIEWER"/>
+		<link linktype.id="3103" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_CREATOR"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10008" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_MGMTAPPROVERL1" joinType="LEFT"/>		
+        <link linktype.id="10014" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_IMPAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_IssueReviewer_ISSUE" secondViewObject="VO_IssueReviewer_TECHAPPROVERL1" joinType="LEFT"/>        			
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueReviewer_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueReviewer_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueReviewer_OWNER" column.id="owner_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueReviewer_OWNER" column.id="owner_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueReviewer_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueExecMgmtApprL1" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueExecMgmtApprL1_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" />
+			<viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execMgmtApprL1_status" attributeType="bb_execMgmtApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_OWNER" objectType="USER">
+			<viewColumn id="owner_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_EXECIMPLAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_EXECIMPLAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execImplApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL1_EXECMGMTAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>					
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueExecMgmtApprL1_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+				
+		<link linktype.id="3103" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_CREATOR"/>
+		<link linktype.id="3100" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_OWNER"/>
+		<link linktype.id="10014" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_EXECIMPLAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_EXECIMPLAPPRL2" joinType="LEFT"/>
+		<link linktype.id="3101" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_REVIEWER" joinType="LEFT"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_EXECMGMTAPPRL1" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10020" firstViewObject="VO_IssueExecMgmtApprL1_ISSUE" secondViewObject="VO_IssueExecMgmtApprL1_TECHAPPROVERL1" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="bb_execImplApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="bb_execImplApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL1_ISSUE" column.id="bb_execMgmtApprL1_status" compareType="IN"/>
+				<condition viewObject.id="IssueExecMgmtApprL1" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssueExecMgmtApprL2" view.parameter="DISTINCT">
+		<viewObject id="VO_IssueExecMgmtApprL2_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_status" attributeType="creator_status"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" />
+			<viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execMgmtApprL1_status" attributeType="bb_execMgmtApprL1_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_execMgmtApprL2_status" attributeType="bb_execMgmtApprL2_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_OWNER" objectType="USER">
+			<viewColumn id="owner_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_EXECIMPLAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_EXECIMPLAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execImplApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_EXECMGMTAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>
+		<viewObject id="VO_IssueExecMgmtApprL2_EXECMGMTAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_IssueExecMgmtApprL2_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+		
+		<link linktype.id="3103" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_CREATOR"/>
+		<link linktype.id="3100" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_OWNER"/>
+		<link linktype.id="10014" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_EXECIMPLAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_EXECIMPLAPPRL2" joinType="LEFT"/>
+		<link linktype.id="10008" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_EXECMGMTAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_EXECMGMTAPPRL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10020" firstViewObject="VO_IssueExecMgmtApprL2_ISSUE" secondViewObject="VO_IssueExecMgmtApprL2_TECHAPPROVERL1" joinType="LEFT"/>
+				
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="stateTime" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="bb_execImplApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="bb_execImplApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="bb_execMgmtApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="bb_execMgmtApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_IssueExecMgmtApprL2_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="MyCreatedIssues" view.parameter="DISTINCT">
+        <viewObject id="VO_MyCreatedIssues_ISSUE" objectType="ISSUE" isMainViewObject="true">
+            <viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remark" attributeType="remark" isSortable="true"/>
+            <viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true" isGrouped="true"/>
+            <viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_techApproverL2_status" attributeType="bb_techApproverL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_implApproverL2_status" attributeType="bb_implApproverL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+			<!-- BdB CUSTOMIZATION - NEILA -->
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true" isGrouped="true"/>            
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssues_OBJECT" objectType="OBJECT" restrictToCurrentUser.id="creator_user_id">
+            <viewColumn id="creator_id" attributeType="creator_user_id"/>
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssues_OWNER" objectType="USER">
+            <viewColumn id="owner_id" attributeType="obj_id" isSelectColumn="true" isSortable="true" function="COUNT"/>
+            <viewColumn id="owner_name" attributeType="name"/>
+            <viewColumn id="owner_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssues_MGMTAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssues_MGMTAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssues_IMPLAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssues_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="techApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssues_TECHAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="techApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssues_IMPLAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="implApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="VO_MyCreatedIssues_OBJECT" secondViewObject="VO_MyCreatedIssues_ISSUE"/>
+        <link linktype.id="3100" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_OWNER" joinType="LEFT"/>
+        <link linktype.id="10008" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_TECHAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10023" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_TECHAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_IMPLAPPROVERL2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="deactivated" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="IssueID" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="name" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="description" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="plannedenddate" compareType="GE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="stateTime" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssues_OWNER" column.id="owner_name" compareType="LIKE"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition viewObject.id="VO_MyCreatedIssues_OWNER" column.id="owner_version_active" compareType="EQ" value="true"/>
+                    <condition viewObject.id="VO_MyCreatedIssues_OWNER" column.id="owner_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_techApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_techApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="bb_implApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="priority" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="MyCreatedIssuesExecution" view.parameter="DISTINCT">
+        <viewObject id="VO_MyCreatedIssuesExecution_ISSUE" objectType="ISSUE" isMainViewObject="true">
+            <viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remark" attributeType="remark" isSortable="true"/>
+            <viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true" isGrouped="true"/>
+            <viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_execMgmtApprL1_status" attributeType="bb_execMgmtApprL1_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="bb_execMgmtApprL2_status" attributeType="bb_execMgmtApprL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssuesExecution_OBJECT" objectType="OBJECT" restrictToCurrentUser.id="creator_user_id">
+            <viewColumn id="creator_id" attributeType="creator_user_id"/>
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssuesExecution_OWNER" objectType="USER">
+            <viewColumn id="owner_id" attributeType="obj_id" isSelectColumn="true" isSortable="true" function="COUNT"/>
+            <viewColumn id="owner_name" attributeType="name"/>
+            <viewColumn id="owner_version_active" attributeType="version_active"/>
+        </viewObject>
+		<viewObject id="VO_MyCreatedIssuesExecution_EXECIMPLAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssuesExecution_EXECIMPLAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execImplApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssuesExecution_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_ID" attributeType="obj_id"/>
+			<viewColumn id="reviewer_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_MyCreatedIssuesExecution_EXECMGMTAPPRL1" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>						
+		</viewObject>		
+		<viewObject id="VO_MyCreatedIssuesExecution_EXECMGMTAPPRL2" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_MyCreatedIssuesExecution_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>				
+
+        <link linktype.id="100" firstViewObject="VO_MyCreatedIssuesExecution_OBJECT" secondViewObject="VO_MyCreatedIssuesExecution_ISSUE"/>
+        <link linktype.id="3100" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_OWNER" joinType="LEFT"/>
+        <link linktype.id="3101" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_REVIEWER" joinType="LEFT"/>
+        <link linktype.id="10008" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_EXECMGMTAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_EXECMGMTAPPRL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_EXECIMPLAPPRL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_EXECIMPLAPPRL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10020" firstViewObject="VO_MyCreatedIssuesExecution_ISSUE" secondViewObject="VO_MyCreatedIssuesExecution_TECHAPPROVERL1" joinType="LEFT"/>		
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="deactivated" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="IssueID" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="name" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="description" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="plannedenddate" compareType="GE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="stateTime" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_OWNER" column.id="owner_name" compareType="LIKE"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition viewObject.id="VO_MyCreatedIssuesExecution_OWNER" column.id="owner_version_active" compareType="EQ" value="true"/>
+                    <condition viewObject.id="VO_MyCreatedIssuesExecution_OWNER" column.id="owner_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="OR">
+                    <condition viewObject.id="VO_MyCreatedIssuesExecution_REVIEWER" column.id="reviewer_version_active" compareType="EQ" value="true"/>
+                    <condition viewObject.id="VO_MyCreatedIssuesExecution_REVIEWER" column.id="reviewer_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+                <condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="bb_execImplApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="bb_execImplApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="bb_execMgmtApprL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="bb_execMgmtApprL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_MyCreatedIssuesExecution_ISSUE" column.id="priority" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="RelatedIssues" view.parameter="DISTINCT">
+		<viewObject id="VO_RelatedIssues_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+            <viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true"/>
+            <viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL2_status" attributeType="bb_implApproverL2_status" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_CREATOR" objectType="USER">
+			<viewColumn id="creator_ID" attributeType="userid" isSelectColumn="true"/>
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_OWNER" objectType="USER">
+			<viewColumn id="owner_name" attributeType="name"/>
+			<viewColumn id="owner_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_name" attributeType="name"/>
+			<viewColumn id="reviewer_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_IRO_OBJECT" objectType="OBJECT">
+			<viewColumn id="issuerelevantobjectid" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_OBJECT" objectType="OBJECT">
+			<viewColumn id="objectType" attributeType="obj_type" isSelectColumn="true" isSortable="true"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_IMPLAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="execImplApprL1Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_IMPLAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="execImplApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_MGMTAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL1Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_RelatedIssues_MGMTAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="execMgmtApprL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		
+		<link linktype.id="100" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_OBJECT"/>
+		<link linktype.id="3102" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_IRO_OBJECT"/>
+		<link linktype.id="3100" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_OWNER" joinType="LEFT"/>
+		<link linktype.id="3101" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_REVIEWER" joinType="LEFT"/>
+		<link linktype.id="3103" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_RelatedIssues_ISSUE" secondViewObject="VO_RelatedIssues_IMPLAPPROVERL2" joinType="LEFT"/>
+		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="remark" compareType="LIKE"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_RelatedIssues_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_RelatedIssues_OWNER" column.id="owner_name" compareType="LIKE"/>
+			    <condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="creator_status" compareType="EQ" value="-1"/>
+				<compoundCondition conditionConnect="OR">
+					<condition viewObject.id="VO_RelatedIssues_OWNER" column.id="owner_version_active" compareType="EQ" value="true"/>
+					<condition viewObject.id="VO_RelatedIssues_OWNER" column.id="owner_version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<condition viewObject.id="VO_RelatedIssues_IRO_OBJECT" column.id="issuerelevantobjectid" compareType="EQ" currentObjectType.id="OBJECT" currentAttributeType.id="obj_id"/>
+				<compoundCondition conditionConnect="OR">
+					<compoundCondition conditionConnect="AND">
+						<condition viewObject.id="VO_RelatedIssues_REVIEWER" column.id="reviewer_name" compareType="LIKE"/>
+						<condition viewObject.id="VO_RelatedIssues_REVIEWER" column.id="reviewer_version_active" compareType="EQ" value="true"/>
+					</compoundCondition>
+					<condition viewObject.id="VO_RelatedIssues_REVIEWER" column.id="reviewer_version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="bb_mgmtApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="bb_mgmtApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="bb_implApproverL1_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="bb_implApproverL2_status" compareType="IN"/>
+				<condition viewObject.id="VO_RelatedIssues_ISSUE" column.id="priority" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="Issues" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.IssueObjectRoleViewHandlerBB">
+		<viewObject id="VO_Issues_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL2_status" attributeType="bb_implApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_techApproverL2_status" attributeType="bb_techApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execMgmtApprL1_status" attributeType="bb_execMgmtApprL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execMgmtApprL2_status" attributeType="bb_execMgmtApprL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true"/>
+            <viewColumn id="ta_id_ugk" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_Issues_CREATOR" objectType="USER">
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_Issues_OWNER" objectType="USER">
+			<viewColumn id="owner_name" attributeType="name"/>
+			<viewColumn id="owner_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_Issues_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_name" attributeType="name"/>
+			<viewColumn id="reviewer_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_Issues_OBJECT" objectType="OBJECT">
+			<viewColumn id="client_sign" attributeType="client_sign"/>
+		</viewObject>
+		<viewObject id="VO_Issues_IMPLAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_Issues_IMPLAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="implApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_Issues_MGMTAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>					
+		</viewObject>
+		<viewObject id="VO_Issues_MGMTAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_Issues_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>
+			<viewColumn id="bb_techApproverL1Group_ID" attributeType="obj_id"/>			
+		</viewObject>		
+		<viewObject id="VO_Issues_TECHAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL2Group_name" attributeType="name"/>
+			<viewColumn id="bb_techApproverL2Group_ID" attributeType="obj_id"/>				
+		</viewObject>		
+		
+		<link linktype.id="3100" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_OWNER" joinType="LEFT"/>
+		<link linktype.id="3101" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_REVIEWER" joinType="LEFT"/>
+		<link linktype.id="3102" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_OBJECT" joinType="LEFT"/>
+		<link linktype.id="3103" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_IMPLAPPROVERL2" joinType="LEFT"/>
+		<!-- BdB CUSTOMIZATION -->
+		<link linktype.id="10020" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_TECHAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10023" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_TECHAPPROVERL2" joinType="LEFT"/>		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_Issues_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="stateTime" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_Issues_OWNER" column.id="owner_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_REVIEWER" column.id="reviewer_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="IssuesApproverBB" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CreatedIssuesViewHandlerBB">
+		<viewObject id="VO_Issues_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true"/>
+			<viewColumn id="bb_mgmtApproverL1_status" attributeType="bb_mgmtApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_implApproverL2_status" attributeType="bb_implApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_techApproverL1_status" attributeType="bb_techApproverL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_techApproverL2_status" attributeType="bb_techApproverL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execMgmtApprL1_status" attributeType="bb_execMgmtApprL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execMgmtApprL2_status" attributeType="bb_execMgmtApprL2_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execImplApprL1_status" attributeType="bb_execImplApprL1_status" isSelectColumn="true"/>
+            <viewColumn id="bb_execImplApprL2_status" attributeType="bb_execImplApprL2_status" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_Issues_CREATOR" objectType="USER">
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_Issues_OWNER" objectType="USER">
+			<viewColumn id="owner_name" attributeType="name"/>
+			<viewColumn id="owner_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_Issues_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_name" attributeType="name"/>
+			<viewColumn id="reviewer_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_Issues_OBJECT" objectType="OBJECT">
+			<viewColumn id="client_sign" attributeType="client_sign"/>
+		</viewObject>
+		<viewObject id="VO_Issues_IMPLAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="implApproverL1Group_ID" attributeType="obj_id"/>
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<viewObject id="VO_Issues_IMPLAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="implApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_Issues_MGMTAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="mgmtApproverL1Group_ID" attributeType="obj_id"/>
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>					
+		</viewObject>
+		<viewObject id="VO_Issues_MGMTAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="mgmtApproverL2Group_ID" attributeType="obj_id"/>
+		</viewObject>
+		<viewObject id="VO_Issues_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_ID" attributeType="obj_id"/>	
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>		
+		<viewObject id="VO_Issues_TECHAPPROVERL2" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL2Group_ID" attributeType="obj_id"/>	
+		</viewObject>
+		<viewObject id="VO_Issues_CREATORS" objectType="USERGROUP" >
+			<viewColumn id="bb_creatorsGroup_ID" attributeType="obj_id"/>	
+		</viewObject>
+		<link linktype.id="3100" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_OWNER" joinType="LEFT"/>
+		<link linktype.id="3101" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_REVIEWER" joinType="LEFT"/>
+		<link linktype.id="3102" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_OBJECT" joinType="LEFT"/>
+		<link linktype.id="3103" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_CREATOR"/>
+		<link linktype.id="10008" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10017" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_IMPLAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10023" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_TECHAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="10020" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_TECHAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="20161104" firstViewObject="VO_Issues_ISSUE" secondViewObject="VO_Issues_CREATORS" joinType="LEFT"/>		
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_Issues_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="stateTime" compareType="EQ"/>
+				<condition viewObject.id="VO_Issues_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_Issues_OWNER" column.id="owner_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_REVIEWER" column.id="reviewer_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_Issues_ISSUE" column.id="bb_issueType" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="ATBReport" view.parameter="DISTINCT">
+		<viewObject id="VO_ATBReport_ISSUE" objectType="ISSUE" isMainViewObject="true">
+			<viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+			<viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="remark" attributeType="remark" isSortable="true"/>
+			<viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase" isSortable="true"/>
+			<viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true" isSortable="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_isTechSupportNeeded" attributeType="bb_isTechSupportNeeded" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_creator_date" attributeType="bb_start_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_execStartDate" attributeType="bb_execStartDate" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_firstPlannedEndDate" attributeType="bb_firstPlannedEndDate" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_execImplApprL1_date" attributeType="bb_execImplApprL1_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_conclusionDate" attributeType="bb_conclusionDate" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_execPlannedDays" attributeType="bb_execPlannedDays" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_execWorkedDays" attributeType="bb_execWorkedDays" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_execPercentDays" attributeType="bb_execPercentDays" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_certification_date" attributeType="bb_certification_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_isOverdueExecution" attributeType="bb_isOverdueExecution" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_implApprL2ATB_date" attributeType="bb_implApprL2ATB_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_mgmtApprL2ATB_date" attributeType="bb_mgmtApprL2ATB_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_mgmtApprL2ATB_status" attributeType="bb_mgmtApprL2ATB_status" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_mgmtApprL1ATB_date" attributeType="bb_mgmtApprL1ATB_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_implApproverL1_status" attributeType="bb_implApproverL1_status" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="bb_issueOrign" attributeType="bb_issueOrign" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="create_date" attributeType="create_date" isSelectColumn="true" isSortable="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_ATBReport_CREATOR" objectType="USER">
+			<viewColumn id="creator_name" attributeType="name" isSelectColumn="true"/>
+			<viewColumn id="creator_version_active" attributeType="version_active"/>
+			<viewColumn id="creator_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_ATBReport_OWNER" objectType="USER">
+			<viewColumn id="owner_name" attributeType="name"/>
+			<viewColumn id="owner_version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_ATBReport_REVIEWER" objectType="USER">
+			<viewColumn id="reviewer_name" attributeType="name"/>
+			<viewColumn id="reviewer_version_active" attributeType="version_active"/>
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->		
+		<viewObject id="VO_ATBReport_MGMTAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>
+<!-- 			<viewColumn id="bb_mgmtApproverL1Group_orgunit" attributeType="bb_mgmtApproverL1_group" isSelectColumn="true"/> -->
+		</viewObject>  	
+		<viewObject id="VO_ATBReport_MGMTAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="bb_mgmtApproverL2Group_name" attributeType="name"/>					
+		</viewObject>  
+		<viewObject id="VO_ATBReport_TECAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="bb_intApproverL1Group_orgunit" attributeType="bb_orgunit"/>
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name" isSelectColumn="true"/>				
+		</viewObject> 
+		<viewObject id="VO_ATBReport_ORGUNIT_GROUP" objectType="HIERARCHY" >
+			<viewColumn id="orgUnit_name" attributeType="name" isSelectColumn="true"></viewColumn>
+<!-- 			<viewColumn id="orgUnit_UOR_code" attributeType="bb_codigoUOR" isSelectColumn="true"></viewColumn> -->
+			<viewColumn id="bb_techApproverL1Group_codUOR" attributeType="bb_codigoUOR" isSelectColumn="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_ATBReport_ORGUNIT_GROUP_1" objectType="HIERARCHY" >
+			<viewColumn id="bb_mgmtApproverL1Group_codUOR" attributeType="bb_codigoUOR" isSelectColumn="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_ATBReport_ORGUNIT_GROUP_2" objectType="HIERARCHY" >
+			<viewColumn id="bb_implApproverL1Group_codUOR" attributeType="bb_codigoUOR" isSelectColumn="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_ATBReport_IMPLAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_ATBReport_MGMTAPPROVER3" objectType="HIERARCHY" >
+			<viewColumn id="bb_mgmtApprover_orgunit" attributeType="name" isSelectColumn="true"></viewColumn>
+		</viewObject>
+		<viewObject id="VO_ATBReport_IMPLAPPROVER2" objectType="HIERARCHY" >
+			<viewColumn id="bb_implApprover_orgunit" attributeType="name" isSelectColumn="true"></viewColumn>
+		</viewObject>
+		<link linktype.id="10020" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_TECAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10008" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_MGMTAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10011" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_MGMTAPPROVERL2" joinType="LEFT"/>
+		<link linktype.id="3103" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_CREATOR"/>
+		<link linktype.id="3100" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_OWNER" joinType="LEFT"/>
+		<link linktype.id="3101" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_REVIEWER" joinType="LEFT"/>
+		<link linktype.id="10014" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_IMPLAPPROVERL1" joinType="LEFT"/>
+		<link linktype.id="10046" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_MGMTAPPROVER3" joinType="LEFT"/>
+		<link linktype.id="10047" firstViewObject="VO_ATBReport_ISSUE" secondViewObject="VO_ATBReport_IMPLAPPROVER2" joinType="LEFT"/>
+		<link linktype.id="20160322" firstViewObject="VO_ATBReport_MGMTAPPROVERL1" secondViewObject="VO_ATBReport_ORGUNIT_GROUP_1" joinType="LEFT"/>
+		<link linktype.id="20160322" firstViewObject="VO_ATBReport_IMPLAPPROVERL1" secondViewObject="VO_ATBReport_ORGUNIT_GROUP_2" joinType="LEFT"/>
+		<link linktype.id="20160322" firstViewObject="VO_ATBReport_TECAPPROVERL1" secondViewObject="VO_ATBReport_ORGUNIT_GROUP" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="deactivated" compareType="EQ"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="IssueID" compareType="EQ"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="name" compareType="LIKE" />
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="description" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="remediationMeasure" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="plannedenddate" compareType="GE"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="plannedenddate2" compareType="LE"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="remark" compareType="LIKE"/>
+                <condition viewObject.id="VO_ATBReport_ISSUE" column.id="created_by_testcase" compareType="EQ"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="creator_status" compareType="IN"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="owner_status" compareType="IN"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="reviewer_status" compareType="IN"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="stateTime" compareType="EQ"/>
+				<condition viewObject.id="VO_ATBReport_CREATOR" column.id="creator_name" compareType="LIKE"/>
+				<compoundCondition conditionConnect="OR">
+					<condition viewObject.id="VO_ATBReport_CREATOR" column.id="creator_version_active" compareType="EQ" value="true"/>
+					<condition viewObject.id="VO_ATBReport_CREATOR" column.id="creator_version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<condition viewObject.id="VO_ATBReport_OWNER" column.id="owner_name" compareType="LIKE"/>
+				<compoundCondition conditionConnect="OR">
+					<condition viewObject.id="VO_ATBReport_OWNER" column.id="owner_version_active" compareType="EQ" value="true"/>
+					<condition viewObject.id="VO_ATBReport_OWNER" column.id="owner_version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<compoundCondition conditionConnect="OR">
+					<compoundCondition conditionConnect="AND">
+						<condition viewObject.id="VO_ATBReport_REVIEWER" column.id="reviewer_name" compareType="LIKE"/>
+						<condition viewObject.id="VO_ATBReport_REVIEWER" column.id="reviewer_version_active" compareType="EQ" value="true"/>
+					</compoundCondition>
+					<condition viewObject.id="VO_ATBReport_REVIEWER" column.id="reviewer_version_active" compareType="ISNULL"/>
+				</compoundCondition>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="bb_issueType" compareType="IN" value="2,3"/>
+				<condition viewObject.id="VO_ATBReport_ISSUE" column.id="priority" compareType="EQ"/>
+				<condition viewObject.id="VO_ATBReport_MGMTAPPROVERL1" column.id="bb_mgmtApproverL1Group_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_MGMTAPPROVERL2" column.id="bb_mgmtApproverL2Group_name" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_MGMTAPPROVER3" column.id="bb_mgmtApprover_orgunit" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_IMPLAPPROVER2" column.id="bb_implApprover_orgunit" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_ORGUNIT_GROUP" column.id="bb_techApproverL1Group_codUOR" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_ORGUNIT_GROUP_1" column.id="bb_mgmtApproverL1Group_codUOR" compareType="LIKE"/>
+				<condition viewObject.id="VO_ATBReport_ORGUNIT_GROUP_2" column.id="bb_implApproverL1Group_codUOR" compareType="LIKE"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="issue_issuemgmtapproverl1_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issuemgmtapproverl1_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuemgmtapproverl1_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issuemgmtapproverl1_sel_1" secondViewObject="VO_issue_issuemgmtapproverl1_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_mgmtApproverL1_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issuemgmtapproverl1"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issuemgmtapproverl2_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issuemgmtapproverl2_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuemgmtapproverl2_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issuemgmtapproverl2_sel_1" secondViewObject="VO_issue_issuemgmtapproverl2_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_mgmtApproverL2_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issuemgmtapproverl2"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issueimplapproverl1_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issueimplapproverl1_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issueimplapproverl1_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issueimplapproverl1_sel_1" secondViewObject="VO_issue_issueimplapproverl1_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_implApproverL1_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issueimplapproverl1"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issueimplapproverl2_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issueimplapproverl2_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issueimplapproverl2_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issueimplapproverl2_sel_1" secondViewObject="VO_issue_issueimplapproverl2_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_implApproverL2_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issueimplapproverl2"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issuetechapproverl1_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issuetechapproverl1_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuetechapproverl1_sel_2" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="hierarchy_count" attributeType="obj_id" isSelectColumn="true" function="COUNT_DISTINCT"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuetechapproverl1_sel_3" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="69" firstViewObject="VO_issue_issuetechapproverl1_sel_1" secondViewObject="VO_issue_issuetechapproverl1_sel_2" joinType="LEFT"/>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issuetechapproverl1_sel_1" secondViewObject="VO_issue_issuetechapproverl1_sel_3" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_techApproverL1_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issuetechapproverl1"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="hierarchy_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issuetechapproverl2_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issuetechapproverl2_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuetechapproverl2_sel_2" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="hierarchy_count" attributeType="obj_id" isSelectColumn="true" function="COUNT_DISTINCT"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuetechapproverl2_sel_3" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="69" firstViewObject="VO_issue_issuetechapproverl2_sel_1" secondViewObject="VO_issue_issuetechapproverl2_sel_2" joinType="LEFT"/>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issuetechapproverl2_sel_1" secondViewObject="VO_issue_issuetechapproverl2_sel_3" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_techApproverL2_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issuetechapproverl2"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="hierarchy_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issueowner_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issueowner_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issueowner_sel_2" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="hierarchy_count" attributeType="obj_id" isSelectColumn="true" function="COUNT_DISTINCT"/>
+        </viewObject>
+        <viewObject id="VO_issue_issueowner_sel_3" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="69" firstViewObject="VO_issue_issueowner_sel_1" secondViewObject="VO_issue_issueowner_sel_2" joinType="LEFT"/>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issueowner_sel_1" secondViewObject="VO_issue_issueowner_sel_3" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_owners_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issueowner"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="hierarchy_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="issue_issuereviewers_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+        <viewObject id="VO_issue_issuereviewers_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true"/>
+            <viewColumn id="ownergroup_obj_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_name" attributeType="name" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_description" attributeType="description" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownergroup_role" attributeType="role" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuereviewers_sel_2" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="hierarchy_count" attributeType="obj_id" isSelectColumn="true" function="COUNT_DISTINCT"/>
+        </viewObject>
+        <viewObject id="VO_issue_issuereviewers_sel_3" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true" isGrouped="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="69" firstViewObject="VO_issue_issuereviewers_sel_1" secondViewObject="VO_issue_issuereviewers_sel_2" joinType="LEFT"/>
+        <link linktype.id="20160322" firstViewObject="VO_issue_issuereviewers_sel_1" secondViewObject="VO_issue_issuereviewers_sel_3" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ownergroup_name" compareType="LIKE"/>
+                <condition column.id="ownergroup_description" compareType="LIKE"/>
+                <condition column.id="ownergroup_obj_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_reviewers_group"/>
+                <condition column.id="ownergroup_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownergroup_role" compareType="EQ" value="issuereviewer"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="hierarchy_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    <view view.parameter="DISTINCT" id="issueRelevantObjects_sel">
+        <viewObject id="VO_IRO_sel" objectType="ISSUERELEVANTOBJECT" isMainViewObject="true">
+            <viewColumn id="creator_id" attributeType="creator_user_id" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="createDate" attributeType="create_date" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="obj_id" attributeType="obj_id" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="name" attributeType="object_name" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="objectId" attributeType="object_id" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="version" attributeType="object_version_number" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="object_objtype" attributeType="object_objtype" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="ovid" attributeType="object_ovid" isSortable="true"/>
+            <viewColumn id="client_sign" attributeType="object_clientSign" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="clientSigns" attributeType="object_clientSigns"/>
+            <!-- begin -->
+            <viewColumn id="clientSignsAll" attributeType="object_clientSigns" isSelectColumn="true" isSortable="true"/>
+            <!-- end -->
+            <viewColumn id="iro_deactivated" attributeType="iro_deactivated" isSelectColumn="true" isSortable="true"/>
+            <viewColumn id="iro_issuesid" attributeType="iro_issueid" isSortable="true"/>
+        </viewObject>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="object_objtype" compareType="EQ"/>
+                <!-- begin
+                <condition column.id="clientSigns" compareType="LIKE"/>
+                -->
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="clientSigns" compareType="LIKE"/>
+                    <condition column.id="clientSignsAll" compareType="LIKE"/>
+                </compoundCondition>
+                <!-- end -->                
+                <condition column.id="ovid" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="issueRelevantObjects">
+                    <combineAttribute attributeType="obj_id"/>
+                    <combineAttribute attributeType="version_number"/>
+                </condition>
+                <compoundCondition conditionConnect="OR">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="iro_issuesid" compareType="ISNULL"/>
+                        <condition column.id="creator_id" compareType="EQ" value="CURRENTUSER"/>
+                    </compoundCondition>
+                    <condition column.id="iro_issuesid" compareType="EQ" currentObjectType.id="ISSUE" currentAttributeType.id="obj_id"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="MyCreatedOpenIssues" view.parameter="DISTINCT">
+        <viewObject id="VO_MyCreatedIssues_ISSUE" objectType="ISSUE" isMainViewObject="true" restrictToCurrentUser.id="creator_user_id">
+            <viewColumn id="creator_id" attributeType="creator_user_id"/>
+            <viewColumn id="IssueID" attributeType="obj_id" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="name" attributeType="name" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="plannedenddate2" attributeType="plannedenddate" isSortable="true"/>
+            <viewColumn id="creator_status" attributeType="creator_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="description" attributeType="description" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remediationMeasure" attributeType="remediationMeasure" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="remark" attributeType="remark" isSortable="true"/>
+            <viewColumn id="category" attributeType="category" isSortable="true"/>
+            <viewColumn id="priority" attributeType="priority" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="stateTime" attributeType="stateTime" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true" isGrouped="true"/>
+			<viewColumn id="bb_issueType" attributeType="bb_issueType" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+			<!-- BdB CUSTOMIZATION - NEILA -->
+			<viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true" isGrouped="true"/>
+			<viewColumn id="bb_mgmtApproverL2_status" attributeType="bb_mgmtApproverL2_status" isSelectColumn="true" isSortable="true" isGrouped="true"/>			
+        </viewObject>
+        <viewObject id="VO_MyCreatedIssues_OWNER" objectType="USER">
+            <viewColumn id="owner_id" attributeType="obj_id" isSelectColumn="true" isSortable="true" function="COUNT"/>
+            <viewColumn id="owner_version_active" attributeType="version_active"/>
+        </viewObject>
+		<!-- BdB CUSTOMIZATION -->		
+		<viewObject id="VO_MyCreatedIssues_MGMTAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="bb_mgmtApproverL1Group_name" attributeType="name"/>					
+		</viewObject>        
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="VO_MyCreatedIssues_IMPLAPPROVERL1" objectType="USERGROUP">
+			<viewColumn id="bb_implApproverL1Group_name" attributeType="name"/>			
+		</viewObject>
+		<!-- BdB CUSTOMIZATION -->
+		<viewObject id="VO_MyCreatedIssues_TECHAPPROVERL1" objectType="USERGROUP" >
+			<viewColumn id="bb_techApproverL1Group_name" attributeType="name"/>			
+		</viewObject>	
+	    <!-- BdB CUSTOMIZATION - NEILA -->		
+		<viewObject id="VO_MyCreatedIssues_MGMTAPPROVERL2" objectType="USERGROUP">
+			<viewColumn id="bb_mgmtApproverL2Group_name" attributeType="name"/>				
+		</viewObject>			
+						        
+        <link linktype.id="3100" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_OWNER" joinType="LEFT"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10008" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_MGMTAPPROVERL1" joinType="LEFT"/>
+        <link linktype.id="10014" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_IMPLAPPROVERL1" joinType="LEFT"/>
+        <link linktype.id="10020" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_TECHAPPROVERL1" joinType="LEFT"/>
+        
+        <!-- BdB CUSTOMIZATION - NEILA --> 
+        <link linktype.id="10011" firstViewObject="VO_MyCreatedIssues_ISSUE" secondViewObject="VO_MyCreatedIssues_MGMTAPPROVERL2" joinType="LEFT"/>
+                       
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="deactivated" compareType="EQ"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="IssueID" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="remediationMeasure" compareType="LIKE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="plannedenddate2" compareType="LE"/>
+                <condition column.id="remark" compareType="LIKE"/>
+                <condition column.id="creator_status" compareType="IN"/>                
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="owner_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition viewObject.id="VO_MyCreatedIssues_ISSUE" column.id="priority" compareType="EQ"/>                                
+            </compoundCondition>
+        </conditions>
+    </view>
+
+
+    <!-- BdB CUSTOMIZATION - CORRECAO DA ISSUE #109575 -->    
+    <view id="testcase2issue" view.parameter="DISTINCT">
+        <viewObject id="VO_testdefinition2issue_testcase" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="plannedstartdate_from" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate_to" attributeType="plannedstartdate" />
+            <viewColumn id="plannedenddate_from" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate_to" attributeType="plannedenddate" />
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_id2" attributeType="obj_id"/>            
+            <viewColumn id="testdatefrom" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdateto" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" />
+            <viewColumn id="ta_deactivated" attributeType="deactivated" />
+            <viewColumn id="walkthrough_name" attributeType="bb_walkthroughName" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="walkthrough_counter" attributeType="walkthroughCounter" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate_from" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate_to" attributeType="controlstartdate" />            
+            <viewColumn id="controlenddate_from" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate_to" attributeType="controlenddate" />             
+            <viewColumn id="owner_status" attributeType="owner_status"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+        </viewObject>
+        <conditions>
+            <compoundCondition conditionConnect="AND">     
+	            <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+	            <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+	            <condition column.id="ta_id2" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_controlesCompensat"/>	            
+	            <condition column.id="owner_status" compareType="EQ" value="3"/>
+	            <condition column.id="reviewer_status" compareType="EQ" value="1"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="BB_approver_orgunit_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.FilterMyClientViewHandlerBB">
+        <viewObject id="VO_hierarchy" objectType="HIERARCHY" isMainViewObject="true">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_description" attributeType="description" isSelectColumn="true"/>
+            <viewColumn id="bb_tipoUnidOrganizacional" attributeType="bb_tipoUnidOrganizacional" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_isroot" attributeType="isroot" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_va" attributeType="version_active" />
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" />
+            <viewColumn id="hierarchy_type" attributeType="type" />
+            <viewColumn id="bb_ior_uor" attributeType="hnumber" isSelectColumn="true" />         
+        </viewObject>
+        <viewObject id="VO_obj" objectType="OBJECT">
+            <viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true"/>
+        </viewObject>
+        <link firstViewObject="VO_obj" linktype.id="100" secondViewObject="VO_hierarchy" />
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+            	<condition column.id="hierarchy_va" compareType="EQ" value="true"/>
+	            <condition column.id="hierarchy_deactivated" compareType="EQ" value="false"/>
+	            <condition column.id="hierarchy_type" compareType="EQ" value="3"/>
+            	<condition column.id="hierarchy_name" compareType="LIKE"/>
+            	<condition column.id="hierarchy_description" compareType="LIKE"/>   
+ 	            <condition column.id="hierarchy_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_mgmtApprover_orgunit"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="BB_implApprover_orgunit_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.FilterMyClientViewHandlerBB">
+        <viewObject id="VO_hierarchy" objectType="HIERARCHY" isMainViewObject="true">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_description" attributeType="description" isSelectColumn="true"/>
+            <viewColumn id="bb_tipoUnidOrganizacional" attributeType="bb_tipoUnidOrganizacional" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_isroot" attributeType="isroot" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_va" attributeType="version_active" />
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" />
+            <viewColumn id="hierarchy_type" attributeType="type" />
+            <viewColumn id="bb_ior_uor" attributeType="hnumber" isSelectColumn="true" />         
+        </viewObject>
+        <viewObject id="VO_obj" objectType="OBJECT">
+            <viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true"/>
+        </viewObject>
+        <link firstViewObject="VO_obj" linktype.id="100" secondViewObject="VO_hierarchy" />
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+            	<condition column.id="hierarchy_va" compareType="EQ" value="true"/>
+	            <condition column.id="hierarchy_deactivated" compareType="EQ" value="false"/>
+	            <condition column.id="hierarchy_type" compareType="EQ" value="3"/>
+            	<condition column.id="hierarchy_name" compareType="LIKE"/>
+            	<condition column.id="hierarchy_description" compareType="LIKE"/>   
+ 	            <condition column.id="hierarchy_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_implApprover_orgunit"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="bb_techApprover_orgunit_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.FilterMyClientViewHandlerBB">
+        <viewObject id="VO_hierarchy" objectType="HIERARCHY" isMainViewObject="true">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_description" attributeType="description" isSelectColumn="true"/>
+            <viewColumn id="bb_tipoUnidOrganizacional" attributeType="bb_tipoUnidOrganizacional" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_isroot" attributeType="isroot" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_va" attributeType="version_active" />
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" />
+            <viewColumn id="hierarchy_type" attributeType="type" />
+            <viewColumn id="bb_ior_uor" attributeType="hnumber" isSelectColumn="true" />         
+        </viewObject>
+        <viewObject id="VO_obj" objectType="OBJECT">
+            <viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true"/>
+        </viewObject>
+        <link firstViewObject="VO_obj" linktype.id="100" secondViewObject="VO_hierarchy" />
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+            	<condition column.id="hierarchy_va" compareType="EQ" value="true"/>
+	            <condition column.id="hierarchy_deactivated" compareType="EQ" value="false"/>
+	            <condition column.id="hierarchy_type" compareType="EQ" value="3"/>
+            	<condition column.id="hierarchy_name" compareType="LIKE"/>
+            	<condition column.id="hierarchy_description" compareType="LIKE"/>   
+ 	            <condition column.id="hierarchy_id" compareType="NOTIN" currentObjectType.id="ISSUE" currentAttributeType.id="bb_techApprover_orgunit"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+</custom>

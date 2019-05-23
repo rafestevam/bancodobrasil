@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+  
+    <catalog id="riskassessment">
+        <commandchain id="prepareJob">
+            <command id="assignedUsergroupsCheck" />
+            <command id="riskActiveHierarchiesCheck" />
+            <command id="dueCheck" />
+            <command id="riskassessmentGenerate" />
+            <command id="assignedUsergroupsSend"/>
+        </commandchain>
+
+        <commandchain id="prepareManual">
+            <command id="createObjectDialog" />
+            <command id="checkObjectPersistent" />
+            <command id="isRiskManagementRelevantCheck" />
+            <command id="isEventDrivenCheck" />
+            <command id="assignedUsergroupsCheck" />
+            <command id="riskActiveHierarchiesCheck" />
+            <command id="requestDialog" >
+                <parameter name="dialogID" value="riskassessment_create" />
+            </command>
+			<!-- creates a calculator from the entered data -->
+            <command id="dueCheck" />
+            <command id="riskassessmentGenerate" />
+            <command id="assignedUsergroupsSend"/>
+        </commandchain>
+        
+        <commandchain id="insertJob">
+        	<!-- 
+            <command id="prepareJobMessage">
+                <parameter name="message_template" value="generatorjob" />
+                <parameter name="list_name" value="riskassessment_owner" />
+                <parameter name="filter_name" value="owner_status" />
+                <parameter name="filter_value" value="open" />
+            </command>
+             -->
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_created"/>
+                <parameter name="to" value="owner_group"/>
+                <parameter name="cc" value="manager_group"/>
+            </command> 
+        </commandchain>
+        
+        <commandchain id="insertManual">
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_created"/>
+                <parameter name="to" value="owner_group"/>
+                <parameter name="cc" value="manager_group"/>
+            </command>
+        </commandchain>
+        
+         
+        <commandchain id="executionInProgress">
+            <command id="update">
+                <parameter name="owner_status" value="in_progress" />
+            </command>
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+        </commandchain>
+
+        <commandchain id="executionAssessed">
+            <command id="closingRiskassessmentDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_riskAssessmentStatus" value="finished"/>
+            </command>
+            <command id="saveDependentObjects">
+                <parameter name="listAttributeID" value="impacttypes"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_closed_assessed"/>
+                <parameter name="from" value="owner_group"/>
+                <parameter name="to" value="reviewer_group"/>
+                <parameter name="cc" value="owner_group"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="executionAssessmentNotPossible">                
+            <!-- includes the confirmation dialog -->
+            <command id="riskAssessmentReset"/>
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="unspecified"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_riskAssessmentStatus" value="finished"/>
+            </command>
+            <command id="saveDependentObjects">
+                <parameter name="listAttributeID" value="impacttypes"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_closed_assessment_not_possible"/>
+                <parameter name="from" value="owner_group"/>
+                <parameter name="to" value="reviewer_group"/>
+            </command>
+        </commandchain>
+                         
+        <commandchain id="executionNotAssessed">
+            <command id="setOperator">
+                <parameter name="operator" value="owner" />
+            </command>
+            <command id="update">
+                <parameter name="bb_riskAssessmentStatus" value="overdue"/>
+            </command>
+            <command id="saveDependentObjects">
+                <parameter name="listAttributeID" value="impacttypes"/>
+            </command>
+        </commandchain>
+        
+        <commandchain id="reviewAgreed">               
+            <command id="closingObjectDialog" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_closed_reviewed"/>
+                <parameter name="from" value="reviewer_group"/>
+                <parameter name="to" value="owner_group"/>
+            </command>
+            <command id="sendRiskAssessmentThresholdReachedIfNecessaryMessage" />
+        </commandchain>
+        
+        <commandchain id="reviewReopen">
+            <command id="closingObjectDialog" />
+            <command id="riskAssessmentImpactTypeReset" />
+            <command id="setOperator">
+                <parameter name="operator" value="reviewer" />
+            </command>
+            <command id="update">
+                <parameter name="owner_status"    value="in_progress"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_riskAssessmentStatus" value="on_time"/>
+            </command>
+            <command id="prolongDate">
+                <parameter name="attributeID" value="plannedenddate"/>
+                <parameter name="minimumDays" value="14"/>
+            </command>
+            <command id="saveDependentObjects">
+                <parameter name="listAttributeID" value="impacttypes"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="saveOfflineProcessingUser">
+                <parameter name="field_user" value="reviewer_upload_user"/>
+                <parameter name="field_role" value="reviewer_upload_role"/>
+                <parameter name="field_confirmation" value="reviewer_upload_confirm"/>
+            </command>
+            <command id="resetOfflineProcessingUser">
+                <parameter name="field_user" value="owner_upload_user"/>
+                <parameter name="field_role" value="owner_upload_role"/>
+                <parameter name="field_confirmation" value="owner_upload_confirm"/>
+            </command>
+            <!-- Added on 98.5.1.10 -->
+            <command id="riskAssessmentSendMailBB">
+                <parameter name="template" value="riskassessment_reopened"/>
+                <parameter name="from" value="reviewer_group"/>
+                <parameter name="to" value="owner_group"/>
+                <parameter name="cc" value="reviewer_group"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="delete">
+            <command id="checkRiskassessmentDeletionPossible"/>
+        </commandchain>
+
+        <commandchain id="recover" />
+                       
+    </catalog>
+</custom>        
+    

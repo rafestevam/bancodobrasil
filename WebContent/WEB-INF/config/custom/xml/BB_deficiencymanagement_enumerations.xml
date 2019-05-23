@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<enum id="def_identified_by" isMultiple="false" type="Number">
+		<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+		<enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false" />
+		<enumitem id="external_auditor" value="1" />
+		<enumitem id="internal_auditor" value="4" />
+		<enumitem id="internal_control" value="5" />
+		<enumitem id="management" value="2" />
+		<enumitem id="others" value="3" />
+	</enum>
+
+	<enum id="def_level_of_control" isMultiple="false" type="Number">
+		<enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" />
+		<enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false" />
+		<enumitem id="transaction" value="1" />
+		<enumitem id="company" value="2" />
+		<enumitem id="control_corp_indireto" value="4" />
+		<enumitem id="itgc" value="3" />
+	</enum>
+	
+	<enum id="bb_defType" isMultiple="true" type="Number">
+		<enumitem id="design" value="1" />
+		<enumitem id="control" value="2" />
+		<enumitem id="gap_control" value="3" />
+	</enum>
+</custom>
+

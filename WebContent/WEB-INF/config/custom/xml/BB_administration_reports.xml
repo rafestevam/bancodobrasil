@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<arisreport reportID="IssueRelevantObjectHeaderPattern" format="PDF" datasourceType="PATTERN" datasourceID="na">
+		<arisreportsection>
+			<arisreportoutput propertyKey="pdf.author" styleID="reportheader" />
+			<arisreportoutput outputText=" - " styleID="reportheader"/>
+			<arisreportoutput propertyKey="pdf.subject.issuerelevantobject.DBI" styleID="reportheader" />
+			<arisreportoutput outputText=" - " styleID="reportheader"/>
+			<arisreportoutput dataReference="titleProperty" styleID="reportheader" />
+			<arisreportoutput outputText=" " styleID="reportheader" />
+			<arisreportoutput propertyKey="pdf.subject.documentation.DBI" styleID="reportheader" />
+		</arisreportsection>
+	</arisreport> 
+</custom>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <segregationsOfDuties>
+        <segregationOfDuties objectType="deficiency">
+            <userBased>
+	            <segregationsOfDuties.rule currentUserRole.idref="deficiencymanager_l1" notAllowedInAttributes="manager_user_l2,manager_user_l2_subs,manager_user_l3,manager_user_l3_subs"/>
+	            <segregationsOfDuties.rule currentUserRole.idref="deficiencymanager_l2" notAllowedInAttributes="manager_user_l1,manager_user_l1_subs,manager_user_l3,manager_user_l3_subs"/>
+	            <segregationsOfDuties.rule currentUserRole.idref="deficiencymanager_l3" notAllowedInAttributes="manager_user_l1,manager_user_l1_subs,manager_user_l2,manager_user_l2_subs"/>
+	        </userBased>
+        </segregationOfDuties>
+    </segregationsOfDuties>
+
+</custom>

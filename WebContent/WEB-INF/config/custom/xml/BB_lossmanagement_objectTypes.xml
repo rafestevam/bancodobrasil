@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <objectType id="INCIDENT" xmlexport="true" clientDependent="true" extends="TRANSACTIONAL" licensedComponentIds="il,in"
+                displayAttribute="name" descriptionAttributes="description" dataKind="transactiondata"
+                mashzoneId="240" image="iconlib/icons/content/incident_16.png">
+
+         <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="3305">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="incidentowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+            <listRestriction selectable="false">
+                <attributeRestriction attribute="role" value="lossowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3306"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3307"/>
+        <enumAttrType id="owner_status" enumeration="lossdb_incidentowner_state" defaultValue="1" />
+        <!-- Added on 98.5.1.10 -->
+        <listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3325"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="3308">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="incidentreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+            <listRestriction selectable="false">
+                <attributeRestriction attribute="role" value="lossowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="4015"/>
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="4016"/>
+        <enumAttrType id="reviewer_status" enumeration="lossdb_incidentreviewer_state" defaultValue="0"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3326"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <textAttrType id="description"/>
+        <dateAttrType id="discoveryDate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="entryDate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <enumAttrType id="businessLinesLevel_1" enumeration="lossdb_businessline_lvl1" defaultValue="0"/>
+        <enumAttrType id="businessLinesLevel_2" enumeration="lossdb_businessline_lvl2" defaultValue="0">
+            <modify name="hierarchical_enum" arg0="businessLinesLevel_1"/>
+        </enumAttrType>
+        <enumAttrType id="eventTypeLevel_1" enumeration="lossdb_eventtype_lvl1" defaultValue="0"/>
+        <enumAttrType id="eventTypeLevel_2" enumeration="lossdb_eventtype_lvl2" defaultValue="0">
+            <modify name="hierarchical_enum" arg0="eventTypeLevel_1"/>
+        </enumAttrType>
+        <enumAttrType id="eventCauseClassificLevel_1" enumeration="lossdb_eventcause_lvl1" defaultValue="0"/>
+        <enumAttrType id="eventCauseClassificLevel_2" enumeration="lossdb_eventcause_lvl2" defaultValue="0">
+            <modify name="hierarchical_enum" arg0="eventCauseClassificLevel_1"/>
+        </enumAttrType>
+        <doubleAttrType id="pendingLoss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <listAttrType id="orgunit" objectType.idref="HIERARCHY" linkType="3300">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="process" objectType.idref="HIERARCHY" linkType="3301">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="appsystem" objectType.idref="HIERARCHY" linkType="3302">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="3303">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="risk_category" objectType.idref="HIERARCHY" linkType="3309" >
+            <listRestriction>
+                <attributeRestriction attribute="type" value="category"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="risks" objectType.idref="RISK" linkType="3321" />
+        <listAttrType id="controls" objectType.idref="CONTROL" linkType="3322" />
+        <listAttrType id="policies" objectType.idref="POLICY" linkType="3323" />
+        <listAttrType id="audits" objectType.idref="AUDIT" linkType="3324" />
+        
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3304"/>
+        
+        <textAttrType id="ownerRemark"/>
+        
+        <textAttrType id="reviewerRemark"/>
+        
+        <booleanAttrType id="financial_aspects" defaultValue="false"/>
+        
+        <index id="I_3123_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_3123_2" type="normal">
+            <attributeRef attribute="discoveryDate"/>
+        </index>
+        <index id="I_3123_3" type="normal">
+            <attributeRef attribute="entryDate"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATION -->        
+        <listAttrType id="bb_product" objectType.idref="HIERARCHY" linkType="10026">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_product"/>
+            </listRestriction>
+        </listAttrType>    
+        <enumAttrType id="bb_tipoEvento" enumeration="lossdb_loss_type" defaultValue="1"/>   
+        <booleanAttrType id="bb_vincOperacaoCred" defaultValue="false"/>
+        <booleanAttrType id="bb_sobreposRiscoMercado" defaultValue="false"/>               
+        <stringAttrType id="bb_canal" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>         
+        <listAttrType id="bb_jurisdDiretoria" objectType.idref="HIERARCHY" linkType="10027">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <stringAttrType id="bb_categEventoRisco_3" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <listAttrType id="bb_gestorPerda" objectType.idref="HIERARCHY" linkType="10038" maxSize="-1">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+<!--         Commented to solve the issue #113401       -->
+<!--         <stringAttrType id="bb_URL" maxCharCount="550"> -->
+<!--             <validate name="maxlength" arg0="550"/> -->
+<!--         </stringAttrType>           -->
+
+        <!--  BdB CUSTOMIZATION -->
+        <longAttrType id="bb_qtdeEventos_int"/>
+        <longAttrType id="bb_qtdePerdasRelevantes_int"/>
+    </objectType>
+
+    <objectType id="LOSS" xmlexport="true" clientDependent="true" extends="TRANSACTIONAL" licensedComponentIds="il"
+                displayAttribute="name" descriptionAttributes="type, description" dataKind="transactiondata"
+                mashzoneId="250" image="iconlib/icons/content/loss_16.png">
+
+          <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="3311">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="lossowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3312"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3313"/>
+        <enumAttrType id="owner_status" enumeration="lossdb_lossowner_state" defaultValue="1"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3327"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="3314">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="lossreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="4017"/>
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="4018"/>
+        <enumAttrType id="reviewer_status" enumeration="lossdb_lossreviewer_state" defaultValue="0"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3328"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="type" enumeration="lossdb_loss_type" defaultValue="0"/>
+        <textAttrType id="description"/>
+        <dateAttrType id="discoveryDate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="entryDate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <booleanAttrType id="creditDefault"/>
+        <booleanAttrType id="insurancePayment"/>
+        <doubleAttrType id="lossReserves">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="grossTotalLoss">
+            <!--  BdB CUSTOMIZATION -->
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>            
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="netTotalLoss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <listAttrType id="incident" maxSize="1" objectType.idref="INCIDENT" linkType="3320"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3310"/>
+        <textAttrType id="ownerRemark"/>
+        <textAttrType id="reviewerRemark"/>
+        <booleanAttrType id="relevantForRiskEval" defaultValue="true"/>
+        <listAttrType id="relRisks" objectType.idref="RISK" linkType="3315">
+            <doubleAttrType id="relRisks_grossActual">
+                <!-- BdB CUSTOMIZATON -->
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <doubleAttrType id="relRisks_netActual">
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+        </listAttrType>
+        <booleanAttrType id="relevantForProcessEval" defaultValue="false"/>
+        <listAttrType id="process" objectType.idref="HIERARCHY" linkType="3316">
+            <doubleAttrType id="process_grossActual">
+                <!-- BdB CUSTOMIZATION -->
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <doubleAttrType id="process_netActual">
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <booleanAttrType id="relevantForOrgUnitEval" defaultValue="false"/>
+        <listAttrType id="orgunit" objectType.idref="HIERARCHY" linkType="3317">
+            <doubleAttrType id="orgunit_grossActual">
+                <!-- BdB CUSTOMIZATION -->
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <doubleAttrType id="orgunit_netActual">
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <booleanAttrType id="relevantForFinAccEval" defaultValue="false"/>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="3318" usingFixChildVersion="true">
+            <doubleAttrType id="finaccount_grossActual">
+                <validate name="double" arg0="gt:0:value.must.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <doubleAttrType id="finaccount_netActual">
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <booleanAttrType id="relevantForAppSysEval" defaultValue="false"/>
+        <listAttrType id="appsystem" objectType.idref="HIERARCHY" linkType="3319" usingFixChildVersion="true">
+            <doubleAttrType id="appsystem_grossActual">
+                <validate name="double" arg0="gt:0:value.must.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <doubleAttrType id="appsystem_netActual">
+                <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+                <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+                <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+                <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+            </doubleAttrType>
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <index id="I_3124_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_3124_2" type="normal">
+            <attributeRef attribute="discoveryDate"/>
+        </index>
+        <index id="I_3124_3" type="normal">
+            <attributeRef attribute="entryDate"/>
+        </index>
+        <index id="I_3124_6" type="normal">
+            <attributeRef attribute="type"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <doubleAttrType id="bb_saldo">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <stringAttrType id="bb_URL" maxCharCount="550">
+            <validate name="maxlength" arg0="550"/>
+        </stringAttrType>
+        <dateAttrType id="occurrenceDate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <doubleAttrType id="pendingLoss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <longAttrType id="bb_qtdeEventos_int"/>
+        <longAttrType id="bb_qtdePerdasRelevantes_int"/>
+             
+    </objectType>
+</custom>

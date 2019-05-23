@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<!--
+			filter attributes for lists.
+			    * name clsNames are use in filtes*.xml
+			    * every mapping must implement IFilterAttribute, see IFilterAttribute JavaDoc for details, name clsNames are used in filtes*.xml
+		-->
+		<mappingType name="Filter">
+	        <!-- common -->
+	        <mapping name="issueTypeFilter"	        							clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.IssueTypeFilterAttributeBB"/>
+	        <mapping name="managementApproverL1StringFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ManagementApproverL1StringFilterAttributeBB"/>
+	        <mapping name="managementApproverL2StringFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ManagementApproverL2StringFilterAttributeBB"/>
+	        <mapping name="managementApproverL1EnumFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ManagementApproverL1EnumFilterAttributeBB"/>
+	        <mapping name="managementApproverL2EnumFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ManagementApproverL2EnumFilterAttributeBB"/>
+	        <mapping name="implementationApproverL1StringFilterAttributeBB"	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ImplementationApproverL1StringFilterAttributeBB"/>
+	        <mapping name="implementationApproverL2StringFilterAttributeBB"	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ImplementationApproverL2StringFilterAttributeBB"/>
+	        <mapping name="implementationApproverL1EnumFilterAttributeBB"	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ImplementationApproverL1EnumFilterAttributeBB"/>
+	        <mapping name="implementationApproverL2EnumFilterAttributeBB"	    clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.ImplementationApproverL2EnumFilterAttributeBB"/>
+	        <mapping name="technicalApproverL1StringFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.TechnicalApproverL1StringFilterAttributeBB"/>
+	        <mapping name="technicalApproverL2StringFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.TechnicalApproverL2StringFilterAttributeBB"/>
+	        <mapping name="technicalApproverL1EnumFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.TechnicalApproverL1EnumFilterAttributeBB"/>
+	        <mapping name="technicalApproverL2EnumFilterAttributeBB"	        clsName="com.idsscheer.webapps.arcm.bl.models.filter.attribute.impl.issuemanagement.TechnicalApproverL2EnumFilterAttributeBB"/>
+	        
+	    </mappingType>
+	    <!-- mapping: * name must be the id of the object type (see objectTypes.xml) * every mapping must implement IAccessControl, see IAccessControl JavaDoc for details -->
+	    <mappingType name="AccessControl">
+			<!-- draft added by ARCm RnD-->
+			<mapping name="issue"			clsName="com.idsscheer.webapps.arcm.bl.authorization.rights.runtime.accesscontrol.standard.IssueAccessControlBB"/>
+		</mappingType>
+	    
+
+
+	</blClassMapping>
+</custom>

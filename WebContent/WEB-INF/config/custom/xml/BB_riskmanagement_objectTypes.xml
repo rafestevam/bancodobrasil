@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <objectType id="RISK" xmlexport="true" extends="RECURRING"
+                displayAttribute="name" descriptionAttributes="description" licensedComponentIds="tm,rm,il,in"
+                mashzoneId="40" arisImportRole="riskmanager" image="iconlib/icons/content/risk_16.png">
+        <enumAttrType id="risktype" enumeration="risktype"/>
+        <stringAttrType id="risk_id" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+        <stringAttrType id="name" maxCharCount="250" isMassEditable="true">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="description" isMassEditable="true"/>
+        <listAttrType id="process" maxSize="1" objectType.idref="HIERARCHY" linkType="47">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="48">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="impact" enumeration="impact" defaultValue="0"/>
+        <enumAttrType id="probability" enumeration="probability" defaultValue="0"/>
+        <stringAttrType id="risk_catalog1" maxCharCount="200" isMassEditable="true">
+            <validate name="maxlength" arg0="200"/>
+        </stringAttrType>
+        <stringAttrType id="risk_catalog2" maxCharCount="200" isMassEditable="true">
+            <validate name="maxlength" arg0="200"/>
+        </stringAttrType>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="5"/>
+        <listAttrType id="controls" objectType.idref="CONTROL" linkType="4"/>
+        <listAttrType id="manager_group" maxSize="1" objectType.idref="USERGROUP" linkType="52" >
+            <listRestriction>
+                <attributeRestriction attribute="role" value="riskmanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="assertions" enumeration="assertion"/>
+        <!-- op Risk attributes-->
+        <booleanAttrType id="risk_management_relevant" defaultValue="false"/>
+        <textAttrType id="assessment_activities"/>
+        <enumAttrType id="frequency" enumeration="frequency_including_none" defaultValue="0"/>
+        <booleanAttrType id="event_driven_allowed" defaultValue="true"/>
+        <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="3160">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="riskowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="3161">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="riskreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="risk_category" objectType.idref="HIERARCHY" linkType="3162">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="category"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="orgunit" objectType.idref="HIERARCHY" linkType="3163">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="appsystem" objectType.idref="HIERARCHY" linkType="3164">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <!-- Threshold values of op risk management -->
+        <doubleAttrType id="th_exp_avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="th_exp_max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="th_exp_min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="th_red_exp_avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="th_red_exp_max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="th_red_exp_min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <enumAttrType id="notification_to" enumeration="assessment_notification"/>
+        <index id="I_6_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_6_2" type="normal">
+            <attributeRef attribute="impact"/>
+        </index>
+        <!--index id="I_6_3" type="fullText">
+            <attributeRef attribute="description"/>
+        </index-->
+        <index id="I_6_4" type="normal">
+            <attributeRef attribute="probability"/>
+        </index>
+        <index id="I_RISK_ID" type="normal">
+            <attributeRef attribute="risk_id"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <textAttrType id="bb_desc_impacto"/>
+        <booleanAttrType id="bb_pendencia" defaultValue="false"/>
+        <textAttrType id="bb_desc_pendencia"/>
+        <enumAttrType id="type" enumeration="assessment_type" defaultValue="0"/>
+        <enumAttrType id="data_source" enumeration="data_source" defaultValue="0"/>
+        <listAttrType id="bb_business_line" maxSize="1" objectType.idref="HIERARCHY" linkType="10000">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_businessline"/>
+        	</listRestriction>
+        </listAttrType>
+        <listAttrType id="bb_icr" objectType.idref="HIERARCHY" linkType="10041">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_icr"/>
+            </listRestriction>
+        </listAttrType>
+        <!-- BdB CUSTOMIZATION -->
+        <enumAttrType id="bb_criticidadeInicial" enumeration="bb_criticidadeInicial" defaultValue="0"/>   
+        <dateAttrType id="bb_datapromocao"/>
+<!--         <stringAttrType id="bb_vulnerabilidade" maxCharCount="100"></stringAttrType>       -->
+
+        <listAttrType id="bb_riskfactor" objectType.idref="HIERARCHY" linkType="201610201">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_riskfactor"/>
+            </listRestriction>
+        </listAttrType>
+
+    </objectType>
+    
+    <objectType id="RISKASSESSMENT" xmlexport="true" extends="MONITORABLE" displayAttribute="obj_id"
+                descriptionAttributes="plannedstartdate, plannedenddate, owner_status" licensedComponentIds="rm"
+                dataKind="transactiondata"
+                mashzoneId="230" arisImportRole="riskmanager" image="iconlib/icons/content/risk_assessment_16.png">
+        <booleanAttrType id="newLossesAvailable" defaultValue="false"/>
+        <listAttrType id="process" maxSize="1" objectType.idref="HIERARCHY" linkType="3165" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="risk" maxSize="1" objectType.idref="RISK" linkType="3166" usingFixChildVersion="true"/>
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="3167">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="riskreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="3168">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="riskowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3169"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3175"/>
+        <!-- Added on 98.5.1.10 -->
+        <listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3176"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="4024"/>
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="4025"/>
+        <!-- Added on 98.5.1.10 -->
+        <listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3177"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <listAttrType id="risk_category" objectType.idref="HIERARCHY" linkType="3170" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="category"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="orgunit" objectType.idref="HIERARCHY" linkType="3171" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="appsystem" objectType.idref="HIERARCHY" linkType="3172" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="3173" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <textAttrType id="assessment_activities"/>
+        <enumAttrType id="basis_of_valuation" enumeration="basis_of_valuation" defaultValue="0"/>
+        <enumAttrType id="data_source" enumeration="data_source" defaultValue="0"/>
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <enumAttrType id="owner_status" enumeration="assessment_state" defaultValue="1"/>
+        <enumAttrType id="reviewer_status" enumeration="review_state" defaultValue="0"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3174"/>
+        <textAttrType id="remark"/>
+        <listAttrType id="impacttypes" linkType="5822" objectType.idref="RA_IMPACTTYPE" />
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <textAttrType id="bb_owner_analysis"/>
+        <enumAttrType id="bb_riskAssessmentStatus" enumeration="bb_riskAssessmentStatus" defaultValue="1"/>
+        <enumAttrType id="type" enumeration="assessment_type" defaultValue="0"/>
+        <dateAttrType id="review_date" precision="second"></dateAttrType>
+        
+        <!-- BdB CUSTOMIZATIONS --> 
+        <enumAttrType id="bb_criticidadeFinal" enumeration="bb_criticidadeFinal" defaultValue="0"/>
+        <stringAttrType id="quali_id" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>                        
+        <stringAttrType id="quant_id" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+        <stringAttrType id="others_loss" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+    </objectType>
+    
+    <objectType id="RA_IMPACTTYPE" extends="VERSION" xmlexport="true" displayAttribute="obj_id"
+                clientDependent="true" licensedComponentIds="rm" image="iconlib/icons/impact_type_16.png">
+        <enumAttrType id="owner_status" enumeration="assessment_state" defaultValue="1"/>
+        <!-- set by the rules to indicate if qualitative and/or quantitative values are set completely -->
+        <booleanAttrType id="isFilled" defaultValue="false"/>
+        <!-- set by copy loss value feature to identify the losses which are used to pre-fill the quantitative values a-->
+        <textAttrType id="usedLosses" />
+        <listAttrType id="impacttype" linkType="5810" objectType.idref="IMPACTTYPE" maxSize="1" >
+            <listRestriction>
+                <attributeRestriction attribute="isSnapshot" value="true"/>
+            </listRestriction>
+        </listAttrType>
+
+        <enumAttrType id="type" enumeration="assessment_type" defaultValue="0"/>
+
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <doubleAttrType id="avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="frequ_avg_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="frequ_max_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="frequ_min_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_frequ_avg_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_frequ_max_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_frequ_min_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="exp_avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="exp_max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="exp_min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_exp_avg_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_exp_max_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="red_exp_min_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+
+        <listAttrType id="lossQual" linkType="5811" objectType.idref="QUOTATION" maxSize="1" >
+            <listRestriction>
+                <attributeRestriction attribute="isSnapshot" value="true"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="frequLossQual" linkType="5812" objectType.idref="FREQUENCY" maxSize="1" >
+            <listRestriction>
+                <attributeRestriction attribute="isSnapshot" value="true"/>
+            </listRestriction>
+        </listAttrType>
+
+        <listAttrType id="redLossQual" linkType="5813" objectType.idref="QUOTATION" maxSize="1" >
+            <listRestriction>
+                <attributeRestriction attribute="isSnapshot" value="true"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="redFrequLossQual" linkType="5814" objectType.idref="FREQUENCY" maxSize="1" >
+            <listRestriction>
+                <attributeRestriction attribute="isSnapshot" value="true"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <doubleAttrType id="bb_frequ_relevant_events" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_near_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_operational_gain">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_oportunity_cost">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_lost_income">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>   
+             
+        <enumAttrType id="bb_criticidadeFinal" enumeration="bb_criticidadeFinal" defaultValue="0"/>
+        <stringAttrType id="quali_id" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>                        
+        <stringAttrType id="quant_id" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+        <stringAttrType id="others_loss" maxCharCount="80">
+            <validate name="maxlength" arg0="80"/>
+        </stringAttrType>
+        <doubleAttrType id="bb_sum_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_red_sum_loss">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_frequ_sum_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_red_frequ_sum_loss" precision="0:0">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:4:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:0" arg1="maxFrac:0"/>
+        </doubleAttrType>
+        
+    </objectType>
+</custom>

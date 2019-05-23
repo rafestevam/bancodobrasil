@@ -1,0 +1,80 @@
+package OPTION_RuleSet
+expander option.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.OptionHelper;
+
+# OBJECT  client_objid       LONG       Client ID                                                                                                             
+# OBJECT  client_sign        CLIENTSIGN Client                                                                                                                
+# OBJECT  create_date        DATE       Creation date                                                                                                         
+# OBJECT  creator_user_id    LONG       User ID (creator)                                                                                                     
+# OBJECT  delete_date        DATE       Deletion date                                                                                                         
+# OBJECT  guid               STRING     GUID                                                                                                                  
+# OBJECT  obj_id             LONG       ID                                                                                                                    
+# OBJECT  obj_type           OBJECTTYPE Object type                                                                                                           
+# OBJECT  root_guid          STRING     Root GUID                                                                                                             
+# OBJECT  versions           LONG       Number of versions                                                                                                    
+# VERSION aris_change_date   DATE       ARIS change date                                                                                                      
+# VERSION change_date        DATE       Change date                                                                                                           
+# VERSION change_type        ENUM       Change type              changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)
+# VERSION change_user_id     LONG       User ID (editor)                                                                                                      
+# VERSION deactivated        BOOLEAN    Deactivated                                                                                                           
+# VERSION id                 LONG       ID                                                                                                                    
+# VERSION substitute_user_id LONG       User ID (substitute)                                                                                                  
+# VERSION version_active     BOOLEAN    Current version                                                                                                       
+# VERSION version_number     LONG       Version number                                                                                                        
+# OPTION  isWorkingCopy      ENUM       Working copy             workingcopy (all=-1,snapshot=3,no=0,yes=1,internal=2)                                        
+# OPTION  name               STRING     Answer option                                                                                                         
+# OPTION  optionValue        DOUBLE     Answer value                                                                                                          
+# OPTION  originalOption     LIST       Answer option (original) to 1 OPTION (LT=3207)                                                                        
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "surveymanager - editable and mandatory [I,V]"
+
+	salience 10100
+
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "name" editable
+		set "optionValue" editable
+		#set "manager_group" editable
+
+		set "name" mandatory
+		set "optionValue" mandatory
+
+end
+
+rule "disable original option visibility [I,V]"
+
+	salience 10000
+	when
+		( user has_not right "read" OR    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has_not at object role "surveymanager" OR
+		  user has_not at object role "surveyauditor")
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "originalOption" invisible
+
+end
+########################
+### BB CUSTOMIZATION ###
+rule "hide attributes [I,V]"
+
+ salience 9900
+ no-loop true
+  
+ when
+ 
+ then
+   set "isWorkingCopy" invisible
+end

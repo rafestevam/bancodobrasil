@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<mappingType name="Command">
+			<mapping name="testcaseGenerate"							clsName="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.job.generator.TestcaseGenerateCommandBB"/>
+			<mapping name="testdefinitionFindLinkedControlAndRisks"		clsName="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.job.generator.TestdefinitionFindLinkedControlAndRisksCommandBB" />
+			<mapping name="testdefinitionActiveHierarchiesCheck"    	clsName="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.job.generator.TestdefinitionActiveHierarchiesCheckCommandBB" />
+			<mapping name="followupAssignedUsergroupsSend" clsName="com.idsscheer.webapps.arcm.bl.component.testmanagement.commands.FollowUpAssignedUsergroupsSendBB"/>
+			<mapping name="recurringObjectSearch" clsName="com.idsscheer.webapps.arcm.bl.component.common.command.job.RecurringObjectSearchCommandBB"/>
+		</mappingType>
+	</blClassMapping>
+</custom>

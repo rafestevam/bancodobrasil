@@ -1,0 +1,41 @@
+package ISSUE_SAD_IRO_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+rule "IRO visible attributes - 'sad' [I,V]"
+
+	salience 10
+	no-loop true
+	
+	when
+		is IRO
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "sad"		
+				
+	then
+		set object readonly
+		remove object messages	
+
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date" 		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "remark"                  		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_probAndMagnitQst01" 		visible
+		set "bb_probAndMagnitQst02" 		visible
+		set "bb_probAndMagnitQst03" 		visible
+		set "bb_probAndMagnitQst04" 		visible
+		set "bb_probAndMagnitQst05" 		visible
+		set "bb_compControlsQst01" 			visible
+		set "bb_otherConsidQst01" 			visible
+		set "bb_otherConsidQst03" 			visible
+		set "bb_deficiencyGravityQst01" 	visible
+
+end		

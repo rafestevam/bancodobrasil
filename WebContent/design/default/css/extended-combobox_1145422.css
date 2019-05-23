@@ -1,0 +1,48 @@
+[role=status]{
+	display: none;
+}
+.ui-front {
+	z-index: 100;
+}
+
+.ui-autocomplete {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+}
+.ui-autocomplete-input{
+	width: 400px;
+}
+.ui-autocomplete-input:focus{
+	border-color: #7597ce;
+}
+.ui-menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+	outline: 0;
+}
+.ui-menu .ui-menu {
+	position: absolute;
+}
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+	cursor: hand;
+}
+.ui-widget.ui-widget-content {
+	max-height: 30%;
+	overflow: auto;
+}
+.ui-widget-content {
+	border: 1px solid #7597ce;
+	background: #ffffff;
+	color: #333333;
+	font-size: 90% !important;
+	max-width: 38%;
+	
+}
+.ui-widget-content a {
+	color: #333333;
+}

@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<list id="sotask"
+          view.idref="signofftasks"
+          filter.idref="sotask"
+          idColumn.idref="task_id"
+          defaultOrderColumn.idref="task_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="SOTASK"
+          propertyKey="list.sotask.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="control_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="hierarchy_type"/>
+			<simpleFilter filterRow.idref="signofftask_period"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="L_SOTASK_1" propertyKey="tableheader.so.task.id" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOTASK_2" propertyKey="tableheader.client" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOTASK_3" propertyKey="tableheader.so.element" rowSpan="2" width="16%"/>
+			<listHeader column="L_SOTASK_4" propertyKey="tableheader.type" rowSpan="2" width="10%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="22%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.so.period" width="22%"/>
+			<listHeader column="L_SOTASK_9" propertyKey="tableheader.so.reviewer" rowSpan="2" width="20%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="L_SOTASK_5" propertyKey="tableheader.begin" width="11%"/>
+			<listHeader column="L_SOTASK_6" propertyKey="tableheader.end" width="11%"/>
+			<listHeader column="L_SOTASK_7" propertyKey="tableheader.begin" width="11%"/>
+			<listHeader column="L_SOTASK_8" propertyKey="tableheader.end" width="11%"/>
+		</listHeaderRow>
+		<column id="L_SOTASK_1" dataReference.idref="task_id" template="openObject">
+			<parameter name="idColumn" value="task_id"/>
+		</column>
+		<column id="L_SOTASK_2" align="center" dataReference.idref="client_sign" />
+		<column id="L_SOTASK_3" dataReference.idref="hierarchy_name" template="object">
+			<parameter name="deactivatedColumn" value="hierarchy_deactivated"/>
+		</column>
+		<column id="L_SOTASK_4" align="center" dataReference.idref="hierarchy_type" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="L_SOTASK_5" align="center" dataReference.idref="task_control_start" />
+		<column id="L_SOTASK_6" align="center" dataReference.idref="task_control_end" />
+		<column id="L_SOTASK_7" align="center" dataReference.idref="task_so_start" />
+		<column id="L_SOTASK_8" align="center" dataReference.idref="task_so_end" />
+		<column id="L_SOTASK_9" dataReference.idref="user_reviewer_name" template="object">
+			<parameter name="deactivatedColumn" value="user_deactivated"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_RESET"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<!-- BdB has requested it 
+			<buttonReference button.idref="FIELDSELECT"/>
+			-->
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="soprocess"
+          view.idref="signoffprocess"
+          filter.idref="soprocess"
+          idColumn.idref="process_id"
+          defaultOrderColumn.idref="process_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="SOPROCESS"
+          propertyKey="list.soprocess.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="signoff_period"/>
+		</simpleFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="process_id"/>
+			<extendedFilter filterRow.idref="control_period"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="ownerUser_name"/>
+			<extendedFilter filterRow.idref="substitute"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="hierarchy_type"/>
+			<extendedFilter filterRow.idref="owner_name"/>
+		</extendedFilterRow>
+		<listHeaderRow>
+			<listHeader column="L_SOPROCESS_1" propertyKey="tableheader.so.process.id" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOPROCESS_2" propertyKey="tableheader.client" rowSpan="2" width="4%"/>
+			<listHeader column="L_SOPROCESS_3" propertyKey="tableheader.so.element" rowSpan="2" width="12%"/>
+			<listHeader column="L_SOPROCESS_4" propertyKey="tableheader.type" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="18%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.so.period" width="18%"/>
+			<listHeader column="L_SOPROCESS_9" propertyKey="tableheader.so.owner" rowSpan="2" width="10%"/>
+            <listHeader column="L_SOPROCESS_10" propertyKey="tableheader.performed.by" rowSpan="2" width="10%"/>
+			<listHeader column="L_SOPROCESS_11" propertyKey="tableheader.so.date" rowSpan="2" width="8%"/>
+            <listHeader column="L_SOPROCESS_12" propertyKey="tableheader.so.owner.status.short.DBI" tooltip="tableheader.so.owner.status.DBI" rowSpan="2" width="4%"/>
+            <listHeader column="L_SOPROCESS_13" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.so.reviewer.status.DBI" rowSpan="2" width="4%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="L_SOPROCESS_5" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOPROCESS_6" propertyKey="tableheader.end" width="9%"/>
+			<listHeader column="L_SOPROCESS_7" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOPROCESS_8" propertyKey="tableheader.end" width="9%"/>
+		</listHeaderRow>
+		<column id="L_SOPROCESS_1" dataReference.idref="process_id" template="openObject">
+			<parameter name="idColumn" value="process_id"/>
+		</column>
+		<column id="L_SOPROCESS_2" align="center" dataReference.idref="client_sign" />
+		<column id="L_SOPROCESS_3" dataReference.idref="hierarchy_name" template="object">
+			<parameter name="deactivatedColumn" value="hierarchy_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_4" align="center" dataReference.idref="hierarchy_type" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="L_SOPROCESS_5" align="center" dataReference.idref="process_control_start" />
+		<column id="L_SOPROCESS_6" align="center" dataReference.idref="process_control_end" />
+		<column id="L_SOPROCESS_7" align="center" dataReference.idref="process_so_start" />
+		<column id="L_SOPROCESS_8" align="center" dataReference.idref="process_so_end" />
+		<column id="L_SOPROCESS_9" dataReference.idref="owner_name" template="object">
+			<parameter name="deactivatedColumn" value="owner_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_10" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="ownerUser_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_11" align="center" dataReference.idref="process_so_date" />
+		<column id="L_SOPROCESS_12" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+        <column id="L_SOPROCESS_13" align="center" dataReference.idref="reviewer_status" >
+            <parameter name="showImage" value="true"/>
+            <parameter name="showText" value="false"/>
+        </column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>			
+		</rowButtons>
+	</list>
+	
+	<list id="soowner"
+          view.idref="signoffowner"
+          filter.idref="soowner"
+          idColumn.idref="process_id"
+          defaultOrderColumn.idref="process_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="SOPROCESS"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.soowner.DBI">
+		<roleRestriction role="signoffowner"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="signoff_period"/>
+		</simpleFilterRow>
+				<extendedFilterRow>
+			<extendedFilter filterRow.idref="process_id"/>
+			<extendedFilter filterRow.idref="control_period"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="ownerUser_name"/>
+			<extendedFilter filterRow.idref="substitute"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="hierarchy_type"/>
+			<extendedFilter filterRow.idref="owner_name"/>
+		</extendedFilterRow>
+		<listHeaderRow>           
+			<listHeader column="L_SOOWNER_1" propertyKey="tableheader.so.process.id" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOOWNER_2" propertyKey="tableheader.client" rowSpan="2" width="4%"/>
+			<listHeader column="L_SOOWNER_3" propertyKey="tableheader.so.element" rowSpan="2" width="12%"/>
+			<listHeader column="L_SOOWNER_4" propertyKey="tableheader.type" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="18%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.so.period" width="18%"/>
+			<listHeader column="L_SOOWNER_9" propertyKey="tableheader.so.owner" rowSpan="2" width="10%"/>
+			<listHeader column="L_SOOWNER_10" propertyKey="tableheader.performed.by" rowSpan="2" width="10%"/>
+			<listHeader column="L_SOOWNER_11" propertyKey="tableheader.so.date" rowSpan="2" width="8%"/>
+			<listHeader column="L_SOOWNER_12" propertyKey="tableheader.so.owner.status.short.DBI" rowSpan="2" width="4%" tooltip="tableheader.so.owner.status.DBI"/>
+            <listHeader column="L_SOOWNER_13" propertyKey="tableheader.reviewer.status.short.DBI" rowSpan="2" width="4%" tooltip="tableheader.so.reviewer.status.DBI"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="L_SOOWNER_5" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOOWNER_6" propertyKey="tableheader.end" width="9%"/>
+			<listHeader column="L_SOOWNER_7" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOOWNER_8" propertyKey="tableheader.end" width="9%"/>
+		</listHeaderRow>
+		<column id="L_SOOWNER_1" dataReference.idref="process_id" template="openObject">
+			<parameter name="idColumn" value="process_id"/>
+            <parameter name="deactivatedColumn" value="process_deactivated"/>
+		</column>
+		<column id="L_SOOWNER_2" align="center" dataReference.idref="client_sign" />
+		<column id="L_SOOWNER_3" dataReference.idref="hierarchy_name" template="object">
+			<parameter name="deactivatedColumn" value="hierarchy_deactivated"/>
+		</column>
+		<column id="L_SOOWNER_4" align="center" dataReference.idref="hierarchy_type" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="L_SOOWNER_5" align="center" dataReference.idref="process_control_start" />
+		<column id="L_SOOWNER_6" align="center" dataReference.idref="process_control_end" />
+		<column id="L_SOOWNER_7" align="center" dataReference.idref="process_so_start" />
+		<column id="L_SOOWNER_8" align="center" dataReference.idref="process_so_end" />
+		<column id="L_SOOWNER_9" dataReference.idref="owner_name" template="object">
+			<parameter name="deactivatedColumn" value="owner_deactivated"/>
+		</column>
+		<column id="L_SOOWNER_10" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="ownerUserSubst_name"/>
+			<parameter name="deactivatedProperty" value="ownerUser_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="ownerUserSubst_deactivated"/>
+		</column>
+		<column id="L_SOOWNER_11" align="center" dataReference.idref="process_so_date" />
+		<column id="L_SOOWNER_12" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+        <column id="L_SOOWNER_13" align="center" dataReference.idref="reviewer_status" >
+            <parameter name="showImage" value="true"/>
+            <parameter name="showText" value="false"/>
+        </column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+            <buttonReference button.idref="LIST_DELETE"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+
+	<list id="soreviewer"
+          view.idref="signoffreviewer"
+          filter.idref="soreviewer"
+          idColumn.idref="process_id"
+          defaultOrderColumn.idref="process_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="SOPROCESS"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.soreviewer.DBI">
+		<roleRestriction role="signoffreviewer"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="signoff_period"/>
+		</simpleFilterRow>
+				<extendedFilterRow>
+			<extendedFilter filterRow.idref="process_id"/>
+			<extendedFilter filterRow.idref="control_period"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="ownerUser_name"/>
+			<extendedFilter filterRow.idref="substitute"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="hierarchy_type"/>
+			<extendedFilter filterRow.idref="reviewer_name"/>
+		</extendedFilterRow>
+		<listHeaderRow>
+			<listHeader column="L_SOREVIEWER_1" propertyKey="tableheader.so.process.id" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOREVIEWER_2" propertyKey="tableheader.client" rowSpan="2" width="4%"/>
+			<listHeader column="L_SOREVIEWER_3" propertyKey="tableheader.so.element" rowSpan="2" width="12%"/>
+			<listHeader column="L_SOREVIEWER_4" propertyKey="tableheader.type" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="18%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.so.period" width="18%"/>
+			<listHeader column="L_SOREVIEWER_9" propertyKey="tableheader.so.reviewer" rowSpan="2" width="10%"/>
+			<listHeader column="L_SOREVIEWER_10" propertyKey="tableheader.performed.by.DBI" rowSpan="2" width="10%"/>
+            <listHeader column="L_SOREVIEWER_11" propertyKey="tableheader.so.date" rowSpan="2" width="8%"/>
+            <listHeader column="L_SOREVIEWER_12" propertyKey="tableheader.so.owner.status.short.DBI" rowSpan="2" width="4%" tooltip="tableheader.so.owner.status.DBI"/>
+            <listHeader column="L_SOREVIEWER_13" propertyKey="tableheader.reviewer.status.short.DBI" rowSpan="2" width="4%" tooltip="tableheader.so.reviewer.status.DBI"/>
+        </listHeaderRow>
+        <listHeaderRow>
+            <listHeader column="L_SOREVIEWER_5" propertyKey="tableheader.begin" width="9%"/>
+            <listHeader column="L_SOREVIEWER_6" propertyKey="tableheader.end" width="9%"/>
+            <listHeader column="L_SOREVIEWER_7" propertyKey="tableheader.begin" width="9%"/>
+            <listHeader column="L_SOREVIEWER_8" propertyKey="tableheader.end" width="9%"/>
+        </listHeaderRow>
+        <column id="L_SOREVIEWER_1" dataReference.idref="process_id" template="openObject">
+            <parameter name="idColumn" value="process_id"/>
+            <parameter name="deactivatedColumn" value="process_deactivated"/>
+        </column>
+        <column id="L_SOREVIEWER_2" align="center" dataReference.idref="client_sign" />
+        <column id="L_SOREVIEWER_3" dataReference.idref="hierarchy_name" template="object">
+            <parameter name="deactivatedColumn" value="hierarchy_deactivated"/>
+        </column>
+        <column id="L_SOREVIEWER_4" align="center" dataReference.idref="hierarchy_type" >
+            <parameter name="showImage" value="false"/>
+            <parameter name="showText" value="true"/>
+        </column>
+        <column id="L_SOREVIEWER_5" align="center" dataReference.idref="process_control_start" />
+        <column id="L_SOREVIEWER_6" align="center" dataReference.idref="process_control_end" />
+        <column id="L_SOREVIEWER_7" align="center" dataReference.idref="process_so_start" />
+        <column id="L_SOREVIEWER_8" align="center" dataReference.idref="process_so_end" />
+        <column id="L_SOREVIEWER_9" dataReference.idref="reviewer_name" template="object">
+            <parameter name="deactivatedColumn" value="reviewer_deactivated"/>
+        </column>
+        <column id="L_SOREVIEWER_10" dataReference.idref="ownerUser_name" template="userSubstitute">
+            <parameter name="substitute" value="ownerUserSubst_name"/>
+            <parameter name="deactivatedProperty" value="ownerUser_deactivated"/>
+            <parameter name="substituteDeactivatedProperty" value="ownerUserSubst_deactivated"/>
+        </column>
+        <column id="L_SOREVIEWER_11" align="center" dataReference.idref="process_so_date" />
+        <column id="L_SOREVIEWER_12" align="center" dataReference.idref="owner_status" >
+            <parameter name="showImage" value="true"/>
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="L_SOREVIEWER_13" align="center" dataReference.idref="reviewer_status" >
+            <parameter name="showImage" value="true"/>
+            <parameter name="showText" value="false"/>
+        </column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+            <buttonReference button.idref="LIST_DELETE"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="sotask2soprocess"
+          view.idref="sotask2soprocess"
+          filter.idref="sotask2soprocess"
+          idColumn.idref="process_id"
+          defaultOrderColumn.idref="process_id"
+          frame="tabcontent"
+          ignoreRoleRestriction="true"
+          relatedObjectType.idref="SOPROCESS">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="signoff_period"/>
+		</simpleFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="process_id"/>
+			<extendedFilter filterRow.idref="control_period"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="ownerUser_name"/>
+			<extendedFilter filterRow.idref="substitute"/>
+		</extendedFilterRow>
+		<extendedFilterRow>
+			<extendedFilter filterRow.idref="hierarchy_type"/>
+			<extendedFilter filterRow.idref="owner_name"/>
+		</extendedFilterRow>
+		<listHeaderRow>
+			<listHeader column="L_SOPROCESS_1" propertyKey="tableheader.so.process.id" rowSpan="2" width="5%"/>
+			<listHeader column="L_SOPROCESS_2" propertyKey="tableheader.client" rowSpan="2" width="4%"/>
+			<listHeader column="L_SOPROCESS_3" propertyKey="tableheader.so.element" rowSpan="2" width="12%"/>
+			<listHeader column="L_SOPROCESS_4" propertyKey="tableheader.type" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="18%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.so.period" width="18%"/>
+			<listHeader column="L_SOPROCESS_9" propertyKey="tableheader.so.owner" rowSpan="2" width="10%"/>
+            <listHeader column="L_SOPROCESS_10" propertyKey="tableheader.performed.by" rowSpan="2" width="10%"/>
+			<listHeader column="L_SOPROCESS_11" propertyKey="tableheader.so.date" rowSpan="2" width="8%"/>
+            <listHeader column="L_SOPROCESS_12" propertyKey="tableheader.so.owner.status.short.DBI" tooltip="tableheader.so.owner.status.DBI" rowSpan="2" width="4%"/>
+            <listHeader column="L_SOPROCESS_13" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.so.reviewer.status.DBI" rowSpan="2" width="4%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="L_SOPROCESS_5" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOPROCESS_6" propertyKey="tableheader.end" width="9%"/>
+			<listHeader column="L_SOPROCESS_7" propertyKey="tableheader.begin" width="9%"/>
+			<listHeader column="L_SOPROCESS_8" propertyKey="tableheader.end" width="9%"/>
+		</listHeaderRow>
+		<column id="L_SOPROCESS_1" dataReference.idref="process_id" template="openObject">
+			<parameter name="idColumn" value="process_id"/>
+		</column>
+		<column id="L_SOPROCESS_2" align="center" dataReference.idref="client_sign" />
+		<column id="L_SOPROCESS_3" dataReference.idref="hierarchy_name" template="object">
+			<parameter name="deactivatedColumn" value="hierarchy_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_4" align="center" dataReference.idref="hierarchy_type" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="L_SOPROCESS_5" align="center" dataReference.idref="process_control_start" />
+		<column id="L_SOPROCESS_6" align="center" dataReference.idref="process_control_end" />
+		<column id="L_SOPROCESS_7" align="center" dataReference.idref="process_so_start" />
+		<column id="L_SOPROCESS_8" align="center" dataReference.idref="process_so_end" />
+		<column id="L_SOPROCESS_9" dataReference.idref="owner_name" template="object">
+			<parameter name="deactivatedColumn" value="owner_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_10" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="ownerUser_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="L_SOPROCESS_11" align="center" dataReference.idref="process_so_date" />
+		<column id="L_SOPROCESS_12" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+        <column id="L_SOPROCESS_13" align="center" dataReference.idref="reviewer_status" >
+            <parameter name="showImage" value="true"/>
+            <parameter name="showText" value="false"/>
+        </column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>			
+		</rowButtons>
+	</list>
+	
+	<list id="soprocess2testaction_refs"
+          view.idref="soprocess2testaction_refs_1"
+          filter.idref="testactionSignOff"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          frame="tabcontent"
+          relatedObjectType.idref="TESTCASE">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_soprocess2testaction_refs_1_1" propertyKey="tableheader.testcase" rowSpan="2" width="7%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_9" propertyKey="tableheader.client" rowSpan="2" width="8%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="17%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_2a" propertyKey="tableheader.tester.hierarchy" rowSpan="2" width="17%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_3" propertyKey="tableheader.performed.by" rowSpan="2" width="16%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_4" propertyKey="tableheader.testing.date" rowSpan="2" width="9%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.control.period" width="16%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_7" propertyKey="tableheader.test.result" rowSpan="2" width="5%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_8" propertyKey="tableheader.type" rowSpan="2" width="5%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_soprocess2testaction_refs_1_5" propertyKey="tableheader.testing.begin" width="8%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_6" propertyKey="tableheader.testing.end" width="8%"/>
+		</listHeaderRow>
+		<column id="LC_soprocess2testaction_refs_1_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_9" dataReference.idref="client_sign" />
+		<column id="LC_soprocess2testaction_refs_1_2" dataReference.idref="group_name" template="object"/>
+		<column id="LC_soprocess2testaction_refs_1_2a" dataReference.idref="hierarchy_name" template="object"/>
+		<column id="LC_soprocess2testaction_refs_1_3" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_4" align="center" dataReference.idref="testdate" />
+		<column id="LC_soprocess2testaction_refs_1_5" align="center" dataReference.idref="controlstartdate" />
+		<column id="LC_soprocess2testaction_refs_1_6" align="center" dataReference.idref="controlenddate" />
+		<column id="LC_soprocess2testaction_refs_1_7" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_8" align="center" dataReference.idref="type" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+            <buttonReference button.idref="PARENT_LIST_VIEW"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="PARENT_LISTROW_VIEW"/>
+		</rowButtons>
+	</list>
+	
+	<list id="soprocess_control2testaction_refs"
+          view.idref="soprocess_control2testaction_refs_1"
+          filter.idref="testactionSignOff"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          frame="tabcontent"
+          relatedObjectType.idref="TESTCASE">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_soprocess2testaction_refs_1_1" propertyKey="tableheader.testcase" rowSpan="2" width="7%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_9" propertyKey="tableheader.client" rowSpan="2" width="8%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="17%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_2a" propertyKey="tableheader.tester.hierarchy" rowSpan="2" width="17%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_3" propertyKey="tableheader.performed.by" rowSpan="2" width="16%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_4" propertyKey="tableheader.testing.date" rowSpan="2" width="9%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.evaluation.cycle" width="16%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_7" propertyKey="tableheader.test.result" rowSpan="2" width="5%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_8" propertyKey="tableheader.type" rowSpan="2" width="5%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_soprocess2testaction_refs_1_5" propertyKey="tableheader.testing.begin" width="8%"/>
+			<listHeader column="LC_soprocess2testaction_refs_1_6" propertyKey="tableheader.testing.end" width="8%"/>
+		</listHeaderRow>
+		<column id="LC_soprocess2testaction_refs_1_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_9" dataReference.idref="client_sign" />
+		<column id="LC_soprocess2testaction_refs_1_2" dataReference.idref="group_name" template="object"/>
+		<column id="LC_soprocess2testaction_refs_1_2a" dataReference.idref="hierarchy_name" template="object"/>
+		<column id="LC_soprocess2testaction_refs_1_3" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_4" align="center" dataReference.idref="testdate" />
+		<column id="LC_soprocess2testaction_refs_1_5" align="center" dataReference.idref="controlstartdate" />
+		<column id="LC_soprocess2testaction_refs_1_6" align="center" dataReference.idref="controlenddate" />
+		<column id="LC_soprocess2testaction_refs_1_7" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_soprocess2testaction_refs_1_8" align="center" dataReference.idref="type" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+            <buttonReference button.idref="PARENT_LIST_VIEW"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="PARENT_LISTROW_VIEW"/>
+		</rowButtons>
+	</list>
+
+	<list id="signoffControlStatisticTestcases"
+          view.idref="signoffControlStatisticTestcases"
+          filter.idref="signoffStatisticTestcases"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          canObjectsBeReactivated="false"
+          relatedObjectType.idref="TESTCASE"
+          propertyKey="list.signoffStatisticTestcases.DBI">
+        <listHeaderRow>
+			<listHeader column="LC_signoffStatisticTestcases_1" propertyKey="tableheader.testcase" rowSpan="2" width="10%"/>
+			<listHeader column="LC_signoffStatisticTestcases_2" propertyKey="tableheader.client" rowSpan="2" width="10%"/>
+			<listHeader column="LC_signoffStatisticTestcases_3" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="21%"/>
+			<listHeader column="LC_signoffStatisticTestcases_5" propertyKey="tableheader.performed.by" rowSpan="2" width="10%"/>
+			<listHeader column="LC_signoffStatisticTestcases_6" propertyKey="tableheader.testing.date" rowSpan="2" width="11%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="22%"/>
+			<listHeader column="LC_signoffStatisticTestcases_9" propertyKey="tableheader.test.result" rowSpan="2" width="8%"/>
+			<listHeader column="LC_signoffStatisticTestcases_10" propertyKey="tableheader.type" rowSpan="2" width="8%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_signoffStatisticTestcases_7" propertyKey="tableheader.testing.begin" width="11%"/>
+			<listHeader column="LC_signoffStatisticTestcases_8" propertyKey="tableheader.testing.end" width="11%"/>
+		</listHeaderRow>
+        <column id="LC_signoffStatisticTestcases_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_signoffStatisticTestcases_2" align="center" dataReference.idref="client_sign" />
+		<column id="LC_signoffStatisticTestcases_3" dataReference.idref="group_name" template="object">
+			<parameter name="deactivatedColumn" value="group_deactivated"/>
+		</column>
+		<column id="LC_signoffStatisticTestcases_5" dataReference.idref="ownerUser_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="ownerUser_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_signoffStatisticTestcases_6" align="center" dataReference.idref="testdate" />
+		<column id="LC_signoffStatisticTestcases_7" align="center" dataReference.idref="plannedstartdate" />
+		<column id="LC_signoffStatisticTestcases_8" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_signoffStatisticTestcases_9" align="center" dataReference.idref="testcase_owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_signoffStatisticTestcases_10" align="center" dataReference.idref="type" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+            <buttonReference button.idref="LIST_VIEW"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_VIEW"/>
+		</rowButtons>
+    </list>
+    
+    <list id="signoff_deficiency_statistic_link"
+          view.idref="signoff_deficiency_statistic_link"
+          filter.idref="soprocessDeficiencyStatistic"
+          idColumn.idref="id"
+          defaultOrderColumn.idref="deficiency_id"
+          allowMarkAsIssueRelevant="true"
+          canObjectsBeReactivated="false"
+          relatedObjectType.idref="DEFICIENCY"
+          propertyKey="list.signoff_deficiency_statistic_link.DBI"
+          rightsPath.datakind="transactiondata">
+        <listHeaderRow>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_DEFICIENCYID" propertyKey="tableheader.deficiency.deficiency_id" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_CLIENTSIGN" propertyKey="tableheader.deficiency.client" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_COMPANY" propertyKey="tableheader.deficiency.company" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_TAID" propertyKey="tableheader.deficiency.ta_id" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATE" propertyKey="tableheader.deficiency.savestate_l1" width="5%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATEL2" propertyKey="tableheader.deficiency.savestate_l2" width="5%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATEL3" propertyKey="tableheader.deficiency.savestate_l3" width="5%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_DESCR_L1" propertyKey="tableheader.deficiency.descr_l1" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_LIKELIHOOD" propertyKey="tableheader.deficiency.likelihood" width="10%"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_MAGNITUDE" propertyKey="tableheader.deficiency.magnitude" width="10%" forceInline="false"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_REMEDIEDBYMGMT" propertyKey="tableheader.deficiency.remedied_by_mgmt" width="5%" forceInline="false"/>
+            <listHeader column="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_STILLEXISTSATYEAREND" propertyKey="tableheader.deficiency.still_exists_at_yearend" width="10%" forceInline="false"/>
+        </listHeaderRow>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_DEFICIENCYID" dataReference.idref="deficiency_id" template="openObject">
+            <parameter name="idColumn" value="id"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_CLIENTSIGN" align="center" dataReference.idref="client_sign" />
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_COMPANY" dataReference.idref="company" />
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_TAID" dataReference.idref="testcase_id" template="object"/>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATE" align="center" dataReference.idref="savestate_l1" >
+            <parameter name="showImage" value="false"/>
+            <parameter name="showText" value="true"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATEL2" align="center" dataReference.idref="savestate_l2" >
+            <parameter name="showImage" value="false"/>
+            <parameter name="showText" value="true"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_SAVESTATEL3" align="center" dataReference.idref="savestate_l3" >
+            <parameter name="showImage" value="false"/>
+            <parameter name="showText" value="true"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_DESCR_L1" dataReference.idref="descr_l1" />
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_LIKELIHOOD" align="center" dataReference.idref="likelihood" >
+            <parameter name="showImage" value="false"/>
+            <parameter name="showText" value="true"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_MAGNITUDE" dataReference.idref="magnitude" template="stringEnum">
+            <parameter name="enumProperty" value="currency"/>
+        </column>
+
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_REMEDIEDBYMGMT" align="center" dataReference.idref="remedied_by_mgmt" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <column id="LC_SIGNOFF_DEFICIENCY_STATISTIC_LINK_STILLEXISTSATYEAREND" align="center" dataReference.idref="still_exists_at_yearend" >
+            <parameter name="showText" value="false"/>
+        </column>
+        <listButtons>
+            <buttonReference button.idref="LIST_VIEW"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="LISTROW_VIEW"/>
+        </rowButtons>
+    </list>
+</custom>

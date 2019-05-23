@@ -1,0 +1,114 @@
+package SECTION_RuleSet
+expander section.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.SectionHelper;
+
+# OBJECT  client_objid             LONG       Client ID                                                                                                              
+# OBJECT  client_sign              CLIENTSIGN Client                                                                                                                 
+# OBJECT  create_date              DATE       Creation date                                                                                                          
+# OBJECT  creator_user_id          LONG       User ID (creator)                                                                                                      
+# OBJECT  delete_date              DATE       Deletion date                                                                                                          
+# OBJECT  guid                     STRING     GUID                                                                                                                   
+# OBJECT  obj_id                   LONG       ID                                                                                                                     
+# OBJECT  obj_type                 OBJECTTYPE Object type                                                                                                            
+# OBJECT  root_guid                STRING     Root GUID                                                                                                              
+# OBJECT  versions                 LONG       Number of versions                                                                                                     
+# VERSION aris_change_date         DATE       ARIS change date                                                                                                       
+# VERSION change_date              DATE       Change date                                                                                                            
+# VERSION change_type              ENUM       Change type               changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)
+# VERSION change_user_id           LONG       User ID (editor)                                                                                                       
+# VERSION deactivated              BOOLEAN    Deactivated                                                                                                            
+# VERSION id                       LONG       ID                                                                                                                     
+# VERSION substitute_user_id       LONG       User ID (substitute)                                                                                                   
+# VERSION version_active           BOOLEAN    Current version                                                                                                        
+# VERSION version_number           LONG       Version number                                                                                                         
+# SECTION description              TEXT       Description                                                                                                            
+# SECTION isWorkingCopy            ENUM       Working copy              workingcopy (all=-1,snapshot=3,no=0,yes=1,internal=2)                                        
+# SECTION name                     STRING     Name                                                                                                                   
+# SECTION originalSection          LIST       Section (original)        to 1 SECTION (LT=3204)                                                                       
+# SECTION questions                LIST       Questions                 to * QUESTIONs (LT=3202)                                                                     
+# SECTION relQuestionnaireTemplate LIST       Questionnaire template ID to 1 QUESTIONNAIRE_TEMPLATE (LT=3235)                                                        
+# SECTION subSections              LIST       Subsections               to * SECTIONs (LT=3203)                                                                      
+# SECTION targetScore              DOUBLE     Score (target)                                                                                                         
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "define mandatory fields [I,V]"
+
+	salience 10300
+
+	when
+
+	then
+		set "name" mandatory
+		set "targetScore" mandatory
+
+end
+
+rule "disable visibility of original section [I,V]"
+
+    salience 10200
+
+	when
+		( user has_not right "read" AND    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has_not at object role "surveymanager" AND
+		  user has_not at object role "surveyauditor" ) OR
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "originalSection" invisible
+		
+end
+
+rule "enable editable for some fields for managers only [I,V]"
+
+	salience 10100
+
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "name" editable
+		set "description" editable
+		set "targetScore" editable
+		set "subSections" editable
+		set "questions" editable
+
+end
+
+rule "protect sections from being edited as long as section is not persistent yet [I,V]"
+
+	salience 10000
+
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+		object is new
+
+	then
+		set "subSections" readonly
+		add object "information" message "surveymanagement.section.deny.assigning.sections.DBI"
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide attributes [I,V]"
+
+	 salience 9900
+	 no-loop true
+	  
+	 when
+	 
+	 then
+	   set "isWorkingCopy" invisible
+	   
+end

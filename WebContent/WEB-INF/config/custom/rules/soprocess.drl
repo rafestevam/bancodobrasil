@@ -1,0 +1,204 @@
+package SOPROCESS_RuleSet
+expander soprocess.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.signoffmanagement.re.SoprocessHelper;
+
+# OBJECT        client_objid        LONG       Client ID                                                                                                                              
+# OBJECT        client_sign         CLIENTSIGN Client                                                                                                                                 
+# OBJECT        create_date         DATE       Creation date                                                                                                                          
+# OBJECT        creator_user_id     LONG       User ID (creator)                                                                                                                      
+# OBJECT        delete_date         DATE       Deletion date                                                                                                                          
+# OBJECT        guid                STRING     GUID                                                                                                                                   
+# OBJECT        obj_id              LONG       ID                                                                                                                                     
+# OBJECT        obj_type            OBJECTTYPE Object type                                                                                                                            
+# OBJECT        root_guid           STRING     Root GUID                                                                                                                              
+# OBJECT        versions            LONG       Number of versions                                                                                                                     
+# VERSION       aris_change_date    DATE       ARIS change date                                                                                                                       
+# VERSION       change_date         DATE       Change date                                                                                                                            
+# VERSION       change_type         ENUM       Change type               changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                
+# VERSION       change_user_id      LONG       User ID (editor)                                                                                                                       
+# VERSION       deactivated         BOOLEAN    Deactivated                                                                                                                            
+# VERSION       id                  LONG       ID                                                                                                                                     
+# VERSION       substitute_user_id  LONG       User ID (substitute)                                                                                                                   
+# VERSION       version_active      BOOLEAN    Current version                                                                                                                        
+# VERSION       version_number      LONG       Version number                                                                                                                         
+# TRANSACTIONAL execution_date      DATE       Sign-off date                                                                                                                          
+# TRANSACTIONAL owner               LIST       Performed by              to 1 USER (LT=64)                                                                                            
+# TRANSACTIONAL owner_group         LIST       Sign-off owner            to 1 USERGROUP (LT=63)                                                                                       
+# TRANSACTIONAL owner_status        ENUM       Owner status              signOffOwnerStatus (all=0,open=1,not_released=2,released=3,auto_performed=4,not_performed=5,openForReview=-1)
+# TRANSACTIONAL owner_substitute    LIST       Performed by (substitute) to 1 USER (LT=3111)                                                                                          
+# TRANSACTIONAL review_date         DATE       Review date                                                                                                                            
+# TRANSACTIONAL reviewer            LIST       Sign-off reviewer         to 1 USER (LT=4002)                                                                                          
+# TRANSACTIONAL reviewer_group      LIST       Reviewer group            to 1 USERGROUP (LT=76)                                                                                       
+# TRANSACTIONAL reviewer_status     ENUM       Reviewer status           signOffReviewerStatus (all=-1,unspecified=0,accepted=1,rejected=2,autoAccepted=3,completed=-2)               
+# TRANSACTIONAL reviewer_substitute LIST       Reviewer (substitute)     to 1 USER (LT=4003)                                                                                          
+# MONITORABLE   controlenddate      DATE       End of control period                                                                                                                  
+# MONITORABLE   controlstartdate    DATE       Start of control period                                                                                                                
+# MONITORABLE   plannedenddate      DATE       End of sign-off period                                                                                                                 
+# MONITORABLE   plannedstartdate    DATE       Start of sign-off period                                                                                                               
+# SOPROCESS     element             LIST       Sign-off item             to 1 HIERARCHY (LT=61)                                                                                       
+# SOPROCESS     isroot              BOOLEAN    Root                                                                                                                                   
+# SOPROCESS     remark              TEXT       Notes                                                                                                                                  
+# SOPROCESS     reopened            BOOLEAN    Reopened                                                                                                                               
+# SOPROCESS     reopenremark        TEXT       Reason                                                                                                                                 
+# SOPROCESS     risktype            ENUM       Risk type                 risktype (financial_reporting=1,compliance=2,operations=3)                                                   
+# SOPROCESS     signoffprocess      LIST       Sign-off process          to * SOPROCESSs (LT=71)                                                                                      
+# SOPROCESS     sotask              LIST       Sign-off task             to 1 SOTASK (LT=62)                                                                                          
+# SOPROCESS     testcase_lock       BOOLEAN    Test cases locked                                                                                                                      
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+#
+# The signoff period must be welldefined (so_start <= so_end)
+#
+rule "signoff period: so_start > so_end [V]"
+
+	salience 10100
+
+	when
+		"plannedstartdate" is filled
+		"plannedenddate" is filled
+		attribute comparison fulfilled: ":transient:" attr_value "plannedstartdate" "GREATER THAN" ":transient:" attr_value "plannedenddate"
+
+	then 
+		set "plannedenddate" invalid
+		add "error" message "error.date.range.DBI" to "plannedenddate"
+
+end
+
+#
+# The signoff period cannot be shortened.
+#
+rule "signoff period cannot be shortened [V]"
+
+	salience 10000
+
+	when
+	    attribute comparison fulfilled: ":transient:" attr_value "plannedenddate" "LESS THAN" ":persistent:" attr_value "plannedenddate"
+		
+	then
+		set "plannedenddate" invalid
+		add "error" message "errors.periode.signoff.extend.only" to "plannedenddate"
+		
+end
+
+##########################################
+### Workflow state "openForExecution"  ###
+
+rule "so_end_writable_right_[I,V]"
+
+	salience 2200
+	no-loop true
+
+	when
+	    is in workflow state "openForExecution"
+		user has right "extend"
+		
+	then
+		set "plannedenddate" editable
+		set "plannedenddate" mandatory
+
+end
+
+### in general the owner is allowed to change status from "open" and type-in a remark for the process
+### if there are no open subprocesses
+rule "user is owner, sop open ==> allow to edit 'status' and 'remark' [I,V]"
+
+	salience 2100
+	no-loop true
+
+	when
+		is in workflow state "openForExecution"
+		user is ":persistent:" member of group in list "owner_group"
+		there are no open subordinate sign off processes
+		( "plannedenddate" is filled AND value comparison fulfilled: ":transient:" attr_value "plannedenddate" "GREATER EQUAL" value ":TODAY:" OR
+		  "plannedenddate" is invalid )
+
+	then
+		set "owner_status" editable
+		set "remark" editable
+
+end
+
+rule "not in signoff period -> define all standard attributes readonly for owner [I,V]"
+
+	salience 2000
+
+	when
+	    is in workflow state "openForExecution"
+	    user is ":persistent:" member of group in list "owner_group"
+		// For FIT commented out: "plannedstartdate" is_not dirty // left boundary of signoff period not changed (only for completeness, not possible for now)
+		"plannedenddate"   is_not dirty // right boundary of signoff period not changed
+		("plannedstartdate" is filled AND value comparison fulfilled: ":transient:" attr_value "plannedstartdate" "GREATER THAN" value ":TODAY:") OR
+		("plannedenddate" is filled AND value comparison fulfilled: ":transient:" attr_value "plannedenddate" "LESS THAN" value ":TODAY:")
+
+	then
+		set "plannedenddate"      readonly
+		set "owner_status" readonly
+		set "remark" readonly
+		add object "error" message "message.signoff.period.not.active.ERR"
+
+end
+
+
+
+### in general the reviewer is allowed to change status from "unspecified" and type-in a reopen remark for the process
+
+rule "user is reviewer, sop open for review ==> allow to edit 'status' and 'remark' [I,V]"
+
+	salience 1200
+	no-loop true
+
+	when
+		is in workflow state "openForReview"
+		user is ":persistent:" member of group in list "reviewer_group"
+
+	then
+		set "reopenremark" editable
+		set "reviewer_status" editable
+
+end
+
+
+#######################################
+### Workflow state "reviewAccepted"  ###
+
+rule "reviewer not allowed to reopen process after reviewer_status = accepted [I,V]"
+
+	salience 1000
+	no-loop true
+
+	when
+		is in workflow state "reviewCompleted"
+
+	then
+		set "reopenremark" readonly
+		set "reviewer_status" readonly
+
+end
+
+
+###############################################
+### All workflow states - after state rules ###
+
+########################
+### BB CUSTOMIZATION ###
+
+rule "SOPROCESS has been rejected by the reviewer workflow state is 'openForReview' --> 'reopenremark' is mandatory [I,V]"
+	salience 1000
+	no-loop true
+
+	when				
+		is in workflow state "openForReview"
+		#user has at object role "signoffreviewer" 
+		user is ":persistent:" member of group in list "reviewer_group"
+		value comparison fulfilled: ":transient:" attr_value "reviewer_status" "CONTAINS" value "rejected"
+
+	then
+		set "reopenremark" mandatory
+
+end

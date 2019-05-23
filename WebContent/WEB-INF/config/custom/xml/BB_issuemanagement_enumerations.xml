@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <enum id="bb_issueType" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false" evaluationRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>       
+        <enumitem id="faultlog" value="1" image="iconlib/icons/issue_type_rf_26.png"/>
+        <enumitem id="tech_recommendation" value="2" image="iconlib/icons/issue_type_rt_26.png"/>
+        <enumitem id="action" value="3" image="iconlib/icons/issue_type_ac_26.png"/>
+        <enumitem id="manifestation" value="4" image="iconlib/icons/issue_type_man_26.png"/>
+        <enumitem id="dealing_deadline" value="5" image="iconlib/icons/issue_type_rp_26.png"/>
+        <enumitem id="sad" value="6" image="iconlib/icons/issue_type_sad_26.png"/>
+        <enumitem id="extra_sheet" value="7" image="iconlib/icons/issue_type_fex_26.png"/>
+    </enum>
+    
+    <enum id="bb_issueGrade" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>       
+        <enumitem id="one" value="1" />
+        <enumitem id="two" value="2" />
+        <enumitem id="three" value="3" />
+        <enumitem id="four" value="4" />
+        <enumitem id="approver_l1" value="5" virtualScope.idrefs="one,two,three" formRelevant="false" filterRelevant="false"/>
+    </enum>
+    
+    <enum id="bb_faultLogCategory" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" formRelevant="false" filterRelevant="false"/>       
+        <enumitem id="documentation" value="1" />
+        <enumitem id="definitions" value="2" />
+        <enumitem id="internal_control" value="3" />
+        <enumitem id="quantitative" value="4" />
+        <enumitem id="data_systems" value="5" />
+        <enumitem id="na" value="6" />
+    </enum>
+    
+    <enum id="bb_confidentialityLevel" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>       
+        <enumitem id="ten" value="10" />
+        <enumitem id="twenty" value="20" />
+        <enumitem id="thirty" value="30" />
+        <enumitem id="forty" value="40" />
+    </enum>
+    
+    <enum id="bb_standardApproverL1_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" evaluationRelevant="false" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="-2" filterRelevant="false" formRelevant="false" evaluationRelevant="false" image="iconlib/icons/content/undecided_16.png"/>
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select" formRelevant="false" image="iconlib/icons/states/state_to_be_approved_16.png" />
+        <enumitem id="accepted" value="1" image="iconlib/icons/content/check_16.png" />
+        <enumitem id="rejected" value="2" image="iconlib/icons/content/error_16.png" />
+        <enumitem id="auto_accepted" value="3" formRelevant="false" image="iconlib/icons/detect_overdue3_16.png"  />
+        <!-- workflow states -->
+        <enumitem id="not_accepted" value="-3" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="unspecified,rejected,please_select"/>
+        <enumitem id="approved" value="-4" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="accepted,auto_accepted"/>
+        <!-- / workflow states -->
+    </enum>
+    
+    <enum id="bb_standardApproverL2_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" evaluationRelevant="false" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="-2" filterRelevant="false" formRelevant="false" evaluationRelevant="false" image="iconlib/icons/content/undecided_16.png"/>
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select" formRelevant="false" image="iconlib/icons/states/state_to_be_approved_16.png" />
+        <enumitem id="accepted" value="1" image="iconlib/icons/content/check_16.png" />
+        <enumitem id="rejected" value="2" image="iconlib/icons/content/error_16.png" />
+        <enumitem id="auto_accepted" value="3" formRelevant="false" image="iconlib/icons/detect_overdue3_16.png" />
+        <!-- workflow states -->
+        <enumitem id="not_accepted" value="-3" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="unspecified,rejected,please_select"/>
+        <enumitem id="approved" value="-4" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="accepted,auto_accepted"/>
+        <!-- / workflow states -->
+    </enum>
+    
+    <enum id="bb_executionApproverL1_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" evaluationRelevant="false" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="-2" filterRelevant="false" formRelevant="false" evaluationRelevant="false" image="iconlib/icons/content/undecided_16.png"/>
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select" formRelevant="false" image="iconlib/icons/states/state_to_be_approved_16.png" />
+        <enumitem id="accepted" value="1" image="iconlib/icons/content/check_16.png" />
+        <enumitem id="rejected" value="2" image="iconlib/icons/content/error_16.png" />
+        <!-- workflow states -->
+        <enumitem id="not_accepted" value="-3" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="unspecified,rejected,please_select"/>
+        <!-- / workflow states -->
+    </enum>
+    
+    <enum id="bb_executionApproverL2_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" evaluationRelevant="false" extendedMeaning="all" formRelevant="false" />
+        <enumitem id="please_select" value="-2" filterRelevant="false" formRelevant="false" evaluationRelevant="false" image="iconlib/icons/content/undecided_16.png"/>
+        <enumitem id="unspecified" value="0" extendedMeaning="please_select" formRelevant="false" image="iconlib/icons/states/state_to_be_approved_16.png" />
+        <enumitem id="accepted" value="1" image="iconlib/icons/content/check_16.png" />
+        <enumitem id="rejected" value="2" image="iconlib/icons/content/error_16.png" />
+        <!-- workflow states -->
+        <enumitem id="not_accepted" value="-3" evaluationRelevant="false"  formRelevant="false" filterRelevant="false" virtualScope.idrefs="unspecified,rejected,please_select"/>
+        <!-- / workflow states -->
+    </enum>
+    
+    <enum id="bb_deficiencyGravityResult" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="control_def" value="2" />
+        <enumitem id="significant_def" value="1" />
+        <enumitem id="material_weakness" value="3" />
+    </enum>
+    
+    <enum id="bb_issueOrign" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" formRelevant="false"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="rtc" value="1" />
+        <enumitem id="sensing" value="2" />
+        <enumitem id="ctr" value="3" />
+        <enumitem id="specific_limit" value="4" />
+        <enumitem id="economic_plan" value="5" />
+        <enumitem id="rpm" value="6" />
+        <enumitem id="debt_credt" value="7" />
+        <enumitem id="def_people" value="8" />
+        <enumitem id="rts" value="9" />
+        <enumitem id="financial_concil" value="10" />
+        <enumitem id="sox_project" value="11" />
+        <enumitem id="basel2" value="12" />
+        <enumitem id="rtr" value="13" />
+        <enumitem id="evt" value="14" />
+        <enumitem id="labor_problems" value="15" />
+        <enumitem id="credcard_loss" value="16" />
+        <enumitem id="tenement" value="17" />
+        <enumitem id="fundprog_mgmt" value="18" />
+        <enumitem id="risk_dashboard" value="19" />
+        <enumitem id="labor_agreements" value="20" />
+        <enumitem id="postal_bank" value="21" />
+        <enumitem id="internal_fraud" value="22" />
+        <enumitem id="rtro" value="23" />
+        <enumitem id="bndes" value="24"/>
+        <enumitem id="judicial_deposits" value="25"/>
+        <enumitem id="external_entities" value="26"/>
+        <enumitem id="hired_deposits" value="27"/>
+        <enumitem id="adequacy_assessment" value="28"/>
+        <enumitem id="register_restrictive" value="29"/>
+        <enumitem id="sox" value="30"/>
+        <enumitem id="cero" value="31"/>
+        <enumitem id="ceao" value="32"/>
+        <enumitem id="cd_acd" value="33"/>
+        <enumitem id="ca_acd" value="34"/>
+        <enumitem id="csrg_acd" value="35"/>
+    </enum>
+    
+    <enum id="issue_owner_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="undecided" value="-3" formRelevant="false" filterRelevant="false" evaluationRelevant="false" image="iconlib/icons/content/undecided_16.png" />
+        <enumitem id="open" value="0" virtualScope.idrefs="new,in_progress,on_hold"/>
+        <enumitem id="to_be_reviewed" value="-2" virtualScope.idrefs="finished,not_possible"/>
+        <enumitem id="new" value="1" formRelevant="false"  image="iconlib/icons/states/state_new_16.png"/>
+        <enumitem id="in_progress" value="2" image="iconlib/icons/states/state_in_process_16.png"/>
+        <enumitem id="finished" value="3" image="iconlib/icons/states/state_effective_16.png"/>
+        <enumitem id="on_hold" value="4" formRelevant="false" filterRelevant="false" evaluationRelevant="false" image="iconlib/icons/states/state_on_hold_16.png"/>
+        <enumitem id="not_possible" value="5" formRelevant="false" filterRelevant="false" evaluationRelevant="false" image="iconlib/icons/states/state_not_testable_16.png"/>
+        <!-- workflow states -->
+        <enumitem id="open_for_execution" value="6" virtualScope.idrefs="new,in_progress" formRelevant="false" filterRelevant="false"/>
+        <!-- / workflow states -->
+    </enum>
+    
+    <enum id="issue_reviewer_status" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="to_be_reviewed" value="-2" virtualScope.idrefs="to_be_approved, not_approved" filterRelevant="false"
+                  propertyKey="enumeration.issue_reviewer_status.to_be_reviewed.ZZZ"/>
+        <enumitem id="undecided" value="0" formRelevant="false" filterRelevant="false" image="iconlib/icons/content/undecided_16.png" />
+        <enumitem id="to_be_approved" value="1" image="iconlib/icons/states/state_to_be_approved_16.png" />
+        <enumitem id="approved" value="2" image="iconlib/icons/content/check_16.png"/>
+        <enumitem id="not_approved" value="3" image="iconlib/icons/content/error_16.png"/>
+    </enum>
+    
+    <enum id="bb_conclusionPercentage" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all" />
+        <enumitem id="twenty" value="20" />
+        <enumitem id="forty" value="40" />
+        <enumitem id="sixty" value="60" />
+        <enumitem id="eighty" value="80" />
+        <enumitem id="hundred" value="100" />
+    </enum>
+    
+    <enum id="issueStateTime" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all"/>
+        <!-- BdB CUSTOMIZATION -->
+        <enumitem id="planning" value="3"  image="iconlib/icons/states/state_planning_16.png"/>
+        <enumitem id="ontime_overdue" value="0" formRelevant="false" virtualScope.idrefs="on_time,overdue"/>        
+        <enumitem id="on_time" value="1"  image="iconlib/icons/states/state_on_time_16.png"/>
+        <enumitem id="overdue" value="2"  image="iconlib/icons/states/state_overdue_16.png"/>        
+        <enumitem id="injured" value="4"  image="iconlib/icons/states/state_injured_16.png"/>
+        <enumitem id="finished" value="5"  image="iconlib/icons/states/state_finished_16.png"/>
+    </enum>
+    
+    <enum id="issuePriority" isMultiple="false" type="Number">
+        <enumitem id="all" value="-1" extendedMeaning="all"/>
+        <enumitem id="please_select" value="0" extendedMeaning="please_select" filterRelevant="false"/>
+        <enumitem id="low" value="1" image="iconlib/icons/states/state_prio_low_16.png"/>
+        <enumitem id="medium" value="2" image="iconlib/icons/states/state_prio_medium_16.png"/>
+        <enumitem id="high" value="3" image="iconlib/icons/states/state_prio_high_16.png"/>
+    </enum>
+    
+</custom>

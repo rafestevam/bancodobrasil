@@ -1,0 +1,115 @@
+package ISSUE_TECHRECOMMENDATION_IRO_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+rule "IRO visible attributes - 'tech_recommendation' [I,V]"
+
+	salience 10
+	no-loop true
+	
+	when
+		is IRO
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "tech_recommendation"		
+				
+	then
+		set object readonly
+		remove object messages	
+
+		set "bb_mgmtApproverL1_group" 		visible
+		set "bb_mgmtApproverL1_status" 		visible
+		set "bb_mgmtApproverL1_remark" 		visible
+		set "bb_mgmtApproverL1" 			visible
+		set "bb_mgmtApproverL1_date"		visible
+		
+		set "bb_mgmtApproverL2_group" 		visible
+		set "bb_mgmtApproverL2_status" 		visible
+		set "bb_mgmtApproverL2_remark" 		visible
+		set "bb_mgmtApproverL2" 			visible
+		set "bb_mgmtApproverL2_date"		visible
+		set "bb_mgmtApprover_orgunit"		visible
+		
+		set "bb_implApproverL1_group" 		visible
+		set "bb_implApproverL1_status" 		visible
+		set "bb_implApproverL1_remark" 		visible
+		set "bb_implApproverL1" 			visible
+		set "bb_implApproverL1_date"		visible
+		
+		set "bb_implApproverL2_group" 		visible
+		set "bb_implApproverL2_status" 		visible
+		set "bb_implApproverL2_remark" 		visible
+		set "bb_implApproverL2" 			visible
+		set "bb_implApproverL2_date"		visible
+		set "bb_implApprover_orgunit"		visible
+		
+		set "owner_status"            		visible
+		set "owner_remark"            		visible
+		set "bb_execImplApprL1_status" 		visible
+		set "bb_execImplApprL1_remark"		visible
+		set "bb_execImplApprL1"				visible
+		set "bb_execImplApprL2_status" 		visible
+		set "bb_execImplApprL2_remark"		visible
+		set "bb_execImplApprL2"				visible
+		set "reviewer_status"            	visible
+		set "reviewer_remark"            	visible
+		set "bb_execMgmtApprL1_status" 		visible
+		set "bb_execMgmtApprL1_remark" 		visible
+		set "bb_execMgmtApprL1" 			visible
+		set "bb_execMgmtApprL1_aware" 		visible
+		set "bb_execMgmtApprL2_status" 		visible
+		set "bb_execMgmtApprL2_remark" 		visible
+		set "bb_execMgmtApprL2" 			visible
+		set "bb_execMgmtApprL2" 			visible
+		
+		set "bb_owners_group" 				visible
+		set "bb_reviewers_group" 			visible
+		
+		set "bb_isTechSupportNeeded" 		visible
+		set "remark"                  		visible
+		set "priority"                		visible
+		set "immediateMeasure"        		visible
+		set "bb_firstPlannedEndDate" 		visible
+		set "plannedenddate"          		visible
+		set "bb_anotherImportantInfo" 		visible
+		set "bb_confidentialityLevel" 		visible
+		set "bb_projectServiceRequest" 		visible
+		set "bb_conclusionPercentage" 		visible
+		set "bb_injuredIssue" 				visible
+		set "bb_implDocuments" 				visible
+		set "bb_start_date"					visible
+		
+end	
+
+rule "IRO visible attributes - 'tech_recommendation' - tech support [I,V]"
+
+	salience 9
+	no-loop true
+	
+	when
+		is IRO
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "tech_recommendation"		
+		value comparison fulfilled: ":transient:" attr_value "bb_isTechSupportNeeded" "EQUALS" value "true"
+
+	then
+		set "bb_techApproverL1_group" 		visible
+		set "bb_techApproverL1_status" 		visible
+		set "bb_techApproverL1_remark" 		visible
+		set "bb_techApproverL1" 			visible
+		set "bb_techApproverL1_date" 		visible
+		
+		set "bb_techApproverL2_group" 		visible
+		set "bb_techApproverL2_status" 		visible
+		set "bb_techApproverL2_remark" 		visible
+		set "bb_techApproverL2" 			visible
+		set "bb_techApproverL2_date" 		visible
+		set "bb_techApprover_orgunit" 		visible
+
+end	
+
+
+
+
+
+

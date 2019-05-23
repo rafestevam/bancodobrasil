@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+		<nav.module module.id="module.explorer" propertyKey="module.explorer.DBI">
+	        <nav.item item.idref="item.explorer.audit.management"/>
+	        <nav.item item.idref="item.explorer.change.management"/>
+	        <nav.item item.idref="item.explorer.deficiency.management"/>
+	        <nav.item item.idref="item.explorer.incident.management"/>
+	        <nav.item item.idref="item.explorer.policy.management"/>
+	        <nav.item item.idref="item.explorer.risk.management"/>
+	        <nav.item item.idref="item.explorer.signoff.management"/>
+	        <nav.item item.idref="item.explorer.survey.management"/>
+	        <nav.item item.idref="item.explorer.test.management"/>
+	        <nav.item item.idref="item.explorer.offline.processing"/>
+	        <!-- 
+	        <nav.item item.idref="item.explorer.control.management"/>  -->
+	        <nav.item item.idref="item.explorer.issue.management"/>
+	    </nav.module>
+	
+	    <!-- INCIDENT MANAGEMENT WITH LOSS -->
+	    <nav.item item.id="item.explorer.incident.management" propertyKey="item.explorer.incident.management.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="in,il"/>
+	        </nav.access>
+	        <!-- for incident owners -->
+	        <nav.data.grid dataGrid.idref="IncidentOwner">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.open.incidents" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for incident reviewers -->
+	        <nav.data.grid dataGrid.idref="IncidentReviewer">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.review.incidents" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for incident managers -->
+	        <nav.data.grid dataGrid.idref="incidents">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.incidents" />
+	            </nav.access>
+	        </nav.data.grid>
+	        
+	        <!-- for loss owners -->
+	        <nav.data.grid dataGrid.idref="acceptedIncident">
+	            <nav.access>
+	                <nav.access.component licensedComponentIDs="il" />
+	                <nav.access.privilege componentPrivilegeIDs="view.open.losses" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <nav.data.grid dataGrid.idref="LossOwner">
+	            <nav.access>
+	                <nav.access.component licensedComponentIDs="il" />
+	                <nav.access.privilege componentPrivilegeIDs="view.open.losses" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for loss reviewers -->
+	        <nav.data.grid dataGrid.idref="LossReviewer">
+	            <nav.access>
+	                <nav.access.component licensedComponentIDs="il" />
+	                <nav.access.privilege componentPrivilegeIDs="view.review.losses" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for loss manager, loss auditor, risk manager, risk owner, risk reviewer  -->
+	        <nav.data.grid dataGrid.idref="losses">
+	            <nav.access>
+	                <nav.access.component licensedComponentIDs="il" />
+	                <nav.access.privilege componentPrivilegeIDs="view.losses" />
+	            </nav.access>
+	        </nav.data.grid>
+	    </nav.item>
+	</navigation>
+</custom>

@@ -1,0 +1,938 @@
+package DEFICIENCY_RuleSet
+expander deficiency.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.deficiencymanagement.re.DeficiencyHelper;
+import com.idsscheer.webapps.arcm.bl.component.deficiencymanagement.re.DeficiencyHelperBB;
+
+# OBJECT     client_objid             LONG       Client ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# OBJECT     client_sign              CLIENTSIGN Client                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+# OBJECT     create_date              DATE       Creation date                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# OBJECT     creator_user_id          LONG       User ID (creator)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+# OBJECT     delete_date              DATE       Deletion date                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# OBJECT     guid                     STRING     GUID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# OBJECT     obj_id                   LONG       ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# OBJECT     obj_type                 OBJECTTYPE Object type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# OBJECT     root_guid                STRING     Root GUID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# OBJECT     versions                 LONG       Number of versions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# VERSION    aris_change_date         DATE       ARIS change date                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# VERSION    change_date              DATE       Change date                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# VERSION    change_type              ENUM       Change type                                             changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+# VERSION    change_user_id           LONG       User ID (editor)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# VERSION    deactivated              BOOLEAN    Deactivated                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# VERSION    id                       LONG       ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# VERSION    substitute_user_id       LONG       User ID (substitute)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# VERSION    version_active           BOOLEAN    Current version                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+# VERSION    version_number           LONG       Version number                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY assertions               ENUM       Related assertions                                      assertion (existence_occurrence=1,completeness=2,rights_obligations=3,valuation_allocation=4,presentation_disclosure=5,na=6)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY audit_scope              BOOLEAN    Audit scope                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# DEFICIENCY categorisation_l1        ENUM       Deficiency categorization level 1                       def_categorisation (all=-1,please_select=0,itgc=1,it_appcontrol=2,select_app_policies=3,antifr_prgs_ctrl=4,non_rout_non_syst=5,period_finan_rep_proc=6,restmt_prev_iss_fin_stmt=7,ident_aud_mat_misstmt=8,comp_aud_com_ineff=9,int_audit_ineff=10,ineff_reg_cmpl_func=11,fraud_mag_princ_exe=12,def_comm_mgmt=13,ineff_ctrl_env=14,not_applicable=15)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY categorisation_l2        ENUM       Deficiency categorization level 2                       def_categorisation (all=-1,please_select=0,itgc=1,it_appcontrol=2,select_app_policies=3,antifr_prgs_ctrl=4,non_rout_non_syst=5,period_finan_rep_proc=6,restmt_prev_iss_fin_stmt=7,ident_aud_mat_misstmt=8,comp_aud_com_ineff=9,int_audit_ineff=10,ineff_reg_cmpl_func=11,fraud_mag_princ_exe=12,def_comm_mgmt=13,ineff_ctrl_env=14,not_applicable=15)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY categorisation_l3        ENUM       Deficiency categorization level 3                       def_categorisation (all=-1,please_select=0,itgc=1,it_appcontrol=2,select_app_policies=3,antifr_prgs_ctrl=4,non_rout_non_syst=5,period_finan_rep_proc=6,restmt_prev_iss_fin_stmt=7,ident_aud_mat_misstmt=8,comp_aud_com_ineff=9,int_audit_ineff=10,ineff_reg_cmpl_func=11,fraud_mag_princ_exe=12,def_comm_mgmt=13,ineff_ctrl_env=14,not_applicable=15)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY classification_l1        ENUM       Deficiency classification level 1                       def_classifikation_l1 (all=-1,please_select=0,a=1,b=2,c=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY classification_l2        ENUM       Deficiency classification level 2                       def_classifikation_l2 (all=-1,please_select=0,a=1,b=2,c=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY classification_l3        ENUM       Deficiency classification level 3                       def_classifikation_l3 (all=-1,please_select=0,deficiency=1,sig_deficiency=2,mat_weakness=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY company                  STRING     Company code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# DEFICIENCY compensating_ctl_l1      LIST       Link to compensation control level 1                    to 5 TESTCASEs (LT=43)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY compensating_ctl_l2      LIST       Link to compensation control level 2                    to 5 TESTCASEs (LT=44)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY compensating_ctl_l3      LIST       Link to compensation control level 3                    to 5 TESTCASEs (LT=45)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY compensating_ctl_rem_l1  TEXT       Note on compensation control level 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY compensating_ctl_rem_l2  TEXT       Note on compensation control level 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY compensating_ctl_rem_l3  TEXT       Note on compensation control level 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY compensating_tested_l1   BOOLEAN    Compensation control was tested effectively level 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY compensating_tested_l2   BOOLEAN    Compensation control was tested effectively level 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY compensating_tested_l3   BOOLEAN    Compensation control was tested effectively level 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY control_level            ENUM       Control level                                           def_level_of_control (all=-1,please_select=0,transaction=1,company=2,itgc=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY control_type             ENUM       COSO components                                         controltype (environment=1,risk_assessment=2,activity=3,information=4,monitoring=5)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# DEFICIENCY controlenddate           DATE       End of control period                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+# DEFICIENCY controlstartdate         DATE       Start of control period                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY country                  STRING     Country                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY currency                 ENUM       Currency                                                currency (please_select=0,MIXED=-99,common=-1,AUD=8,CAD=26,CNY=30,EUR=47,GBP=50,JPY=74,USD=155,others=-2,AED=1,AFA=2,AFN=971,ALL=3,AMD=4,ANG=5,AOA=6,ARS=7,AWG=9,AZM=10,BAM=11,BBD=12,BDT=13,BGN=14,BHD=15,BIF=16,BMD=17,BND=18,BOB=19,BRL=20,BSD=21,BTN=22,BWP=23,BYR=24,BZD=25,CDF=27,CHF=28,CLP=29,COP=31,CRC=32,CSD=33,CUC=34,CUP=35,CVE=36,CYP=37,CZK=38,DJF=39,DKK=40,DOP=41,DZD=42,EEK=43,EGP=44,ERN=45,ETB=46,FJD=48,FKP=49,GEL=51,GGP=52,GHC=53,GIP=54,GMD=55,GNF=56,GTQ=57,GYD=58,HKD=59,HNL=60,HRK=61,HTG=62,HUF=63,IDR=64,ILS=65,IMP=66,INR=67,IQD=68,IRR=69,ISK=70,JEP=71,JMD=72,JOD=73,KES=75,KGS=76,KHR=77,KMF=78,KPW=79,KRW=80,KWD=81,KYD=82,KZT=83,LAK=84,LBP=85,LKR=86,LRD=87,LSL=88,LTL=89,LVL=90,LYD=91,MAD=92,MDL=93,MGA=94,MKD=95,MMK=96,MNT=97,MOP=98,MRO=99,MTL=100,MUR=101,MVR=102,MWK=103,MXN=104,MYR=105,MZM=106,MZN=943,NAD=107,NGN=108,NIO=109,NOK=110,NPR=111,NZD=112,OMR=113,PAB=114,PEN=115,PGK=116,PHP=117,PKR=118,PLN=119,PYG=120,QAR=121,ROL=122,RON=946,RSD=941,RUB=123,RWF=124,SAR=125,SBD=126,SCR=127,SDD=128,SDG=938,SEK=129,SGD=130,SHP=131,SIT=132,SKK=133,SLL=134,SOS=135,SPL=136,SRD=137,STD=138,SVC=139,SYP=140,SZL=141,THB=142,TJS=143,TMM=144,TND=145,TOP=146,TRL=147,TRY=148,TTD=149,TVD=150,TWD=151,TZS=152,UAH=153,UGX=154,UYU=156,UZS=157,VEB=158,VEF=937,VND=159,VUV=160,WST=161,XAF=162,XAG=163,XAU=164,XCD=165,XDR=166,XOF=167,XPD=168,XPF=169,XPT=170,YER=171,ZAR=172,ZMK=173,ZWD=174)
+# DEFICIENCY currency_after_comp_l1   ENUM       Currency                                                currency (please_select=0,MIXED=-99,common=-1,AUD=8,CAD=26,CNY=30,EUR=47,GBP=50,JPY=74,USD=155,others=-2,AED=1,AFA=2,AFN=971,ALL=3,AMD=4,ANG=5,AOA=6,ARS=7,AWG=9,AZM=10,BAM=11,BBD=12,BDT=13,BGN=14,BHD=15,BIF=16,BMD=17,BND=18,BOB=19,BRL=20,BSD=21,BTN=22,BWP=23,BYR=24,BZD=25,CDF=27,CHF=28,CLP=29,COP=31,CRC=32,CSD=33,CUC=34,CUP=35,CVE=36,CYP=37,CZK=38,DJF=39,DKK=40,DOP=41,DZD=42,EEK=43,EGP=44,ERN=45,ETB=46,FJD=48,FKP=49,GEL=51,GGP=52,GHC=53,GIP=54,GMD=55,GNF=56,GTQ=57,GYD=58,HKD=59,HNL=60,HRK=61,HTG=62,HUF=63,IDR=64,ILS=65,IMP=66,INR=67,IQD=68,IRR=69,ISK=70,JEP=71,JMD=72,JOD=73,KES=75,KGS=76,KHR=77,KMF=78,KPW=79,KRW=80,KWD=81,KYD=82,KZT=83,LAK=84,LBP=85,LKR=86,LRD=87,LSL=88,LTL=89,LVL=90,LYD=91,MAD=92,MDL=93,MGA=94,MKD=95,MMK=96,MNT=97,MOP=98,MRO=99,MTL=100,MUR=101,MVR=102,MWK=103,MXN=104,MYR=105,MZM=106,MZN=943,NAD=107,NGN=108,NIO=109,NOK=110,NPR=111,NZD=112,OMR=113,PAB=114,PEN=115,PGK=116,PHP=117,PKR=118,PLN=119,PYG=120,QAR=121,ROL=122,RON=946,RSD=941,RUB=123,RWF=124,SAR=125,SBD=126,SCR=127,SDD=128,SDG=938,SEK=129,SGD=130,SHP=131,SIT=132,SKK=133,SLL=134,SOS=135,SPL=136,SRD=137,STD=138,SVC=139,SYP=140,SZL=141,THB=142,TJS=143,TMM=144,TND=145,TOP=146,TRL=147,TRY=148,TTD=149,TVD=150,TWD=151,TZS=152,UAH=153,UGX=154,UYU=156,UZS=157,VEB=158,VEF=937,VND=159,VUV=160,WST=161,XAF=162,XAG=163,XAU=164,XCD=165,XDR=166,XOF=167,XPD=168,XPF=169,XPT=170,YER=171,ZAR=172,ZMK=173,ZWD=174)
+# DEFICIENCY currency_after_comp_l2   ENUM       Currency                                                currency (please_select=0,MIXED=-99,common=-1,AUD=8,CAD=26,CNY=30,EUR=47,GBP=50,JPY=74,USD=155,others=-2,AED=1,AFA=2,AFN=971,ALL=3,AMD=4,ANG=5,AOA=6,ARS=7,AWG=9,AZM=10,BAM=11,BBD=12,BDT=13,BGN=14,BHD=15,BIF=16,BMD=17,BND=18,BOB=19,BRL=20,BSD=21,BTN=22,BWP=23,BYR=24,BZD=25,CDF=27,CHF=28,CLP=29,COP=31,CRC=32,CSD=33,CUC=34,CUP=35,CVE=36,CYP=37,CZK=38,DJF=39,DKK=40,DOP=41,DZD=42,EEK=43,EGP=44,ERN=45,ETB=46,FJD=48,FKP=49,GEL=51,GGP=52,GHC=53,GIP=54,GMD=55,GNF=56,GTQ=57,GYD=58,HKD=59,HNL=60,HRK=61,HTG=62,HUF=63,IDR=64,ILS=65,IMP=66,INR=67,IQD=68,IRR=69,ISK=70,JEP=71,JMD=72,JOD=73,KES=75,KGS=76,KHR=77,KMF=78,KPW=79,KRW=80,KWD=81,KYD=82,KZT=83,LAK=84,LBP=85,LKR=86,LRD=87,LSL=88,LTL=89,LVL=90,LYD=91,MAD=92,MDL=93,MGA=94,MKD=95,MMK=96,MNT=97,MOP=98,MRO=99,MTL=100,MUR=101,MVR=102,MWK=103,MXN=104,MYR=105,MZM=106,MZN=943,NAD=107,NGN=108,NIO=109,NOK=110,NPR=111,NZD=112,OMR=113,PAB=114,PEN=115,PGK=116,PHP=117,PKR=118,PLN=119,PYG=120,QAR=121,ROL=122,RON=946,RSD=941,RUB=123,RWF=124,SAR=125,SBD=126,SCR=127,SDD=128,SDG=938,SEK=129,SGD=130,SHP=131,SIT=132,SKK=133,SLL=134,SOS=135,SPL=136,SRD=137,STD=138,SVC=139,SYP=140,SZL=141,THB=142,TJS=143,TMM=144,TND=145,TOP=146,TRL=147,TRY=148,TTD=149,TVD=150,TWD=151,TZS=152,UAH=153,UGX=154,UYU=156,UZS=157,VEB=158,VEF=937,VND=159,VUV=160,WST=161,XAF=162,XAG=163,XAU=164,XCD=165,XDR=166,XOF=167,XPD=168,XPF=169,XPT=170,YER=171,ZAR=172,ZMK=173,ZWD=174)
+# DEFICIENCY currency_after_comp_l3   ENUM       Currency                                                currency (please_select=0,MIXED=-99,common=-1,AUD=8,CAD=26,CNY=30,EUR=47,GBP=50,JPY=74,USD=155,others=-2,AED=1,AFA=2,AFN=971,ALL=3,AMD=4,ANG=5,AOA=6,ARS=7,AWG=9,AZM=10,BAM=11,BBD=12,BDT=13,BGN=14,BHD=15,BIF=16,BMD=17,BND=18,BOB=19,BRL=20,BSD=21,BTN=22,BWP=23,BYR=24,BZD=25,CDF=27,CHF=28,CLP=29,COP=31,CRC=32,CSD=33,CUC=34,CUP=35,CVE=36,CYP=37,CZK=38,DJF=39,DKK=40,DOP=41,DZD=42,EEK=43,EGP=44,ERN=45,ETB=46,FJD=48,FKP=49,GEL=51,GGP=52,GHC=53,GIP=54,GMD=55,GNF=56,GTQ=57,GYD=58,HKD=59,HNL=60,HRK=61,HTG=62,HUF=63,IDR=64,ILS=65,IMP=66,INR=67,IQD=68,IRR=69,ISK=70,JEP=71,JMD=72,JOD=73,KES=75,KGS=76,KHR=77,KMF=78,KPW=79,KRW=80,KWD=81,KYD=82,KZT=83,LAK=84,LBP=85,LKR=86,LRD=87,LSL=88,LTL=89,LVL=90,LYD=91,MAD=92,MDL=93,MGA=94,MKD=95,MMK=96,MNT=97,MOP=98,MRO=99,MTL=100,MUR=101,MVR=102,MWK=103,MXN=104,MYR=105,MZM=106,MZN=943,NAD=107,NGN=108,NIO=109,NOK=110,NPR=111,NZD=112,OMR=113,PAB=114,PEN=115,PGK=116,PHP=117,PKR=118,PLN=119,PYG=120,QAR=121,ROL=122,RON=946,RSD=941,RUB=123,RWF=124,SAR=125,SBD=126,SCR=127,SDD=128,SDG=938,SEK=129,SGD=130,SHP=131,SIT=132,SKK=133,SLL=134,SOS=135,SPL=136,SRD=137,STD=138,SVC=139,SYP=140,SZL=141,THB=142,TJS=143,TMM=144,TND=145,TOP=146,TRL=147,TRY=148,TTD=149,TVD=150,TWD=151,TZS=152,UAH=153,UGX=154,UYU=156,UZS=157,VEB=158,VEF=937,VND=159,VUV=160,WST=161,XAF=162,XAG=163,XAU=164,XCD=165,XDR=166,XOF=167,XPD=168,XPF=169,XPT=170,YER=171,ZAR=172,ZMK=173,ZWD=174)
+# DEFICIENCY deficiency_id            STRING     Deficiency ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY descr_l1                 TEXT       Deficiency description level 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY descr_l2                 TEXT       Deficiency description level 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY descr_l3                 TEXT       Deficiency description level 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY finaccount               LIST       Significant accounts or disclosures                     to * HIERARCHYs (LT=42)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+# DEFICIENCY identified_by            STRING     Identified by                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY identified_by_id         ENUM       Deficiency identified by                                def_identified_by (all=-1,please_select=0,external_auditor=1,management=2,others=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+# DEFICIENCY likelihood               ENUM       Probability before compensation control                 def_likelihood (all=-1,please_select=0,remote=1,morethanremote=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# DEFICIENCY likelihood_after_comp_l1 ENUM       Probability after compensation control level 1          def_likelihood (all=-1,please_select=0,remote=1,morethanremote=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# DEFICIENCY likelihood_after_comp_l2 ENUM       Probability after compensation control level 2          def_likelihood (all=-1,please_select=0,remote=1,morethanremote=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# DEFICIENCY likelihood_after_comp_l3 ENUM       Probability after compensation control level 3          def_likelihood (all=-1,please_select=0,remote=1,morethanremote=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# DEFICIENCY location                 STRING     Location                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+# DEFICIENCY magn                     DOUBLE     Magnitude before compensation control                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+# DEFICIENCY magn_after_comp_l1       DOUBLE     Magnitude after compensation control level 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# DEFICIENCY magn_after_comp_l1_nap   BOOLEAN    Not applicable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY magn_after_comp_l2       DOUBLE     Magnitude after compensation control level 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# DEFICIENCY magn_after_comp_l2_nap   BOOLEAN    Not applicable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY magn_after_comp_l3       DOUBLE     Magnitude after compensation control level 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# DEFICIENCY magn_after_comp_l3_nap   BOOLEAN    Not applicable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY magn_cmt_after_comp_l1   TEXT       Comment on magnitude after compensation control level 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY magn_cmt_after_comp_l2   TEXT       Comment on magnitude after compensation control level 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY magn_cmt_after_comp_l3   TEXT       Comment on magnitude after compensation control level 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY magn_comment             TEXT       Comment on magnitude before compensation control                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# DEFICIENCY magn_na                  BOOLEAN    Not specified                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY orgunit                  LIST       Affected organizational unit                            to 1 HIERARCHY (LT=67)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY owner_id                 STRING     Owner                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+# DEFICIENCY planed_remidiation_date  DATE       Remediation planned before                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+# DEFICIENCY process                  LIST       Function                                                to 1 HIERARCHY (LT=68)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY rel_app                  TEXT       Related IT applications                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+# DEFICIENCY remediation_ctrl         LIST       Remediation control                                     to 5 TESTCASEs (LT=73)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+# DEFICIENCY remediation_ctrl_rem     TEXT       Note on remediation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY remediation_forecast     ENUM       Remediation forecast by year-end                        def_rem_forecast (all=-1,please_select=0,impossible=1,possible=2,certain=3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+# DEFICIENCY remedied_by_mgmt         BOOLEAN    Remediation decision by management                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY risk                     LIST       Deficiency link to risk                                 to 1 RISK (LT=17)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+# DEFICIENCY savestate                ENUM       Status L1                                               def_state (all=-1,in_process=1,released=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY savestate_l2             ENUM       Status L2                                               def_state (all=-1,in_process=1,released=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY savestate_l3             ENUM       Status L3                                               def_state (all=-1,in_process=1,released=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY still_exists_at_yearend  BOOLEAN    Does deficiency exist at year-end?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# DEFICIENCY testcase                 LIST       Deficiency link to test case                            to 1 TESTCASE (LT=18)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+# DEFICIENCY testcase_description     TEXT       Deficiency description for test case                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+# DEFICIENCY testerhierarchy          LIST       Tester hierarchy                                        to 1 HIERARCHY (LT=9000)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# DEFICIENCY type                     ENUM       Deficiency type                                         effectiveness (all=0,design=1,control=2)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+# DEFICIENCY unit                     STRING     Company unit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# DEFICIENCY unittype                 STRING     Type of company unit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################ 
+### All workflow states - before state rules ###
+
+rule "hide risk if not specified [I,V]"
+
+	salience 10200
+
+	when
+		"risk" is_not filled
+
+	then
+		set "risk" invisible
+		
+		set "process" invalid
+		add "error" message "error.deficiency.process.without.risk.ERR" to "process"
+
+end
+
+
+########################################
+### Workflow state "openForLevel_1"  ###
+
+rule "L1 fields editable [I,V]"
+
+	salience 3400
+
+	when
+	    # we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+
+	then
+		set "control_type"              editable
+		set "magn_cmt_after_comp_l1"    editable
+		set "audit_scope"               editable
+		set "control_level"             editable
+		set "identified_by_id"          editable
+		set "remedied_by_mgmt"          editable
+		set "currency"                  editable
+		set "testcase_description"      editable
+		set "process"                   editable
+		set "remediation_ctrl"          editable
+		set "classification_l1"         editable
+		set "still_exists_at_yearend"   editable
+		set "remediation_forecast"      editable
+		set "company"                   editable
+		set "descr_l1"                  editable
+		set "magn_after_comp_l1"        editable
+		set "categorisation_l1"         editable
+		set "currency_after_comp_l1"    editable
+		set "location"                  editable
+		set "planed_remidiation_date"   editable
+		#set "controlstartdate"          editable
+		set "remediation_ctrl_rem"      editable
+		set "rel_app"                   editable
+		#set "type"                      editable
+		set "unit"                      editable
+		#set "assertions"                editable
+		set "savestate"                 editable
+		#set "controlenddate"            readonly
+		set "orgunit"                   editable
+		set "country"                   editable
+		set "compensating_tested_l1"    editable
+		set "unittype"                  editable
+		set "magn_after_comp_l1_nap"    editable
+		set "magn_comment"              editable
+		set "magn_na"                   editable
+		set "identified_by"             editable
+		set "finaccount"                readonly
+		set "compensating_ctl_rem_l1"   editable
+		set "magn"                      editable
+		set "compensating_ctl_l1"       editable
+		set "likelihood"                editable
+		set "manager_group_l1"          editable
+		set "manager_group_l2"          editable
+		set "manager_group_l3"          editable
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_controlAssertions"      	editable 
+		set "bb_finAccountAssertions"      	editable
+		set "bb_plan_departamental"      	editable
+		set "bb_scope"      				editable
+		set "bb_appSystems"    				editable
+		set "manager_group_l1"          	mandatory
+		set "manager_group_l2"         	 	mandatory
+		set "manager_group_l3"         		mandatory
+		
+end
+
+rule "L1 fields recommended [I,V]"
+
+	salience 3300
+
+	when
+	    # we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+
+	then
+    set "control_level"           recommended
+    set "identified_by_id"        recommended
+    set "process"                 recommended
+    #set "assertions"              recommended
+    #set "controlenddate"          recommended
+    #set "orgunit"                 recommended
+    set "identified_by"           recommended
+    #set "finaccount"              recommended
+    #set "controlstartdate"        readonly
+    set "likelihood"              recommended
+    #set "remediation_ctrl"        recommended
+    set "remedied_by_mgmt"        recommended
+    set "still_exists_at_yearend" recommended
+    set "remediation_forecast"    recommended
+    set "descr_l1"                recommended
+    set "savestate"               recommended
+    set "classification_l1"       mandatory
+    set "categorisation_l1"       mandatory
+    set "planed_remidiation_date" mandatory
+    
+    ########################
+	### BB CUSTOMIZATION ###
+	set "bb_controlAssertions"    		recommended
+	set "bb_finAccountAssertions"    	recommended
+
+end
+
+rule "decide recommended property for Magnitude before compensation control [I,V]"
+
+	salience 3200
+
+	when
+	    # we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+
+	then
+		########################
+		### BB CUSTOMIZATION ###
+		decide mandatory property "magn" "currency" "magn_na" "magn_comment"
+
+end
+
+rule "decide mandatory property for Magnitude after compensation control L1 [I,V]"
+
+	salience 3100
+
+	when
+	    # we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+		"compensating_ctl_l1" is filled
+
+	then
+		
+		########################
+		### BB CUSTOMIZATION ###
+		decide mandatory property "magn_after_comp_l1" "currency_after_comp_l1" "magn_after_comp_l1_nap" "magn_cmt_after_comp_l1"
+		set "compensating_ctl_rem_l1" recommended
+		set "compensating_tested_l1" to value "true"
+		set "compensating_tested_l1"  readonly
+		set "compensating_tested_l1"  not_recommended
+		set "compensating_tested_l1"  not_mandatory
+
+end
+
+rule "decide currency property for Magnitude after compensation control L1 [I,V]"
+
+	salience 3000
+
+	when
+	    # we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+		"magn_after_comp_l1" is filled
+
+	then
+		set "currency_after_comp_l1" recommended
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "handle magnitudes and currencies editable L1 [I,V]"
+
+	salience 200
+
+	when
+		# we must also check for state "PREPARED" because a new deficiency form can be opened before saving
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+		
+	then
+		
+		handle magnitudes and currencies editable "magn" "currency" "magn_na"
+		handle magnitudes and currencies mandatory "magn_after_comp_l1" "currency_after_comp_l1" "magn_after_comp_l1_nap"
+
+end
+
+rule "ensure max one risk attached [I,V]"
+
+	salience 195
+	
+	when
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+		check risk max size
+		
+	then
+		set "risk" invalid
+		add "error" message "error.deficiency.max.one.risk.ERR" to "risk"
+		
+end
+
+rule "check risk editability L1 [I,V]"
+
+	salience 190
+	
+	when
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+		check risk max size
+		
+	then
+		set "risk" editable
+		
+end
+
+rule "testcase is_not filled --> configure attributes for dml1  [I,V]"
+
+	salience 990
+
+	when
+		"testcase" is_not filled
+		"bb_testcase" is_not filled
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+	then
+		set "bb_finAccountAssertions"    	to value "na"
+		set "bb_controlAssertions"			to value "na"
+		## issue: 123269
+		#set "assertions"					to value "na"
+		
+		set "bb_controlAssertions" 			editable
+		set "bb_testcase" 					editable
+		set "controlstartdate" 				editable
+		set "controlenddate" 				editable
+		set "bb_inicioClicloAvaliatorio"    editable
+		set "bb_fimClicloAvaliatorio"       editable
+
+		set "controlstartdate" 				mandatory
+		set "controlenddate" 				mandatory
+		set "bb_inicioClicloAvaliatorio"    mandatory
+		set "bb_fimClicloAvaliatorio"       mandatory
+			
+end	
+
+########################################
+### Workflow state "openForLevel_2"  ###
+
+rule "L2 fields editable [I,V]"
+
+    salience 2300
+
+	when
+	    is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+
+	then
+		set "remediation_ctrl_rem"      editable
+		set "compensating_ctl_l2"       editable
+		set "magn_after_comp_l2_nap"    editable
+		set "remedied_by_mgmt"          editable
+		set "magn_after_comp_l2"        editable
+		set "classification_l2"         editable
+		set "categorisation_l2"         editable
+		set "magn_cmt_after_comp_l2"    editable
+		set "remediation_ctrl"          editable
+		set "currency_after_comp_l2"    editable
+		set "still_exists_at_yearend"   editable
+		set "remediation_forecast"      editable
+		set "compensating_ctl_rem_l2"   editable
+		set "descr_l2"                  editable
+		set "compensating_tested_l2"    editable
+		set "savestate_l2"              editable
+		set "planed_remidiation_date"   editable		
+end
+
+rule "L2 fields recommended [I,V]"
+
+    salience 2200
+
+	when
+	    is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+
+	then
+        #set "remediation_ctrl"          recommended
+        set "remedied_by_mgmt"          recommended
+        set "still_exists_at_yearend"   recommended
+        set "remediation_forecast"      recommended
+        set "savestate_l2"              recommended
+        set "classification_l2"         recommended
+        #set "magn_after_comp_l2_nap"    recommended
+		set "planed_remidiation_date" 	mandatory
+end
+
+rule "decide recommended property for Magnitude after compensation control L2 [I,V]"
+
+	salience 2100
+
+	when
+	    is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+		"compensating_ctl_l2" is filled
+
+	then
+	
+		########################
+		### BB CUSTOMIZATION ###
+		decide mandatory property "magn_after_comp_l2" "currency_after_comp_l2" "magn_after_comp_l2_nap" "magn_cmt_after_comp_l2"
+		set "compensating_ctl_rem_l2" recommended
+		set "compensating_tested_l2" to value "true"
+		set "compensating_tested_l2"  readonly
+		set "compensating_tested_l2"  not_recommended
+		set "compensating_tested_l2"  not_mandatory
+
+end
+
+rule "decide currency property for Magnitude after compensation control L2 [I,V]"
+
+	salience 2000
+
+	when
+	    is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+		"magn_after_comp_l2" is filled
+
+	then
+		set "currency_after_comp_l2" recommended
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "handle magnitudes and currencies editable L2 [I,V]"
+
+	salience 200
+
+	when
+		is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+		
+	then
+		
+		handle magnitudes and currencies mandatory "magn_after_comp_l2" "currency_after_comp_l2" "magn_after_comp_l2_nap"		
+
+end
+
+########################################
+### Workflow state "openForLevel_3"  ###
+
+rule "L3 fields editable [I,V]"
+
+	salience 1300
+
+	when
+	    is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+
+	then
+		set "magn_after_comp_l3"        editable
+		set "categorisation_l3"         editable
+		set "remediation_ctrl_rem"      editable
+		set "magn_cmt_after_comp_l3"    editable
+		set "compensating_tested_l3"    editable
+		set "currency_after_comp_l3"    editable
+		set "remedied_by_mgmt"          editable
+		set "savestate_l3"              editable
+		set "compensating_ctl_rem_l3"   editable
+		set "compensating_ctl_l3"       editable
+		set "remediation_ctrl"          editable
+		set "still_exists_at_yearend"   editable
+		set "remediation_forecast"      editable
+		set "classification_l3"         editable
+		set "descr_l3"                  editable
+		set "magn_after_comp_l3_nap"    editable
+		set "planed_remidiation_date"   editable
+
+end
+
+rule "L3 fields recommended [I,V]"
+
+	salience 1200
+
+	when
+	    is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+
+	then
+        #set "remediation_ctrl"        recommended
+        set "remedied_by_mgmt"        recommended
+        set "still_exists_at_yearend" recommended
+        set "remediation_forecast"    recommended
+        set "savestate_l3"            recommended
+        set "classification_l3"       mandatory
+        set "planed_remidiation_date" mandatory
+
+end
+
+rule "decide recommended property for Magnitude after compensation control L3 [I,V]"
+
+	salience 1100
+
+	when
+	    is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+		"compensating_ctl_l3" is filled
+
+	then
+	
+		########################
+		### BB CUSTOMIZATION ###
+		decide mandatory property "magn_after_comp_l3" "currency_after_comp_l3" "magn_after_comp_l3_nap" "magn_cmt_after_comp_l3"
+		set "compensating_ctl_rem_l3" recommended
+		set "compensating_tested_l3" to value "true"
+		set "compensating_tested_l3"  readonly
+		set "compensating_tested_l3"  not_recommended
+		set "compensating_tested_l3"  not_mandatory
+
+end
+
+rule "decide currency property for Magnitude after compensation control L3 [I,V]"
+
+	salience 1000
+
+	when
+	    is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+		"magn_after_comp_l3" is filled
+
+	then
+		set "currency_after_comp_l3" recommended
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "handle magnitudes and currencies editable L3 [I,V]"
+
+	salience 200
+
+	when
+		is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+		
+	then
+		
+		handle magnitudes and currencies mandatory "magn_after_comp_l3" "currency_after_comp_l3" "magn_after_comp_l3_nap"
+
+end
+	
+###############################################
+### All workflow states - after state rules ###
+
+rule "testcase is_not filled [I,V]"
+
+	salience 990
+
+	when
+		"testcase" is_not filled
+		"bb_testcase" is_not filled
+	then
+		
+
+		set "control_level"		invisible
+		
+			
+end	
+
+rule "testcase is_not filled --> configure attributes for dml2  [I,V]"
+
+	salience 990
+
+	when
+		"testcase" is_not filled
+		"bb_testcase" is_not filled
+		is in workflow state "openForLevel_2"
+		user has at object role "deficiencymanager_l2"
+	then
+		
+		set "bb_controlAssertions" 			readonly		
+		set "bb_testcase" 					readonly
+		set "bb_inicioClicloAvaliatorio"    readonly
+		set "bb_fimClicloAvaliatorio"       readonly
+		
+		set "controlstartdate" 				editable
+		set "controlenddate" 				editable
+		
+		set "controlstartdate" 				mandatory
+		set "controlenddate" 				mandatory
+		
+		
+			
+end	
+
+rule "testcase is_not filled --> configure attributes for dml3  [I,V]"
+
+	salience 990
+
+	when
+		"testcase" is_not filled
+		"bb_testcase" is_not filled
+		is in workflow state "openForLevel_3"
+		user has at object role "deficiencymanager_l3"
+	then
+		
+		set "bb_controlAssertions" 			readonly
+		set "bb_testcase" 					readonly
+		set "bb_inicioClicloAvaliatorio"    readonly
+		set "bb_fimClicloAvaliatorio"       readonly
+		
+		set "controlstartdate" 				editable
+		set "controlenddate" 				editable
+		
+		set "controlstartdate" 				mandatory
+		set "controlenddate" 				mandatory
+			
+end	
+
+
+#########################
+### BdB CUSTOMIZATION ###
+rule "testcase is filled [I,V]"
+
+	salience 980
+
+	when
+		"testcase" is filled OR
+		"bb_testcase" is filled
+	then
+		set "bb_plan_departamental" readonly
+		set "rel_app" 				readonly	
+		set "controlstartdate" 		readonly
+		set "controlenddate" 		readonly
+		set "bb_controlAssertions"	readonly	
+		set "control_level"			readonly
+		
+		set "testcase_description"  invisible
+		set "process"				readonly
+		set "orgunit"				readonly 
+		set "bb_scope"				readonly
+end
+
+rule "testcase is filled --> bb_testcase should be invisible [I,V]"
+
+	salience 980
+
+	when
+		"testcase" is filled
+	then
+		set "bb_testcase"				invisible
+		
+end
+
+rule "bb_testcase is filled [I,V]"
+
+	salience 980
+
+	when
+		"bb_testcase" is filled
+	then
+		set "testcase"						invisible
+		set "bb_testcase"					editable
+		set "bb_inicioClicloAvaliatorio"    readonly
+		set "bb_fimClicloAvaliatorio"       readonly
+		
+end
+
+rule "hide testcase if not specified [I,V]"
+
+	salience 980
+
+	when
+		"testcase" is_not filled
+
+	then
+		set "testcase"						invisible
+end
+
+rule "assertions, bb_finAccountAssertions readonly[I,V]"
+
+	salience 980
+
+	when
+		## Issue #104332 : TC.GD.124 - Explorer/Gestão de deficiência/Deficiências/Descrição - Identificar o ciclo avaliatório
+		## Both attributes should be editable by deficiency manager L1 while detaching bb_testcase attribute
+		user has_not at object role "deficiencymanager_l1"
+	then
+		set "assertions"   					readonly
+		set "bb_finAccountAssertions"    	readonly
+end
+
+rule "still exists at yearend invalid [I,V]"
+
+    salience 220
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "still_exists_at_yearend" "EQUALS NOT" value "true"
+	    value comparison fulfilled: ":transient:" attr_value "remedied_by_mgmt" "EQUALS" value "false"
+
+	then
+		set "still_exists_at_yearend" invalid
+		add "error" message "error.deficiency.still_exists_yearend_invalid" to "still_exists_at_yearend"
+
+end
+
+rule "mark controlstartdate controlenddate invalid [V]"
+
+	salience 210
+
+	when
+		user has at object role "deficiencymanager_l1"
+		attribute comparison fulfilled: ":transient:" attr_value "controlstartdate" "GREATER THAN" ":transient:" attr_value "controlenddate"
+
+	then
+		set "controlenddate" invalid
+		add "error" message "error.date.range.DBI" to "controlenddate"
+end
+
+rule "controlstartdate greater than today [V]"
+
+	salience 210
+
+	when
+		"controlstartdate" is filled
+		is date attribute greater than today "controlstartdate"
+
+	then
+		set "controlstartdate" invalid
+		add "error" message "start.date.not.after.today.ERR" to "controlstartdate"
+end
+
+rule "controlenddate greater than today [V]"
+
+	salience 210
+
+	when
+		"controlenddate" is filled
+		is date attribute greater than today "controlenddate"
+
+	then
+		set "controlenddate" invalid
+		add "error" message "start.date.not.after.today.ERR" to "controlenddate"
+end
+
+
+
+rule "mark bb_inicioClicloAvaliatorio bb_fimClicloAvaliatorio invalid [V]"
+
+	salience 200
+
+	when
+		user has at object role "deficiencymanager_l1"
+		attribute comparison fulfilled: ":transient:" attr_value "bb_inicioClicloAvaliatorio" "GREATER THAN" ":transient:" attr_value "bb_fimClicloAvaliatorio"
+
+	then
+		set "bb_fimClicloAvaliatorio" invalid
+		add "error" message "error.date.range.DBI" to "bb_fimClicloAvaliatorio"
+end
+
+#####################################################################################################
+### All workflow states - after state rules -  rules concerning the attribute state 'recommended' ###
+
+rule "'deficiency identified by' not recommended [I,V]"
+
+	salience 130
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "identified_by_id" "CONTAINS NOT" value "others"
+
+	then
+		set "identified_by" not_recommended
+
+end
+
+rule "no explicit remediation decision by management ==> remediation control NOT recommended [I,V,AC]"
+
+	salience 120
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "remedied_by_mgmt" "EQUALS NOT" value "true"
+
+	then
+		set "remediation_ctrl" not_recommended
+
+end
+
+rule "not moreThanRemote ==> some fields not recommended [I,V]"
+
+	salience 110
+
+	when
+	    value comparison fulfilled: ":transient:" attr_value "likelihood" "CONTAINS NOT" value "morethanremote"
+
+	then
+		set "classification_l1" not_recommended
+		set "categorisation_l1" not_recommended
+		set "classification_l2" not_recommended
+		set "classification_l3" not_recommended
+
+end
+
+rule "deficiency is going to be released ==> switch recommended to mandatory [V]"
+
+    salience 100
+
+	when
+		((is in workflow state "PREPARED" OR
+		  is in workflow state "openForLevel_1") AND
+		  value comparison fulfilled: ":transient:" attr_value "savestate" "CONTAINS" value "released" ) OR
+	    ( is in workflow state "openForLevel_2" AND
+	      value comparison fulfilled: ":transient:" attr_value "savestate_l2" "CONTAINS" value "released" ) OR
+	    ( is in workflow state "openForLevel_3" AND
+	      value comparison fulfilled: ":transient:" attr_value "savestate_l3" "CONTAINS" value "released" )
+
+	then
+		switch recommended to mandatory
+
+end
+
+rule "invisible/visible fields for  L1 [I,V]"
+
+	salience 3100
+
+	when
+
+		user has at object role "deficiencymanager_l1"
+
+	then
+		
+		set "magn_after_comp_l2"		visible
+		set "magn_after_comp_l2_nap"	invisible
+		set "magn_after_comp_l3"		visible
+		set "magn_after_comp_l3_nap"	invisible
+
+end
+
+rule "invisible/visible fields for  L2 [I,V]"
+
+	salience 3100
+
+	when
+
+		user has at object role "deficiencymanager_l2"
+
+	then
+		
+		set "magn_after_comp_l3"		visible
+		set "magn_after_comp_l3_nap"	invisible
+
+end
+
+############SALES########################
+rule "handle mandatory currency related fields L1[I,V]"
+
+	salience 10200
+
+	when
+		value comparison fulfilled: ":transient:" attr_value "magn_after_comp_l1_nap" "EQUALS" value "false"
+	then
+		 set "currency_after_comp_l1" mandatory
+		 set "magn_after_comp_l1" mandatory
+end
+
+rule "handle mandatory currency related fields L2[I,V]"
+
+	salience 10200
+
+	when
+		value comparison fulfilled: ":transient:" attr_value "magn_after_comp_l2_nap" "EQUALS" value "false"
+	then
+		 set "currency_after_comp_l2" mandatory
+		 set "magn_after_comp_l2" mandatory
+end
+
+rule "handle mandatory currency related fields L3[I,V]"
+
+	salience 10200
+
+	when
+		value comparison fulfilled: ":transient:" attr_value "magn_after_comp_l3_nap" "EQUALS" value "false"
+	then
+		 set "currency_after_comp_l3" mandatory
+		 set "magn_after_comp_l3" mandatory
+end
+############SALES########################
+
+############NETO########################
+rule "Readonly inicio ciclo avaliatorio [I,V]"
+
+	salience 3100
+
+	when
+		"testcase" is filled
+	then
+		set "bb_inicioClicloAvaliatorio" 	readonly
+		set "bb_fimClicloAvaliatorio"       readonly
+end
+
+
+############NETO########################
+rule "Ciclo avaliatorio editavel para deficiencymanagers 1 [I,V]"
+
+	salience 3100
+
+	when
+		"testcase" is_not filled  
+		( is in workflow state "openForLevel_1" OR
+		  is in workflow state "PREPARED" )
+		user has at object role "deficiencymanager_l1"
+	then
+		
+		set "bb_inicioClicloAvaliatorio"    editable
+		set "bb_fimClicloAvaliatorio"       editable
+		set "bb_inicioClicloAvaliatorio"    mandatory
+		set "bb_fimClicloAvaliatorio"       mandatory
+end
+
+
+

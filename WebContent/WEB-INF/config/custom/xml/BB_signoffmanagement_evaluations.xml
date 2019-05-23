@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<evaluation id="soprocessTestcaseStatistic"
+    			    filter.idref="soprocessTestcaseStatistic"
+    				controlName="statistic"
+    			    type="statistic">
+            <statistic>
+                <statistic.tree id="soprocess"/>
+                <statistic.data.filter id="soprocess"/>
+
+                <statistic.columns>
+
+                    <!-- linked tree column -->
+                    <statistic.link id="default"/>
+                    <statistic.column.tree linkedNodeTypes="SOPROCESS"/>
+
+                    <!-- Column "Sign-off process ID" -->
+                    <!-- Column "Sign-off status" -->
+                    <statistic.columnGroup>
+                        <statistic.data id="tree"/>
+                        <!-- data references "soprocess_id", "soprocess_status" copied by calculator from tree to result set-->
+                        <statistic.calculator id="treeValue">
+                            <parameter name="allowedNodeTypes" value="SOPROCESS" />
+                        </statistic.calculator>
+
+                        <statistic.column.value dataReference="soprocess_id"
+                                                propertyKey="attribute.OBJECT.obj_id.DBI" template="object"/>
+                        <statistic.column.value dataReference="owner_status"
+                                                propertyKey="attribute.SOPROCESS.owner_status.DBI" template="enumIcon"/>
+                        <statistic.column.value dataReference="reviewer_status"
+                                                propertyKey="attribute.SOPROCESS.reviewer_status.DBI" template="enumIcon"/>
+                    </statistic.columnGroup>
+
+                    <!-- test case statistic columns -->
+                    <statistic.columnGroup>
+                        <statistic.data>
+                            <parameter name="viewId" value="soprocess2testcase_statistic" />
+                            <parameter name="viewOrderColumnId" value="node_id" />
+                        </statistic.data>
+                        <statistic.calculator id="testcase">
+                            <parameter name="uniqueIdColumn" value="ta_id" />
+                        </statistic.calculator>
+
+                        <statistic.columnGroup.enum enumeration.idref="testcase_owner_status"
+                                                    link.type="list" link.idref="signoffStatisticTestcases"
+                                                    enumGroupChart.id="statisticPieChart">
+
+                            <statistic.subColumns.enum enumItem.idref="noneffective">
+                                <statistic.columnGroup.enum propertyKey="attribute.TESTCASE.measure.DBI"
+                                                            enumeration.idref="measure"
+                                                            link.type="list" link.idref="signoffStatisticTestcases"/>
+                            </statistic.subColumns.enum>
+
+                        </statistic.columnGroup.enum>
+                    </statistic.columnGroup>
+
+                </statistic.columns>
+
+            </statistic>
+            <toolbarButtons>
+                <buttonReference button.idref="PDF_REPORT" />
+                <buttonReference button.idref="EXCEL_REPORT" />
+            </toolbarButtons>
+    </evaluation>
+    
+    <evaluation id="soprocessControlTestcaseStatistic"
+    			    filter.idref="soprocessTestcaseStatistic"
+    				controlName="statistic"
+    			    type="statistic">
+            <statistic>
+                <statistic.tree id="soprocess"/>
+                <statistic.data.filter id="soprocess"/>
+
+                <statistic.columns>
+
+                    <!-- linked tree column -->
+                    <statistic.link id="default"/>
+                    <statistic.column.tree linkedNodeTypes="SOPROCESS"/>
+
+                    <!-- Column "Sign-off process ID" -->
+                    <!-- Column "Sign-off status" -->
+                    <statistic.columnGroup>
+                        <statistic.data id="tree"/>
+                        <!-- data references "soprocess_id", "soprocess_status" copied by calculator from tree to result set-->
+                        <statistic.calculator id="treeValue">
+                            <parameter name="allowedNodeTypes" value="SOPROCESS" />
+                        </statistic.calculator>
+
+                        <statistic.column.value dataReference="soprocess_id"
+                                                propertyKey="attribute.OBJECT.obj_id.DBI" template="object"/>
+                        <statistic.column.value dataReference="owner_status"
+                                                propertyKey="attribute.SOPROCESS.owner_status.DBI" template="enumIcon"/>
+                        <statistic.column.value dataReference="reviewer_status"
+                                                propertyKey="attribute.SOPROCESS.reviewer_status.DBI" template="enumIcon"/>
+                    </statistic.columnGroup>
+
+                    <!-- test case statistic columns -->
+                    <statistic.columnGroup>
+                        <statistic.data>
+                            <parameter name="viewId" value="soprocess_control2testcase_statistic" />
+                            <parameter name="viewOrderColumnId" value="node_id" />
+                        </statistic.data>
+                        <statistic.calculator id="testcase">
+                            <parameter name="uniqueIdColumn" value="ta_id" />
+                        </statistic.calculator>
+
+                        <statistic.columnGroup.enum enumeration.idref="testcase_owner_status"
+                                                    link.type="list" link.idref="signoffControlStatisticTestcases"
+                                                    enumGroupChart.id="statisticPieChart">
+
+                            <statistic.subColumns.enum enumItem.idref="noneffective">
+                                <statistic.columnGroup.enum propertyKey="attribute.TESTCASE.measure.DBI"
+                                                            enumeration.idref="measure"
+                                                            link.type="list" link.idref="signoffControlStatisticTestcases"/>
+                            </statistic.subColumns.enum>
+
+                        </statistic.columnGroup.enum>
+                    </statistic.columnGroup>
+
+                </statistic.columns>
+
+            </statistic>
+            <toolbarButtons>
+                <buttonReference button.idref="PDF_REPORT" />
+                <buttonReference button.idref="EXCEL_REPORT" />
+            </toolbarButtons>
+    </evaluation>
+    <evaluation id="soprocessDeficiencyStatistic"
+                filter.idref="soprocessDeficiencyStatistic"
+                controlName="statistic"
+                type="statistic">
+        <statistic>
+            <statistic.tree id="soprocess"/>
+            <statistic.data.filter id="soprocess"/>
+
+            <statistic.columns>
+
+                <!-- linked tree column -->
+                <statistic.link id="default"/>
+                <statistic.column.tree linkedNodeTypes="SOPROCESS"/>
+
+                <!-- Column "Sign-off process ID" -->
+                <!-- Column "Sign-off status" -->
+                <statistic.columnGroup>
+                    <statistic.data id="tree"/>
+                    <!-- data references "soprocess_id", "soprocess_status" copied by calculator from tree to result set-->
+                    <statistic.calculator id="treeValue">
+                        <parameter name="allowedNodeTypes" value="SOPROCESS" />
+                    </statistic.calculator>
+
+                    <statistic.column.value dataReference="soprocess_id"
+                                            propertyKey="attribute.OBJECT.obj_id.DBI" template="object"/>
+                    <statistic.column.value dataReference="owner_status"
+                                            propertyKey="attribute.SOPROCESS.owner_status.DBI" template="enumIcon"/>
+                    <statistic.column.value dataReference="reviewer_status"
+                                            propertyKey="attribute.SOPROCESS.reviewer_status.DBI" template="enumIcon"/>
+                </statistic.columnGroup>
+
+                <statistic.columnGroup>
+                    <statistic.data>
+                        <parameter name="viewId" value="signoff_deficiency_statistic" />
+                        <parameter name="viewOrderColumnId" value="node_id" />
+                    </statistic.data>
+                    <statistic.calculator id="deficiency">
+                        <parameter name="uniqueIdColumn" value="deficiency_id"/>
+                    </statistic.calculator>
+                    <statistic.link id="deficiency"/>
+
+                    <statistic.columnGroup.perCent link.type="list"
+                                                   link.idref="signoff_deficiency_statistic_link"
+                                                   chart.idref="statisticPieChart">
+                        <statistic.column.value dataReference="savestate_l1" propertyKey="tableheader.deficiency.statistic.released_l1"
+                                                link.type="list" link.idref="signoff_deficiency_statistic_link" color="#E55E5E"/>  <!-- red -->
+                        <statistic.column.value dataReference="savestate_l2" propertyKey="tableheader.deficiency.statistic.released_l2"
+                                                link.type="list" link.idref="signoff_deficiency_statistic_link" color="#EBB585"/>  <!-- orange -->
+                        <statistic.column.value dataReference="savestate_l3" propertyKey="tableheader.deficiency.statistic.released_l3"
+                                                link.type="list" link.idref="signoff_deficiency_statistic_link" color="#EAEA85"/>  <!-- yellow -->
+                        <statistic.column.value dataReference="complete" calculation="sum" propertyKey="tableheader.deficiency.statistic.released_completely"
+                                                link.type="list" link.idref="signoff_deficiency_statistic_link" color="#82D481"/>  <!-- green -->
+                    </statistic.columnGroup.perCent>
+
+                </statistic.columnGroup>
+
+            </statistic.columns>
+
+        </statistic>
+        <toolbarButtons>
+            <buttonReference button.idref="PDF_REPORT" />
+            <buttonReference button.idref="EXCEL_REPORT" />
+        </toolbarButtons>
+    </evaluation>
+</custom>    

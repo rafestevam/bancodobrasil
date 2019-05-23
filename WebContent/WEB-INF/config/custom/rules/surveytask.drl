@@ -1,0 +1,169 @@
+package SURVEYTASK_RuleSet
+expander surveytask.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.SurveytaskHelperBB;
+
+# OBJECT     client_objid          LONG       Client ID                                                                                                                                                    
+# OBJECT     client_sign           CLIENTSIGN Client                                                                                                                                                       
+# OBJECT     create_date           DATE       Creation date                                                                                                                                                
+# OBJECT     creator_user_id       LONG       User ID (creator)                                                                                                                                            
+# OBJECT     delete_date           DATE       Deletion date                                                                                                                                                
+# OBJECT     guid                  STRING     GUID                                                                                                                                                         
+# OBJECT     obj_id                LONG       ID                                                                                                                                                           
+# OBJECT     obj_type              OBJECTTYPE Object type                                                                                                                                                  
+# OBJECT     root_guid             STRING     Root GUID                                                                                                                                                    
+# OBJECT     versions              LONG       Number of versions                                                                                                                                           
+# VERSION    aris_change_date      DATE       ARIS change date                                                                                                                                             
+# VERSION    change_date           DATE       Change date                                                                                                                                                  
+# VERSION    change_type           ENUM       Change type                      changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                               
+# VERSION    change_user_id        LONG       User ID (editor)                                                                                                                                             
+# VERSION    deactivated           BOOLEAN    Deactivated                                                                                                                                                  
+# VERSION    id                    LONG       ID                                                                                                                                                           
+# VERSION    substitute_user_id    LONG       User ID (substitute)                                                                                                                                         
+# VERSION    version_active        BOOLEAN    Current version                                                                                                                                              
+# VERSION    version_number        LONG       Version number                                                                                                                                               
+# RECURRING  control_period        ENUM       Length of control period         controlperiod (unspecified=0,day=1,week=2,month=3,quarter=4,semiannual=5,year=6)                                            
+# RECURRING  duration              LONG       Time limit for execution in days                                                                                                                             
+# RECURRING  enddate               DATE       End date                                                                                                                                                     
+# RECURRING  event_driven_allowed  BOOLEAN    Event-driven surveys allowed                                                                                                                                 
+# RECURRING  frequency             ENUM       Frequency                        frequency (all=-1,unspecified=0,oneoff=1,daily=2,weekly=3,monthly=4,quarterly=5,semiannually=6,annually=7,everysecondyear=8)
+# RECURRING  control_period_offset LONG       Offset in days                                                                                                                                               
+# RECURRING  owner_group           LIST       Interviewees                     to * USERGROUPs (LT=32)                                                                                                     
+# RECURRING  reviewer_group        LIST       Survey reviewer                  to 1 USERGROUP (LT=33)                                                                                                      
+# RECURRING  startdate             DATE       Start date                                                                                                                                                   
+# SURVEYTASK controls              LIST       Controls                         to * CONTROLs (LT=3243)                                                                                                     
+# SURVEYTASK questionnaireTemplate LIST       Questionnaire template           to 1 QUESTIONNAIRE_TEMPLATE (LT=31)                                                                                         
+# SURVEYTASK relatedAppSystems     LIST       Application system types         to * HIERARCHYs (LT=3237)                                                                                                   
+# SURVEYTASK relatedCategories     LIST       Risk categories                  to * HIERARCHYs (LT=3241)                                                                                                   
+# SURVEYTASK relatedOrgunits       LIST       Organizational units             to * HIERARCHYs (LT=3239)                                                                                                   
+# SURVEYTASK relatedProcesses      LIST       Processes                        to * HIERARCHYs (LT=3240)                                                                                                   
+# SURVEYTASK relatedRegulations    LIST       Regulations                      to * HIERARCHYs (LT=3238)                                                                                                   
+# SURVEYTASK risks                 LIST       Risks                            to * RISKs (LT=3242)                                                                                                        
+# SURVEYTASK test_definitions      LIST       Test definitions                 to * TESTDEFINITIONs (LT=3244)                                                                                              
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "basis editable [I,V]" 
+
+	salience 10200
+
+	when
+		user has at object role "surveymanager"
+
+	then
+		set "questionnaireTemplate" editable
+		set "owner_group" editable
+		set "reviewer_group" editable
+		set "manager_group" editable
+		set "frequency" editable
+		set "duration" editable
+		set "startdate" editable
+		set "enddate" editable
+		set "control_period" editable
+		set "control_period_offset" editable
+		set "relatedHierarchies" editable
+
+		set "relatedAppSystems" editable
+		set "relatedRegulations" editable
+		set "relatedOrgunits" editable
+		set "relatedProcesses" editable
+		set "relatedCategories" editable
+
+		set "risks" editable
+		set "controls" editable
+		set "test_definitions" editable
+		set "event_driven_allowed" editable
+
+		set "questionnaireTemplate" mandatory
+		set "owner_group" mandatory
+		set "reviewer_group" mandatory
+		set "frequency" mandatory
+		set "duration" mandatory
+		set "startdate" mandatory
+		set "control_period" mandatory
+		set "control_period_offset" mandatory
+
+end
+
+rule "is object imported [I,V]"
+
+	salience 10100
+
+	when
+		object is imported
+	then
+	    set "questionnaireTemplate" readonly
+
+end
+
+
+rule "start date after end date ==> invalid state [V]"
+
+    salience 9800
+
+	when
+		"startdate" is filled
+		"enddate" is filled
+		attribute comparison fulfilled: ":transient:" attr_value "startdate" "GREATER THAN" ":transient:" attr_value "enddate"
+
+	then 
+		set "enddate" invalid
+		add "error" message "error.date.range.DBI" to "enddate"
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "questionnaireTemplate is filled ==> check sections [V]"
+
+    salience 9800
+
+	when
+		"questionnaireTemplate" is filled
+		object is dirty
+
+	then 
+		check questionnaire template sections
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "questionnaireTemplate is filled ==> check target scores [V]"
+
+    salience 9750
+
+	when
+		"questionnaireTemplate" is filled
+		object is dirty
+
+	then 
+		check questionnaire template scores
+
+end
+
+
+
+########################
+### BB CUSTOMIZATION ###
+rule "frequency is oneoff and start less than today ==> invalid state [V]"
+
+    salience 120
+	no-loop true
+
+	when
+		"startdate" is dirty
+		"startdate" is filled
+		value comparison fulfilled: ":transient:" attr_value "frequency" "CONTAINS" value "oneoff"	
+		is startdate less than today
+	
+	then 
+		set "startdate" invalid
+		add "error" message "error.date.must.not.be.past.ERR" to "startdate"
+
+end
+

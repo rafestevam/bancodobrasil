@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<actionCommands>
+		<objectTypeCommands>
+			<commandSet name="question">
+				<actionCommand commandId="cache"		 	clsName="com.idsscheer.webapps.arcm.ui.components.surveymanagement.actioncommands.QuestionCacheActionCommandBB"/>
+			</commandSet>
+			<commandSet name="questionnaire_template">
+				<actionCommand commandId="save"		 		clsName="com.idsscheer.webapps.arcm.ui.components.surveymanagement.actioncommands.QuestionnaireTemplateSaveActionCommandBB"/>
+			</commandSet>
+			<commandSet name="surveytask">
+				<actionCommand commandId="save"		 		clsName="com.idsscheer.webapps.arcm.ui.components.surveymanagement.actioncommands.SurveyTaskSaveActionCommandBB"/>
+				<actionCommand commandId="cache"		 	clsName="com.idsscheer.webapps.arcm.ui.components.surveymanagement.actioncommands.SurveyTaskCacheActionCommandBB"/>
+			</commandSet>
+		</objectTypeCommands>
+	</actionCommands>
+</custom>

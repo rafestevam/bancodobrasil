@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<view id="deficiency" view.parameter="DISTINCT">
+        <viewObject id="VO_6_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="timestamp" attributeType="create_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="changedate" attributeType="create_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="changedate2" attributeType="create_date" isSortable="true"/>
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="def_version_active" attributeType="version_active"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_id" attributeType="deficiency_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="company" attributeType="company" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="unit" attributeType="unit" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="unit_type" attributeType="unittype" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="country" attributeType="country" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="control_level" attributeType="control_level" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="identifiedbyid" attributeType="identified_by_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="descr_l1" attributeType="descr_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="likelihood" attributeType="likelihood" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude" attributeType="magn" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magn_na" attributeType="magn_na" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="remedied_by_mgmt" attributeType="remedied_by_mgmt" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="still_exists_at_yearend" attributeType="still_exists_at_yearend" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude_after_comp_l1" attributeType="magn_after_comp_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency_after_comp_l1" attributeType="currency_after_comp_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude_after_comp_l2" attributeType="magn_after_comp_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency_after_comp_l2" attributeType="currency_after_comp_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude_after_comp_l3" attributeType="magn_after_comp_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency_after_comp_l3" attributeType="currency_after_comp_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="categorisation_l1" attributeType="categorisation_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="categorisation_l2" attributeType="categorisation_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="categorisation_l3" attributeType="categorisation_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="classification_l1" attributeType="classification_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="classification_l2" attributeType="classification_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="classification_l3" attributeType="classification_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate" attributeType="savestate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isSortable="true" isSelectColumn="true"/>
+        	<viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_6_2" objectType="TESTCASE">
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_6_3" objectType="TESTCASE">
+            <viewColumn id="compensating_ctl_l1" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_6_4" objectType="TESTCASE">
+            <viewColumn id="compensating_ctl_l2" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_6_5" objectType="TESTCASE">
+            <viewColumn id="compensating_ctl_l3" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_manager_group_l1" objectType="USERGROUP">
+            <viewColumn id="manager_group_l1" attributeType="name" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_manager_group_l2" objectType="USERGROUP">
+            <viewColumn id="manager_group_l2" attributeType="name" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_manager_group_l3" objectType="USERGROUP">
+            <viewColumn id="manager_group_l3" attributeType="name" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_6_6" objectType="HIERARCHY">
+			<viewColumn id="process_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+			<viewColumn id="deactivate" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<link linktype.id="6108" firstViewObject="VO_6_1" secondViewObject="VO_manager_group_l1" joinType="LEFT"/>
+        <link linktype.id="6109" firstViewObject="VO_6_1" secondViewObject="VO_manager_group_l2" joinType="LEFT"/>
+        <link linktype.id="6110" firstViewObject="VO_6_1" secondViewObject="VO_manager_group_l3" joinType="LEFT"/>
+        <link linktype.id="18,20160521" firstViewObject="VO_6_1" secondViewObject="VO_6_2" joinType="LEFT"/>
+        <link linktype.id="43" firstViewObject="VO_6_1" secondViewObject="VO_6_3" joinType="LEFT"/>
+        <link linktype.id="44" firstViewObject="VO_6_1" secondViewObject="VO_6_4" joinType="LEFT"/>
+        <link linktype.id="45" firstViewObject="VO_6_1" secondViewObject="VO_6_5" joinType="LEFT"/>
+        <link linktype.id="68" firstViewObject="VO_6_1" secondViewObject="VO_6_6" joinType="LEFT"/>
+		<conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="descr_l1" compareType="LIKE"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="def_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deficiency_id" compareType="LIKE"/>
+                <condition column.id="company" compareType="LIKE"/>
+                <condition column.id="unit" compareType="LIKE"/>
+                <condition column.id="unit_type" compareType="LIKE"/>
+                <condition column.id="control_level" compareType="IN"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="country" compareType="LIKE"/>
+                <condition column.id="identifiedbyid" compareType="IN"/>
+                <condition column.id="likelihood" compareType="IN"/>
+                <condition column.id="changedate" compareType="GE"/>
+                <condition column.id="changedate2" compareType="LE"/>
+                <condition column.id="remedied_by_mgmt" compareType="EQ"/>
+                <condition column.id="still_exists_at_yearend" compareType="EQ"/>
+                <condition column.id="classification_l1" compareType="IN"/>
+                <condition column.id="classification_l2" compareType="IN"/>
+                <condition column.id="classification_l3" compareType="IN"/>
+                <condition column.id="categorisation_l1" compareType="IN"/>
+                <condition column.id="categorisation_l2" compareType="IN"/>
+                <condition column.id="categorisation_l3" compareType="IN"/>
+                <condition column.id="savestate" compareType="IN"/>
+                <condition column.id="savestate_l2" compareType="IN"/>
+                <condition column.id="savestate_l3" compareType="IN"/>
+                <condition column.id="ta_id" compareType="EQ"/>
+                <condition column.id="manager_group_l1" compareType="LIKE"/>
+                <condition column.id="manager_group_l2" compareType="LIKE"/>
+                <condition column.id="manager_group_l3" compareType="LIKE"/>
+                <condition column.id="bb_inicioClicloAvaliatorio" compareType="LE"/>
+                <condition column.id="bb_fimClicloAvaliatorio" compareType="GE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	
+	<view id="deficiency_statistic_tester" view.parameter="DISTINCT">
+        <viewObject id="VO_deficiency_statistic_1_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l1" attributeType="savestate" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true"/>
+            <viewColumn id="deficiency_id" attributeType="obj_id" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true" isGrouped="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true" isGrouped="true"/>
+            <!-- n:m relation -->
+            <viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_deficiency_statistic_1_3" objectType="TESTCASE">
+            <viewColumn id="ta_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_deficiency_statistic_1_4" objectType="HIERARCHY">
+            <viewColumn id="node_id" attributeType="obj_id" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isGrouped="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="18" firstViewObject="VO_deficiency_statistic_1_1" secondViewObject="VO_deficiency_statistic_1_3" joinType="LEFT"/>
+        <link linktype.id="72" firstViewObject="VO_deficiency_statistic_1_3" secondViewObject="VO_deficiency_statistic_1_4" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="EQ"/>
+                <condition column.id="controlstartdate" compareType="LE"/>
+                <condition column.id="controlenddate" compareType="GE"/>
+                <condition column.id="bb_inicioClicloAvaliatorio" compareType="LE"/>
+                <condition column.id="bb_fimClicloAvaliatorio" compareType="GE"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_type" compareType="IN"/>
+                    <condition column.id="hierarchy_type" compareType="ISNULL"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="deficiency_statistic_process" view.parameter="DISTINCT">
+        <viewObject id="VO_deficiency_statistic_4_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l1" attributeType="savestate" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true"/>
+            <viewColumn id="deficiency_id" attributeType="obj_id" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true" isGrouped="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true" isGrouped="true"/>
+            <!-- n:m relation -->
+            <viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_deficiency_statistic_4_5" objectType="HIERARCHY">
+            <viewColumn id="node_id" attributeType="obj_id" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isGrouped="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="68" firstViewObject="VO_deficiency_statistic_4_1" secondViewObject="VO_deficiency_statistic_4_5" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="EQ"/>
+                <condition column.id="controlstartdate" compareType="LE"/>
+                <condition column.id="controlenddate" compareType="GE"/>
+                <condition column.id="bb_inicioClicloAvaliatorio" compareType="LE"/>
+                <condition column.id="bb_fimClicloAvaliatorio" compareType="GE"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="hierarchy_type" compareType="IN"/>
+                    <condition column.id="hierarchy_type" compareType="ISNULL"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="statisticDeficiencies" view.parameter="DISTINCT">
+        <viewObject id="VO_statisticDeficiencies_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_id" attributeType="deficiency_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="company" attributeType="company" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true"/>
+            <viewColumn id="savestate_l1" attributeType="savestate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="descr_l1" attributeType="descr_l1" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="likelihood" attributeType="likelihood" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude" attributeType="magn" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="remedied_by_mgmt" attributeType="remedied_by_mgmt" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="still_exists_at_yearend" attributeType="still_exists_at_yearend" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_statisticDeficiencies_2" objectType="TESTCASE">
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <!-- tester -->
+        <viewObject id="VO_statisticDeficiencies_10" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id_1" attributeType="obj_id"/>
+            <viewColumn id="hierarchy_1_deactivated" attributeType="deactivated"/>
+            <viewColumn id="hierarchy_notassigned_1" attributeType="id"/>
+        </viewObject>
+        <!-- financialaccount -->
+        <viewObject id="VO_statisticDeficiencies_12" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id_2" attributeType="obj_id"/>
+            <viewColumn id="hierarchy_2_deactivated" attributeType="deactivated"/>
+            <viewColumn id="hierarchy_notassigned_2" attributeType="id"/>
+        </viewObject>
+        <!-- orgunit -->
+        <viewObject id="VO_statisticDeficiencies_14" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id_3" attributeType="obj_id"/>
+            <viewColumn id="hierarchy_3_deactivated" attributeType="deactivated"/>
+            <viewColumn id="hierarchy_notassigned_3" attributeType="id"/>
+        </viewObject>
+        <!-- process -->
+        <viewObject id="VO_statisticDeficiencies_16" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id_4" attributeType="obj_id"/>
+            <viewColumn id="hierarchy_4_deactivated" attributeType="deactivated"/>
+            <viewColumn id="hierarchy_notassigned_4" attributeType="id"/>
+        </viewObject>
+        <link linktype.id="18" firstViewObject="VO_statisticDeficiencies_1" secondViewObject="VO_statisticDeficiencies_2" joinType="LEFT"/>
+        <link linktype.id="72" firstViewObject="VO_statisticDeficiencies_2" secondViewObject="VO_statisticDeficiencies_10" joinType="LEFT"/>
+        <link linktype.id="42" firstViewObject="VO_statisticDeficiencies_1" secondViewObject="VO_statisticDeficiencies_12" joinType="LEFT"/>
+        <link linktype.id="67" firstViewObject="VO_statisticDeficiencies_1" secondViewObject="VO_statisticDeficiencies_14" joinType="LEFT"/>
+        <link linktype.id="68" firstViewObject="VO_statisticDeficiencies_1" secondViewObject="VO_statisticDeficiencies_16" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ta_id" compareType="LIKE"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="hierarchy_id_1" compareType="IN"/>
+                <condition column.id="hierarchy_notassigned_1" compareType="ISNULL"/>
+                <condition column.id="hierarchy_1_deactivated" compareType="EQ"/>
+                <condition column.id="hierarchy_id_2" compareType="IN"/>
+                <condition column.id="hierarchy_notassigned_2" compareType="ISNULL"/>
+                <condition column.id="hierarchy_2_deactivated" compareType="EQ"/>
+                <condition column.id="hierarchy_id_3" compareType="IN"/>
+                <condition column.id="hierarchy_notassigned_3" compareType="ISNULL"/>
+                <condition column.id="hierarchy_3_deactivated" compareType="EQ"/>
+                <condition column.id="hierarchy_id_4" compareType="IN"/>
+                <condition column.id="hierarchy_notassigned_4" compareType="ISNULL"/>
+                <condition column.id="hierarchy_4_deactivated" compareType="EQ"/>
+<!--                 <condition column.id="controlstartdate" compareType="LE"/> -->
+<!--                 <condition column.id="controlenddate" compareType="GE"/> -->
+                <condition column.id="bb_inicioClicloAvaliatorio" compareType="LE"/>
+                <condition column.id="bb_fimClicloAvaliatorio" compareType="GE"/>
+                <condition column.id="deficiency_id" compareType="LIKE"/>
+                <condition column.id="company" compareType="LIKE"/>
+                <condition column.id="savestate_l1" compareType="IN"/>
+                <condition column.id="savestate_l2" compareType="IN"/>
+                <condition column.id="savestate_l3" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <!-- BdB CUSTOMIZATION -->    
+    <view id="testcase2def" view.parameter="DISTINCT">
+        <viewObject id="VO_testdefinition2def_testcase" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="plannedstartdate_from" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate_to" attributeType="plannedstartdate" />
+            <viewColumn id="plannedenddate_from" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate_to" attributeType="plannedenddate" />
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_id2" attributeType="obj_id"/>            
+            <viewColumn id="testdatefrom" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdateto" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" />
+            <viewColumn id="ta_deactivated" attributeType="deactivated" />
+            <viewColumn id="walkthrough_name" attributeType="bb_walkthroughName" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="walkthrough_counter" attributeType="walkthroughCounter" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate_from" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate_to" attributeType="controlstartdate" />            
+            <viewColumn id="controlenddate_from" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate_to" attributeType="controlenddate" />             
+            <viewColumn id="owner_status" attributeType="owner_status"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+        </viewObject>
+        <conditions>
+            <compoundCondition conditionConnect="AND">     
+	            <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+	            <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+	            <condition column.id="ta_id2" compareType="NOTIN" currentObjectType.id="DEFICIENCY" currentAttributeType.id="bb_testcase"/>	            
+	            <condition column.id="owner_status" compareType="EQ" value="4"/>
+	            <condition column.id="reviewer_status" compareType="EQ" value="1"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	<!-- View created to solve the issue #113842 - To include the "Deficiency" tab on the Hierarchy/Process/Assignments tabs... -->
+    <view id="BB_deficiency_testaction_refs" view.parameter="DISTINCT">
+        <viewObject id="VO_deficiency_testaction_refs_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="deficiency_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_defid" attributeType="deficiency_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_savestate" attributeType="savestate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_savestate_l2" attributeType="savestate_l2" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_savestate_l3" attributeType="savestate_l3" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id2" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_deficiency_testaction_refs_proc_2" objectType="HIERARCHY" isMainViewObject="false">
+            <viewColumn id="process_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="68" firstViewObject="VO_deficiency_testaction_refs_1" secondViewObject="VO_deficiency_testaction_refs_proc_2"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="deficiency_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="deactivated" compareType="EQ" value="false"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="id" compareType="IN" refView.id="BB_testaction_deficiency_refs_sub_1"/>
+                		<condition column.id="process_name" compareType="EQ" currentObjectType.id="HIERARCHY" currentAttributeType.id="name"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="BB_deficiency_testaction_refs_proc" view.parameter="DISTINCT">
+        <viewObject id="VO_deficiency_testaction_refs_proc_1" objectType="DEFICIENCY" isMainViewObject="true">
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated"/>
+            <viewColumn id="ta_id" attributeType="bb_testcase"/>
+        </viewObject>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="deficiency_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="deactivated" compareType="EQ" value="false"/>
+                </compoundCondition>
+                <condition column.id="ta_id" compareType="EQ" currentObjectType.id="TESTCASE" currentAttributeType.id="obj_id"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="deficiency_managerl2_sel" view.parameter="DISTINCT">
+		<viewObject id="deficiency_managerl2_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="deficiency_managerl2_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="deficiency_managerl2_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="deficiency_managerl2_sel_3" secondViewObject="deficiency_managerl2_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="deficiency_managerl2_sel_1" secondViewObject="deficiency_managerl2_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="DEFICIENCY" currentAttributeType.id="manager_group_l2"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="deficiencymanager_l2"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="deficiency_managerl3_sel" view.parameter="DISTINCT">
+		<viewObject id="deficiency_managerl3_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="deficiency_managerl3_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="deficiency_managerl3_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="deficiency_managerl3_sel_3" secondViewObject="deficiency_managerl3_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="deficiency_managerl3_sel_1" secondViewObject="deficiency_managerl3_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="DEFICIENCY" currentAttributeType.id="manager_group_l3"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="deficiencymanager_l3"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	<view id="deficiency2listprocess" view.parameter="DISTINCT">
+		<viewObject id="deficiency_listprocess_sel1" objectType="HIERARCHY" isMainViewObject="true" preserveRightCheck="object">
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="isroot" attributeType="isroot" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<condition viewObject.id="deficiency_listprocess_sel1" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="deficiency_listprocess_sel1" column.id="isroot" compareType="EQ" value="false"/>
+				<condition viewObject.id="deficiency_listprocess_sel1" column.id="type" compareType="IN" value="4"/>
+				<condition viewObject.id="deficiency_listprocess_sel1" column.id="description" compareType="LIKE"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+</custom>

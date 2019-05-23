@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+   <!-- BdB CUSTOMIZATION -->
+    <list id="incident2hierarchies_bb_product"
+          view.idref="incident2hierarchies_assignment"
+          filter.idref="incident2hierarchies_assignment"
+          idColumn.idref="hierarchy_obj_id"
+          versionColumn.idref="hierarchy_version"
+          defaultOrderColumn.idref="name"
+          frame="tabcontent"
+          relatedObjectType.idref="HIERARCHY"
+          srcDataType.idref="INCIDENT"
+          srcAttributeType.idref="bb_product"
+          rightsPath.datakind="transactiondata"
+          allowMarkAsIssueRelevant="true">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>            
+            <simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <listHeaderRow>
+            <listHeader column="name" propertyKey="tableheader.name" width="30%"/>
+            <listHeader column="description" propertyKey="tableheader.description" width="70%"/>
+        </listHeaderRow>
+        <column id="name" dataReference.idref="name" template="openObject">
+            <parameter name="idColumn" value="hierarchy_obj_id"/>
+            <parameter name="versionColumn" value="hierarchy_version"/>
+        </column>
+        <column id="description" dataReference.idref="description" />
+        <listButtons>
+            <buttonReference button.idref="PARENT_LIST_OPEN"/>
+            <buttonReference button.idref="LIST_ATTACH_DEST" function="aam_initlist('incident2hierarchies_bb_product_sel','tabcontent')"/>
+            <buttonReference button.idref="LIST_DETACH"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+            <buttonReference button.idref="LISTROW_DETACH"/>
+        </rowButtons>
+    </list>
+    
+    <list id="incident2hierarchies_bb_product_sel"
+          view.idref="incident2hierarchies_bb_product_sel"
+          filter.idref="incident2hierarchies_bb_product_sel"
+          idColumn.idref="hierarchy_obj_id"
+          defaultOrderColumn.idref="name"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY"
+          rightsPath.datakind="transactiondata"
+          destAttributeType.idref="bb_product"
+          destDataType.idref="INCIDENT"
+          allowMarkAsIssueRelevant="true">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>           
+            <simpleFilter filterRow.idref="description"/>            
+        </simpleFilterRow>
+        <listHeaderRow>
+            <listHeader column="name" propertyKey="tableheader.name.DBI" width="30%"/>                     
+            <listHeader column="description" propertyKey="tableheader.description.DBI" width="70%"/>           
+        </listHeaderRow>
+        <column id="name" dataReference.idref="name" template="openObject">
+            <parameter name="idColumn" value="hierarchy_obj_id"/>
+        </column>
+        <column id="description" dataReference.idref="description" />
+        <listButtons>
+            <buttonReference button.idref="BACK" function="aam_initlist('incident2hierarchies_bb_product','tabcontent')"/>
+            <buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+        </rowButtons>
+    </list> 
+    
+	<list id="incidents"
+          view.idref="createdIncidents"
+          filter.idref="incidents"
+          idColumn.idref="incident_id"
+          nameColumn.idref="incident_id"
+          defaultOrderColumn.idref="incident_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="INCIDENT"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.incidents.DBI">
+          
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="risk_name"/>
+			<simpleFilter filterRow.idref="entrydate"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="process_name"/>
+			<simpleFilter filterRow.idref="discoveryDate"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_INCIDENTS_1" propertyKey="tableheader.incident.id.DBI" width="8%"/>
+			<!-- <listHeader column="LC_INCIDENTS_2" propertyKey="tableheader.client" width="5%"/> -->
+			<listHeader column="LC_INCIDENTS_3" propertyKey="tableheader.incident.name" width="10%"/>
+			<listHeader column="LC_INCIDENTS_4" propertyKey="tableheader.incident.bb_tipoEvento.DBI" width="15%"/> 
+			<listHeader column="LC_INCIDENTS_5" propertyKey="tableheader.incident.riskname.DBI" width="10%"/> 
+			<listHeader column="LC_INCIDENTS_6" propertyKey="tableheader.incident.relevant.process.DBI" width="8%"/> 
+			<!-- <listHeader column="LC_INCIDENTS_4" propertyKey="tableheader.incident.ownergroup.DBI" width="15%"/> 
+			<listHeader column="LC_INCIDENTS_5" propertyKey="tableheader.incident.performed.by.DBI" width="10%"/> 
+			<listHeader column="LC_INCIDENTS_6" propertyKey="tableheader.incident.reviewergroup.DBI" width="8%"/> -->
+			<listHeader column="LC_INCIDENTS_10" propertyKey="tableheader.incident.bb_jurisdDiretoria.DBI" width="8%"/>
+			<listHeader column="LC_INCIDENTS_9" propertyKey="tableheader.incident.bb_gestorPerda.DBI" width="8%"/>
+			<listHeader column="LC_INCIDENTS_8" propertyKey="tableheader.incident.entrydate.DBI" width="10%"/>
+			<listHeader column="LC_INCIDENTS_7" propertyKey="tableheader.incident.discoverydate.DBI" width="10%"/> 
+			<!-- <listHeader column="LC_INCIDENTS_9" propertyKey="tableheader.incident.onwer.status.DBI" width="8%"/> 
+			<listHeader column="LC_INCIDENTS_10" propertyKey="tableheader.incident.reviewer.status.DBI" width="8%"/> 
+			<listHeader column="LC_INCIDENTS_11" propertyKey="tableheader.incident.pending.loss.DBI" width="8%"/> -->
+		</listHeaderRow>
+		<column id="LC_INCIDENTS_1" dataReference.idref="incident_id" template="openObject">
+			<parameter name="idColumn" value="incident_id"/>
+		</column>
+		<!-- <column id="LC_INCIDENTS_2" align="center" dataReference.idref="client_sign" /> -->
+		<column id="LC_INCIDENTS_3" dataReference.idref="name" />
+		<column id="LC_INCIDENTS_4" align="center" dataReference.idref="bb_tipoEvento" /> 
+		<column id="LC_INCIDENTS_5" align="center" dataReference.idref="risk_name" template="object" /> 
+		<column id="LC_INCIDENTS_6" align="center" dataReference.idref="process_name" template="object" />
+		<!-- <column id="LC_INCIDENTS_4" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column> 
+		<column id="LC_INCIDENTS_5" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column> 
+		<column id="LC_INCIDENTS_6" dataReference.idref="reviewerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="reviewerGroupDeactivated"/>
+		</column> -->
+		<column id="LC_INCIDENTS_10" align="center" dataReference.idref="bb_jurisdDiretoria_name" />
+		<column id="LC_INCIDENTS_9" align="center" dataReference.idref="bb_gestorPerda_name" />
+		<column id="LC_INCIDENTS_8" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_INCIDENTS_7" align="center" dataReference.idref="discoveryDateFrom" /> 
+		
+		<!-- <column id="LC_INCIDENTS_9" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column> 
+		<column id="LC_INCIDENTS_10" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showUnspecified" value="true"/>
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column> 
+		<column id="LC_INCIDENTS_11" align="right" dataReference.idref="pendingLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column> -->
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list> 
+	
+    <list id="IncidentOwner"
+          view.idref="openIncidents"
+          filter.idref="openincidents"
+          idColumn.idref="incident_id"
+          nameColumn.idref="incident_id"
+          defaultOrderColumn.idref="incident_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="INCIDENT"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.IncidentOwner.DBI">
+		<roleRestriction role="incidentowner"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="creationdate"/>
+		</simpleFilterRow>
+		
+		<!-- BdB CUSTOMIZATION
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="discoverydate"/>
+		</simpleFilterRow>
+		 -->
+		 
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="entrydate"/>
+        </simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_OPEN_INCIDENTS_1" propertyKey="tableheader.incident.id.DBI" width="8%"/>
+			<listHeader column="LC_OPEN_INCIDENTS_2" propertyKey="tableheader.client" width="5%"/>
+			<listHeader column="LC_OPEN_INCIDENTS_3" propertyKey="tableheader.name" width="10%"/>
+			<listHeader column="LC_OPEN_INCIDENTS_4" propertyKey="tableheader.incident.ownergroup.DBI" width="16%"/>		
+			<listHeader column="LC_OPEN_INCIDENTS_5" propertyKey="tableheader.incident.performed.by.DBI" width="13%"/>
+			
+			<!-- BdB CUSTOMIZATION			
+			<listHeader column="LC_OPEN_INCIDENTS_6" propertyKey="tableheader.incident.discoverydate.DBI" width="14%"/>
+			-->
+					
+			<listHeader column="LC_OPEN_INCIDENTS_7" propertyKey="tableheader.incident.entrydate.DBI" width="14%"/>
+			<listHeader column="LC_OPEN_INCIDENTS_8" propertyKey="tableheader.incident.onwer.status.DBI" width="10%"/>
+			
+			<!-- BdB CUSTOMIZATION		
+			<listHeader column="LC_OPEN_INCIDENTS_9" propertyKey="tableheader.incident.pending.loss.DBI" width="10%"/>
+			-->
+									
+		</listHeaderRow>
+		<column id="LC_OPEN_INCIDENTS_1" dataReference.idref="incident_id" template="openObject">
+			<parameter name="idColumn" value="incident_id"/>
+		</column>
+		<column id="LC_OPEN_INCIDENTS_2" align="center" dataReference.idref="client_sign" />
+		<column id="LC_OPEN_INCIDENTS_3" dataReference.idref="name" />
+		<column id="LC_OPEN_INCIDENTS_4" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>			
+		<column id="LC_OPEN_INCIDENTS_5" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_OPEN_INCIDENTS_6" align="center" dataReference.idref="discoveryDateFrom" />		
+		-->
+				
+		<column id="LC_OPEN_INCIDENTS_7" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_OPEN_INCIDENTS_8" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION		
+		<column id="LC_OPEN_INCIDENTS_9" align="right" dataReference.idref="pendingLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>		
+		-->
+		
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+		
+	<list id="acceptedIncident"
+          view.idref="acceptedIncidents"
+          filter.idref="acceptedincidents"
+          idColumn.idref="incident_id"
+          nameColumn.idref="incident_id"
+          defaultOrderColumn.idref="incident_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="INCIDENT"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.acceptedIncident.DBI">
+		<roleRestriction role="lossowner"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="creationdate"/>
+		</simpleFilterRow>
+		
+		<!-- BdB CUSTOMIZATION 
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>					
+			<simpleFilter filterRow.idref="discoverydate"/>
+		</simpleFilterRow>
+	    -->
+	    		
+		<simpleFilterRow>
+			<!-- <simpleFilter filterRow.idref="reviewer_status"/> -->
+			<simpleFilter filterRow.idref="entrydate"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_1" propertyKey="tableheader.incident.id.DBI" width="8%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_2" propertyKey="tableheader.client" width="5%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_3" propertyKey="tableheader.name" width="10%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_8" propertyKey="tableheader.incident.ownergroup.DBI" width="16%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_9" propertyKey="tableheader.incident.performed.by.DBI" width="13%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_4" propertyKey="tableheader.incident.discoverydate.DBI" width="11%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_5" propertyKey="tableheader.incident.entrydate.DBI" width="11%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_10" propertyKey="tableheader.incident.onwer.status.DBI" width="7%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_11" propertyKey="tableheader.incident.reviewer.status.DBI" width="7%"/>
+			<listHeader column="LC_ACCEPTED_INCIDENTS_7" propertyKey="tableheader.incident.pending.loss.DBI" width="12%"/>
+		</listHeaderRow>
+		<column id="LC_ACCEPTED_INCIDENTS_1" dataReference.idref="incident_id" template="openObject">
+			<parameter name="idColumn" value="incident_id"/>
+		</column>
+		<column id="LC_ACCEPTED_INCIDENTS_2" align="center" dataReference.idref="client_sign" />
+		<column id="LC_ACCEPTED_INCIDENTS_3" dataReference.idref="name" />
+		<column id="LC_ACCEPTED_INCIDENTS_8" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		<column id="LC_ACCEPTED_INCIDENTS_9" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_ACCEPTED_INCIDENTS_4" align="center" dataReference.idref="discoveryDateFrom" />
+		<column id="LC_ACCEPTED_INCIDENTS_5" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_ACCEPTED_INCIDENTS_10" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_ACCEPTED_INCIDENTS_11" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showUnspecified" value="true"/>
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_ACCEPTED_INCIDENTS_7" align="right" dataReference.idref="pendingLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="loss2incident_sel"
+          view.idref="loss2incident_sel"
+          filter.idref="loss2incident_sel"
+          idColumn.idref="incident_id"
+          nameColumn.idref="incident_id"
+          defaultOrderColumn.idref="incident_id"
+          destAttributeType.idref="incident"
+          destDataType.idref="LOSS"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="INCIDENT"
+          rightsPath.datakind="transactiondata"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="incident_id"/>
+            <simpleFilter filterRow.idref="creationdate"/>
+        </simpleFilterRow>
+        <!-- BdB CUSTOMIZATION -->        
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="entrydate"/>
+        </simpleFilterRow>      
+
+        <!-- BdB CUSTOMIZATION
+		<simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>        
+			<simpleFilter filterRow.idref="discoverydate"/>			
+        </simpleFilterRow>
+		<simpleFilterRow>
+            <simpleFilter filterRow.idref="entrydate"/>
+			<simpleFilter filterRow.idref="pendingLoss"/>			
+		</simpleFilterRow>
+		-->
+		
+		<listHeaderRow>
+			<listHeader column="LC_LOSS2INCIDENT_SEL_1" propertyKey="tableheader.incident.id.DBI" width="5%"/>
+			<listHeader column="LC_LOSS2INCIDENT_SEL_3" propertyKey="tableheader.name" width="20%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_LOSS2INCIDENT_SEL_4" propertyKey="tableheader.incident.discoverydate.DBI" width="6%"/>
+			-->
+			
+			<listHeader column="LC_LOSS2INCIDENT_SEL_5" propertyKey="tableheader.incident.entrydate.DBI" width="6%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_LOSS2INCIDENT_SEL_7" propertyKey="tableheader.incident.pending.loss.DBI" width="14%"/>		
+			<listHeader column="LC_LOSS2INCIDENT_SEL_8" propertyKey="tableheader.incident.ownergroup.DBI" width="20%"/>
+			-->
+			<listHeader column="LC_LOSS2INCIDENT_SEL_9" propertyKey="tableheader.incident.performed.by.DBI" width="20%"/>
+			<listHeader column="LC_LOSS2INCIDENT_SEL_10" propertyKey="tableheader.incident.onwer.status.DBI" width="9%"/>
+		</listHeaderRow>
+		<column id="LC_LOSS2INCIDENT_SEL_1" dataReference.idref="incident_id" template="object">
+			<parameter name="idColumn" value="incident_id"/>
+		</column>
+		<column id="LC_LOSS2INCIDENT_SEL_3" dataReference.idref="name" />
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_LOSS2INCIDENT_SEL_4" align="center" dataReference.idref="discoveryDateFrom" />
+		-->
+		
+		<column id="LC_LOSS2INCIDENT_SEL_5" align="center" dataReference.idref="entryDateFrom" />
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_LOSS2INCIDENT_SEL_7" align="right" dataReference.idref="pendingLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>			
+		<column id="LC_LOSS2INCIDENT_SEL_8" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		-->
+		
+		<column id="LC_LOSS2INCIDENT_SEL_9" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_LOSS2INCIDENT_SEL_10" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons/>
+		<rowButtons>
+            <buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="losses"
+          view.idref="createdLosses"
+          filter.idref="losses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.losses.DBI">
+            
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="incident_discoverydate"/>
+		</simpleFilterRow>
+		
+		<listHeaderRow>
+			<listHeader column="LC_LOSSES_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_3" propertyKey="tableheader.name" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_2" propertyKey="tableheader.loss.type" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_8" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_4" propertyKey="tableheader.incident.bb_qtdeEventos_int.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_12a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="12%"/>
+			<listHeader column="LC_LOSSES_5" propertyKey="tableheader.loss.bb_saldo.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_LOSSES_12b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="12%"/> 
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_LOSSES_6" propertyKey="tableheader.loss.performed.by.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_LOSSES_7" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="4%"/> -->
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_LOSSES_9" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.actual.total.loss.DBI" width="8%"/> -->
+			<!-- BdB CUSTOMIZATION 
+			<listHeader colSpan="2" propertyKey="tableheader.loss.relevant.for.DBI" width="16%"/>
+			<listHeader column="LC_LOSSES_10" propertyKey="tableheader.loss.owner.status.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_LOSSES_11" propertyKey="tableheader.loss.reviewer.status.DBI" rowSpan="2" width="5%"/> -->
+		</listHeaderRow>
+		<!--  
+		<listHeaderRow>					
+			<listHeader column="LC_LOSSES_13a" propertyKey="tableheader.loss.appsys.short.DBI" tooltip="tableheader.loss.appsys.DBI" width="4%"/>
+			<listHeader column="LC_LOSSES_13b" propertyKey="tableheader.loss.finacc.short.DBI" tooltip="tableheader.loss.finacc.DBI" width="4%"/>		
+			<listHeader column="LC_LOSSES_13c" propertyKey="tableheader.loss.orgunit.short.DBI" tooltip="tableheader.loss.orgunit.DBI" width="4%"/>
+			<listHeader column="LC_LOSSES_13d" propertyKey="tableheader.loss.process.short.DBI" tooltip="tableheader.loss.process.DBI" width="4%"/>
+		</listHeaderRow> -->
+
+		<column id="LC_LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_LOSSES_3" dataReference.idref="name" />
+		<column id="LC_LOSSES_2" align="center" dataReference.idref="type" /> 
+		<column id="LC_LOSSES_8" align="center" dataReference.idref="discoveryDateFrom" />
+		<column id="LC_LOSSES_4" dataReference.idref="bb_qtdeEventos_int"/>
+		<column id="LC_LOSSES_12a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_LOSSES_5" align="right" dataReference.idref="bb_saldo"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_LOSSES_12b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_LOSSES_5" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+	
+		<column id="LC_LOSSES_6" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_LOSSES_7" align="center" dataReference.idref="type" >
+            <parameter name="showText" value="true"/>
+        </column> -->
+        
+        <!-- BdB CUSTOMIZATION
+		<column id="LC_LOSSES_9" align="center" dataReference.idref="entryDateFrom" /> -->
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_LOSSES_13a" align="center" dataReference.idref="relevantForAppSysEval" >
+			<parameter name="showText" value="false"/>
+		</column>		
+		<column id="LC_LOSSES_13b" align="center" dataReference.idref="relevantForFinAccEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		
+		<column id="LC_LOSSES_13c" align="center" dataReference.idref="relevantForOrgUnitEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_LOSSES_13d" align="center" dataReference.idref="relevantForProcessEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_LOSSES_10" align="center" dataReference.idref="owner_status" />
+		<column id="LC_LOSSES_11" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showUnspecified" value="true"/>
+		</column> -->
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="LossOwner"
+          view.idref="openLosses"
+          filter.idref="openlosses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.LossOwner.DBI"
+            >
+		<roleRestriction role="lossowner"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="type"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="incident_id"/>
+			<!-- <simpleFilter filterRow.idref="owner_status"/> -->
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_OPEN_LOSSES_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="7%"/>
+			<listHeader column="LC_OPEN_LOSSES_2" propertyKey="tableheader.client" rowSpan="2" width="5%"/>
+			<listHeader column="LC_OPEN_LOSSES_3" propertyKey="tableheader.name" rowSpan="2" width="9%"/>
+			<listHeader column="LC_OPEN_LOSSES_7" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_OPEN_LOSSES_4" propertyKey="tableheader.incident.DBI" rowSpan="2" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_OPEN_LOSSES_8" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="8%"/>
+			-->
+			
+			<listHeader column="LC_OPEN_LOSSES_9" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="8%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_OPEN_LOSSES_5" propertyKey="tableheader.loss.ownergroup.DBI" rowSpan="2" width="8%"/>
+			-->
+			
+			<listHeader column="LC_OPEN_LOSSES_6" propertyKey="tableheader.loss.performed.by.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_OPEN_LOSSES_10" propertyKey="tableheader.loss.owner.status.DBI" rowSpan="2" width="7%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.actual.total.loss.DBI" width="10%"/>
+			
+			<!-- BdB CUSTOMIZATION -->
+			<listHeader colSpan="2" propertyKey="tableheader.loss.relevant.for.DBI" width="20%"/>
+			
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_OPEN_LOSSES_11a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="5%"/>
+			<listHeader column="LC_OPEN_LOSSES_11b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_OPEN_LOSSES_12a" propertyKey="tableheader.loss.appsys.short.DBI" tooltip="tableheader.loss.appsys.DBI" width="5%"/>
+			<listHeader column="LC_OPEN_LOSSES_12b" propertyKey="tableheader.loss.finacc.short.DBI" tooltip="tableheader.loss.finacc.DBI" width="5%"/>
+			-->
+			
+			<listHeader column="LC_OPEN_LOSSES_12c" propertyKey="tableheader.loss.orgunit.short.DBI" tooltip="tableheader.loss.orgunit.DBI" width="5%"/>
+			<listHeader column="LC_OPEN_LOSSES_12d" propertyKey="tableheader.loss.process.short.DBI" tooltip="tableheader.loss.process.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_OPEN_LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_2" align="center" dataReference.idref="client_sign" />
+		<column id="LC_OPEN_LOSSES_3" dataReference.idref="name" />
+		<column id="LC_OPEN_LOSSES_7" align="center" dataReference.idref="type" >
+            <parameter name="showText" value="true"/>
+        </column>
+		<column id="LC_OPEN_LOSSES_4" dataReference.idref="incident_name" template="object">
+			<parameter name="deactivatedColumn" value="incident_deactivated"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_OPEN_LOSSES_8" align="center" dataReference.idref="discoveryDateFrom" />
+		-->
+		
+		<column id="LC_OPEN_LOSSES_9" align="center" dataReference.idref="entryDateFrom" />
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_OPEN_LOSSES_5" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		-->
+		
+		<column id="LC_OPEN_LOSSES_6" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_10" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_11a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_11b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_OPEN_LOSSES_12a" align="center" dataReference.idref="relevantForAppSysEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_12b" align="center" dataReference.idref="relevantForFinAccEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		-->
+		
+		<column id="LC_OPEN_LOSSES_12c" align="center" dataReference.idref="relevantForOrgUnitEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_OPEN_LOSSES_12d" align="center" dataReference.idref="relevantForProcessEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_CREATE"/>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="LossReviewer"
+          view.idref="reviewLosses"
+          filter.idref="reviewlosses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.LossReviewer.DBI">
+		<roleRestriction role="lossreviewer"/>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="type"/>
+		</simpleFilterRow>
+		<!-- <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+        </simpleFilterRow> -->
+		<listHeaderRow>
+			<listHeader column="LC_REVIEW_LOSSES_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="7%"/>
+			<listHeader column="LC_REVIEW_LOSSES_2" propertyKey="tableheader.client" rowSpan="2" width="5%"/>
+			<listHeader column="LC_REVIEW_LOSSES_3" propertyKey="tableheader.name" rowSpan="2" width="11%"/>
+			<listHeader column="LC_REVIEW_LOSSES_4" propertyKey="tableheader.incident.DBI" rowSpan="2" width="10%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_REVIEW_LOSSES_5" propertyKey="tableheader.loss.ownergroup.DBI" rowSpan="2" width="8%"/>
+			-->
+			
+			<listHeader column="LC_REVIEW_LOSSES_6" propertyKey="tableheader.loss.performed.by.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_REVIEW_LOSSES_7" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_REVIEW_LOSSES_8" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="6%"/>
+			-->
+			
+			<listHeader column="LC_REVIEW_LOSSES_9" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="6%"/>
+			<listHeader column="LC_REVIEW_LOSSES_10" propertyKey="tableheader.loss.owner.status.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_REVIEW_LOSSES_11" propertyKey="tableheader.loss.reviewer.status.DBI" rowSpan="2" width="5%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.actual.total.loss.DBI" width="8%"/>
+			
+			<!-- BdB CUSTOMIZATION -->
+			<listHeader colSpan="2" propertyKey="tableheader.loss.relevant.for.DBI" width="16%"/>
+			
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_REVIEW_LOSSES_12a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="4%"/>
+			<listHeader column="LC_REVIEW_LOSSES_12b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="4%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_REVIEW_LOSSES_13a" propertyKey="tableheader.loss.appsys.short.DBI" tooltip="tableheader.loss.appsys.DBI" width="4%"/>
+			<listHeader column="LC_REVIEW_LOSSES_13b" propertyKey="tableheader.loss.finacc.short.DBI" tooltip="tableheader.loss.finacc.DBI" width="4%"/>
+			-->
+			
+			<listHeader column="LC_REVIEW_LOSSES_13c" propertyKey="tableheader.loss.orgunit.short.DBI" tooltip="tableheader.loss.orgunit.DBI" width="4%"/>
+			<listHeader column="LC_REVIEW_LOSSES_13d" propertyKey="tableheader.loss.process.short.DBI" tooltip="tableheader.loss.process.DBI" width="4%"/>
+		</listHeaderRow>
+		<column id="LC_REVIEW_LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_2" align="center" dataReference.idref="client_sign" />
+		<column id="LC_REVIEW_LOSSES_3" dataReference.idref="name" />
+		<column id="LC_REVIEW_LOSSES_4" dataReference.idref="incident_name" template="object">
+			<parameter name="deactivatedColumn" value="incident_deactivated"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_REVIEW_LOSSES_5" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		-->
+		
+		<column id="LC_REVIEW_LOSSES_6" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_7" align="center" dataReference.idref="type" >
+            <parameter name="showText" value="true"/>
+        </column>
+        
+        <!-- BdB CUSTOMIZATION
+		<column id="LC_REVIEW_LOSSES_8" align="center" dataReference.idref="discoveryDateFrom" />
+		-->
+		
+		<column id="LC_REVIEW_LOSSES_9" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_REVIEW_LOSSES_10" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_11" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showUnspecified" value="true"/>
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_12a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_12b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_REVIEW_LOSSES_13a" align="center" dataReference.idref="relevantForAppSysEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_13b" align="center" dataReference.idref="relevantForFinAccEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		-->
+		
+		<column id="LC_REVIEW_LOSSES_13c" align="center" dataReference.idref="relevantForOrgUnitEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_REVIEW_LOSSES_13d" align="center" dataReference.idref="relevantForProcessEval" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+
+	<list id="risk2losses"
+          view.idref="risk2Losses"
+          filter.idref="risk2losses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          controlName="list_risk2losses"
+          frame="tabcontent"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="creationdate"/>
+        </simpleFilterRow>
+        
+        <!-- BdB CUSTOMIZATION
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="discoverydate"/>
+		</simpleFilterRow>
+		 -->
+		 
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="incident_name"/>
+			<!-- <simpleFilter filterRow.idref="entrydate"/> -->
+        </simpleFilterRow>
+		<!-- <simpleFilterRow>
+            <simpleFilter filterRow.idref="owner_status"/>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+        </simpleFilterRow> -->
+		<listHeaderRow>
+			<listHeader column="LC_RISK2LOSSES_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_RISK2LOSSES_2" propertyKey="tableheader.name" rowSpan="2" width="15%"/>
+			<listHeader column="LC_RISK2LOSSES_3" propertyKey="tableheader.incident.DBI" rowSpan="2" width="10%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_RISK2LOSSES_4" propertyKey="tableheader.loss.ownergroup.DBI" rowSpan="2" width="12%"/>
+			-->
+			
+			<listHeader column="LC_RISK2LOSSES_5" propertyKey="tableheader.loss.performed.by.DBI" rowSpan="2" width="10%"/>
+			<listHeader column="LC_RISK2LOSSES_6" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_RISK2LOSSES_7" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="10%"/>
+			-->
+			
+			<listHeader column="LC_RISK2LOSSES_8" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="10%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.actual.total.loss.DBI" width="20%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_RISK2LOSSES_9a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="10%"/>
+			<listHeader column="LC_RISK2LOSSES_9b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_RISK2LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_RISK2LOSSES_2" dataReference.idref="name" />
+		<column id="LC_RISK2LOSSES_3" dataReference.idref="incident_name" template="object">
+			<parameter name="deactivatedColumn" value="incident_deactivated"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_RISK2LOSSES_4" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		-->
+		
+		<column id="LC_RISK2LOSSES_5" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_RISK2LOSSES_6" align="center" dataReference.idref="type" />
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_RISK2LOSSES_7" align="center" dataReference.idref="discoveryDateFrom" />
+		-->
+		
+		<column id="LC_RISK2LOSSES_8" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_RISK2LOSSES_9a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_RISK2LOSSES_9b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="PARENT_LIST_OPEN"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+
+	<list id="hierarchy2losses"
+          view.idref="hierarchy2Losses"
+          filter.idref="hierarchy2losses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          frame="content.tabcontent"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata"
+          ignoreRoleRestriction="true"
+          allowMarkAsIssueRelevant="true">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="subordinated"/>
+            <simpleFilter filterRow.idref="name"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="reviewer_status"/>
+		</simpleFilterRow>
+		<simpleFilterRow>			
+			<simpleFilter filterRow.idref="type"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_HIERARCHY2LOSSES_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_2" propertyKey="tableheader.name" rowSpan="2" width="12%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_3" propertyKey="tableheader.incident.DBI" rowSpan="2" width="12%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_HIERARCHY2LOSSES_4" propertyKey="tableheader.loss.ownergroup.DBI" rowSpan="2" width="10%"/>
+			-->
+			
+			<listHeader column="LC_HIERARCHY2LOSSES_5" propertyKey="tableheader.loss.performed.by.DBI" rowSpan="2" width="10%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_6" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="5%"/>
+			
+			<!-- BdB CUSTOMIZATION
+			<listHeader column="LC_HIERARCHY2LOSSES_7" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="8%"/>
+			-->
+			
+			<listHeader column="LC_HIERARCHY2LOSSES_8" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_9" propertyKey="tableheader.loss.owner.status.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_10" propertyKey="tableheader.loss.reviewer.status.DBI" rowSpan="2" width="5%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.actual.total.loss.DBI" width="20%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_HIERARCHY2LOSSES_11a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="10%"/>
+			<listHeader column="LC_HIERARCHY2LOSSES_11b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="10%"/>
+		</listHeaderRow>
+		<column id="LC_HIERARCHY2LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_HIERARCHY2LOSSES_2" dataReference.idref="name" />
+		<column id="LC_HIERARCHY2LOSSES_3" dataReference.idref="incident_name" template="object">
+			<parameter name="deactivatedColumn" value="incident_deactivated"/>
+		</column>
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_HIERARCHY2LOSSES_4" dataReference.idref="ownerGroupName" template="object">
+			<parameter name="deactivatedColumn" value="ownerGroupDeactivated"/>
+		</column>
+		-->
+		
+		<column id="LC_HIERARCHY2LOSSES_5" dataReference.idref="performedBy_name" template="userSubstitute">
+			<parameter name="substitute" value="substitute_name"/>
+			<parameter name="deactivatedProperty" value="performedBy_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_HIERARCHY2LOSSES_6" align="center" dataReference.idref="type" />
+		
+		<!-- BdB CUSTOMIZATION
+		<column id="LC_HIERARCHY2LOSSES_7" align="center" dataReference.idref="discoveryDateFrom" />
+		-->
+		
+		<column id="LC_HIERARCHY2LOSSES_8" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_HIERARCHY2LOSSES_9" align="center" dataReference.idref="owner_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HIERARCHY2LOSSES_10" align="center" dataReference.idref="reviewer_status" >
+			<parameter name="showImage" value="true"/>
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_HIERARCHY2LOSSES_11a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_HIERARCHY2LOSSES_11b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<listButtons/>
+		<rowButtons/>
+	</list>
+
+	<list id="incident2losses"
+          view.idref="incident2Losses"
+          filter.idref="incident2losses"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          destAttributeType.idref="incident"
+          destDataType.idref="LOSS"
+          frame="tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata">
+		<simpleFilterRow>
+			<!-- <simpleFilter filterRow.idref="loss_id"/> -->
+			<simpleFilter filterRow.idref="type"/>
+			<!-- <simpleFilter filterRow.idref="owner_status"/> -->
+			<simpleFilter filterRow.idref="incident_discoverydate"/>
+        </simpleFilterRow>
+        <!-- BdB CUSTOMIZATION
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="discoverydate"/>
+        </simpleFilterRow>
+        -->
+        
+		<!-- <simpleFilterRow>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+			<simpleFilter filterRow.idref="entrydate"/>
+        </simpleFilterRow> -->
+        
+		<!-- BdB CUSTOMIZATION
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="ownerGroupName"/>
+        </simpleFilterRow>
+         -->
+		<listHeaderRow>
+			<listHeader column="LC_INCIDENT2LOSSES_1" 	propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_3" 	propertyKey="tableheader.name" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_2" 	propertyKey="tableheader.loss.type" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_8" 	propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_4" 	propertyKey="tableheader.incident.bb_qtdeEventos_int.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_12a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_5" 	propertyKey="tableheader.loss.bb_saldo.DBI" rowSpan="2" width="12%"/>
+			<listHeader column="LC_INCIDENT2LOSSES_12b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="12%"/>
+		</listHeaderRow>
+
+		<column id="LC_INCIDENT2LOSSES_1" dataReference.idref="loss_id" template="openObject">
+			<parameter name="idColumn" value="loss_id"/>
+		</column>
+		<column id="LC_INCIDENT2LOSSES_3" dataReference.idref="name" />
+		<column id="LC_INCIDENT2LOSSES_2" align="center" dataReference.idref="type" /> 
+		<column id="LC_INCIDENT2LOSSES_8" align="center" dataReference.idref="discoveryDateFrom" />
+		<column id="LC_INCIDENT2LOSSES_4" dataReference.idref="bb_qtdeEventos_int"/>
+		<column id="LC_INCIDENT2LOSSES_12a" align="right" dataReference.idref="grossActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_INCIDENT2LOSSES_5" align="right" dataReference.idref="bb_saldo"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_INCIDENT2LOSSES_12b" align="right" dataReference.idref="netActTotalLoss"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_NEW"/>
+			<buttonReference button.idref="PARENT_LIST_OPEN"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>
+	</list>
+
+    <list id="incident2hierarchies_category"
+          view.idref="incident2hierarchies_category"
+          filter.idref="incident2hierarchies_assignment"
+          idColumn.idref="hierarchy_obj_id"
+          versionColumn.idref="hierarchy_version"
+          defaultOrderColumn.idref="name"
+          frame="tabcontent"
+          relatedObjectType.idref="HIERARCHY"
+          srcDataType.idref="INCIDENT"
+          srcAttributeType.idref="risk_category"
+          rightsPath.datakind="transactiondata"
+          allowMarkAsIssueRelevant="true">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <listHeaderRow>
+            <listHeader column="name" propertyKey="tableheader.name" width="30%"/>
+            <listHeader column="description" propertyKey="tableheader.description" width="70%"/>
+        </listHeaderRow>
+        <column id="name" dataReference.idref="name" template="openObject">
+            <parameter name="idColumn" value="hierarchy_obj_id"/>
+            <parameter name="versionColumn" value="hierarchy_version"/>
+        </column>
+        <column id="description" dataReference.idref="description" />
+        <listButtons>
+            <buttonReference button.idref="PARENT_LIST_OPEN"/>
+            <buttonReference button.idref="LIST_ATTACH_DEST" function="aam_initlist('incident2hierarchies_category_sel','tabcontent')"/>
+            <buttonReference button.idref="LIST_DETACH"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+            <buttonReference button.idref="LISTROW_DETACH"/>
+        </rowButtons>
+    </list>
+    <list id="riskassessment2LossesPopup"
+          view.idref="riskassessment2Losses"
+          filter.idref="riskassessment2LossesPopup"
+          idColumn.idref="loss_id"
+          nameColumn.idref="loss_id"
+          defaultOrderColumn.idref="loss_id"
+          frame="popup"
+          relatedObjectType.idref="LOSS"
+          rightsPath.datakind="transactiondata">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+            <simpleFilter filterRow.idref="entrydate"/>
+        </simpleFilterRow>		
+		<simpleFilterRow>
+            <simpleFilter filterRow.idref="owner_status"/>
+            <simpleFilter filterRow.idref="reviewer_status"/>
+        </simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_1" propertyKey="tableheader.loss.id.DBI" rowSpan="2" width="8%"/>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_2" propertyKey="tableheader.name" rowSpan="2" width="25%"/>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_7" propertyKey="tableheader.loss.type.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_8" propertyKey="tableheader.loss.discoverydate.DBI" rowSpan="2" width="11%"/>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_9" propertyKey="tableheader.loss.entrydate.DBI" rowSpan="2" width="11%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.loss.risk.related.loss.DBI" width="40%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_10a" propertyKey="tableheader.loss.gross.actual.total.loss.DBI" width="20%"/>
+			<listHeader column="LC_RISKASSESSMENT2LOSSES_POPUP_10b" propertyKey="tableheader.loss.net.actual.total.loss.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_1" dataReference.idref="loss_id" template="openObject"/>
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_2" dataReference.idref="name" />
+        <column id="LC_RISKASSESSMENT2LOSSES_POPUP_7" align="center" dataReference.idref="type" />
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_8" align="center" dataReference.idref="controlstartdate" />
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_9" align="center" dataReference.idref="entryDateFrom" />
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_10a" align="right" dataReference.idref="risk_grossActual"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<column id="LC_RISKASSESSMENT2LOSSES_POPUP_10b" align="right" dataReference.idref="risk_netActual"  template="stringEnum">
+			<parameter name="enumProperty" value="currency"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_COPY_LOSSVALUES"/>
+		</listButtons>
+        <rowButtons>
+            <buttonReference button.idref="LISTROW_COPY_LOSSVALUES"/>
+        </rowButtons>
+	</list>
+	
+</custom>

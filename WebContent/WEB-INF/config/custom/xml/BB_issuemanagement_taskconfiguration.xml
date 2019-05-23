@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <task id="issue_creator" objectType.idref="ISSUE" role.idref="issuecreator">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_creators_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreation"/>
+            <completed workflowState.idrefs="openForCreationFaultLogMgmtApprL1,openForCreationFaultLogMgmtApprL2,openForCreationManifestationImplApprL1,openForCreationExtrapolationMgmtApprL1,openForCreationSADMgmtApprL2,openForCreationTechRecommendationMgmtApprL1,openForCreationActionImplApprL1,openForCreationDealingDeadlineImplApprL2"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: FAULT LOG -->
+    <task id="openForCreationFaultLogMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationFaultLogMgmtApprL1"/>
+            <completed workflowState.idrefs="openForCreationFaultLogImplApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: FAULT LOG -->
+    <task id="openForCreationFaultLogMgmtApprL2" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationFaultLogMgmtApprL2"/>
+            <completed workflowState.idrefs="openForCreationFaultLogImplApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: FAULT LOG -->
+    <task id="openForCreationFaultLogImplApprL1" objectType.idref="ISSUE" role.idref="issueimplapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationFaultLogImplApprL1"/>
+            <completed workflowState.idrefs="creationFaultLogClosedByImplApprL1"/>
+            <notCompleted workflowState.idrefs=""/> 
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_implApproverL1_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+    
+    <!-- issueType: MANIFESTATION -->
+    <task id="openForCreationManifestationImplApprL1" objectType.idref="ISSUE" role.idref="issueimplapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationManifestationImplApprL1"/>
+            <completed workflowState.idrefs="openForCreationManifestationMgmtApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: MANIFESTATION -->
+    <task id="openForCreationManifestationMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationManifestationMgmtApprL1"/>
+            <completed workflowState.idrefs="creationManifestationClosedByMgmtApprL1"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_mgmtApproverL1_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: EXTRAPOLATION -->
+    <task id="openForCreationExtrapolationMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationExtrapolationMgmtApprL1"/>
+            <completed workflowState.idrefs="openForCreationExtrapolationImplApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+    
+    <!-- issueType: EXTRAPOLATION -->
+    <task id="openForCreationExtrapolationImplApprL2" objectType.idref="ISSUE" role.idref="issueimplapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationExtrapolationImplApprL2"/>
+            <completed workflowState.idrefs="creationExtrapolationClosedByImplApprL2"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_implApproverL2_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: SAD -->
+    <task id="openForCreationSADMgmtApprL2" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationSADMgmtApprL2"/>
+            <completed workflowState.idrefs="creationSADClosedByMgmtApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION -->
+    <task id="openForCreationTechRecommendationMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationTechRecommendationMgmtApprL1"/>
+            <completed workflowState.idrefs="openForCreationTechRecommendationMgmtApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION -->
+    <task id="openForCreationTechRecommendationMgmtApprL2" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationTechRecommendationMgmtApprL2"/>
+            <completed workflowState.idrefs="openForCreationTechRecommendationImplApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION -->
+    <task id="openForCreationTechRecommendationImplApprL1" objectType.idref="ISSUE" role.idref="issueimplapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationTechRecommendationImplApprL1"/>
+            <completed workflowState.idrefs="openForCreationExecutableIssueTechApprL1,openForCreationExecutableIssueImplApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: ACTION -->
+    <task id="openForCreationActionImplApprL1" objectType.idref="ISSUE" role.idref="issueimplapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationActionImplApprL1"/>
+            <completed workflowState.idrefs="openForCreationExecutableIssueTechApprL1,openForCreationExecutableIssueImplApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForCreationExecutableIssueTechApprL1" objectType.idref="ISSUE" role.idref="issuetechapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_techApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationExecutableIssueTechApprL1"/>
+            <completed workflowState.idrefs="openForCreationExecutableIssueTechApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_techApproverL1_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForCreationExecutableIssueTechApprL2" objectType.idref="ISSUE" role.idref="issuetechapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_techApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationExecutableIssueTechApprL2"/>
+            <completed workflowState.idrefs="openForCreationExecutableIssueImplApprL2,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_techApproverL2_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>  
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForCreationExecutableIssueImplApprL2" objectType.idref="ISSUE" role.idref="issueimplapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationExecutableIssueImplApprL2"/>
+            <completed workflowState.idrefs="openForExecution,openForCreationActionMgmtApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_implApproverL2_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: ACTION -->
+    <task id="openForCreationActionMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationActionMgmtApprL1"/>
+            <completed workflowState.idrefs="openForExecution,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_mgmtApproverL1_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="issue_owner" objectType.idref="ISSUE" role.idref="issueowner">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_owners_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForExecution"/>
+            <completed workflowState.idrefs="openForExecutionExecutableIssueImplApprL1"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+            <monitorLevel type="percentage" value="100">
+                <monitorChange objectAttribute.idref="stateTime" value="overdue"/>
+            </monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForExecutionExecutableIssueImplApprL1" objectType.idref="ISSUE" role.idref="issueimplapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForExecutionExecutableIssueImplApprL1"/>
+            <completed workflowState.idrefs="openForExecutionExecutableIssueImplApprL2,openForReview,openForExecution"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForExecutionExecutableIssueImplApprL2" objectType.idref="ISSUE" role.idref="issueimplapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForExecutionExecutableIssueImplApprL2"/>
+            <completed workflowState.idrefs="openForReviewExecutableIssueMgmtApprL1,openForExecution"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="issue_reviewer" objectType.idref="ISSUE" role.idref="issuereviewer">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_reviewers_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForReview"/>
+            <completed workflowState.idrefs="openForReviewExecutableIssueMgmtApprL1"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForReviewExecutableIssueMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForReviewExecutableIssueMgmtApprL1"/>
+            <completed workflowState.idrefs="openForReviewExecutableIssueMgmtApprL2,closedByMgmtApprL1,openForReview,openForExecution"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+    <task id="openForReviewExecutableIssueMgmtApprL2" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForReviewExecutableIssueMgmtApprL2"/>
+            <completed workflowState.idrefs="closedByMgmtApprL2,openForExecution"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: DEALING_DEADLINE -->
+    <task id="openForCreationDealingDeadlineImplApprL2" objectType.idref="ISSUE" role.idref="issueimplapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_implApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationDealingDeadlineImplApprL2"/>
+            <completed workflowState.idrefs="openForCreationDealingDeadlineTechApprL1,openForCreationDealingDeadlineMgmtApprL1,openForCreation"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: DEALING_DEADLINE -->
+    <task id="openForCreationDealingDeadlineTechApprL1" objectType.idref="ISSUE" role.idref="issuetechapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_techApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationDealingDeadlineTechApprL1"/>
+            <completed workflowState.idrefs="openForCreationDealingDeadlineMgmtApprL1"/>
+            <notCompleted workflowState.idrefs=""/>
+        </taskState>
+        <monitorStrategy>
+        	<timeRanges>
+        		<executionPeriod fromObjectAttribute.idref="bb_taskItemStartDate" toObjectAttribute.idref="bb_taskItemEndDate"/>
+        		<controlPeriod fromObjectAttribute.idref="controlstartdate" toObjectAttribute.idref="controlenddate"/>
+        	</timeRanges>
+        	<monitorLevel type="percentage" value="100">
+        		<monitorChange objectAttribute.idref="bb_techApproverL1_status" value="auto_accepted"/>
+        	</monitorLevel>
+        </monitorStrategy>
+    </task>
+
+    <!-- issueType: DEALING_DEADLINE -->
+    <task id="openForCreationDealingDeadlineMgmtApprL1" objectType.idref="ISSUE" role.idref="issuemgmtapproverl1">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL1_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationDealingDeadlineMgmtApprL1"/>
+            <completed workflowState.idrefs="openForCreationDealingDeadlineMgmtApprL2"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+    <!-- issueType: DEALING_DEADLINE -->
+    <task id="openForCreationDealingDeadlineMgmtApprL2" objectType.idref="ISSUE" role.idref="issuemgmtapproverl2">
+        <responsibility>
+            <assignedUsergroup objectAttribute.idref="bb_mgmtApproverL2_group"/>
+        </responsibility>
+        <taskState>
+            <open workflowState.idrefs="openForCreationDealingDeadlineMgmtApprL2"/>
+            <completed workflowState.idrefs="creationDealingDeadlineClosedByMgmtApprL2"/>
+            <notCompleted workflowState.idrefs=""/>
+            <!-- no monitor strategy which would lead to this state -->
+        </taskState>
+    </task>
+
+</custom>

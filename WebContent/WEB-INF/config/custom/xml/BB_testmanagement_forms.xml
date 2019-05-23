@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<form id="FORM_CONTROL">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="control" licensedComponentIds="tm">
+            <rowGroup id="control.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <!-- BdB CUSTOMIZATION 
+                <row id="bb_processoControle">
+                    <element attribute.idref="bb_processoControle" />
+                </row> 
+                -->
+                <row id="BB_control_process">
+                    <element attribute.idref="BB_control_process">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>               
+                <row id="control_id">
+                    <element attribute.idref="control_id" />
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="control_objective">
+                    <element attribute.idref="control_objective" />
+                </row>
+                <row id="key_control">
+                    <element attribute.idref="key_control" />
+                </row>
+                <row id="control_type">
+                    <element attribute.idref="control_type" />
+                </row>
+                <row id="control_owner_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="control_manager_group_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="controls">
+                    <element attribute.idref="controls" />
+                </row>
+                <row id="control_frequency">
+                    <element attribute.idref="control_frequency" />
+                </row>
+                <row id="control_execution">
+                    <element attribute.idref="control_execution" />
+                </row>
+                <row id="control_effect">
+                    <element attribute.idref="control_effect" />
+                </row>
+                <row id="bb_afirmacoesControle">
+                    <element attribute.idref="bb_afirmacoesControle" />
+                </row>
+                <row id="bb_controlAssertions">
+                    <element attribute.idref="bb_controlAssertions" />
+                </row>
+                <row id="bb_appSystems">
+                    <element attribute.idref="bb_appSystems">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_riskfactor">
+                    <element attribute.idref="bb_riskfactor">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>                
+                <row id="bb_planilhaDept">
+                    <element attribute.idref="bb_planilhaDept" />
+                </row>                               
+                <row id="bb_evidenciasControle">
+                    <element attribute.idref="bb_evidenciasControle" />
+                </row>
+                <row id="bb_nivelControle">
+                    <element attribute.idref="bb_nivelControle" />
+                </row>
+                <row id="bb_scope">
+                    <element attribute.idref="bb_scope" />
+                </row>
+                <row id="bb_salvaAtivos">
+                    <element attribute.idref="bb_salvaAtivos" />
+                </row>
+                <row id="bb_controleAntifraude">
+                    <element attribute.idref="bb_controleAntifraude" />
+                </row>
+                <row id="bb_conformidade">
+                    <element attribute.idref="bb_conformidade" />
+                </row>
+                <row id="bb_riscoFalha">
+                    <element attribute.idref="bb_riscoFalha">
+                    	<parameter name="mode" value="radio_inline"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_TESTCASE">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="testcase"  licensedComponentIds="tm">
+            <rowGroup id="testcase.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <!-- BdB don't want such property as visible.
+                <row id="process_model_name" propertyKey="form.row.process.DBI">
+                    <element attribute.idref="process" template="childAttribute">
+                        <parameter name="listAttribute1" value="model_name"/>
+                    </element>
+                </row>
+                -->
+                <row id="BB_control_process">
+                    <element attribute.idref="BB_control_process">
+                    	<button.add button.idref="OBJECTLINK" location="row"/>
+                        <button.add button.idref="MODELLINK" location="row"/>
+                        <button.add button.idref="CONNECTLINK" location="row"/>
+                    </element>
+                </row>
+                <!-- 
+                <row id="process">
+                    <element attribute.idref="process">
+                        <button.add button.idref="OBJECTLINK" location="row"/>
+                        <button.add button.idref="MODELLINK" location="row"/>
+                    </element>
+                </row>
+                 -->
+                <row id="risk">
+                    <element attribute.idref="risk" />
+                </row>
+                <row id="control">
+                    <element attribute.idref="control" />
+                </row>
+                <row id="testdefinition">
+                    <element attribute.idref="testdefinition" >
+                        <parameter name="selectionList" value="AUTO" />
+                    </element>
+                </row>
+                <row id="predecessor">
+                    <element attribute.idref="predecessor" />
+                </row>
+                <row id="followup">
+                    <element attribute.idref="followup" />
+                </row>
+            </rowGroup>
+            <rowGroup id="testcase.2">
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <!-- BdB don't want such property as visible.
+                <row id="type">
+                    <element attribute.idref="type" />
+                </row>
+                -->
+                <row id="testing_periode" propertyKey="form.row.testing.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="plannedstartdate" />
+                        <element attribute.idref="plannedenddate" />
+                    </cell>
+                </row>
+                <row id="execution_date">
+                    <element attribute.idref="execution_date" />
+                </row>
+                <row id="control_periode" propertyKey="form.row.control.period.DBI">
+                    <cell separator="{td}">
+                        <element name="controlstartdate_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="controlstartdate" />
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="controlenddate_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="controlenddate" />
+                    </cell>
+                </row>
+                <row id="ciclo_avaliatorio" propertyKey="attribute.TESTCASE.ciclo_avaliatorio.DBI">
+                    <cell separator="{td}">
+                        <element name="bb_inicioClicloAvaliatorio_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_inicioClicloAvaliatorio" />
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="bb_fimClicloAvaliatorio_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="bb_fimClicloAvaliatorio" />
+                    </cell>
+                </row>     
+                <row id="bb_periodoBaseSelecao" propertyKey="attribute.TESTDEFINITION.bb_periodoBaseSelecao.DBI">
+                    <cell separator="{td}">
+                        <element name="bb_dtInicioBaseSelecao_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_dtInicioBaseSelecao" >
+                        	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                        </element>	
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="bb_dtFimBaseSelecao_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="bb_dtFimBaseSelecao" >
+                    		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    	</element>
+                    </cell>
+                </row>
+                <row id="bb_periodoSelecao" propertyKey="attribute.TESTDEFINITION.bb_detalPerioBaseSelecao.DBI">
+				      <element attribute.idref="bb_periodoSelecao"/>
+				</row>          
+                <row id="testerhierarchy">
+                    <element attribute.idref="testerhierarchy" />
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" />
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" />
+                </row>
+                <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+                <row id="owner_upload_user">
+                    <element attribute.idref="owner_upload_user"/>
+                </row>
+                <row id="owner_upload_confirm">
+                    <element attribute.idref="owner_upload_confirm"/>
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" />
+                </row>
+                <row id="reviewer">
+                    <element attribute.idref="reviewer" template="userSubstitute">
+                        <parameter name="substitute" value="reviewer_substitute"/>
+                    </element>
+                </row>
+                <row id="reviewer_upload_user">
+                    <element attribute.idref="reviewer_upload_user"/>
+                </row>
+                <row id="reviewer_upload_confirm">
+                    <element attribute.idref="reviewer_upload_confirm"/>
+                </row>
+                <row id="testtype">
+                    <element attribute.idref="testtype" />
+                </row>
+                <row id="owner_status">
+                    <element attribute.idref="owner_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="effectiveness">
+                    <element attribute.idref="effectiveness" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                <row id="reviewer_status">
+                    <element attribute.idref="reviewer_status" >
+                        <parameter name="showUnspecified" value="true"/>
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="measure">
+                    <element attribute.idref="measure">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_defManagerL1_group">
+                    <element attribute.idref="bb_defManagerL1_group" >
+                        <parameter name="selectionList" value="testcase_defManagerL1_group_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="reviewer_remark">
+                    <element attribute.idref="reviewer_remark" />
+                </row>
+                <!--  
+                <row id="walkthroughName">
+                    <element attribute.idref="walkthroughName" />
+                </row>
+                -->
+                <row id="bb_walkthroughName">
+                    <element attribute.idref="bb_walkthroughName" />
+                </row>
+                <row id="walkthroughCounter">
+                    <element attribute.idref="walkthroughCounter" template="textArea"/>
+                </row>
+            </rowGroup>
+            <rowGroup id="testcase.3">
+                <row id="testingsteps">
+                    <element attribute.idref="testingsteps" />
+                </row>
+                <row id="test_nature">
+                    <element attribute.idref="test_nature" />
+                </row>
+                <row id="testextend">
+                    <element attribute.idref="testextend" />
+                </row>
+            </rowGroup>
+            <rowGroup id="testcase.4">
+                <row id="control_frequency">
+                    <element attribute.idref="control_frequency" />
+                </row>
+                <row id="design_description">
+                    <element attribute.idref="design_description" />
+                </row>
+                <!-- For BdB's Project will be needed only a description field.
+                	 It'll be unified.
+                <row id="operative_description">
+                    <element attribute.idref="operative_description" />
+                </row>
+                -->
+                <row id="bb_conclusaoTeste">
+                    <element attribute.idref="bb_conclusaoTeste" />
+                </row>
+                <row id="remark">
+                    <element attribute.idref="remark" />
+                </row>
+                <row id="bb_validacaoReferencia">
+                    <element attribute.idref="bb_validacaoReferencia" />
+                </row>
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="recommendations" template="formRecommendationRow">
+                    <element attribute.idref="recommendations">
+                        <parameter name="selectionList" value="testaction2recommendations_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                        <button.add button.idref="SEND_RECOMMNEDATION" location="toolbar"/>
+                        <button.add button.idref="ROW_SEND_RECOMMNEDATION" location="row"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_TESTDEFINITION">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="testdefinition" licensedComponentIds="tm">
+            <rowGroup id="testdefinition.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="testtype">
+                    <element attribute.idref="testtype">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                   	</element>
+                </row>
+                <row id="test_nature">
+                    <element attribute.idref="test_nature" />
+                </row>
+                <row id="bb_testeValidacao">
+                    <element attribute.idref="bb_testeValidacao">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                   	</element>
+                </row>
+                
+                <row id="bb_finalidadeTeste">
+                    <element attribute.idref="bb_finalidadeTeste" template="textArea" />
+                </row>
+                <row id="testingsteps">
+                    <element attribute.idref="testingsteps" />
+                </row>
+                <row id="control_frequency">
+                    <element attribute.idref="control_frequency" />
+                </row>
+                <row id="bb_validacaoFrente">
+                    <element attribute.idref="bb_validacaoFrente" />
+                </row>
+                <row id="bb_validacaoAmbito">
+                    <element attribute.idref="bb_validacaoAmbito" />
+                </row>
+                <row id="bb_validacaoObjeto">
+                    <element attribute.idref="bb_validacaoObjeto" />
+                </row>
+                <row id="bb_validacaoSecao">
+                    <element attribute.idref="bb_validacaoSecao" />
+                </row>
+                <row id="bb_origemAmostra">
+                    <element attribute.idref="bb_origemAmostra" />
+                </row>
+                <!--  
+        		<row id="bb_periodoBaseSelecao" propertyKey="attribute.TESTDEFINITION.bb_periodoBaseSelecao.DBI">
+                    <cell separator="{td}">
+                        <element name="bb_dtInicioBaseSelecao_label" template="label">
+                            <parameter name="propertyKey" value="form.from.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_dtInicioBaseSelecao" />
+                    </cell>
+                    <cell separator="{td}">
+                    	<element name="bb_dtFimBaseSelecao_label" template="label">
+                            <parameter name="propertyKey" value="form.to.DBI"/>
+                        </element>
+                    	<element attribute.idref="bb_dtFimBaseSelecao" />
+                    </cell>
+                </row>
+                -->
+				<row id="bb_detalPerioBaseSelecao">
+				      <element attribute.idref="bb_detalPerioBaseSelecao"/>
+				</row>
+				<row id="testextend"> 
+                    <element attribute.idref="testextend" />
+                </row>
+                <row id="bb_criterioAmostra">
+                    <element attribute.idref="bb_criterioAmostra" />
+                </row>
+                <!-- SALES CUSTOMIZING
+                <row id="bb_dependenciaAmostra">
+                    <element attribute.idref="bb_dependenciaAmostra">
+                        <parameter name="selectionList" value="TD_dependenciaAmostra2orgunit_sel"/>
+                    </element>
+                </row>
+                 -->
+                <row id="bb_depeFornecAmostra">
+                	<element attribute.idref="bb_depeFornecAmostra" />
+                </row>
+                <row id="bb_funcFornecAmostra">
+                	<element attribute.idref="bb_funcFornecAmostra"/>
+                </row>
+                <row id="bb_validacaoReferencia">
+                    <element attribute.idref="bb_validacaoReferencia" />
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" >
+                        <parameter name="selectionList" value="testdefinition_ownergroup_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="frequency">
+                    <element attribute.idref="frequency">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="event_driven_allowed">
+                    <element attribute.idref="event_driven_allowed" />
+                </row>
+                <row id="duration">
+                    <element attribute.idref="duration" />
+                </row>
+                <row id="startdate">
+                    <element attribute.idref="startdate" />
+                </row>
+                <row id="enddate">
+                    <element attribute.idref="enddate" />
+                </row>
+                <row id="control_period">
+                    <element attribute.idref="control_period" />
+                </row>
+                <row id="offset">
+                    <element attribute.idref="control_period_offset"/>
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group">
+                        <parameter name="selectionList" value="testdefinition_reviewergroup_sel" />
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="effected_orgunit">
+                    <element attribute.idref="orgunit">
+                        <parameter name="selectionList" value="testdefinition2orgunit_sel"/>
+                    </element>
+                </row>
+                <row id="orgunitDepenCtl">
+                    <element attribute.idref="orgunitDepenCtl" />
+                </row> 
+                <!--
+                <row id="bb_detalDependExecutaControle">
+                    <element attribute.idref="bb_detalDependExecutaControle">
+                        <parameter name="selectionList" value="TD_dependExecutaControle2orgunit_sel"/>
+                    </element>
+                </row>
+                -->
+                <!--  
+                <row id="walkthroughName">
+                    <element attribute.idref="walkthroughName" template="textArea"/>
+                </row>
+                -->
+                <row id="bb_walkthroughName">
+                    <element attribute.idref="bb_walkthroughName" />
+                </row>
+                <row id="walkthroughCounter">
+                    <element attribute.idref="walkthroughCounter" template="textArea" />
+                </row>
+                <row id="isfollowup">
+                    <element attribute.idref="isfollowup"/>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+</custom>

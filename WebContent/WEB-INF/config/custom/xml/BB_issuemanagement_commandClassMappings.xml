@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<mappingType name="Command">
+	
+	        <!-- ISSUE -->            
+	        <mapping name="issueSetOperator"           			clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueSetOperatorCommandBB"/>
+	        <mapping name="issueClearOperator"           		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueClearOperatorCommandBB"/>
+	        <mapping name="issueMgmtApproverL1AutoReview"   	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueFaultLogApproverL1AutoReviewDialogCommandBB"/>
+	        <mapping name="issueMgmtApproverL2AutoReview"   	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueFaultLogApproverL2AutoReviewDialogCommandBB"/>
+			<mapping name="checkIssueDeletionPossible"      	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.CheckIssueDeletionPossibleCommandBB"/>
+			<mapping name="issueFaultLogSendMail"    			clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueFaultLogSendMailCommandBB"/>
+			<mapping name="issueManifestationSendMail"    		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueManifestationSendMailCommandBB"/>
+			<mapping name="issueExtrapolationSendMail"    		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueExtrapolationSendMailCommandBB"/>
+			<mapping name="issueSADSendMail"    				clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueSADSendMailCommandBB"/>
+			<mapping name="issueExecutableSendMail" 			clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueExecutableSendMailCommandBB"/>
+			<mapping name="issueTechApprovalNeeded" 			clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueTechApprovalNeededDialogCommandBB"/>
+			<mapping name="issueInjuredDetected" 				clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueExecutableInjuredDetectedDialogCommandBB"/>
+			<mapping name="issueDealingDeadlineSendMail" 		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueDealingDeadlineSendMailCommandBB"/>
+			<mapping name="issueDealingDeadlineAccepted" 		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueDealingDeadlineAcceptedCommandBB"/>
+			<mapping name="calculatePlannedDaysATBReport" 		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculatePlannedDaysATBReportCommandBB"/>
+			<mapping name="calculateWorkedDaysATBReport" 		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculateWorkedDaysATBReportCommandBB"/>
+			<mapping name="calculatePercentDaysATBReport" 		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculatePercentDaysATBReportCommandBB"/>
+			<mapping name="calculateImplApprL2AttrsATBReport" 	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculateImplApprL2AttrsATBReportCommandBB"/>
+			<mapping name="calculateMgmtApprL2AttrsATBReport" 	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculateMgmtApprL2AttrsATBReportCommandBB"/>
+			<mapping name="calculateMgmtApprL1AttrsATBReport" 	clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueCalculateMgmtApprL1AttrsATBReportCommandBB"/>
+    		<mapping name="refreshOwnersAndReviewersGroup"	    clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueRefreshOwnersAndReviewersCommandBB"/>
+    		<mapping name="calculateTaskItemExecutionDate"	    clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.IssueCalculateTaskItemExecutionDateCommandBB"/>
+    		<mapping name="obtainConclusionDate"	    		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueObtainConclusionDateCommandBB"/>
+    		<mapping name="resetConclusionDate"	    			clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueResetConclusionDateCommandBB"/>
+    		<mapping name="obtainCertificationDate"	    		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.atbreport.IssueObtainCertificationDateCommandBB"/>
+    		<mapping name="customSetIssueClient"	    		clsName="com.idsscheer.webapps.arcm.bl.component.issuemanagement.commands.CustomSetIssueClientCommand"/>
+  		
+    	
+    	</mappingType>
+   	</blClassMapping>
+</custom>

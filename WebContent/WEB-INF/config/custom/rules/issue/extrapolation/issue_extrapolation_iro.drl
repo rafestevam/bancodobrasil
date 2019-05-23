@@ -1,0 +1,57 @@
+package ISSUE_EXTRAPOLATION_IRO_RuleSet
+expander issue.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelperBB;
+import com.idsscheer.webapps.arcm.bl.component.issuemanagement.re.IssueHelperBB;
+
+rule "IRO visible attributes - 'extra_sheet' [I,V]"
+
+	salience 10
+	no-loop true
+	
+	when
+		is IRO
+		value comparison fulfilled: ":transient:" attr_value "bb_issueType" "CONTAINS" value "extra_sheet"
+				
+	then
+		set object readonly
+		remove object messages	
+
+		set "bb_mgmtApproverL1_group" 	visible
+		set "bb_mgmtApproverL1_status" 	visible
+		set "bb_mgmtApproverL1_remark" 	visible
+		set "bb_mgmtApproverL1" 		visible
+		set "bb_mgmtApproverL1_date" 	visible
+		set "bb_mgmtApprover_orgunit"	visible
+		
+		set "bb_implApproverL2_group" 	visible
+		set "bb_implApproverL2_aware" 	visible
+		set "bb_implApproverL2" 		visible
+		set "bb_implApproverL2_date" 	visible
+		set "bb_implApprover_orgunit"	visible
+		
+		#set "owners"            	   	visible
+		#set "owner_status"            	visible
+		#set "owner"            	   	visible
+		#set "reviewers"            	visible
+		#set "reviewer_status"          visible
+		#set "reviewer_remark"          visible
+		#set "reviewer"            		visible
+		
+		set "remark"                  	visible
+		set "bb_specificKpiLimit" 		visible
+		set "bb_specificKpiLimitAmount" visible
+		set "bb_kpiLimitCurrentAmount" 	visible
+		set "bb_specificKpiLimitDocs" 	visible
+		set "plannedenddate"          	visible
+		#set "immediateMeasure"        	visible
+		
+		set "remediationMeasure"		invisible
+		
+		set "owners" 					invisible
+		set "owner" 					invisible
+		set "reviewers" 				invisible
+		set "reviewer" 					invisible
+
+end

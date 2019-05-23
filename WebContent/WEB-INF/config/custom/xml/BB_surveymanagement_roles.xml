@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<roles>
+	    <role id="questionnaireowner" level="O" licensedComponentIds="sm" userLicenses="operate">
+			<system component.idref="view.open.questionnaires"/>
+			<system component.idref="view.mashzone.url.builder"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+			<object right.idref="r----" objectType.id="OPTION"/>
+	        <object right.idref="rw---" objectType.id="QUESTIONNAIRE"/>
+			<object right.idref="r----" objectType.id="QUESTIONNAIRESECTION"/>
+			<object right.idref="rw---" objectType.id="ANSWER">
+				<relation right.idref="ar" listAttrType.id="selectedOptions"/>
+				<relation right.idref="ar" listAttrType.id="bb_answerDocuments"/> 
+			</object>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+			<object right.idref="r--d-" objectType.id="OFFLINEPROCESSINGENTRY"/>
+	
+	        <object right.idref="r----" objectType.id="RISK"/>
+	        <object right.idref="r----" objectType.id="CONTROL"/>
+	        <object right.idref="r----" objectType.id="TESTDEFINITION"/>
+		</role>
+		
+	    <role id="surveymanager" level="XCO" licensedComponentIds="sm" userLicenses="operate">
+			<system component.idref="view.monitoring"/>
+			<system component.idref="view.surveys"/>
+			<system component.idref="view.questionnaires"/>
+			<system component.idref="view.surveymanagement.baseobjects"/>
+			<system component.idref="view.statistic.surveymanagement" />
+			<system component.idref="generate.survey"/>
+			<system component.idref="check.questionnaire"/>
+			<system component.idref="update.survey"/>
+			<system component.idref="check.survey"/>
+			<system component.idref="view.mashzone.url.builder"/>
+	        <system component.idref="view.home.dashboards"/>
+			<object right.idref="r----" objectType.id="USERGROUP"/>
+			<object right.idref="rwcdu" objectType.id="QUESTIONNAIRE_TEMPLATE">
+				<action actionRight.idref="duplicate" />
+				<relation right.idref="ar" listAttrType.id="sections"/>
+	            <relation right.idref="ar" listAttrType.id="manager_group"/>
+				<relation right.idref="ar" listAttrType.id="documents"/>
+			</object>
+			<object right.idref="rwcdu" objectType.id="SECTION">
+	    		 <relation right.idref="ar" listAttrType.id="questions"/>
+	    		 <relation right.idref="ar" listAttrType.id="subSections"/>
+	    		 <relation right.idref="ar" listAttrType.id="relQuestionnaireTemplate"/>
+	    	</object>
+			<object right.idref="rwcdu" objectType.id="QUESTION">
+				<relation right.idref="ar" listAttrType.id="OPTIONSET"/>
+				<relation right.idref="ar" listAttrType.id="options"/>
+	            <relation right.idref="ar" listAttrType.id="manager_group"/>
+				<relation right.idref="ar" listAttrType.id="documents"/>
+				<relation right.idref="ar" listAttrType.id="bb_reviewerOptionSet"/>
+			</object>
+			<object right.idref="rwcdu" objectType.id="OPTIONSET">
+				<relation right.idref="ar" listAttrType.id="options"/>
+	            <relation right.idref="ar" listAttrType.id="manager_group"/>
+			</object>
+			<object right.idref="rwcdu" objectType.id="OPTION">
+	            <relation right.idref="ar" listAttrType.id="manager_group"/>
+			</object>
+	        <object right.idref="rwcdu" objectType.id="SURVEY">
+				<action actionRight.idref="extend" />
+	        </object>
+	        <object right.idref="rwcdu" objectType.id="SURVEYTASK">
+	            <action actionRight.idref="update"/>
+				<relation right.idref="ar" listAttrType.id="questionnaireTemplate"/>
+	            <relation right.idref="ar" listAttrType.id="manager_group"/>
+				<relation right.idref="ar" listAttrType.id="owner_group"/>
+				<relation right.idref="ar" listAttrType.id="reviewer_group"/>
+				<relation right.idref="ar" listAttrType.id="relatedAppSystems"/>
+				<relation right.idref="ar" listAttrType.id="relatedRegulations"/>
+				<relation right.idref="ar" listAttrType.id="relatedOrgunits"/>
+				<relation right.idref="ar" listAttrType.id="relatedProcesses"/>
+				<relation right.idref="ar" listAttrType.id="relatedCategories"/>
+				<relation right.idref="ar" listAttrType.id="risks"/>
+				<relation right.idref="ar" listAttrType.id="controls"/>
+				<relation right.idref="ar" listAttrType.id="test_definitions"/>
+	        </object>
+			<object right.idref="rwcdu" objectType.id="QUESTIONNAIRE">
+				<action actionRight.idref="extend" />
+	        </object>
+			<object right.idref="rwc--" objectType.id="QUESTIONNAIRESECTION"/>
+			<object right.idref="rwc--" objectType.id="ANSWER"/>
+	
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+	        <object right.idref="r----" objectType.id="JOBINFORMATION"/>
+			<object right.idref="rwc--" objectType.id="DOCUMENT"/>
+			<object right.idref="r--d-" objectType.id="OFFLINEPROCESSINGENTRY"/>
+	        <object right.idref="r----" objectType.id="RISK"/>
+	        <object right.idref="r----" objectType.id="CONTROL"/>
+	        <object right.idref="r----" objectType.id="TESTDEFINITION"/>
+	        <object right.idref="r----" objectType.id="DASHBOARDCONNECTION"/>
+		</role>
+		
+		<role id="surveyauditor" level="XCO" licensedComponentIds="sm" userLicenses="operate">
+			<system component.idref="view.administration" />
+			<system component.idref="view.surveymanagement.baseobjects" />
+			<system component.idref="view.surveys" />
+			<system component.idref="view.questionnaires"/>
+			<system component.idref="view.statistic.surveymanagement" />
+			<system component.idref="view.mashzone.url.builder"/>
+	        <object right.idref="r----" objectType.id="CLIENT" />
+	
+			<object right.idref="r----" objectType.id="HIERARCHY"/>
+	        <object right.idref="r----" objectType.id="USERGROUP"/>
+	        <object right.idref="r----" objectType.id="QUESTIONNAIRE_TEMPLATE" />
+	        <object right.idref="r----" objectType.id="SECTION" />
+	        <object right.idref="r----" objectType.id="QUESTION" />
+	        <object right.idref="r----" objectType.id="OPTIONSET" />
+	        <object right.idref="r----" objectType.id="OPTION" />
+	        <object right.idref="r----" objectType.id="SURVEYTASK" />
+	        <object right.idref="r----" objectType.id="SURVEY" />
+	        <object right.idref="r----" objectType.id="QUESTIONNAIRE" />
+	        <object right.idref="r----" objectType.id="QUESTIONNAIRESECTION" />
+	        <object right.idref="r----" objectType.id="ANSWER" />
+	        <object right.idref="r----" objectType.id="MESSAGETEMPLATES" />
+	        <object right.idref="r----" objectType.id="RISK"/>
+	        <object right.idref="r----" objectType.id="CONTROL"/>
+	        <object right.idref="r----" objectType.id="TESTDEFINITION"/>
+	    </role>
+	</roles>
+</custom>	

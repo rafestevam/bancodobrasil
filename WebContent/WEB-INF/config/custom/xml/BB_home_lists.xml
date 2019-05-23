@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <list id="MyIssueRelevantObjects"
+          view.idref="issueRelevantObjects"
+          filter.idref="iro"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          relatedObjectType.idref="ISSUERELEVANTOBJECT"
+          propertyKey="list.MyIssueRelevantObjects.DBI">
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="name"/>
+            <simpleFilter filterRow.idref="objectId"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="clientSigns"/>
+            <simpleFilter filterRow.idref="object_objtype"/>
+        </simpleFilterRow>
+        <listHeaderRow>
+            <!-- BdB CUSTOMIZATION -->            
+            <listHeader column="LC_MyIRO_4" propertyKey="tableheader.objectId.DBI" width="8%"/>            
+            <listHeader column="LC_MyIRO_1" propertyKey="tableheader.iro.name.DBI" width="30%"/>
+            
+            <listHeader column="LC_MyIRO_2a" propertyKey="tableheader.version.number" width="10%"/>
+            <listHeader column="LC_MyIRO_2" propertyKey="tableheader.iro.clientsign.DBI" width="25%"/>
+            <listHeader column="LC_MyIRO_3" propertyKey="tableheader.iro.objecttype.DBI" width="25%"/>
+        </listHeaderRow>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <column id="LC_MyIRO_4" dataReference.idref="objectId" />
+                
+        <column id="LC_MyIRO_1" dataReference.idref="name" template="openObject">
+            <parameter name="idColumn" value="obj_id"/>
+            <parameter name="mode" value="view"/>
+            <parameter name="deactivatedColumn" value="iro_deactivated"/>
+        </column>
+        <column id="LC_MyIRO_2a" align="right" dataReference.idref="version" />
+        <column id="LC_MyIRO_2" dataReference.idref="client_sign" />
+        <column id="LC_MyIRO_3" dataReference.idref="object_objtype"  />
+        <listButtons>
+            <buttonReference button.idref="LIST_CREATE_ISSUE"/>
+            <buttonReference button.idref="LIST_REMOVE_FROM_LIST"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </listButtons>
+        <rowButtons>
+            <buttonReference button.idref="LISTROW_CREATE_ISSUE"/>
+            <buttonReference button.idref="LISTROW_VIEW"/>
+            <buttonReference button.idref="LISTROW_REMOVE_FROM_LIST"/>
+        </rowButtons>
+    </list>
+
+</custom>

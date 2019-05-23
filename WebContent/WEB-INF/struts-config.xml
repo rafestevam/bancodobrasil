@@ -1,0 +1,296 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "struts-config_1_2.dtd">
+<struts-config>
+    <form-beans>
+
+        <form-bean name="reloadTreeForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="username" type="java.lang.String"/>
+            <form-property name="password" type="java.lang.String"/>
+        </form-bean>
+
+        <form-bean name="feedbackForm" type="com.idsscheer.webapps.arcm.ui.web.forms.FeedbackForm" />
+
+		<form-bean name="baseStatisticFilter" type="com.idsscheer.webapps.arcm.ui.web.forms.BaseFilterForm">
+			<form-property name="__listName" type="java.lang.String"/>
+			<form-property name="__oldFilterName" type="java.lang.String"/>
+			<form-property name="__filterName" type="java.lang.String"/>
+			<form-property name="responsible" type="java.lang.String"/>
+			<form-property name="client_sign" type="java.lang.String"/>
+			<form-property name="calcParam" type="java.lang.String"/>
+			<form-property name="testtype" type="java.lang.String"/>
+			<form-property name="plannedenddate" type="java.lang.String"/>
+			<form-property name="plannedstartdate" type="java.lang.String"/>
+		</form-bean>
+
+        <form-bean name="evaluationForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="objectid" type="java.lang.String"/>
+        </form-bean>
+
+        <form-bean name="forgetPasswordForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="user" type="java.lang.String"/>
+            <form-property name="mail" type="java.lang.String"/>
+	        <form-property name="language" type="java.lang.String"/>
+        </form-bean>
+
+        <form-bean name="changePasswordForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="password" type="java.lang.String"/>
+            <form-property name="password_confirm" type="java.lang.String"/>
+        </form-bean>
+
+        <form-bean name="uploadForm" type="com.idsscheer.webapps.arcm.ui.web.forms.UploadForm"/>
+
+        <!--<form-bean name="uploadDocumentForm" type="com.idsscheer.webapps.arcm.ui.web.forms.UploadDocumentForm"/>-->
+
+        <form-bean name="MessageTemplatesForm" type="org.apache.struts.action.DynaActionForm">
+	        <form-property name="initiator" type="java.lang.Long"/>
+	        <form-property name="language" type="java.lang.String"/>
+            <form-property name="template" type="java.lang.String"/>
+            <form-property name="mailstrategie" type="java.lang.String[]"/>
+            <form-property name="obj_id" type="java.lang.String"/>
+            <form-property name="change_date" type="java.lang.String"/>
+            <form-property name="id" type="java.lang.String"/>
+            <form-property name="version_number" type="java.lang.String"/>
+            <form-property name="change_user_id" type="java.lang.String"/>
+            <form-property name="substitute_user_id" type="java.lang.String"/>
+        </form-bean>
+
+		<form-bean name="interviewOverviewForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="freeTextAnswer" type="java.lang.String[]"/>
+            <form-property name="_selectedOption" type="java.lang.String[]"/>
+        </form-bean>
+
+    </form-beans>
+
+   <global-exceptions>
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="welcome" path="/welcome.do"/>
+        <forward name="logon" path="/login_forward.jsp"/>
+        <forward name="lastHistoryEntry" path="/lastHistoryEntry.do"/>
+        <forward name="previousHistoryEntry" path="/previousHistoryEntry.do"/>
+
+
+		<forward name="confirmation" 	redirect="true" path="/dialogs/confirmation.jsp" />
+		<forward name="input" 			redirect="true" path="/dialogs/input.jsp" />
+		<forward name="forward" 		redirect="true" path="/dialogs/forward.jsp" />
+		<forward name="message" 		redirect="true" path="/dialogs/message.jsp" />
+		<forward name="silent" 		    redirect="true" path="/dialogs/silent.jsp" />
+		<forward name="yesno" 		    redirect="true" path="/dialogs/yesno.jsp" />
+        <forward name="closeWindow" 	redirect="true" path="/documents/closeWindow.jsp" />
+    </global-forwards>
+
+    <action-mappings>
+
+        <action path="/saveforward" type="com.idsscheer.webapps.arcm.ui.web.actions.history.SaveForwardAction" >
+		</action>
+
+    	<!-- Neue Actions -->
+
+    	<action path="/openFormsetAction" type="com.idsscheer.webapps.arcm.ui.web.actions.object.OpenFormSetAction">
+			<forward name="openFormset" path="/common/object_navigation.jsp" />
+		</action>
+
+		<action path="/topHistoryEntry" type="com.idsscheer.webapps.arcm.ui.web.actions.history.TopHistoryEntryAction">
+    		<forward name="default" path="/modulenavigation.do?__target=home"/>
+	    </action>
+
+    	<action path="/lastHistoryEntry" type="com.idsscheer.webapps.arcm.ui.web.actions.history.LastHistoryEntryAction">
+    		<forward name="default" path="/modulenavigation.do?__target=home"/>
+	    </action>
+
+	    <action path="/seekHistoryEntry" type="com.idsscheer.webapps.arcm.ui.web.actions.history.SeekHistoryEntryAction">
+            <forward name="default" path="/modulenavigation.do?__target=home"/>
+	    </action>
+
+	    <action path="/previousHistoryEntry" type="com.idsscheer.webapps.arcm.ui.web.actions.history.PreviousHistoryEntryAction">
+            <forward name="default" path="/modulenavigation.do?__target=home"/>
+	    </action>
+
+        <action path="/dialogFinished" type="com.idsscheer.webapps.arcm.ui.web.actions.history.DialogFinishedAction">
+    		<forward name="default" path="/modulenavigation.do?__target=home"/>
+	    </action>
+
+	    <action path="/atLeastOne" type="com.idsscheer.webapps.arcm.ui.web.actions.AtLeastOneSelectedElementAction" >
+	        <forward name="followup" path="/job.do?__jobName=followupGeneratorJob"/>
+        	<forward name="updateTestcases" path="/job.do?__jobName=updaterJob&amp;__objectType=TESTCASE"/>
+            <forward name="exportObjects" path="/job.do?__jobName=objectExportJob"/>
+        </action>
+
+        <action path="/reloadLinkTypes" type="com.idsscheer.webapps.arcm.ui.web.actions.ReloadLinkTypesAction"/>
+
+        <action path="/welcome" name="loginForm" type="com.idsscheer.webapps.arcm.ui.web.actions.login.InitLoginAction">
+            <forward name="authenticated" path="/login.do"/>
+            <!-- login_forward.jsp forwards to login.jsp but makes sure there is no mast header displayed anymore -->
+            <forward name="manual_login" path="/login_forward.jsp"/>
+        </action>
+
+        <action path="/switchLanguage" type="com.idsscheer.webapps.arcm.ui.web.actions.login.SwitchLanguageAction" name="loginForm" validate="false" input="/index.jsp">
+            <forward name="success" path="/login_forward.jsp"/>
+        </action>
+
+        <action path="/logout" type="com.idsscheer.webapps.arcm.ui.web.actions.login.LogoutSSOAction">
+            <forward name="logout" path="/login_forward.jsp"/>
+        </action>
+
+        <action path="/utilities" type="com.idsscheer.webapps.arcm.ui.web.actions.UtilityAction">
+            <forward name="success" path="/common/utilities.jsp"/>
+            <forward name="notAvailable" path="/message.jsp" redirect="true"/>
+        </action>
+
+        <action path="/apidoc" type="com.idsscheer.webapps.arcm.ui.web.actions.ApiDocAction">
+            <forward name="success" path="/apidoc/index.jsp" redirect="true"/>
+            <forward name="notAvailable" path="/message.jsp" redirect="true"/>
+        </action>
+
+	    <action path="/explorer" type="com.idsscheer.webapps.arcm.ui.web.actions.tree.ExplorerAction">
+            <forward name="success" path="/tree/explorer_tree.jsp"/>
+        </action>
+
+        <action path="/login" type="com.idsscheer.webapps.arcm.ui.web.actions.login.LoginAction">
+            <forward name="success" path="/arcm.jsp" redirect="true"/>
+            <forward name="substitute" path="/substitute.jsp"/>
+            <forward name="removesubstitute" path="/removesubstitute.jsp"/>
+            <forward name="notification" path="/login_forward.jsp"/>
+            <forward name="forwardToObject" path="/goToElement.do"/>
+        </action>
+
+        <action path="/removesubstitute" type="com.idsscheer.webapps.arcm.ui.web.actions.login.RemoveSubstituteAction" >
+            <forward name="substitute" path="/substitute.jsp"/>
+            <forward name="success" path="/arcm.jsp"/>
+        </action>
+
+        <action path="/substitute" type="com.idsscheer.webapps.arcm.ui.web.actions.login.SubstituteLoginAction"  >
+            <forward name="success" path="/arcm.jsp"/>
+            <forward name="removesubstitute" path="/removesubstitute.jsp"/>
+            <forward name="failed" path="/welcome.do"/>
+        </action>
+
+        <action path="/sendFeedback" type="com.idsscheer.webapps.arcm.ui.web.actions.feedback.SendFeedbackAction" name="feedbackForm" scope="request">
+            <forward name="feedback" path="/feedback_mail.jsp"/>
+            <forward name="success"  path="/message.jsp" />
+        </action>
+
+        <action path="/sendAdminMessage" type="com.idsscheer.webapps.arcm.ui.web.actions.buddylist.SendAdminMessageAction" >
+            <forward name="success"  path="/message.jsp" />
+        </action>
+
+		<action path="/keepAlive" type="com.idsscheer.webapps.arcm.ui.web.actions.login.KeepAliveAction"  >
+            <forward name="keepalive" path="/keepalive.jsp"/>
+            <forward name="logout" path="/logout.do"/>
+        </action>
+
+        <action path="/forwardToProcessWeb" type="com.idsscheer.webapps.arcm.ui.web.actions.ForwardToProcessWebAction">
+            <forward name="success" path="/common/forwardToProcessWeb.jsp"/>
+        </action>
+
+        <action path="/list" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.ListActionCommandAction">
+            <forward name="success" redirect="false" path="/lists/list.jsp"/>
+            <forward name="asyncReport" path="/common/jobviewer.jsp"/>
+          </action>
+
+        <action path="/goToElement" type="com.idsscheer.webapps.arcm.ui.web.actions.GoToElementAction">
+            <forward name="login"    path="/welcome.do"/>
+            <forward name="list"     path="/list.do" />
+            <forward name="object"   path="/object.do" />
+            <forward name="frameset" path="/arcm.jsp" />
+        </action>
+
+        <action path="/treeList" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.ListActionCommandAction">
+              <forward name="success" redirect="false" path="/lists/treelist.jsp"/>
+	      </action>
+
+          <!-- KAMIKAZE Test -->
+          <action path="/object" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.ObjectActionCommandAction" name="uploadForm">
+                <forward name="form"        path="/forms/form.jsp" />
+		        <forward name="massedit"    path="/forms/masseditform.jsp" />
+				<forward name="protocol" 	path="/forms/protocol.jsp" />
+				<forward name="rait_protocol" 	path="/forms/ra_impacttype_protocol.jsp" />
+				<forward name="filter" 		path="/filter/filter.jsp" />
+                <forward name="asyncReport" path="/common/jobviewer.jsp"/>
+         </action>
+
+	    <action path="/dialog" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.DialogActionCommandAction">
+                <forward name="dialog"        path="/forms/dialog.jsp" />
+	    </action>
+
+	     <!-- Alte Actions -->
+
+			<action path="/forward" type="com.idsscheer.webapps.arcm.ui.web.actions.ForwardToJspAction"/>
+
+			<action path="/navigation" type="com.idsscheer.webapps.arcm.ui.web.actions.ForwardToTargetAction">
+				<forward name="jobviewer" path="/common/jobviewer.jsp"/>
+				<forward name="buddylist" path="/common/buddylist.jsp"/>
+				<forward name="object_navi" path="/common/object_navigation.jsp"/>
+				<forward name="lockservice" path="/common/lockservice.jsp"/>
+				<forward name="serverstate" path="/common/serverstate.jsp" />
+				<forward name="monitoring" path="/monitoring/monitoring.jsp" />
+            </action>
+
+			<action path="/systemnavigation" type="com.idsscheer.webapps.arcm.ui.web.actions.SystemInitiatedForwardAction">
+				<forward name="jobupdate" path="/common/jobupdate.jsp"/>
+				<forward name="buddyupdate" path="/common/buddylistupdate.jsp"/>
+				<forward name="lockserviceupdate" path="/common/lockserviceupdate.jsp"/>
+			</action>
+
+			<action path="/modulenavigation" type="com.idsscheer.webapps.arcm.ui.web.actions.module.ModuleNavigationAction">
+				<forward name="hierarchy" path="/modules/explorer.jsp"/>
+                <forward name="home" path="/list.do?__commandId=init&amp;__listName=myTasks"/>
+				<forward name="administration" path="/modules/administration.jsp"/>
+				<forward name="evaluation" path="/modules/evaluation.jsp"/>
+				<forward name="deficiency" redirect="true" path="/list.do?__commandId=init&amp;__listName=deficiency"/>
+				<forward name="explorer" redirect="true" path="/modules/dataexplorer.jsp"/>
+			</action>
+
+            <action path="/sidenavigation" type="com.idsscheer.webapps.arcm.ui.web.actions.module.SideNavigationAction" />
+
+            <action path="/mashzoneintegration" type="com.idsscheer.webapps.arcm.ui.web.actions.mzquery.MashZoneIntegrationAction" >
+                <forward name="success" path="/common/mashzoneintegration.jsp"/>
+            </action>
+
+
+			<action path="/xmlimport" type="com.idsscheer.webapps.arcm.ui.web.actions.aamml.XMLImportActionBB" >
+				<forward name="success" path="/common/jobviewer.jsp"/>
+                <forward name="logout" path="/welcome.do"/>
+			</action>
+
+			<action path="/upload" type="com.idsscheer.webapps.arcm.ui.web.actions.aamml.ImportfileUploadAction" name="uploadForm" scope="request">
+				<forward name="aris" path="/aamml/import_aris_dialog.jsp"/>
+				<forward name="database" path="/aamml/import_database_dialog.jsp"/>
+				<forward name="clients" path="/aamml/import_clients_dialog.jsp"/>
+			</action>
+
+            <action path="/checkinupload" type="com.idsscheer.webapps.arcm.ui.web.actions.offlineprocessing.CheckInFileUploadAction" name="uploadForm" scope="request"/>
+
+            <action path="/checkinselection" type="com.idsscheer.webapps.arcm.ui.web.actions.offlineprocessing.CheckInEditorSelectionAction"/>
+
+            <action path="/download" type="com.idsscheer.webapps.arcm.ui.web.actions.download.FileDownloadAction"/>
+
+            <action path="/query" type="com.idsscheer.webapps.arcm.api.webquery.actions.MZQueryActionDeprecated"/>
+
+			<action path="/xmlexport" type="com.idsscheer.webapps.arcm.ui.web.actions.aamml.XMLExportAction" >
+				<forward name="success" path="/common/jobviewer.jsp"/>
+			</action>
+
+			<action path="/job" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.JobActionCommandAction">
+				<forward name="success" path="/common/jobviewer.jsp"/>
+			</action>
+
+			<action path="/jobCancel" type="com.idsscheer.webapps.arcm.ui.web.actions.job.JobCancelAction">
+				<forward name="success" path="/common/jobviewer.jsp"/>
+			</action>
+
+			<action path="/evaluation" type="com.idsscheer.webapps.arcm.ui.web.actions.commands.EvaluationActionCommandAction">
+				<forward name="success" path="/evaluation/evaluation.jsp"/>
+                <forward name="asyncReport" path="/common/jobviewer.jsp"/>
+            </action>
+
+            <action path="/openADSDocument" type="com.idsscheer.webapps.arcm.ui.web.actions.download.OpenADSDocumentAction"/>
+            <action path="/external" type="com.idsscheer.webapps.arcm.ui.web.actions.ExternalAction"/>
+
+    </action-mappings>          
+   
+    <!-- maximum allowed upload file size. 
+         Size is restrictable by runtimconfig.xml parameter 'maxUploadFileSize' -->
+    <controller maxFileSize="4G"/>
+    
+</struts-config>

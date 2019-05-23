@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<arisreport async="false" datasourceID="deficiency_view" datasourceType="VIEW" discardMainDatasourceAfterUse="true" format="EXCEL" indexEnabled="false" processSubreportsFirst="false" reportID="deficiency">
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="landscape">
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true" tableNameProperty="report.general.sheetname.datasheet">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="50" colSpan="12" relativeWidth="50.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreportoutput newLine="false" propertyKey="pdf.author" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" outputText=" - " renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" propertyKey="objectType.DEFICIENCY.DBI" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" propertyKey="pdf.subject.documentation.DBI" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                    </arisreporttablecell>
+                    <arisreporttablecell absoluteWidth="30" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="reporttitle_dummy"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="50" colSpan="12" relativeWidth="50.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.deficiency_id" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.client" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.company" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.ta_id" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" propertyKey="tableheader.deficiency.savestate_l1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" propertyKey="tableheader.deficiency.savestate_l2" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" propertyKey="tableheader.deficiency.savestate_l3" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.descr_l1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.likelihood" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.magnitude" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" propertyKey="tableheader.deficiency.remedied_by_mgmt" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" propertyKey="tableheader.deficiency.still_exists_at_yearend" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="deficiency_id" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="DEACTIVATED_REFERENCE=deactivated" rowSpan="1" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="client_sign" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererID="clientSignAttributeRenderer" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="company" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="ta_id" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" dataReference="savestate" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" dataReference="savestate_l2" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" dataReference="savestate_l3" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="descr_l1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="likelihood" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top">
+                        <arisreportoutput dataReference="magnitude" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="EMPTY_STRING_VALUE_REPLACEMENT= - "/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererID="dependentAttributeRenderer" rendererParameter="EMPTY_STRING_VALUE_REPLACEMENT= |MASTER_ATTRIBUTE=magnitude|MASTER_ENUM_ALLOWED_UNSPECIFIED=false"/>
+                    </arisreporttablecell>
+                    <arisreporttablecell absoluteWidth="10" colSpan="1" dataReference="remedied_by_mgmt" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_center_top"/>
+                    <arisreporttablecell absoluteWidth="20" colSpan="1" dataReference="still_exists_at_yearend" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_center_top"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="20" colSpan="12" dataReference="~list_entry_counter" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+        </arisreportsection>
+    </arisreport>
+    
+	<arisreport async="false" datasourceID="DEFICIENCY_appobj" datasourceType="APPOBJ" discardMainDatasourceAfterUse="true" format="EXCEL" indexEnabled="false" processSubreportsFirst="false" reportID="DEFICIENCY">
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true" tableNameDataReference="deficiency_id">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="30" colSpan="2" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreportoutput newLine="false" propertyKey="pdf.author" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" outputText=" - " renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" propertyKey="objectType.DEFICIENCY.DBI" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                        <arisreportoutput newLine="false" propertyKey="pdf.subject.documentation.DBI" renderAsChart="false" renderAsIcon="false" renderAsText="true" styleID="reportheader"/>
+                    </arisreporttablecell>
+                    <arisreporttablecell absoluteWidth="30" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="reporttitle_dummy"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="report.general.version.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreportoutput dataReference="version_number" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText="         " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="change_date" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="deficiency_id">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.deficiency_id.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="deficiency_id" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="client_sign">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="client_sign" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererID="clientSignAttributeRenderer"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="company">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.company.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="company" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="audit_scope">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.audit_scope.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="audit_scope" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="country">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.country.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="country" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="location">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.location.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="location" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="unittype">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.unittype.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="unittype" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="unit">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.unit.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="unit" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="orgunit">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.orgunit.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="orgunit" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="process">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.process.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="process" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="risk">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.risk.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="risk" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="testcase">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.testcase.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="testcase" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="testcase_description">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.testcase_description.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="testcase_description" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="control_level">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.control_level.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="control_level" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="type">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.type.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="type" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_scope">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_scope.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_scope" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="controlstartdate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.controlstartdate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="controlstartdate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="controlenddate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.controlenddate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="controlenddate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_inicioClicloAvaliatorio">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_inicioClicloAvaliatorio.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_inicioClicloAvaliatorio" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_fimClicloAvaliatorio">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_fimClicloAvaliatorio.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_fimClicloAvaliatorio" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="finaccount">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.finaccount.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="finaccount" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_controlAssertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_controlAssertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_controlAssertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_finAccountAssertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_finAccountAssertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_finAccountAssertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="assertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.assertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="assertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="control_type">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.control_type.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="control_type" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_plan_departamental">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_plan_departamental.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_plan_departamental" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="rel_app">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.rel_app.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="rel_app" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_appSystems">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_appSystems.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_appSystems" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.identified_by.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_upper_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="identified_by_id" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_lower_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="identified_by" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="likelihood">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.likelihood.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="likelihood" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_upper_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="true">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell dataReference="magn_na" relativeWidth="70.0" styleID="default_form_data_left_bottom" rendererID="defaultAppObjBooleanRenderer" rendererParameter="NO_KEY=report.deficiency.magn_na_no.DBI"/>
+				</arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_comment">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_comment.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_comment" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l1|currency_after_comp_l1|magn_after_comp_l1_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_upper_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="true">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell dataReference="magn_after_comp_l1_nap" relativeWidth="70.0" styleID="default_form_data_left_bottom" rendererID="defaultAppObjBooleanRenderer" rendererParameter="NO_KEY=report.deficiency.magn_na_no.DBI"/>
+				</arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="true" visibilityConstraint="magn_after_comp_l2|currency_after_comp_l2|magn_after_comp_l2_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_upper_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="true">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell dataReference="magn_after_comp_l2_nap" relativeWidth="70.0" styleID="default_form_data_left_bottom" rendererID="defaultAppObjBooleanRenderer" rendererParameter="NO_KEY=report.deficiency.magn_na_no.DBI"/>
+				</arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l3|currency_after_comp_l3|magn_after_comp_l3_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_rowspan_upper_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="true">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell dataReference="magn_after_comp_l3_nap" relativeWidth="70.0" styleID="default_form_data_left_bottom" rendererID="defaultAppObjBooleanRenderer" rendererParameter="NO_KEY=report.deficiency.magn_na_no.DBI"/>
+				</arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="0.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="noborders"/>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_ctrl">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_ctrl.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_ctrl" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_ctrl_rem">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_ctrl_rem.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_ctrl_rem" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remedied_by_mgmt">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remedied_by_mgmt.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remedied_by_mgmt" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_forecast">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_forecast.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_forecast" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="planed_remidiation_date">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.planed_remidiation_date.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="planed_remidiation_date" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="still_exists_at_yearend">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.still_exists_at_yearend.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="still_exists_at_yearend" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+        </arisreportsection>
+    </arisreport>
+	
+	<arisreport async="false" datasourceID="DEFICIENCY_appobj" datasourceType="APPOBJ" discardMainDatasourceAfterUse="true" format="PDF" indexEnabled="false" processSubreportsFirst="false" reportID="DEFICIENCY">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.DEFICIENCY.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="true" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="report.general.version.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreportoutput dataReference="version_number" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText="         " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="change_date" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection componentRightConstraint="dm" dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="true" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="deficiency_id">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.deficiency_id.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="deficiency_id" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="client_sign">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="client_sign" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererID="clientSignAttributeRenderer"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="company">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.company.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="company" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="audit_scope">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.audit_scope.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="audit_scope" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="country">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.country.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="country" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="location">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.location.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="location" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="unittype">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.unittype.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="unittype" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="unit">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.unit.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="unit" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="orgunit">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.orgunit.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="orgunit" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection componentRightConstraint="dm" dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="true" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="process">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.process.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="process" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="risk">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.risk.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="risk" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="testcase">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.testcase.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="testcase" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="testcase_description">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.testcase_description.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="testcase_description" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="control_level">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.control_level.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="control_level" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="type">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.type.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="type" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_scope">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_scope.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_scope" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="controlstartdate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.controlstartdate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="controlstartdate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="controlenddate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.controlenddate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="controlenddate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_inicioClicloAvaliatorio">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_inicioClicloAvaliatorio.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_inicioClicloAvaliatorio" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_fimClicloAvaliatorio">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_fimClicloAvaliatorio.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_fimClicloAvaliatorio" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="descr_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.descr_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="descr_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="finaccount">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.finaccount.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="finaccount" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_controlAssertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_controlAssertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_controlAssertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_finAccountAssertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_finAccountAssertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_finAccountAssertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="assertions">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.assertions.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="assertions" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="control_type">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.control_type.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="control_type" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_plan_departamental">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_plan_departamental.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_plan_departamental" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="rel_app">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.rel_app.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="rel_app" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="bb_appSystems">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.bb_appSystems.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="bb_appSystems" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="identified_by_id">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.identified_by.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                            <arisreporttablerow dynamicContent="false">
+                                <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                                    <arisreportoutput dataReference="identified_by_id" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                                </arisreporttablecell>
+                            </arisreporttablerow>
+                            <arisreporttablerow dynamicContent="false">
+                                <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                                    <arisreportoutput dataReference="identified_by" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                                </arisreporttablecell>
+                            </arisreporttablerow>
+                        </arisreporttable>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="likelihood">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.likelihood.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="likelihood" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn|currency|magn_na">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                    	<arisreportoutput dataReference="magn" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_na">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_na" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_comment">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_comment.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_comment" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection componentRightConstraint="dm" dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="true" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l1|currency_after_comp_l1|magn_after_comp_l1_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                    	<arisreportoutput dataReference="magn_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l1_nap">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+						<arisreportoutput dataReference="magn_after_comp_l1_nap" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+					</arisreporttablecell>
+				</arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l2|currency_after_comp_l2|magn_after_comp_l2_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                        <arisreportoutput dataReference="magn_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+						<arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    	<arisreportoutput dataReference="currency_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l2_nap">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+						<arisreportoutput dataReference="magn_after_comp_l2_nap" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+					</arisreporttablecell>
+				</arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_ctl_rem_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_ctl_rem_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_ctl_rem_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="compensating_tested_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.compensating_tested_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="compensating_tested_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l3|currency_after_comp_l3|magn_after_comp_l3_nap">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_after_comp_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1">
+                    	<arisreportoutput dataReference="magn_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_after_comp_l3_nap">
+					<arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="form.row.deficiency.magn_na.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+					<arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+						<arisreportoutput dataReference="magn_after_comp_l3_nap" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+					</arisreporttablecell>
+				</arisreporttablerow>
+                
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="magn_cmt_after_comp_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.magn_cmt_after_comp_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="magn_cmt_after_comp_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="categorisation_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.categorisation_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="categorisation_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l1">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l1.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l1" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="classification_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.classification_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="classification_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+        <arisreportsection componentRightConstraint="dm" dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="portrait">
+            <arisreporttable bottomSpaceLine="true" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_ctrl">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_ctrl.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_ctrl" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_ctrl_rem">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_ctrl_rem.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_ctrl_rem" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remedied_by_mgmt">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remedied_by_mgmt.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remedied_by_mgmt" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="remediation_forecast">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.remediation_forecast.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="remediation_forecast" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="planed_remidiation_date">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.planed_remidiation_date.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="planed_remidiation_date" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="still_exists_at_yearend">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.still_exists_at_yearend.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="still_exists_at_yearend" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate_l2">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate_l2.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate_l2" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow componentRightConstraint="dm" dynamicContent="false" visibilityConstraint="savestate_l3">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="attribute.DEFICIENCY.savestate_l3.DBI" relativeWidth="30.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="70.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_form_data_left_bottom">
+                        <arisreportoutput dataReference="savestate_l3" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+	
+	
+	<arisreport async="false" datasourceID="deficiency_view" datasourceType="VIEW" discardMainDatasourceAfterUse="true" format="PDF" indexEnabled="false" processSubreportsFirst="false" reportID="deficiency">
+        <arisreportpattern patternID="DefaultHeaderPattern" patternParameters="titleProperty=$objectType.DEFICIENCY.DBI" patternType="pageheader"/>
+        <arisreportpattern patternID="DefaultFooterPattern" patternType="pagefooter"/>
+        <arisreportsection dynamicContent="false" indexEnabled="false" newPage="false" pageFormat="landscape">
+            <arisreportautocomponent componentID="contextinfo"/>
+            <arisreportautocomponent componentID="filterinfo"/>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.deficiency_id" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.ta_id" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.savestate_l1" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.savestate_l2" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.savestate_l3" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.likelihood" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.magnitude" relativeWidth="16.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.remedied_by_mgmt" relativeWidth="12.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" propertyKey="tableheader.deficiency.still_exists_at_yearend" relativeWidth="12.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="header_left"/>
+                </arisreporttablerow>
+                <arisreporttablerow dynamicContent="true">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="deficiency_id" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="DEACTIVATED_REFERENCE=deactivated" rowSpan="1" styleID="default_list_data_left_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="ta_id" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="savestate" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="savestate_l2" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="savestate_l3" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="likelihood" relativeWidth="10.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="SHOW_UNSPECIFIED=false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" relativeWidth="16.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="default_list_data_left_top_variant_fontsize=7">
+                        <arisreportoutput dataReference="magnitude" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererParameter="EMPTY_STRING_VALUE_REPLACEMENT= - "/>
+                        <arisreportoutput newLine="false" outputText=" " renderAsChart="false" renderAsIcon="false" renderAsText="true"/>
+                        <arisreportoutput dataReference="currency" newLine="false" renderAsChart="false" renderAsIcon="false" renderAsText="true" rendererID="dependentAttributeRenderer" rendererParameter="EMPTY_STRING_VALUE_REPLACEMENT= |MASTER_ATTRIBUTE=magnitude|MASTER_ENUM_ALLOWED_UNSPECIFIED=false"/>
+                    </arisreporttablecell>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="remedied_by_mgmt" relativeWidth="12.0" renderAsChart="false" renderAsIcon="true" renderAsText="false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="still_exists_at_yearend" relativeWidth="12.0" renderAsChart="false" renderAsIcon="true" renderAsText="false" rowSpan="1" styleID="default_list_data_center_top_variant_fontsize=7"/>
+                </arisreporttablerow>
+            </arisreporttable>
+            <arisreporttable bottomSpaceLine="false" indexEnabled="false" multipleDatasourcesAsListMode="true">
+                <arisreporttablerow dynamicContent="false">
+                    <arisreporttablecell absoluteWidth="0" colSpan="1" dataReference="~list_entry_counter" relativeWidth="100.0" renderAsChart="false" renderAsIcon="false" renderAsText="true" rowSpan="1" styleID="list_entry_counter"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+    </arisreport>
+
+</custom>

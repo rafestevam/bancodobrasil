@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<objectType id="DEFICIENCY" xmlexport="true" extends="VERSION" displayAttribute="deficiency_id" licensedComponentIds="dm" dataKind="transactiondata"
+                mashzoneId="80" image="iconlib/icons/content/deficiency_16.png">
+        <!-- LEVEL 1 -->
+        <stringAttrType id="owner_id" maxCharCount="80"/>
+        <stringAttrType id="deficiency_id" maxCharCount="40">
+            <validate name="maxlength" arg0="40"/>
+        </stringAttrType>
+        <stringAttrType id="company" maxCharCount="50">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <booleanAttrType id="audit_scope" defaultValue="false"/>
+        <stringAttrType id="country" maxCharCount="50">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <stringAttrType id="location" maxCharCount="50">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <stringAttrType id="unittype" maxCharCount="25">
+            <validate name="maxlength" arg0="25"/>
+        </stringAttrType>
+        <stringAttrType id="unit" maxCharCount="25">
+            <validate name="maxlength" arg0="25"/>
+        </stringAttrType>
+        <listAttrType id="risk" objectType.idref="RISK" linkType="17" usingFixChildVersion="true"/>
+        <listAttrType id="testcase" maxSize="1" objectType.idref="TESTCASE" linkType="18"/>
+        <textAttrType id="testcase_description" />
+        <listAttrType id="orgunit" maxSize="1" objectType.idref="HIERARCHY" linkType="67">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="finaccount" objectType.idref="HIERARCHY" linkType="42">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="process" maxSize="1" objectType.idref="HIERARCHY" linkType="68">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="testerhierarchy" maxSize="1" objectType.idref="HIERARCHY" linkType="9000" usingFixChildVersion="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="tester"/>
+            </listRestriction>
+        </listAttrType>
+        <!-- Bug #121105 - Campo nível do controle preenchido automaticamente se há caso de teste vinculado -->
+        <!-- <enumAttrType id="control_level" enumeration="def_level_of_control" defaultValue="0"/> -->
+        <enumAttrType id="control_level" enumeration="bb_nivelControle" defaultValue="0"/>
+        <dateAttrType id="controlstartdate">
+            <modify name="beginOfDay"/>
+        </dateAttrType>
+        <dateAttrType id="controlenddate">
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <textAttrType id="descr_l1"/>
+        <!-- START	Level 2 -->
+        <textAttrType id="descr_l2"/>
+        <!-- END 	Level 2 -->
+        <!-- START 	Level 3 -->
+        <textAttrType id="descr_l3"/>
+        <!-- END 	Level 3 -->
+        <enumAttrType id="assertions" enumeration="assertion"/>
+        <enumAttrType id="control_type" enumeration="controltype"/>
+        <textAttrType id="rel_app"/>
+        <enumAttrType id="identified_by_id" enumeration="def_identified_by" defaultValue="0"/>
+        <stringAttrType id="identified_by" maxCharCount="75">
+            <validate name="maxlength" arg0="75"/>
+        </stringAttrType>
+        <enumAttrType id="likelihood" enumeration="def_likelihood" defaultValue="0"/>
+        <doubleAttrType id="magn" defaultValue="0.0">
+            <!-- maybe later... <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR" /> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <!-- <booleanAttrType id="magn_na" defaultValue="false"/> -->
+        <booleanAttrType id="magn_na"/>        
+        <enumAttrType id="currency" enumeration="currency" defaultValue="0"/>
+        <textAttrType id="magn_comment"/>
+        <!-- START 	LEVEL 1 -->
+        <listAttrType id="compensating_ctl_l1" objectType.idref="TESTCASE" linkType="43" maxSize="5"/>
+        <textAttrType id="compensating_ctl_rem_l1"/>
+        <booleanAttrType id="compensating_tested_l1"/>
+        <enumAttrType id="likelihood_after_comp_l1" enumeration="def_likelihood" defaultValue="0"/>
+        <doubleAttrType id="magn_after_comp_l1">
+            <!-- maybe later... <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR" /> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <!-- <booleanAttrType id="magn_after_comp_l1_nap" defaultValue="false"/>-->
+		<booleanAttrType id="magn_after_comp_l1_nap"/>
+        <enumAttrType id="currency_after_comp_l1" enumeration="currency" defaultValue="0"/>
+        <textAttrType id="magn_cmt_after_comp_l1"/>
+        <!-- END 	LEVEL 1 -->
+        <!-- START	LEVEL 2 -->
+        <listAttrType id="compensating_ctl_l2" objectType.idref="TESTCASE" linkType="44" maxSize="5"/>
+        <textAttrType id="compensating_ctl_rem_l2"/>
+        <booleanAttrType id="compensating_tested_l2"/>
+        <!-- <enumAttrType id="likelihood_after_comp_l2" enumeration="def_likelihood" defaultValue="0"/>-->
+        <enumAttrType id="likelihood_after_comp_l2" enumeration="def_likelihood" defaultValue="0"/>        
+        <doubleAttrType id="magn_after_comp_l2">
+            <!-- maybe later... <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR" /> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <!-- <booleanAttrType id="magn_after_comp_l2_nap" defaultValue="false"/>-->
+        <booleanAttrType id="magn_after_comp_l2_nap"/>        
+        <enumAttrType id="currency_after_comp_l2" enumeration="currency" defaultValue="0"/>
+        <textAttrType id="magn_cmt_after_comp_l2"/>
+        <!-- END	Level 2 -->
+        <!-- START	Level 3 -->
+        <listAttrType id="compensating_ctl_l3" objectType.idref="TESTCASE" linkType="45" maxSize="5"/>
+        <textAttrType id="compensating_ctl_rem_l3"/>
+        <booleanAttrType id="compensating_tested_l3"/>
+        <enumAttrType id="likelihood_after_comp_l3" enumeration="def_likelihood" defaultValue="0"/>
+        <doubleAttrType id="magn_after_comp_l3">
+            <!-- maybe later... <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR" /> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <!--<booleanAttrType id="magn_after_comp_l3_nap" defaultValue="false"/>-->
+		<booleanAttrType id="magn_after_comp_l3_nap"/>        
+        <enumAttrType id="currency_after_comp_l3" enumeration="currency" defaultValue="0"/>
+        <textAttrType id="magn_cmt_after_comp_l3"/>
+        <!-- END	Level 3 -->
+        <enumAttrType id="categorisation_l1" enumeration="def_categorisation" defaultValue="0"/>
+        <!-- START 	Level 2 -->
+        <enumAttrType id="categorisation_l2" enumeration="def_categorisation" defaultValue="0"/>
+        <!-- END	Level 2 -->
+        <!-- START	Level 3 -->
+        <enumAttrType id="categorisation_l3" enumeration="def_categorisation" defaultValue="0"/>
+        <!-- END	Level 3 -->
+        <enumAttrType id="classification_l1" enumeration="def_classifikation_l1" defaultValue="0"/>
+        <!-- START	Level 2 -->
+        <enumAttrType id="classification_l2" enumeration="def_classifikation_l2" defaultValue="0"/>
+        <!-- END	Level 2 -->
+        <!-- START	Level 3 -->
+        <enumAttrType id="classification_l3" enumeration="def_classifikation_l3" defaultValue="0"/>
+        <!-- END	Level 3 -->
+        <listAttrType id="remediation_ctrl" objectType.idref="TESTCASE" linkType="73" maxSize="5"/>
+        <textAttrType id="remediation_ctrl_rem"/>
+        <booleanAttrType id="remedied_by_mgmt"/>
+        <enumAttrType id="remediation_forecast" enumeration="def_rem_forecast" defaultValue="0"/>
+        <dateAttrType id="planed_remidiation_date">
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        <booleanAttrType id="still_exists_at_yearend"/>
+        <enumAttrType id="savestate" enumeration="def_state" defaultValue="1"/>
+        <enumAttrType id="savestate_l2" enumeration="def_state" defaultValue="1"/>
+        <enumAttrType id="savestate_l3" enumeration="def_state" defaultValue="1"/>
+        
+        <index id="I_DEFICIENCY_ID" type="normal">
+            <attributeRef attribute="deficiency_id"/>
+        </index>
+        <index id="I_DEFICIENCY_COMPANY" type="normal">
+            <attributeRef attribute="company"/>
+        </index>
+        <index id="I_DEFICIENCY_SAVESTATE" type="normal">
+            <attributeRef attribute="savestate"/>
+        </index>
+        <index id="I_DEFICIENCY_SAVESTATEL2" type="normal">
+            <attributeRef attribute="savestate_l2"/>
+        </index>
+        <index id="I_DEFICIENCY_SAVESTATEL3" type="normal">
+            <attributeRef attribute="savestate_l3"/>
+        </index>
+        <index id="I_DEFICIENCY_LIKELIHOOD" type="normal">
+            <attributeRef attribute="likelihood"/>
+        </index>
+        <index id="I_DEFICIENCY_COUNTRY" type="normal">
+            <attributeRef attribute="country"/>
+        </index>
+        <index id="I_DEFICIENCY_UNIT" type="normal">
+            <attributeRef attribute="unit"/>
+        </index>
+        <index id="I_DEFICIENCY_UNITTYPE" type="normal">
+            <attributeRef attribute="unittype"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <enumAttrType id="bb_controlAssertions" enumeration="assertion"/>
+        <enumAttrType id="bb_finAccountAssertions" enumeration="assertion"/>
+        <enumAttrType id="bb_scope" enumeration="bb_scope"/>
+        <booleanAttrType id="bb_plan_departamental" defaultValue="false"/>
+        <listAttrType id="bb_appSystems" objectType.idref="HIERARCHY" linkType="10007">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <enumAttrType id="type" enumeration="bb_defType"/>
+        <dateAttrType id="bb_inicioClicloAvaliatorio">
+			<modify name="beginOfDay"/>
+		</dateAttrType>	        
+        <dateAttrType id="bb_fimClicloAvaliatorio">
+			<modify name="endOfDay"/>
+		</dateAttrType>	        
+        <listAttrType id="bb_testcase" maxSize="1" objectType.idref="TESTCASE" linkType="20160521">
+        	<listRestriction>
+        		<attributeRestriction attribute="owner_status" value="noneffective"/>
+        		<attributeRestriction attribute="reviewer_status" value="accepted"/> 
+        	</listRestriction>
+        </listAttrType>
+        
+        <!-- Deficiency manager L1 -->
+        <listAttrType id="manager_group_l1" maxSize="1" objectType.idref="USERGROUP" linkType="6108" >
+            <listRestriction>
+                <attributeRestriction attribute="role" value="deficiencymanager_l1"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="manager_user_l1" objectType.idref="USER" linkType="201610051" maxSize="1"/>
+        <listAttrType id="manager_user_l1_subs" objectType.idref="USER" linkType="201610052" maxSize="1"/>
+        <dateAttrType id="manager_user_l1_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        
+        <!-- Deficiency manager L2 -->
+        <listAttrType id="manager_group_l2" maxSize="1" objectType.idref="USERGROUP" linkType="6109" >
+            <listRestriction>
+                <attributeRestriction attribute="role" value="deficiencymanager_l2"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="manager_user_l2" objectType.idref="USER" linkType="201610053" maxSize="1"/>
+        <listAttrType id="manager_user_l2_subs" objectType.idref="USER" linkType="201610054" maxSize="1"/>
+        <dateAttrType id="manager_user_l2_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        
+        <!-- Deficiency manager L3 -->
+        <listAttrType id="manager_group_l3" maxSize="1" objectType.idref="USERGROUP" linkType="6110" >
+            <listRestriction>
+                <attributeRestriction attribute="role" value="deficiencymanager_l3"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="manager_user_l3" objectType.idref="USER" linkType="201610055" maxSize="1"/>
+        <listAttrType id="manager_user_l3_subs" objectType.idref="USER" linkType="201610056" maxSize="1"/>
+        <dateAttrType id="manager_user_l3_date">
+            <validate name="date"/>
+            <modify name="endOfDay"/>
+        </dateAttrType>
+        
+    </objectType>
+        
+</custom>

@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <version application="9.8.5.1" />
+	<!-- never forget to specify a custom schema ID when customizing object types! -->
+	<schema version="9.8.5.1" customizing="SoftwareAG" />
+	
+	<objectType id="HIERARCHY" displayAttribute="name" extends="RECURRING" xmlexport="true"
+                descriptionAttributes="type, description, isroot" 
+                mashzoneId="190" arisImportRole="sysadmin" image="iconlib/icons/doctype/model_16.png">
+        <stringAttrType id="name" maxCharCount="500">
+            <validate name="maxlength" arg0="500"/>
+        </stringAttrType>
+        <booleanAttrType id="isroot" defaultValue="false"/>
+        <stringAttrType id="hnumber" maxCharCount="50">
+            <validate name="maxlength" arg0="50"/>
+        </stringAttrType>
+        <enumAttrType id="type" enumeration="hierarchy_type" defaultValue="1"/>
+        <textAttrType id="description"/>
+        <textAttrType id="bb_dicionarioDeRisco"/>
+        <booleanAttrType id="signoff"/>
+        <stringAttrType id="modellink" maxCharCount="500">
+            <validate name="maxlength" arg0="500"/>
+        </stringAttrType>
+        <stringAttrType id="modelguid" maxCharCount="25">
+            <validate name="maxlength" arg0="40"/>
+        </stringAttrType>
+        <stringAttrType id="objectlink" maxCharCount="500">
+            <validate name="maxlength" arg0="500"/>
+        </stringAttrType>
+        <stringAttrType id="objectguid" maxCharCount="25">
+            <validate name="maxlength" arg0="40"/>
+        </stringAttrType>
+        <listAttrType id="children" maxSize="-1" linkType="46" objectType.idref="HIERARCHY" isHierarchical="true"/>
+        <listAttrType id="so_owner" maxSize="1" linkType="51" objectType.idref="USERGROUP" >
+            <listRestriction>
+                <attributeRestriction attribute="role" value="signoffowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <stringAttrType id="model_name" maxCharCount="200">
+            <validate name="maxlength" arg0="200"/>
+        </stringAttrType>
+        <listAttrType id="tester" linkType="69" objectType.idref="USERGROUP">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="tester"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="auditor" linkType="3112" objectType.idref="USERGROUP">     <!-- testmanagement auditor -->
+            <listRestriction>
+                <attributeRestriction attribute="role" value="testauditor"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>  
+        <listAttrType id="owner_group" maxSize="1" linkType="3113" objectType.idref="USERGROUP">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="hierarchyowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>  
+        <listAttrType id="reviewer_group" linkType="3114" objectType.idref="USERGROUP"/> <!-- not used -->
+        <booleanAttrType id="reviewRelevant" defaultValue="false"/>
+        <textAttrType id="activities"/>
+        <enumAttrType id="frequency" enumeration="frequency" defaultValue="0"/>
+        <index id="I_HIERARCHY_1" type="normal">
+            <attributeRef attribute="isroot"/>
+        </index>
+        <index id="I_HIERARCHY_2" type="normal">
+            <attributeRef attribute="type"/>
+        </index>
+        <index id="I_HIERARCHY_4" type="normal">
+            <attributeRef attribute="signoff"/>
+        </index>
+        <index id="I_HIERARCHY_NAME" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <index id="I_HIERARCHY_MODELLINK" type="normal">
+            <attributeRef attribute="modellink"/>
+        </index>
+        <index id="I_HIERARCHY_MODELGUID" type="normal">
+            <attributeRef attribute="modelguid"/>
+        </index>
+        <index id="I_HIERARCHY_OBJECTLINK" type="normal">
+            <attributeRef attribute="objectlink"/>
+        </index>
+        <index id="I_HIERARCHY_OBJECTGUID" type="normal">
+            <attributeRef attribute="objectguid"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <enumAttrType id="bb_scope" enumeration="bb_scope"/>
+        <listAttrType id="bb_deptManager" maxSize="1" linkType="10002" objectType.idref="HIERARCHY">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="bb_product" maxSize="-1" linkType="10003" objectType.idref="HIERARCHY">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="bb_product"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="bb_riskfactor" maxSize="-1" linkType="201701131" objectType.idref="HIERARCHY">
+           <listRestriction>
+                <attributeRestriction attribute="type" value="bb_riskfactor"/>
+            </listRestriction>
+        </listAttrType>
+        <dateAttrType id="bb_dataBalancete">
+            <validate name="date" arg0="precision:day"/>
+            <convert name="date" arg0="precision:day"/>
+        </dateAttrType>    
+        <listAttrType id="bb_financcount" maxSize="-1" linkType="10039" objectType.idref="HIERARCHY">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>        
+        <dateAttrType id="bb_scopeSelection">
+            <validate name="date" arg0="precision:day"/>
+            <convert name="date" arg0="precision:day"/>
+        </dateAttrType>       
+        <stringAttrType id="bb_codDependResp" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_nomeDependResp" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>         
+        <stringAttrType id="bb_codDivisaoResp" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>         
+        <stringAttrType id="bb_codNucleoResp" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="bb_finaccountAssertions" enumeration="assertion"/>
+        <dateAttrType id="bb_inicioComercModalidade">
+        	<validate name="date"/>
+            <convert name="startdate" />
+        </dateAttrType>
+		<dateAttrType id="bb_fimComercModalidade">
+            <validate name="date"/>
+            <convert name="enddate"/>
+        </dateAttrType>
+        <stringAttrType id="bb_codAbragModalidade" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <booleanAttrType id="bb_indModalidadeTesouraria" defaultValue="false"/>
+        <enumAttrType id="bb_tipoUnidOrganizacional" enumeration="bb_tipoUnidOrganizacional" defaultValue="0"/>
+        <stringAttrType id="bb_codigoIOR" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_mapFreeSH2" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType> 
+        <stringAttrType id="bb_fundoGarantiaInvest" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_eloParSA" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_previ" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType> 
+        <stringAttrType id="bb_BB_USA_Hold" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_Seguros_Part" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_TesouroNacional" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_Leasing_Co" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_BI" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_MapFreeSegurosGerais" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_AcaoTesouroria" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_mapFreeSH1" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_fundoFiscalInvEstab" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_cartoesPart" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_AG" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_corPart" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_cxFIGarantConstNaval" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BAMB" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_segPart" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BB_DTVM" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_freeFloat" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_BNDESPar" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_codigoUOR" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_codigoTipologia" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_sigla" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_prefixo" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_notaTecnicaAprova" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_periodicidadeRevisa" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="bb_tipoFatorControle" enumeration="bb_tipoFatorControle" defaultValue="0"/>
+        <booleanAttrType id="bb_participacaoCalculoCapital" defaultValue="false"/>
+        <doubleAttrType id="bb_valorLimiteCritico">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <dateAttrType id="bb_dataFimValidFator">
+            <validate name="futureDate" arg0="precision:day"/>
+            <convert name="date" arg0="precision:day"/>
+        </dateAttrType>
+        <doubleAttrType id="bb_valorLimiteInferior">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_valorLimiteSuperior">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <enumAttrType id="bb_metodoAgregacao" enumeration="bb_metodoAgregacao" defaultValue="0"/>
+        <enumAttrType id="bb_metodoPrevisao" enumeration="bb_metodoPrevisao" defaultValue="0"/>
+        <enumAttrType id="bb_estadoRegControl" enumeration="bb_estadoRegControl" defaultValue="0"/>
+        <longAttrType id="bb_mesesParaTotalizacao" >
+            <validate name="long" />
+        </longAttrType>
+        <enumAttrType id="bb_codClassifFatorContrInt" enumeration="bb_codClassifFatorContrInt" defaultValue="0"/>
+        <doubleAttrType id="bb_valFatorContrApurado">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <stringAttrType id="bb_numRecomendRisco" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <stringAttrType id="bb_emailUOR" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <enumAttrType id="bb_tipoFinancialAccount" enumeration="bb_tipoFinancialAccount" defaultValue="0"/>
+        <listAttrType id="bb_codIOR_contaContabil" linkType="10040" objectType.idref="HIERARCHY" >
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>    
+                <!-- attributeRestriction attribute="bb_tipoUnidOrganizacional" value="bb_ior" -->                                            
+            </listRestriction>
+        </listAttrType>                              
+        <doubleAttrType id="bb_consolidado">
+        	<!-- ICB supports negative values for this field 
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_eliminado">
+        	<!-- ICB supports negative values for this field
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_aglutinado">
+        	<!-- ICB supports negative values for this field 
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/> -->
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>    
+        <enumAttrType id="bb_avalMaterialidadeContas" enumeration="bb_avalMaterialidadeContas" defaultValue="1"/>
+        <doubleAttrType id="bb_grauExposicao">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>    
+        <doubleAttrType id="bb_suscetibFraude">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_avalQuantitativa">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_valBaseMaterialidade">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_percentAplicRiscoAlto">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <doubleAttrType id="bb_percentAplicRiscoMedio">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+        <stringAttrType id="bb_nivel" maxCharCount="25">
+            <validate name="maxlength" arg0="25"/>
+        </stringAttrType>   
+        <enumAttrType id="bb_codigoEstadoModal" enumeration="bb_codigoEstadoModal" defaultValue="1"/> 
+        <stringAttrType id="bb_company" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>     
+        <textAttrType id="bb_caminho"/>
+        <enumAttrType id="bb_riskFactorType" enumeration="bb_riskFactorType" defaultValue="0"/>
+        <enumAttrType id="bb_classificacaoQuant" enumeration="bb_rateLowMedHigh" defaultValue="1"/>
+        <enumAttrType id="bb_classificacaoQual" enumeration="bb_rateLowMedHigh" defaultValue="1"/>
+        <enumAttrType id="bb_classificacaoFinal" enumeration="bb_rateLowMedHigh" defaultValue="1"/>                       
+    </objectType>
+       
+    <objectType id="USERGROUP" xmlexport="true" extends="VERSION" clientDependent="true" displayAttribute="name"
+                descriptionAttributes="description, role, rolelevel" 
+                mashzoneId="20" arisImportRole="sysadmin" image="iconlib/icons/content/user-group.png">
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="description" isMassEditable="true"/>
+        <enumAttrType id="role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="rolelevel" enumeration="userrole_level" defaultValue="0"/>
+        <listAttrType id="groupmembers" objectType.idref="USER" linkType="1"/>
+        <!-- userid mit dem selben namen in unterschiedlichen mandanten benoetigt client_sign fuer constraint -->
+        <!--<stringAttrType id="client_sign" maxCharCount="12"/>--><!--checked in rule engine-->
+        <index id="I_4_1" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        <!--index id="I_4_2" type="fullText">
+            <attributeRef attribute="description"/>
+        </index-->
+        <index id="I_USERGROUP_ROLE" type="normal">
+            <attributeRef attribute="role"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <stringAttrType id="bb_email" maxCharCount="512">
+            <validate name="maxlength" arg0="512"/>
+            <validate name="email"/>
+        </stringAttrType>
+        <listAttrType id="bb_orgunit" maxSize="1" objectType.idref="HIERARCHY" linkType="20160322" breakCycle="true">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+    </objectType>
+    
+    <objectType id="OBJECT" displayAttribute="obj_id" xmlexport="false">
+        <longAttrType id="obj_id" precision="noGrouping"/>
+        <stringAttrType id="obj_type"  maxCharCount="255"/>
+        <longAttrType id="versions"/>
+        <stringAttrType id="guid" maxCharCount="64"/>
+        <stringAttrType id="root_guid" maxCharCount="64"/>
+        <longAttrType id="creator_user_id"  objectType.idref="USER"/>
+        <dateAttrType id="create_date" precision="day">
+            <!-- BDB CUSTOMIZATION -->
+            <validate name="date" arg0="precision:day"/>
+        </dateAttrType>
+        <dateAttrType id="delete_date" precision="second">
+            <validate name="date" arg0="precision:second"/>
+        </dateAttrType>
+        <stringAttrType id="client_sign" maxCharCount="12" isClientSign="true"/>
+        <longAttrType id="client_objid"  objectType.idref="CLIENT"/>
+    </objectType>
+    
+</custom>

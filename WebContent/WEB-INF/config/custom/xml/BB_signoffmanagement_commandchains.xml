@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <catalog id="soprocess">
+        <commandchain id="prepare">
+            <command id="sotaskAssignedHierarchyAndUsergroupsCheck" />
+            <command id="soprocessGenerate" />
+            <command id="sotaskAssignedUsergroupsSend"/>
+        </commandchain> 
+	</catalog>
+	<catalog id="sotask">
+        <commandchain id="reset">
+        	<!-- BEGIN BDB : Enhancement #112828 : TC.SO.49 - Explorer/Gestão Sign off/Tarefas de Sign off - Testar bloquear e desbloquear -->
+        	<command id="requestDialog" >
+                <parameter name="dialogID" value="okcancel" />
+                <parameter name="questionPropertyKey" value="warning.sotask.reset.possible.WRG" />
+            </command>
+            <!-- END -->
+            <command id="soTaskReset"/>
+            <command id="soTaskDeleteSOProcesses" />
+        </commandchain>
+        <commandchain id="delete"/>
+    </catalog>
+</custom>

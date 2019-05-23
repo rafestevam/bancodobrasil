@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<blClassMapping>
+		<mappingType name="Command">
+			<mapping name="sotaskAssignedHierarchyAndUsergroupsCheck" clsName="com.idsscheer.webapps.arcm.bl.component.signoffmanagement.commands.job.generator.SOTaskAssignedHierarchyAndUsergroupsCheckCommandBB"/>
+			<mapping name="sotaskAssignedUsergroupsSend" clsName="com.idsscheer.webapps.arcm.bl.component.signoffmanagement.commands.job.generator.SOTaskAssignedUsergroupsSendBB"/>
+		</mappingType>
+	</blClassMapping>	
+</custom>

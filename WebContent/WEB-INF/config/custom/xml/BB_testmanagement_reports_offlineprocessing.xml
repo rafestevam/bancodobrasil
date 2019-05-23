@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <!-- ~~~~~~~~~~~~~~ TESTCASE ~~~~~~~~~~~~~~-->
+    <arisreport reportID="TESTCASE_TESTMANAGER" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_testcase">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="70" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <!-- 
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="form.row.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70" rendererParameter="ALTERNATE_IDENTIFIER_ATTRIBUTE=model_name"/>
+                </arisreporttablerow>
+                 -->
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="risk">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.risk.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risk" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="control">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testdefinition">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testdefinition.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testdefinition" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="predecessor">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.predecessor.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="predecessor" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="followup">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.followup.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="followup" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="type">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.type.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="type" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.plannedstartdate.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70" dataReference="plannedstartdate"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.plannedenddate.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70"
+                                         dataReference="plannedenddate"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testerhierarchy">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testerhierarchy.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testerhierarchy" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testtype">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testtype.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testtype" relativeWidth="70" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_status">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="effectiveness">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.effectiveness.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="effectiveness" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_status">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="testingsteps">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testingsteps.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testingsteps" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_nature">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.test_nature.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_nature" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testextend">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testextend.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testextend" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="control_frequency">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control_frequency.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control_frequency" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="design_description">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.design_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="design_description" relativeWidth="70"/>
+                </arisreporttablerow>
+                <!--  
+                <arisreporttablerow visibilityConstraint="operative_description">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.operative_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="operative_description" relativeWidth="70"/>
+                </arisreporttablerow>
+                -->
+                <arisreporttablerow visibilityConstraint="remark">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.remark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="remark" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="recommendations">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.recommendations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="recommendations" relativeWidth="70"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+
+        <arisreportsection>
+            <arisreportautocomponent	componentID="offlineinfo" />
+        </arisreportsection>
+
+    </arisreport>
+
+    <arisreport reportID="TESTCASE_TESTREVIEWER" format="EXCEL" datasourceType="APPOBJ"
+                datasourceID="appobj_testcase">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="70" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="form.row.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70" rendererParameter="ALTERNATE_IDENTIFIER_ATTRIBUTE=model_name"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="risk">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.risk.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risk" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="control">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testdefinition">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testdefinition.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testdefinition" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="predecessor">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.predecessor.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="predecessor" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="followup">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.followup.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="followup" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="type">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.type.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="type" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate|plannedenddate">
+                    <arisreporttablecell propertyKey="form.row.testing.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="plannedstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="plannedenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testerhierarchy">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testerhierarchy.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testerhierarchy" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testtype">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testtype.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testtype" relativeWidth="70" />
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_status">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="effectiveness">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.effectiveness.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="effectiveness" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.measure.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="measure" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.reviewer_remark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_remark" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="testingsteps">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testingsteps.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testingsteps" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_nature">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.test_nature.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_nature" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testextend">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testextend.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testextend" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="control_frequency">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control_frequency.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control_frequency" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="design_description">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.design_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="design_description" relativeWidth="70"/>
+                </arisreporttablerow>
+                <!--  
+                <arisreporttablerow visibilityConstraint="operative_description">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.operative_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="operative_description" relativeWidth="70"/>
+                </arisreporttablerow>
+                -->
+                <arisreporttablerow visibilityConstraint="remark">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.remark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="remark" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="recommendations">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.recommendations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="recommendations" relativeWidth="70"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+
+        <arisreportsection>
+            <arisreportautocomponent	componentID="offlineinfo" />
+        </arisreportsection>
+
+    </arisreport>
+
+    <arisreport reportID="TESTCASE_TESTER" format="EXCEL" datasourceType="APPOBJ" datasourceID="appobj_testcase">
+
+        <arisreportsection>
+
+            <arisreporttable tableNameDataReference="~appobj_type">
+
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="report.general.version.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="version_number" newLine="false"/>
+                        <arisreportoutput outputText="     " newLine="false"/>
+                        <arisreportoutput dataReference="change_date" newLine="false"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="client_sign">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.client_sign.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="client_sign" relativeWidth="70" rendererID="clientSignAttributeRenderer"/>
+                </arisreporttablerow>
+                <!-- 
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="form.row.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70" rendererParameter="ALTERNATE_IDENTIFIER_ATTRIBUTE=model_name"/>
+                </arisreporttablerow>
+                 -->
+                <arisreporttablerow visibilityConstraint="process">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.process.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="process" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="risk">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.risk.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="risk" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="control">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testdefinition">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testdefinition.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testdefinition" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="predecessor">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.predecessor.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="predecessor" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="followup">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.followup.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="followup" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="obj_id">
+                    <arisreporttablecell propertyKey="attribute.OBJECT.obj_id.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="obj_id" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="type">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.type.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="type" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="plannedstartdate|plannedenddate">
+                    <arisreporttablecell propertyKey="form.row.testing.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="plannedstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="plannedenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="execution_date">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.execution_date.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="execution_date" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="controlstartdate|controlenddate">
+                    <arisreporttablecell propertyKey="form.row.control.period.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell relativeWidth="70">
+                        <arisreportoutput dataReference="controlstartdate"/>
+                        <arisreportoutput outputText=" - "/>
+                        <arisreportoutput dataReference="controlenddate"/>
+                    </arisreporttablecell>
+                </arisreporttablerow>
+         
+                <!-- CHANGED By NETO - 11/10/2016 -->
+				<arisreporttablerow>
+					<arisreporttablecell
+						propertyKey="attribute.TESTCASE.bb_inicioClicloAvaliatorio.DBI"
+						relativeWidth="50" styleID="header_left" />
+					<arisreporttablecell
+						dataReference="bb_inicioClicloAvaliatorio"
+						relativeWidth="70" rendererID="offlineProcessingInputReferenceRenderer"
+						styleID="offlineinputcell" />
+				</arisreporttablerow>
+					<arisreporttablerow>
+					<arisreporttablecell
+						propertyKey="attribute.TESTCASE.bb_fimClicloAvaliatorio.DBI"
+						relativeWidth="50" styleID="header_left" />
+					<arisreporttablecell
+						dataReference="bb_fimClicloAvaliatorio"
+						relativeWidth="70" rendererID="offlineProcessingInputReferenceRenderer"
+						styleID="offlineinputcell" />
+				</arisreporttablerow>
+				<!-- *****************************************	 -->
+				
+                <arisreporttablerow visibilityConstraint="testerhierarchy">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testerhierarchy.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testerhierarchy" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="owner">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.owner.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="reviewer_group">
+                    <arisreporttablecell propertyKey="attribute.TRANSACTIONAL.reviewer_group.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_group" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testtype">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testtype.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testtype" relativeWidth="70" />
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.owner_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="owner_status" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="effectiveness">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.effectiveness.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="effectiveness" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="reviewer_status">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.reviewer_status.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="reviewer_status" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="testingsteps">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testingsteps.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testingsteps" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="test_nature">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.test_nature.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="test_nature" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="testextend">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.testextend.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="testextend" relativeWidth="70"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow>
+                    <arisreporttablecell outputText="" relativeWidth="50" styleID="noborders"/>
+                </arisreporttablerow>
+
+                <arisreporttablerow visibilityConstraint="control_frequency">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.control_frequency.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="control_frequency" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.design_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="design_description" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <!--  
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.operative_description.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="operative_description" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                -->
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.bb_conclusaoTeste.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell dataReference="bb_conclusaoTeste" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.remark.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="remark" relativeWidth="70"
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow>
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.bb_validacaoReferencia.DBI" relativeWidth="50"
+                                         styleID="header_left"/>
+                    <arisreporttablecell visibilityConstraint="bb_validacaoReferencia"
+                    					 dataReference="bb_validacaoReferencia" relativeWidth="70" 
+                                         rendererID="offlineProcessingInputReferenceRenderer"
+                                         styleID="offlineinputcell"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="documents">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.documents.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="documents" relativeWidth="70"/>
+                </arisreporttablerow>
+                <arisreporttablerow visibilityConstraint="recommendations">
+                    <arisreporttablecell propertyKey="attribute.TESTCASE.recommendations.DBI" relativeWidth="50" styleID="header_left"/>
+                    <arisreporttablecell dataReference="recommendations" relativeWidth="70"/>
+                </arisreporttablerow>
+            </arisreporttable>
+        </arisreportsection>
+
+        <arisreportsection>
+            <arisreportautocomponent	componentID="offlineinfo" />
+        </arisreportsection>
+
+    </arisreport>
+
+</custom>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+		<nav.module module.id="module.explorer" propertyKey="module.explorer.DBI">
+	        <nav.item item.idref="item.explorer.audit.management"/>
+	        <nav.item item.idref="item.explorer.change.management"/>
+	        <nav.item item.idref="item.explorer.deficiency.management"/>
+	        <nav.item item.idref="item.explorer.incident.management"/>
+	        <nav.item item.idref="item.explorer.policy.management"/>
+	        <nav.item item.idref="item.explorer.risk.management"/>
+	        <nav.item item.idref="item.explorer.signoff.management"/>
+	        <nav.item item.idref="item.explorer.survey.management"/>
+	        <nav.item item.idref="item.explorer.test.management"/>
+	        <nav.item item.idref="item.explorer.offline.processing"/>
+	        <!-- 
+	        <nav.item item.idref="item.explorer.control.management"/>  -->
+	        <nav.item item.idref="item.explorer.issue.management"/>
+	    </nav.module>
+
+	    <!-- ISSUE MANAGEMENT -->
+	    <nav.item item.id="item.explorer.issue.management" propertyKey="item.explorer.issue.management.DBI">
+	        <nav.access>
+	            <nav.access.role roleIDs="ISSUECREATOR, ISSUEMGMTAPPROVERL1, ISSUEMGMTAPPROVERL2, ISSUEIMPLAPPROVERL1, ISSUEIMPLAPPROVERL2, ISSUETECHAPPROVERL1, ISSUETECHAPPROVERL2, ISSUEOWNER, ISSUEREVIEWER, ISSUEMANAGER, ISSUEAUDITOR, ISSUEATBREPORT"/>
+	        </nav.access>
+	        <nav.item item.id="item.explorer.issue.management.creation" propertyKey="item.explorer.issue.management.creation.DBI">
+	        	<!-- for issuecreator -->
+		        <nav.data.grid dataGrid.idref="MyCreatedOpenIssues">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.creator" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issuemgmtapprl1 -->
+		        <nav.data.grid dataGrid.idref="IssueMgmtApproverL1">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.mgmtapprl1" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issuemgmtapprl2 -->
+		        <nav.data.grid dataGrid.idref="IssueMgmtApproverL2">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.mgmtapprl2" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issueimplapprl1 -->
+		        <nav.data.grid dataGrid.idref="IssueImplApproverL1">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.implapprl1" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for impltechapprl2 -->
+		        <nav.data.grid dataGrid.idref="IssueImplApproverL2">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.implapprl2" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issuetechapprl1 -->
+		        <nav.data.grid dataGrid.idref="IssueTechApproverL1">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.techapprl1" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issuetechapprl2 -->
+		        <nav.data.grid dataGrid.idref="IssueTechApproverL2">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.techapprl2" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <nav.data.grid dataGrid.idref="MyCreatedIssues">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.creator" />
+		            </nav.access>
+		        </nav.data.grid>
+	        </nav.item>
+	        <nav.item item.id="item.explorer.issue.management.execution" propertyKey="item.explorer.issue.management.execution.DBI">
+		        <nav.data.grid dataGrid.idref="IssueOwner">
+		        	<nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.issueowner" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issueimplapprl1 -->
+		        <nav.data.grid dataGrid.idref="IssueExecImplApprL1">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.implapprl1" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issueimplapprl2 -->
+		        <nav.data.grid dataGrid.idref="IssueExecImplApprL2">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.implapprl2" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <nav.data.grid dataGrid.idref="IssueReviewer">
+		        	<nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.issuereviewer" />
+		            </nav.access>
+		        </nav.data.grid>
+		            
+		        <!-- for issuemgmtapprl1 -->
+		        <nav.data.grid dataGrid.idref="IssueExecMgmtApprL1">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.mgmtapprl1" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <!-- for issuemgmtapprl2 -->
+		        <nav.data.grid dataGrid.idref="IssueExecMgmtApprL2">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.mgmtapprl2" />
+		            </nav.access>
+		        </nav.data.grid>
+		        <nav.data.grid dataGrid.idref="MyCreatedIssuesExecution">
+		            <nav.access>
+		                <nav.access.privilege componentPrivilegeIDs="view.issue.creator" />
+		            </nav.access>
+		        </nav.data.grid>
+	        </nav.item>
+	        <!-- for issue manager, issue auditor -->
+	        <nav.data.grid dataGrid.idref="Issues">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.issues" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!--  for issuecreators, mgmtapprovers, implapprovers and techapprovers -->
+	        <nav.data.grid dataGrid.idref="IssuesApproverBB">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.issue.issuesapproverbb" />
+	            </nav.access>
+	        </nav.data.grid>
+	        <!-- for atb report -->
+	        <nav.data.grid dataGrid.idref="ATBReport">
+	            <nav.access>
+	                <nav.access.privilege componentPrivilegeIDs="view.issue.atbreport"/>
+	            </nav.access>
+	        </nav.data.grid>
+	    </nav.item>	    
+	</navigation>
+</custom>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<uiClassMapping>
+		<renderers>
+			<renderer name="externalLink" 			clsName="com.idsscheer.webapps.arcm.ui.components.common.renderer.ExternalLinkRendererBB" />
+			<renderer name="relations" 	    		clsName="com.idsscheer.webapps.arcm.ui.framework.renderer.AdvancedRelationRendererBB"
+                                                	reportClsName="com.idsscheer.webapps.arcm.bl.report.generator.layout.RelationsAndChildAttributeReportLayout"/>
+		</renderers>
+		<filterRenderers>
+	  		<renderer name="predefinedValuesExtendedBB" clsName="com.idsscheer.webapps.arcm.ui.framework.filterrenderer.PredefinedValueExtendedFilterRendererBB" /> 
+	  	</filterRenderers>
+		<controls>
+			<control name="protocol"                clsName="com.idsscheer.webapps.arcm.ui.framework.controls.object.ProtocolBB" />	
+		</controls>
+	</uiClassMapping>
+	
+</custom>

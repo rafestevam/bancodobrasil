@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <view id="questionnaire_template" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_questionnaire_template_template" objectType="QUESTIONNAIRE_TEMPLATE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="template_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="isworkingcopy" attributeType="isWorkingCopy" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="targetscore" attributeType="targetScore" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_questionnaire_template_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="6101" firstViewObject="VO_questionnaire_template_template" secondViewObject="VO_questionnaire_template_manager_group" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="questionnaire_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="targetscore" compareType="EQ"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+                
+                <!-- BdB CUSTOMIZATION -->
+                <condition column.id="isworkingcopy" compareType="EQ" value="-1"/>
+                
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="surveytask2orgunit_sel" view.parameter="DISTINCT">
+        <viewObject id="VO_surveytask2orgunit_hierarchy_1" objectType="HIERARCHY" isMainViewObject="true">
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="isroot" attributeType="isroot"/>
+			<viewColumn id="type" attributeType="type"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoUnidOrganizacional" attributeType="bb_tipoUnidOrganizacional" />
+            <viewColumn id="bb_prefixo" attributeType="bb_prefixo" isSelectColumn="true"/>
+            <viewColumn id="bb_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        </viewObject>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="obj_id" compareType="NOTIN" currentObjectType.id="SURVEYTASK" currentAttributeType.id="relatedOrgunits"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="isroot" compareType="EQ" value="false"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ" value="3"/>
+                <compoundCondition conditionConnect="OR">
+                	<condition column.id="bb_tipoUnidOrganizacional" compareType="EQ" value="2"/>
+                	<condition column.id="bb_tipoUnidOrganizacional" compareType="ISNULL" />
+                </compoundCondition>
+                <condition column.id="bb_prefixo" compareType="LIKE"/>
+                <condition column.id="bb_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="surveytask2testdefinition_sel" view.parameter="DISTINCT">
+		<viewObject id="VO_testdefinition_1" objectType="TESTDEFINITION" isMainViewObject="true">
+			<viewColumn id="testdefinition_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="testfrequency" attributeType="frequency" isSelectColumn="true"/>
+			<viewColumn id="testduration" attributeType="duration" isSelectColumn="true"/>
+			<viewColumn id="startdate" attributeType="startdate" isSelectColumn="true"/>
+			<viewColumn id="deactivated" attributeType="deactivated"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+		</viewObject>
+		<viewObject id="VO_testdefinition_4" objectType="OBJECT">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<link linktype.id="100" firstViewObject="VO_testdefinition_4" secondViewObject="VO_testdefinition_1"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				
+				<condition viewObject.id="VO_testdefinition_1" column.id="deactivated" compareType="EQ" value="false"/>
+				<condition viewObject.id="VO_testdefinition_1" column.id="version_active" compareType="EQ" value="true"/>
+				<condition viewObject.id="VO_testdefinition_1" column.id="obj_id" compareType="EQ"/>
+				<condition column.id="testdefinition_obj_id" compareType="NOTIN" currentObjectType.id="SURVEYTASK" currentAttributeType.id="test_definitions"/>
+				<condition viewObject.id="VO_testdefinition_1" column.id="name" compareType="LIKE"/>
+				<condition viewObject.id="VO_testdefinition_4" column.id="client_sign" compareType="LIKE"/>
+				<condition viewObject.id="VO_testdefinition_1" column.id="testfrequency" compareType="IN"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="surveytask2questionnaireTemplate_sel" view.parameter="DISTINCT">
+        <viewObject id="VO_questionnaire_template" objectType="QUESTIONNAIRE_TEMPLATE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="isworkingcopy" attributeType="isWorkingCopy" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_questionnaire_template_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+        </viewObject>
+        <link linktype.id="6101" firstViewObject="VO_questionnaire_template" secondViewObject="VO_questionnaire_template_manager_group" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="questionnaire_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="obj_id" compareType="NOTIN" currentObjectType.id="SURVEYTASK" currentAttributeType.id="questionnaireTemplate"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+
+                <!-- BdB CUSTOMIZATION -->
+                <condition column.id="isworkingcopy" compareType="EQ" value="-1"/>
+                
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="createdsurveys" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CreatedSurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_createdsurveys_survey" objectType="SURVEY" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_targetScore" attributeType="targetScore" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="survey_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="survey_control_start" attributeType="controlstartdate"/>
+            <viewColumn id="survey_control_end" attributeType="controlenddate"/>
+            <viewColumn id="numberOfOwnerGroups" attributeType="numberOfOwnerGroups" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="numberOfQuestionnaires" attributeType="numberOfQuestionnaires" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="avgscore" attributeType="avgScore" isSelectColumn="true" isSortable="true" function="DIVISION">
+                <viewColumn id="score" attributeType="obj_id" isSortable="true" isSelectColumn="true" subview.id="createdSurveys_subActScore"/>
+                <viewColumn id="completedQuestionnaires" attributeType="obj_id" isSortable="true" isSelectColumn="true" subview.id="createdSurveys_subCountCompletedQuestionnaires"/>
+            </viewColumn>
+            <viewColumn id="ta_id_ugk" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_questionnaireTemplate" objectType="QUESTIONNAIRE_TEMPLATE">
+            <viewColumn id="template_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="template_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="template_version_active" attributeType="version_active"/>
+            <viewColumn id="template_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_questionnaire" objectType="QUESTIONNAIRE">
+            <viewColumn id="questionnaire_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_questionnaireowner" objectType="USERGROUP">
+            <viewColumn id="ownerGroup_id" attributeType="obj_id"/>
+            <viewColumn id="ownerGroup_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_reviewerGroup" objectType="USERGROUP">
+            <viewColumn id="reviewerGroup_id" attributeType="obj_id"/>
+            <viewColumn id="reviewerGroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerGroup_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="reviewerGroup_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_AppSystem" objectType="HIERARCHY">
+            <viewColumn id="appSystem_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_Regulation" objectType="HIERARCHY">
+            <viewColumn id="regulation_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_Orgunit" objectType="HIERARCHY">
+            <viewColumn id="orgunit_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_Processe" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_Category" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_TESTDEFINITION" objectType="TESTDEFINITION">
+            <viewColumn id="testdefinition_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_task" objectType="SURVEYTASK">
+            <viewColumn id="task_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_createdsurveys_wc" objectType="QUESTIONNAIRE_TEMPLATE">
+            <viewColumn id="wc_id" attributeType="obj_id"/>
+            <viewColumn id="wc_name" attributeType="name"/>
+        </viewObject>
+        <link linktype.id="3223" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_questionnaireTemplate"/>
+        <link linktype.id="3228" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_questionnaire"/>
+        <link linktype.id="6105" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_manager_group" joinType="LEFT"/>
+        <link linktype.id="40" firstViewObject="VO_createdsurveys_questionnaire" secondViewObject="VO_createdsurveys_questionnaireowner"/>
+        <link linktype.id="3225" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_reviewerGroup"/>
+        <link linktype.id="3245" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_AppSystem" joinType="LEFT"/>
+        <link linktype.id="3246" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_Regulation" joinType="LEFT"/>
+        <link linktype.id="3247" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_Orgunit" joinType="LEFT"/>
+        <link linktype.id="3248" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_Processe" joinType="LEFT"/>
+        <link linktype.id="3249" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_Category" joinType="LEFT"/>
+        <link linktype.id="3250" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_RISK" joinType="LEFT"/>
+        <link linktype.id="3251" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_CONTROL" joinType="LEFT"/>
+        <link linktype.id="3252" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_TESTDEFINITION" joinType="LEFT"/>
+        <link linktype.id="3226" firstViewObject="VO_createdsurveys_survey" secondViewObject="VO_createdsurveys_task"/>
+        <link linktype.id="31" firstViewObject="VO_createdsurveys_task" secondViewObject="VO_createdsurveys_wc"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="survey_id" compareType="EQ"/>
+                <condition column.id="survey_start" compareType="LE"/>
+                <condition column.id="survey_end" compareType="GE"/>
+                <condition column.id="survey_status" compareType="IN"/>
+                <condition column.id="survey_targetScore" compareType="BETWEEN"/>
+                <condition column.id="avgscore" compareType="BETWEEN"/>
+                <condition column.id="survey_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="survey_control_start" compareType="LE"/>
+                <condition column.id="survey_control_end" compareType="GE"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+                <condition column.id="reviewerGroup_name" compareType="LIKE"/>
+                <condition column.id="ownerGroup_name" compareType="LIKE"/>
+                <condition column.id="wc_id" compareType="EQ"/>
+                <condition column.id="wc_name" compareType="LIKE"/>
+                <condition column.id="template_id" compareType="EQ"/>
+                <condition column.id="template_name" compareType="LIKE"/>
+                <condition column.id="appSystem_name" compareType="LIKE"/>
+                <condition column.id="regulation_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="surveytask_questionnaireowner_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+		<viewObject id="surveytask_questionnaireowner_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="surveytask_questionnaireowner_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="surveytask_questionnaireowner_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="surveytask_questionnaireowner_sel_3" secondViewObject="surveytask_questionnaireowner_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="surveytask_questionnaireowner_sel_1" secondViewObject="surveytask_questionnaireowner_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="SURVEYTASK" currentAttributeType.id="owner_group"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="SURVEYTASK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="questionnaireowner"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="surveytask_surveyreviewer_sel" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.CustomIgnoreRoleViewHandler">
+		<viewObject id="surveytask_surveyreviewer_sel_1" objectType="USERGROUP" isMainViewObject="true">
+            <viewColumn id="usergroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="usergroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="role" attributeType="role" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="rolelevel" attributeType="rolelevel" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="surveytask_surveyreviewer_sel_2" objectType="HIERARCHY">
+        	<viewColumn id="orgunit_codigoUOR" attributeType="bb_codigoUOR" isSelectColumn="true"/>
+        	<viewColumn id="orgunit_name" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="surveytask_surveyreviewer_sel_3" objectType="OBJECT"> 
+			<viewColumn id="client_id" attributeType="client_objid" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="100" firstViewObject="surveytask_surveyreviewer_sel_3" secondViewObject="surveytask_surveyreviewer_sel_1"/>
+        <link linktype.id="20160322" firstViewObject="surveytask_surveyreviewer_sel_1" secondViewObject="surveytask_surveyreviewer_sel_2" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                    	<condition column.id="usergroup_id" compareType="NOTIN" currentObjectType.id="SURVEYTASK" currentAttributeType.id="reviewer_group"/>
+                        <condition column.id="group_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="usergroup_name" compareType="LIKE"/>
+                        <condition column.id="sign" compareType="EQ" currentObjectType.id="SURVEYTASK" currentAttributeType.id="client_sign"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="role" compareType="EQ" value="surveyreviewer"/>
+                        <condition column.id="rolelevel" compareType="EQ" value="O"/>
+                    </compoundCondition>
+                    <condition column.id="description" compareType="LIKE"/>
+                </compoundCondition>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="orgunit_codigoUOR" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="question" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_questions_question" objectType="QUESTION" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_description" attributeType="remark" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_text" attributeType="question_text" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="question_annotations_allowed" attributeType="annotationAllowed"/>
+            <viewColumn id="question_rates_answer" attributeType="reviewerRatesAnswer"/>
+            <viewColumn id="question_optional" attributeType="optionalQuestion"/>
+            <viewColumn id="question_workinghcopy" attributeType="isWorkingCopy" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_questions_optionset" objectType="OPTIONSET">
+            <viewColumn id="optionset_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="optionset_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="optionset_version_active" attributeType="version_active"/>
+            <viewColumn id="optionset_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_questions_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="25" firstViewObject="VO_questions_question" secondViewObject="VO_questions_optionset" joinType="LEFT"/>
+        <link linktype.id="6102" firstViewObject="VO_questions_question" secondViewObject="VO_questions_manager_group" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="question_type" compareType="EQ"/>
+                <condition column.id="question_version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="question_text" compareType="LIKE"/>
+                <condition column.id="question_annotations_allowed" compareType="EQ"/>
+                <condition column.id="question_rates_answer" compareType="EQ"/>
+                <condition column.id="question_optional" compareType="EQ"/>
+                <condition column.id="question_workinghcopy" compareType="IN"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <!--optionset-->
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="optionset_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="optionset_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="optionset_id" compareType="EQ"/>
+                <condition column.id="optionset_name" compareType="LIKE"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="optionset" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_optionsets_set" objectType="OPTIONSET" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_optionsets_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="6103" firstViewObject="VO_optionsets_set" secondViewObject="VO_optionsets_manager_group" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="description" compareType="LIKE"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="option" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_options_option" objectType="OPTION" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="value" attributeType="optionValue" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="workingcopy" attributeType="isWorkingCopy" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_options_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="6104" firstViewObject="VO_options_option" secondViewObject="VO_options_manager_group"  joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="value" compareType="EQ"/>
+                <condition column.id="workingcopy" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="surveytask" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_surveytasks_task" objectType="SURVEYTASK" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_version_active" attributeType="version_active"/>
+            <viewColumn id="task_frequency" attributeType="frequency" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_duration" attributeType="duration" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_startdate" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_startdate2" attributeType="startdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_enddate" attributeType="enddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_enddate2" attributeType="enddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="numberOfOwnerGroups" attributeType="obj_id" isSortable="true" isSelectColumn="true" subview.id="surveytasks_subCountGroups"/>
+            <viewColumn id="guid" attributeType="guid" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_questionnaireTemplate" objectType="QUESTIONNAIRE_TEMPLATE">
+            <viewColumn id="template_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="template_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="template_version_active" attributeType="version_active"/>
+            <viewColumn id="template_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_ownerGroup" objectType="USERGROUP">
+            <viewColumn id="ownerGroup_id" attributeType="obj_id"/>
+            <viewColumn id="ownerGroup_name" attributeType="name"/>
+            <viewColumn id="ownerGroup_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_reviewerGroup" objectType="USERGROUP">
+            <viewColumn id="responsibleUser_id" attributeType="obj_id"/>
+            <viewColumn id="responsibleUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="responsibleUser_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="responsible_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_AppSystem" objectType="HIERARCHY">
+            <viewColumn id="appSystem_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_Regulation" objectType="HIERARCHY">
+            <viewColumn id="regulation_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_Orgunit" objectType="HIERARCHY">
+            <viewColumn id="orgunit_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_Processe" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_Category" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_TESTDEFINITION" objectType="TESTDEFINITION">
+            <viewColumn id="testdefinition_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_surveytasks_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <link linktype.id="31" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_questionnaireTemplate"/>
+        <link linktype.id="32" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_ownerGroup"/>
+        <link linktype.id="33" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_reviewerGroup"/>
+        <link linktype.id="3237" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_AppSystem" joinType="LEFT"/>
+        <link linktype.id="3238" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_Regulation" joinType="LEFT"/>
+        <link linktype.id="3239" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_Orgunit" joinType="LEFT"/>
+        <link linktype.id="3240" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_Processe" joinType="LEFT"/>
+        <link linktype.id="3241" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_Category" joinType="LEFT"/>
+        <link linktype.id="3242" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_RISK" joinType="LEFT"/>
+        <link linktype.id="3243" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_CONTROL" joinType="LEFT"/>
+        <link linktype.id="3244" firstViewObject="VO_surveytasks_task" secondViewObject="VO_surveytasks_TESTDEFINITION" joinType="LEFT"/>
+        <link linktype.id="6100" firstViewObject="VO_surveytasks_manager_group" secondViewObject="VO_surveytasks_task" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="template_id" compareType="EQ"/>
+                <condition column.id="template_name" compareType="LIKE"/>
+                <condition column.id="task_id" compareType="EQ"/>
+                <condition column.id="task_version_active" compareType="EQ" value="true"/>
+                <condition column.id="task_frequency" compareType="IN"/>
+                <condition column.id="task_duration" compareType="EQ"/>
+                <condition column.id="task_startdate" compareType="GE"/>
+                <condition column.id="task_startdate2" compareType="LE"/>
+                <compoundCondition conditionConnect="OR">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="task_enddate" compareType="GE"/>
+                        <condition column.id="task_enddate2" compareType="LE"/>
+                    </compoundCondition>
+                    <condition column.id="task_enddate" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ownerGroup_name" compareType="LIKE"/>
+                <condition column.id="responsibleUser_name" compareType="LIKE"/>
+                <condition column.id="appSystem_name" compareType="LIKE"/>
+                <condition column.id="regulation_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+                <condition column.id="guid" compareType="EQ"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="createdQuestionnaires" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.SurveyObjectRoleViewHandlerBB">
+        <viewObject id="VO_createdQuestionnaires_questionnaire" objectType="QUESTIONNAIRE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_id" attributeType="obj_id" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_versionActive" attributeType="version_active" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_controlStart" attributeType="controlstartdate"/>
+            <viewColumn id="questionnaire_controlEnd" attributeType="controlenddate"/>
+            <viewColumn id="questionnaire_startDate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_endDate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaireVersNumber" attributeType="version_number" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="answered" attributeType="obj_id" isSortable="true" isSelectColumn="true" subview.id="createdQuestionnaires_subAnswer"/>
+            <viewColumn id="questionnaire_targetScore" attributeType="targetScore" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_review_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="questionnaire_performed" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="actualScore" attributeType="obj_id" isSortable="true" isSelectColumn="true" subview.id="createdQuestionnaires_subActScore"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_rootSection" objectType="QUESTIONNAIRESECTION">
+            <viewColumn id="totalNumberOfAnswers" attributeType="totalNumberOfAnswers" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_template" objectType="QUESTIONNAIRE_TEMPLATE">
+            <viewColumn id="template_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="template_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="templateVersNumber" attributeType="version_number" isSelectColumn="true"/>
+            <viewColumn id="template_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_manager_group" objectType="USERGROUP">
+            <viewColumn id="manager_group_name" attributeType="name" isSortable="true"/>
+            <viewColumn id="manager_group_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_questionnaireowner" objectType="USERGROUP">
+            <viewColumn id="ownerGroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerGroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerGroup_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_surveyreviewer" objectType="USERGROUP">
+            <viewColumn id="reviewerGroup_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerGroup_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerGroup_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_performedBy" objectType="USER">
+            <viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_substitute" objectType="USER">
+            <viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_AppSystem" objectType="HIERARCHY">
+            <viewColumn id="appSystem_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_Regulation" objectType="HIERARCHY">
+            <viewColumn id="regulation_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_Orgunit" objectType="HIERARCHY">
+            <viewColumn id="orgunit_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_Processe" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_Category" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="VO_createdQuestionnaires_TESTDEFINITION" objectType="TESTDEFINITION">
+            <viewColumn id="testdefinition_name" attributeType="name"/>
+        </viewObject>
+        <link linktype.id="39" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_template"/>
+        <link linktype.id="3211" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_rootSection"/>
+        <link linktype.id="6106" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_manager_group" joinType="LEFT"/>
+        <link linktype.id="40" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_questionnaireowner"/>
+        <link linktype.id="41" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_surveyreviewer"/>
+        <link linktype.id="3216" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_performedBy" joinType="LEFT"/>
+        <link linktype.id="3217" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_substitute" joinType="LEFT"/>
+        <link linktype.id="3253" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_AppSystem" joinType="LEFT"/>
+        <link linktype.id="3254" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_Regulation" joinType="LEFT"/>
+        <link linktype.id="3255" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_Orgunit" joinType="LEFT"/>
+        <link linktype.id="3256" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_Processe" joinType="LEFT"/>
+        <link linktype.id="3257" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_Category" joinType="LEFT"/>
+        <link linktype.id="3258" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_RISK" joinType="LEFT"/>
+        <link linktype.id="3259" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_CONTROL" joinType="LEFT"/>
+        <link linktype.id="3260" firstViewObject="VO_createdQuestionnaires_questionnaire" secondViewObject="VO_createdQuestionnaires_TESTDEFINITION" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="questionnaire_id" compareType="EQ"/>
+                <condition column.id="questionnaire_versionActive" compareType="EQ" value="true"/>
+                <condition column.id="questionnaire_controlStart" compareType="LE"/>
+                <condition column.id="questionnaire_controlEnd" compareType="GE"/>
+                <condition column.id="questionnaire_startDate" compareType="LE"/>
+                <condition column.id="questionnaire_endDate" compareType="GE"/>
+                <condition column.id="questionnaire_status" compareType="IN"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="questionnaire_targetScore" compareType="BETWEEN"/>
+                <condition column.id="questionnaire_review_status" compareType="IN"/>
+                <condition column.id="actualScore" compareType="BETWEEN"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="manager_group_name" compareType="EQ"/>
+                <!--template conditions-->
+                <condition column.id="template_id" compareType="EQ"/>
+                <condition column.id="template_name" compareType="LIKE"/>
+                <!--hierarchy-->
+                <condition column.id="ownerGroup_name" compareType="LIKE"/>
+                <condition column.id="reviewerGroup_name" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="appSystem_name" compareType="LIKE"/>
+                <condition column.id="regulation_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="testdefinition_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+</custom>

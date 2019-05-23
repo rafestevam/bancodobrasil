@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <workflow objectType.id="issue">
+
+        <state.initial>
+            <prepare chain.id="prepare">
+                <permission.workflow id="issue" />
+                <permission.workflow id="testcase" />
+                <permission.job id="eventImportJob"/>
+            </prepare>
+        </state.initial>
+
+        <state.prepared>
+            <insert to.state.id="openForCreation" chain.id="insertCreation">
+                <permission.workflow id="issue" />
+                <permission.workflow id="testcase" />
+                <attribute.change id="creator_status" 	    to="open"/>
+            </insert>
+            <!-- issueType: FAULT LOG -->
+            <insert to.state.id="openForCreationFaultLogMgmtApprL1, openForCreationFaultLogMgmtApprL2" chain.id="issueCreatorFaultLogCreationReleased">
+            	<attribute.change id="bb_issueType" to="faultlog"/>
+                <attribute.change id="creator_status" 	    to="released"/>
+            </insert>
+            <!-- issueType: MANIFESTATION -->
+            <insert to.state.id="openForCreationManifestationImplApprL1" chain.id="issueCreatorManifestationCreationReleased">
+            	<attribute.change id="bb_issueType" to="manifestation"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+            <!-- issueType: EXTRAPOLATION -->
+            <insert to.state.id="openForCreationExtrapolationMgmtApprL1" chain.id="issueCreatorExtrapolationCreationReleased">
+            	<attribute.change id="bb_issueType" to="extra_sheet"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+            <!-- issueType: SAD -->
+            <insert to.state.id="openForCreationSADMgmtApprL2" chain.id="issueCreatorSADCreationReleased">
+            	<attribute.change id="bb_issueType" to="sad"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+            <!-- issueType: TECH_RECOMMENDATION -->
+            <insert to.state.id="openForCreationTechRecommendationMgmtApprL1" chain.id="issueCreatorTechRecommendationCreationReleased">
+            	<attribute.change id="bb_issueType" to="tech_recommendation"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+            <!-- issueType: ACTION -->
+            <insert to.state.id="openForCreationActionImplApprL1" chain.id="issueCreatorActionCreationReleased">
+            	<attribute.change id="bb_issueType" to="action"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+            <!-- issueType: DEALING_DEADLINE -->
+            <insert to.state.id="openForCreationDealingDeadlineImplApprL2" chain.id="issueCreatorDealingDeadlineCreationReleased">
+            	<attribute.change id="bb_issueType" to="dealing_deadline"/>
+                <attribute.change id="creator_status" to="released"/>
+            </insert>
+        </state.prepared>
+
+        <state id="openForCreation">
+            <attribute id="creator_status" value="open"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtResponsibleCreationInProgess">
+                    <attribute.change id="creator_status" to="open"/>
+                </update>
+                <!-- issueType: FAULT LOG -->
+                <update to.state.id="openForCreationFaultLogMgmtApprL1, openForCreationFaultLogMgmtApprL2" chain.id="issueCreatorFaultLogCreationReleased">
+                	<attribute.change id="bb_issueType" to="faultlog"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: MANIFESTATION -->
+                <update to.state.id="openForCreationManifestationImplApprL1" chain.id="issueCreatorManifestationCreationReleased">
+                	<attribute.change id="bb_issueType" to="manifestation"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: EXTRAPOLATION -->
+                <update to.state.id="openForCreationExtrapolationMgmtApprL1" chain.id="issueCreatorExtrapolationCreationReleased">
+                	<attribute.change id="bb_issueType" to="extra_sheet"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: SAD -->
+                <update to.state.id="openForCreationSADMgmtApprL2" chain.id="issueCreatorSADCreationReleased">
+                	<attribute.change id="bb_issueType" to="sad"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: TECH_RECOMMENDATION -->
+                <update to.state.id="openForCreationTechRecommendationMgmtApprL1" chain.id="issueCreatorTechRecommendationCreationReleased">
+                	<attribute.change id="bb_issueType" to="tech_recommendation"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: ACTION -->
+                <update to.state.id="openForCreationActionImplApprL1" chain.id="issueCreatorActionCreationReleased">
+                	<attribute.change id="bb_issueType" to="action"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <!-- issueType: DEALING_DEADLINE -->
+                <update to.state.id="openForCreationDealingDeadlineImplApprL2" chain.id="issueCreatorDealingDeadlineCreationReleased">
+                	<attribute.change id="bb_issueType" to="dealing_deadline"/>
+                    <attribute.change id="creator_status" to="released"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: FAULT LOG -->
+        <state id="openForCreationFaultLogMgmtApprL1">
+            <attribute id="bb_issueType" value="faultlog"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL1ReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationFaultLogImplApprL1" chain.id="mgmtApprL1ReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: FAULT LOG -->
+        <state id="openForCreationFaultLogMgmtApprL2">
+            <attribute id="bb_issueType" value="faultlog"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_mgmtApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL2ReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationFaultLogImplApprL1" chain.id="mgmtApprL2ReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: FAULT LOG -->
+        <state id="openForCreationFaultLogImplApprL1">
+            <attribute id="bb_issueType" value="faultlog"/>
+            <attribute id="bb_implApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="creationFaultLogClosedByImplApprL1" chain.id="implApprL1ReviewApproved">
+                    <attribute.change id="bb_implApproverL1_aware" to="true"/>
+                </update>
+                <update to.state.id="creationFaultLogClosedByImplApprL1" chain.id="implApprL1ReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_implApproverL1_status" to="auto_accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: FAULT LOG -->
+        <state id="creationFaultLogClosedByImplApprL1">
+            <attribute id="bb_implApproverL1_aware"	value="true"/>
+            <attribute id="bb_implApproverL1_status" value="approved"/>
+            <transitions>
+	            <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: MANIFESTATION -->
+        <state id="openForCreationManifestationImplApprL1">
+            <attribute id="bb_issueType" value="manifestation"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_implApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="implApprL1ManifestationReviewNotApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="rejected"/>
+                </update>
+                
+                <update to.state.id="openForCreationManifestationMgmtApprL1" chain.id="implApprL1ManifestationReviewApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: MANIFESTATION -->
+        <state id="openForCreationManifestationMgmtApprL1">
+            <attribute id="bb_issueType" value="manifestation"/>
+            <attribute id="bb_implApproverL1_status" value="accepted"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="creationManifestationClosedByMgmtApprL1" chain.id="mgmtApprL1ManifestationReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL1_aware" to="true"/>
+                </update>
+                <update to.state.id="creationManifestationClosedByMgmtApprL1" chain.id="mgmtApprL1ManifestationReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_mgmtApproverL1_status" to="auto_accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: MANIFESTATION -->
+        <state id="creationManifestationClosedByMgmtApprL1">
+            <attribute id="bb_mgmtApproverL1_aware"	value="true"/>
+            <attribute id="bb_mgmtApproverL1_status" value="approved"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <state id="openForCreationExtrapolationMgmtApprL1">
+            <attribute id="bb_issueType" value="extra_sheet"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL1ExtrapolationReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationExtrapolationImplApprL2" chain.id="mgmtApprL1ExtrapolationReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <state id="openForCreationExtrapolationImplApprL2">
+            <attribute id="bb_issueType" value="extra_sheet"/>
+            <attribute id="bb_mgmtApproverL1_status" value="accepted"/>
+            <attribute id="bb_implApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="creationExtrapolationClosedByImplApprL2" chain.id="implApprL2ExtrapolationReviewApproved">
+                    <attribute.change id="bb_implApproverL2_aware" to="true"/>
+                </update>
+                <update to.state.id="creationExtrapolationClosedByImplApprL2" chain.id="implApprL2ExtrapolationReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_implApproverL2_status" to="auto_accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <state id="creationExtrapolationClosedByImplApprL2">
+            <attribute id="bb_issueType" value="extra_sheet"/>
+            <attribute id="bb_implApproverL2_aware"	value="true"/>
+            <attribute id="bb_implApproverL2_status" value="approved"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: SAD -->
+        <state id="openForCreationSADMgmtApprL2">
+            <attribute id="bb_issueType" value="sad"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_mgmtApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL2SADReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="creationSADClosedByMgmtApprL2" chain.id="mgmtApprL2SADReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: SAD -->
+        <state id="creationSADClosedByMgmtApprL2">
+            <attribute id="bb_issueType" value="sad"/>
+            <attribute id="bb_mgmtApproverL2_status" value="accepted"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <state id="openForCreationTechRecommendationMgmtApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL1TechRecommendationReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationTechRecommendationMgmtApprL2" chain.id="mgmtApprL1TechRecommendationReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <state id="openForCreationTechRecommendationMgmtApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation"/>
+            <attribute id="bb_mgmtApproverL1_status" value="accepted"/>
+            <attribute id="bb_mgmtApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL2TechRecommendationReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationTechRecommendationImplApprL1" chain.id="mgmtApprL2TechRecommendationReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <state id="openForCreationTechRecommendationImplApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation"/>
+            <attribute id="bb_mgmtApproverL2_status" value="accepted"/>
+            <attribute id="bb_implApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="implApprL1TechRecommendationReviewNotApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueTechApprL1, openForCreationExecutableIssueImplApprL2" chain.id="implApprL1ExecutableIssueReviewApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: ACTION -->
+        <state id="openForCreationActionImplApprL1">
+            <attribute id="bb_issueType" value="action"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_implApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="implApprL1ActionReviewNotApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueTechApprL1, openForCreationExecutableIssueImplApprL2" chain.id="implApprL1ExecutableIssueReviewApproved">
+                    <attribute.change id="bb_implApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForCreationExecutableIssueTechApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_implApproverL1_status" value="accepted"/>
+            <attribute id="bb_techApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="techApprL1ExecutableIssueReviewNotApproved">
+                    <attribute.change id="bb_techApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueTechApprL2" chain.id="techApprL1ExecutableIssueReviewApproved">
+                    <attribute.change id="bb_techApproverL1_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueTechApprL2" chain.id="techApprL1ExecutableIssueReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_techApproverL1_status" to="auto_accepted"/>
+                </update>   
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForCreationExecutableIssueTechApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_techApproverL1_status" value="approved"/>
+            <attribute id="bb_techApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="techApprL2ExecutableIssueReviewNotApproved">
+                    <attribute.change id="bb_techApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueImplApprL2" chain.id="techApprL2ExecutableIssueReviewApproved">
+                    <attribute.change id="bb_techApproverL2_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForCreationExecutableIssueImplApprL2" chain.id="techApprL2ExecutableIssueReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_techApproverL2_status" to="auto_accepted"/>
+                </update>                
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForCreationExecutableIssueImplApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_implApproverL1_status" value="accepted"/>
+            <attribute id="bb_implApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="implApprL2ExecutableIssueReviewNotApproved">
+                    <attribute.change id="bb_implApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="implApprL2ExecutableIssueReviewApproved">
+                	<attribute.change id="bb_issueType" to="tech_recommendation"/>
+                    <attribute.change id="bb_implApproverL2_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="implApprL2ExecutableIssueReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                	<attribute.change id="bb_issueType" to="tech_recommendation"/>
+                    <attribute.change id="bb_implApproverL2_status" to="auto_accepted"/>
+                </update>
+                <update to.state.id="openForCreationActionMgmtApprL1" chain.id="implApprL2ActionReviewApproved">
+                	<attribute.change id="bb_issueType" to="action"/>
+                    <attribute.change id="bb_implApproverL2_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForCreationActionMgmtApprL1" chain.id="implApprL2ActionReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                	<attribute.change id="bb_issueType" to="action"/>
+                    <attribute.change id="bb_implApproverL2_status" to="auto_accepted"/>
+                    <!-- <attribute.change id="bb_mgmtApproverL1_status" to="auto_accepted"/> -->
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: ACTION -->
+        <state id="openForCreationActionMgmtApprL1">
+            <attribute id="bb_issueType" value="action"/>
+            <attribute id="bb_implApproverL2_status" value="approved"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="mgmtApprL1ActionReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="mgmtApprL1ActionReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="mgmtApprL1ActionReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_mgmtApproverL1_status" to="auto_accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForExecution">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_implApproverL2_status" value="approved"/>
+            <attribute id="bb_implApproverL1_status" value="approved"/>
+            <attribute id="owner_status" value="open_for_execution"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="executionInProgress">
+                    <attribute.change id="owner_status" to="open_for_execution"/>
+                </update>
+                <update to.state.id="openForExecutionExecutableIssueImplApprL1" chain.id="executableIssueExecutionFinished">
+                    <attribute.change id="owner_status" to="to_be_reviewed"/>
+                </update>
+                
+                <!-- onHold state is not being used for BdB Project -->
+                <update to.state.id="onHold" chain.id="executionOnHold">
+                    <attribute.change id="owner_status" to="on_hold"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+		
+		<!-- onHold state is not being used for BdB Project -->        
+        <state id="onHold">
+            <attribute id="creator_status"  value="released"/>
+            <attribute id="owner_status"    value="on_hold"/>
+            <attribute id="reviewer_status" value="to_be_reviewed"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="backToInProgress">
+                    <attribute.change id="owner_status" to="open_for_execution"/>
+                </update>
+                <update to.state.id="onHold" chain.id="onHold">
+                    <attribute.change id="owner_status" to="on_hold"/>
+                </update>
+                <update to.state.id="openForReview" chain.id="closedByOwner">
+                    <attribute.change id="owner_status" to="to_be_reviewed"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForExecutionExecutableIssueImplApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="owner_status" value="to_be_reviewed"/>
+            <attribute id="bb_execImplApprL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="implApprL1ExecutableIssueExecutionNotApproved">
+                    <attribute.change id="bb_execImplApprL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForExecutionExecutableIssueImplApprL2, openForReview" chain.id="implApprL1ExecutableIssueExecutionApproved">
+                    <attribute.change id="bb_execImplApprL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForExecutionExecutableIssueImplApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_injuredIssue" value="true"/>
+            <attribute id="bb_execImplApprL1_status" value="accepted"/>
+            <attribute id="bb_execImplApprL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="implApprL2ExecutableIssueExecutionNotApproved">
+                    <attribute.change id="bb_execImplApprL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForReviewExecutableIssueMgmtApprL1" chain.id="implApprL2ExecutableIssueExecutionApproved">
+                    <attribute.change id="bb_execImplApprL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForReview">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_injuredIssue" value="false"/>
+            <attribute id="bb_execImplApprL1_status" value="accepted"/>
+            <attribute id="reviewer_status"	    value="to_be_approved"/>
+            <transitions>
+                <update to.state.id="openForReview" chain.id="reviewInProgress">
+                    <attribute.change id="bb_execImplApprL1_status" to="accepted"/>
+                    <attribute.change id="reviewer_status" to="to_be_approved"/>
+                </update>
+                <update to.state.id="openForReviewExecutableIssueMgmtApprL1" chain.id="executableIssueReviewFinished">
+                    <attribute.change id="reviewer_status" to="not_approved"/>
+                </update>
+                <update to.state.id="openForReviewExecutableIssueMgmtApprL1" chain.id="executableIssueReviewFinished">
+                    <attribute.change id="reviewer_status" to="approved"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForReviewExecutableIssueMgmtApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_execMgmtApprL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForReview" chain.id="mgmtApprL1ExecutableIssueCertificationNotApproved">
+                    <attribute.change id="bb_execMgmtApprL1_aware" to="false"/>
+                </update>
+                <update to.state.id="openForExecution" chain.id="mgmtApprL1ExecutableIssueCertificationRejected">
+                    <attribute.change id="bb_execMgmtApprL1_aware" to="true"/>
+                    <attribute.change id="bb_execMgmtApprL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForReviewExecutableIssueMgmtApprL2" chain.id="mgmtApprL1ExecutableIssueCertificationAccepted">
+                    <attribute.change id="bb_execMgmtApprL1_aware" to="true"/>
+                    <attribute.change id="bb_injuredIssue" to="true"/>
+                    <attribute.change id="bb_execMgmtApprL1_status" to="accepted"/>
+                </update>
+                <update to.state.id="closedByMgmtApprL1" chain.id="mgmtApprL1ExecutableIssueCertificationApproved">
+                    <attribute.change id="bb_execMgmtApprL1_aware" to="true"/>
+                    <attribute.change id="bb_injuredIssue" to="false"/>
+                    <attribute.change id="bb_execMgmtApprL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <state id="openForReviewExecutableIssueMgmtApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_injuredIssue" value="true"/>
+            <attribute id="bb_execMgmtApprL1_status" value="accepted"/>
+            <attribute id="bb_execMgmtApprL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForExecution" chain.id="mgmtApprL2ExecutableIssueCertificationRejected">
+                    <attribute.change id="bb_execMgmtApprL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="closedByMgmtApprL2" chain.id="mgmtApprL2ExecutableIssueCertificationAccepted">
+                    <attribute.change id="bb_execMgmtApprL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <state id="closedByMgmtApprL1">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_injuredIssue" value="false"/>
+            <attribute id="bb_execMgmtApprL1_status" value="accepted"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <state id="closedByMgmtApprL2">
+            <attribute id="bb_issueType" value="tech_recommendation, action"/>
+            <attribute id="bb_injuredIssue" value="true"/>
+            <attribute id="bb_execMgmtApprL2_status" value="accepted"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <state id="openForCreationDealingDeadlineImplApprL2">
+            <attribute id="bb_issueType" value="dealing_deadline"/>
+            <attribute id="creator_status" value="released"/>
+            <attribute id="bb_implApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreation" chain.id="implApprL2DealingDeadlineReviewNotApproved">
+                    <attribute.change id="bb_implApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationDealingDeadlineTechApprL1, openForCreationDealingDeadlineMgmtApprL1" chain.id="implApprL2DealingDeadlineReviewApproved">
+                    <attribute.change id="bb_implApproverL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <state id="openForCreationDealingDeadlineTechApprL1">
+            <attribute id="bb_issueType" value="dealing_deadline"/>
+            <attribute id="bb_implApproverL2_status" value="accepted"/>
+            <attribute id="bb_techApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreationDealingDeadlineMgmtApprL1" chain.id="techApprL1DealingDeadlineReviewNotApproved">
+                    <attribute.change id="bb_techApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationDealingDeadlineMgmtApprL1" chain.id="techApprL1DealingDeadlineReviewApproved">
+                    <attribute.change id="bb_techApproverL1_status" to="accepted"/>
+                </update>
+                <update to.state.id="openForCreationDealingDeadlineMgmtApprL1" chain.id="techApprL1DealingDeadlineReviewAutoApproved">
+                	<permission.workflow id="issue"/>
+                    <permission.job id="monitorJob"/>
+                    <attribute.change id="bb_techApproverL1_status" to="auto_accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <state id="openForCreationDealingDeadlineMgmtApprL1">
+            <attribute id="bb_issueType" value="dealing_deadline"/>
+            <attribute id="bb_implApproverL2_status" value="approved"/>
+            <attribute id="bb_mgmtApproverL1_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="openForCreationDealingDeadlineMgmtApprL2" chain.id="mgmtApprL1DealingDeadlineReviewFinished">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="rejected"/>
+                </update>
+                <update to.state.id="openForCreationDealingDeadlineMgmtApprL2" chain.id="mgmtApprL1DealingDeadlineReviewFinished">
+                    <attribute.change id="bb_mgmtApproverL1_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <state id="openForCreationDealingDeadlineMgmtApprL2">
+            <attribute id="bb_issueType" value="dealing_deadline"/>
+            <attribute id="bb_mgmtApproverL1_status" value="rejected, accepted"/>
+            <attribute id="bb_mgmtApproverL2_status" value="unspecified"/>
+            <transitions>
+                <update to.state.id="creationDealingDeadlineClosedByMgmtApprL2" chain.id="mgmtApprL2DealingDeadlineReviewNotApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="rejected"/>
+                </update>
+                <update to.state.id="creationDealingDeadlineClosedByMgmtApprL2" chain.id="mgmtApprL2DealingDeadlineReviewApproved">
+                    <attribute.change id="bb_mgmtApproverL2_status" to="accepted"/>
+                </update>
+                <delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <state id="creationDealingDeadlineClosedByMgmtApprL2">
+            <attribute id="bb_issueType" value="dealing_deadline"/>
+            <attribute id="bb_mgmtApproverL2_status" value="accepted, rejected"/>
+            <transitions>
+            	<delete to.state.id="deleted" chain.id="delete"/>
+            </transitions>
+        </state>
+        
+        <state.deleted id="deleted">
+            <recover to.state.id="openForCreation" chain.id="recover"/>
+        </state.deleted>
+        <!-- 
+        <state.deleted id="deleted">
+            <recover to.state.id="openForExecution,openForCreationMgmtOwner,onHold" chain.id="recover"/>
+        </state.deleted>
+		 -->
+    </workflow>
+
+</custom>

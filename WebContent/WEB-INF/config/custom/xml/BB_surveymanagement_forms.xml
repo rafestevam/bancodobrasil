@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_ANSWER">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+        </formButtons>
+        <page id="answer" licensedComponentIds="sm">
+            <rowGroup id="answer.1">
+                <row id="relatedQuestionnaire">
+                    <element attribute.idref="relatedQuestionnaire" >
+                        <parameter name="descriptionProperty" value="questTemplateName"/>
+                    </element>
+                </row>
+                <row id="question_text">
+                    <element attribute.idref="question_text" />
+                </row>
+                <row id="question_remark">
+                    <element attribute.idref="question_remark" />
+                </row>
+                <row id="question_documents">
+                    <element attribute.idref="question_documents" template="doclink"/>
+                </row>
+                <row id="option_textValue">
+                    <element attribute.idref="textValue" />
+                </row>
+                <row id="option_dateValue">
+                    <element attribute.idref="dateValue" />
+                </row>
+                <row id="option_daterangeValue">
+                    <cell separator=" - ">
+                        <element attribute.idref="dateValueFrom" />
+                        <element attribute.idref="dateValueTo" />
+                    </cell>
+                </row>
+                <row id="option_longValue">
+                    <element attribute.idref="longValue" >
+                        <parameter name="size" value="30"/>
+                    </element>
+                </row>
+                <row id="option_doubleValue">
+                    <element attribute.idref="doubleValue" >
+                        <parameter name="size" value="30"/>
+                    </element>
+                </row>
+                <row id="option_selectedOptions">
+                    <element attribute.idref="selectedOptions" template="answerChoice"/>
+                </row>
+                <row id="custom3_bb_answerDocuments">
+                    <element attribute.idref="bb_answerDocuments" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="comment">
+                    <element attribute.idref="remark" >
+                        <parameter name="rows" value="3"/>
+                    </element>
+                </row>
+                <row id="execution_date">
+                    <element attribute.idref="execution_date" />
+                </row>
+                <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+            </rowGroup>
+            <rowGroup id="answer.2">
+                <row id="review_Option">
+                    <element attribute.idref="reviewerOption" template="answerChoice">
+                        <parameter name="possibleOptions" value="possibleOptions"/>
+                        <parameter name="answerType" value="singleChoiceCombobox"/>
+                    </element>
+                </row>
+                <row id="review_date">
+                    <element attribute.idref="review_date" />
+                </row>
+                <row id="custom3_bb_reviewerEvaluation">
+                    <element attribute.idref="bb_reviewerEvaluation">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="reviewer">
+                    <element attribute.idref="reviewer" template="userSubstitute">
+                        <parameter name="substitute" value="reviewer_substitute"/>
+                    </element>
+                </row>
+                <row id="review_actualScore">
+                    <element attribute.idref="actualScore" />
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_QUESTION">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="question" licensedComponentIds="sm">
+            <rowGroup id="question.id">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="question_text">
+                    <element attribute.idref="question_text" />
+                </row>
+                <row id="isWorkingCopy">
+                    <element attribute.idref="isWorkingCopy" />
+                </row>
+                <row id="originalQuestion">
+                    <element attribute.idref="originalQuestion" />
+                </row>
+                <row id="type">
+                    <element attribute.idref="type" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="optionSet">
+                    <element attribute.idref="optionSet" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <parameter name="command" value="edit"/>
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="optionSetOptions" propertyKey="form.row.question.optionset.option.DBI">
+                    <element attribute.idref="optionSet" template="childAttribute">
+                        <parameter name="listAttribute1" value="options"/>
+                        <parameter name="descriptionProperty" value="optionValue"/>
+                        <parameter name="ignoreNotifications" value="true"/>
+                    </element>
+                </row>
+                <row id="options">
+                    <element attribute.idref="options" >
+                        <parameter name="selectionList" value="QUESTION_OPTIONS_SEL"/>
+                        <parameter name="descriptionProperty" value="optionValue"/>
+                        <parameter name="descriptionSize" value="70"/>
+                        <parameter name="allowReorder" value="true"/>
+                        <parameter name="command" value="edit"/>
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="reviewerRatesAnswer">
+                    <element attribute.idref="reviewerRatesAnswer" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                <row id="bb_reviewerOptionSet">
+                    <element attribute.idref="bb_reviewerOptionSet" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <parameter name="command" value="edit"/>
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="bb_reviewerOptionSetOptions" propertyKey="form.row.question.bb_revieweroptionset.option.DBI">
+                    <element attribute.idref="bb_reviewerOptionSet" template="childAttribute">
+                        <parameter name="listAttribute1" value="options"/>
+                        <parameter name="descriptionProperty" value="optionValue"/>
+                        <parameter name="ignoreNotifications" value="true"/>
+                    </element>
+                </row>
+                <!-- 
+                <row id="bb_reviewerEvaluation">
+                    <element attribute.idref="bb_reviewerEvaluation" template="enum">
+                    	<parameter name="mode" value="radio_block"/>
+                    </element>
+                </row>
+                -->
+                <row id="remark">
+                    <element attribute.idref="remark" />
+                </row>
+                <row id="annotationAllowed">
+                    <element attribute.idref="annotationAllowed" />
+                </row>
+                <row id="optionalQuestion">
+                    <element attribute.idref="optionalQuestion" />
+                </row>
+                <row id="bb_evidencesAllowed">
+                    <element attribute.idref="bb_evidencesAllowed" />
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <!--  BdB CUSTOMIZATION -->
+    
+    <form id="FORM_SECTION">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="section" licensedComponentIds="sm">
+            <rowGroup id="section.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                
+                <!--  BdB CUSTOMIZATION -->
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>                
+                
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="isWorkingCopy">
+                    <element attribute.idref="isWorkingCopy" />
+                </row>
+                <row id="originalSection">
+                    <element attribute.idref="originalSection" />
+                </row>
+                <row id="targetScore">
+                    <element attribute.idref="targetScore" />
+                </row>
+                <row id="subSections">
+                    <element attribute.idref="subSections" >
+                        <parameter name="selectionList" value="AUTO:hierarchyRoot=relQuestionnaireTemplate"/>
+                        <parameter name="allowReorder" value="true"/>
+                        <parameter name="command" value="edit"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="questions">
+                    <element attribute.idref="questions" >
+                        <parameter name="descriptionProperty" value="type"/>
+                        <parameter name="selectionList" value="section_question_sel"/>
+                        <parameter name="allowReorder" value="true"/>
+                        <parameter name="command" value="edit"/>
+                        <parameter name="descriptionSize" value="30"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <!--  BdB CUSTOMIZATION -->
+    <form id="FORM_OPTIONSET">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="optionset" licensedComponentIds="sm">
+            <rowGroup id="optionset.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                
+                <!--  BdB CUSTOMIZATION -->
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>                                
+                
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <!--<row id="FR_OPTIONSET_3" >
+                        <element attribute.idref="A_21_4" />
+                    </row>
+                    -->
+                <row id="options">
+                    <element attribute.idref="options" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <parameter name="descriptionProperty" value="optionValue"/>
+                        <parameter name="allowReorder" value="true"/>
+                        <parameter name="command" value="edit"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_SURVEYTASK">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="OBJECT_SURVEY_CREATE"/>
+            <buttonReference button.idref="OBJECT_UPDATE_SURVEY"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="surveytask" licensedComponentIds="sm">
+            <rowGroup id="surveytask.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                <row id="obj_id">
+                    <element attribute.idref="obj_id"/>
+                </row>
+                <row id="questionnaireTemplate">
+                    <element attribute.idref="questionnaireTemplate" >
+                        <parameter name="selectionList" value="surveytask2questionnaireTemplate_sel"/>
+                    </element>
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" >
+                        <parameter name="selectionList" value="surveytask_questionnaireowner_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" >
+                        <parameter name="selectionList" value="surveytask_surveyreviewer_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="frequency">
+                    <element attribute.idref="frequency"/>
+                </row>
+                <row id="duration">
+                    <element attribute.idref="duration"/>
+                </row>
+                <row id="startdate">
+                    <element attribute.idref="startdate" />
+                </row>
+                <row id="enddate">
+                    <element attribute.idref="enddate" />
+                </row>
+                <row id="control_period">
+                    <element attribute.idref="control_period" />
+                </row>
+                <row id="offset">
+                    <element attribute.idref="control_period_offset" />
+                </row>
+
+                <row id="relatedAppSystems">
+                    <element attribute.idref="relatedAppSystems" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+
+                <row id="relatedRegulations">
+                    <element attribute.idref="relatedRegulations" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+
+                <row id="relatedOrgunits">
+                    <element attribute.idref="relatedOrgunits"  >
+                        <parameter name="selectionList" value="surveytask2orgunit_sel"/> 
+                    </element>
+                </row>
+
+                <row id="relatedProcesses">
+                    <element attribute.idref="relatedProcesses" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+
+                <row id="relatedCategories">
+                    <element attribute.idref="relatedCategories" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+
+                <row id="risks">
+                    <element attribute.idref="risks">
+                        <parameter name="selectionList" value="AUTO:ignoreRoleRestriction=true"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+
+                <row id="controls">
+                    <element attribute.idref="controls">
+                        <parameter name="selectionList" value="AUTO:ignoreRoleRestriction=true"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+
+                <row id="test_definitions">
+                    <element attribute.idref="test_definitions">
+                        <parameter name="selectionList" value="AUTO:ignoreRoleRestriction=true"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+
+                <!-- for later usage -->
+                <!--<row id="event_driven_allowed">-->
+                    <!--<element attribute.idref="event_driven_allowed" />-->
+                <!--</row>-->
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form controlName="questionnaireform" id="FORM_QUESTIONNAIRE">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </formButtons>
+        <page id="questionnaire" licensedComponentIds="sm">
+            <rowGroup id="questionnaire.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" />
+                </row>
+                <row id="surveyTask">
+                    <element attribute.idref="surveyTask" />
+                </row>
+                <row id="survey">
+                    <element attribute.idref="survey" />
+                </row>
+                <row id="questionnaireTemplate">
+                    <element attribute.idref="questionnaire_template" />
+                </row>
+                <row id="questTemplateName">
+                    <element attribute.idref="questTemplateName" />
+                </row>
+                <row id="questTemplateDescr">
+                    <element attribute.idref="questTemplateDescr" />
+                </row>
+                <row id="relatedAppSystems">
+                    <element attribute.idref="relatedAppSystems" />
+                </row>
+                <row id="relatedRegulations">
+                    <element attribute.idref="relatedRegulations" />
+                </row>
+                <row id="relatedOrgunits">
+                    <element attribute.idref="relatedOrgunits" />
+                </row>
+                <row id="relatedProcesses">
+                    <element attribute.idref="relatedProcesses" />
+                </row>
+                <row id="relatedCategories">
+                    <element attribute.idref="relatedCategories" />
+                </row>
+                <row id="risks">
+                    <element attribute.idref="risks" >
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+
+                <row id="controls">
+                    <element attribute.idref="controls">
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+                <row id="test_definitions">
+                    <element attribute.idref="test_definitions">
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.add button.idref="RELATION_POPUP" location="row"/>
+                    </element>
+                </row>
+            </rowGroup>
+            <!-- not used
+                            <row id="FR_QUESTIONNAIRE_PREDECESSOR" >
+                                <element attribute.idref="A_QUESTIONNAIRE_predecessor"  />
+                            </row>
+                            <row id="FR_QUESTIONNAIRE_FOLLOWUP" >
+                                <element attribute.idref="A_QUESTIONNAIRE_followup"  />
+                            </row>
+            -->
+            <rowGroup id="questionnaire.2">
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" />
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" />
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" />
+                </row>
+                <row id="survey_periode" propertyKey="form.row.survey.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="plannedstartdate" />
+                        <element attribute.idref="plannedenddate" />
+                    </cell>
+                </row>
+                <row id="control_periode" propertyKey="form.row.control.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="controlstartdate" />
+                        <element attribute.idref="controlenddate" />
+                    </cell>
+                </row>
+                <row id="execution_date">
+                    <element attribute.idref="execution_date" />
+                </row>
+                <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+                <row id="owner_upload_user">
+                    <element attribute.idref="owner_upload_user"/>
+                </row>
+                <row id="owner_upload_confirm">
+                    <element attribute.idref="owner_upload_confirm"/>
+                </row>
+            </rowGroup>
+            <rowGroup id="questionnaire.3">
+                <row id="progress" protocolRelevant="false">
+                    <element attribute.idref="progress" template="formCompleteness">
+                        <parameter name="viewName" value="showQuestionnaireCompleteness"/>
+                        <parameter name="totalProperty" value="totalNumberOfAnswers"/>
+                        <parameter name="progressProperty" value="answered"/>
+                    </element>
+                </row>
+                <row id="bb_intervieweeActualScore">
+                    <element attribute.idref="bb_intervieweeActualScore" />
+                </row>
+                <row id="actualScore" protocolRelevant="false">
+                    <element attribute.idref="actualScore" template="averageScore">
+                        <parameter name="scoreProperty" value="actualScore"/>
+                        <parameter name="viewName" value="sum_actualScoreOfQuestionnaire"/>
+                        <parameter name="countProperty" value="__ONE__"/>
+                        <parameter name="ignoreNotifications" value="true"/>
+                    </element>
+                </row>
+                <row id="targetScore">
+                    <element attribute.idref="targetScore" />
+                </row>
+                <row id="owner_status">
+                    <element attribute.idref="owner_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="reviewer_status">
+                    <element attribute.idref="reviewer_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="reviewer">
+                    <element attribute.idref="reviewer" template="userSubstitute">
+                        <parameter name="substitute" value="reviewer_substitute"/>
+                    </element>
+                </row>
+                <row id="reviewer_upload_user">
+                    <element attribute.idref="reviewer_upload_user"/>
+                </row>
+                <row id="reviewer_upload_confirm">
+                    <element attribute.idref="reviewer_upload_confirm"/>
+                </row>
+                <row id="reviewRemark">
+                    <element attribute.idref="reviewRemark" />
+                </row>
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink"/>
+                </row>
+            </rowGroup>
+        </page>
+        <page id="structure">
+            <rowGroup id="structure.1">
+                <row id="questionnaireStructure" protocolRelevant="false" template="questionnaireStructure">
+                    <parameter name="isRootVisible" value="false"/>
+                </row>
+            </rowGroup>
+            <javaScriptRef scriptName="questionnaire"/>
+        </page>
+        <page id="list" >
+            <rowGroup id="list.1">
+                <row id="questionnaireStructureList" protocolRelevant="false" template="questionnaireStructure">
+                    <parameter name="mode" value="list"/>
+                    <parameter name="isRootVisible" value="false"/>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_QUESTIONNAIRE_TEMPLATE">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="OBJECT_DUPLICATE"/>
+            <buttonReference button.idref="OBJECT_WORKINGCOPY"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </formButtons>
+        <page id="questionnaire" licensedComponentIds="sm">
+            <rowGroup id="questionnaire.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                <row id="obj_id">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="targetScore">
+                    <element attribute.idref="targetScore" />
+                </row>
+                <row id="isWorkingCopy">
+                    <element attribute.idref="isWorkingCopy" />
+                </row>
+                <row id="originalQuestTemplate">
+                    <element attribute.idref="originalQuestTemplate" />
+                </row>
+                <row id="sections">
+                    <element attribute.idref="sections" >
+                        <parameter name="selectionList" value="AUTO:hierarchyRoot=relQuestionnaireTemplate"/>
+                        <parameter name="command" value="edit"/>
+                        <parameter name="allowReorder" value="true"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_OPTION">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="option" licensedComponentIds="sm">
+            <rowGroup id="option.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign"/>
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="optionValue">
+                    <element attribute.idref="optionValue" />
+                </row>
+                <row id="isWorkingCopy">
+                    <element attribute.idref="isWorkingCopy" />
+                </row>
+                <row id="originalOption">
+                    <element attribute.idref="originalOption" />
+                </row>
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+        
+</custom>

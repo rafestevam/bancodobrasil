@@ -1,0 +1,1382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	
+    <catalog id="issue">
+    
+    	<commandchain id="prepare">
+            <command id="createObjectDialog">
+                <parameter name="dialogID" value="issue_create"/>
+            </command>
+            <command id="copyDialogAttributesToAppObj"/>
+            <command id="update">
+                <parameter name="creator" value="$user"/>
+            </command>
+        </commandchain>
+
+        <commandchain id="mgmtResponsibleCreationInProgess">
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="issueCreatorFaultLogCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="issueMgmtApproverL1AutoReview" >
+                <parameter name="dialogID" value="issue_mgmtapprl1_autoreview" />
+                <parameter name="mgmtApprL1_remark" value="issuemanagement.autoreviewed.mgmtapprl1_remark.DBI" />
+            </command>
+            <command id="issueMgmtApproverL2AutoReview" >
+                <parameter name="dialogID" value="issue_mgmtapprl2_autoreview" />
+                <parameter name="mgmtApprL2_remark" value="issuemanagement.autoreviewed.mgmtapprl2_remark.DBI" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueFaultLogSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="mgmtApprL1ReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+                <parameter name="bb_mgmtApproverL2_remark" value="$null"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueFaultLogSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="mgmtApprL1ReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="issueFaultLogSendMail" />
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="mgmtApprL2ReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+                <parameter name="bb_mgmtApproverL1_remark" value="$null"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueFaultLogSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="mgmtApprL2ReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="issueFaultLogSendMail" />
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="implApprL1ReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="accepted"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueFaultLogSendMail" />
+        </commandchain>
+        
+        <!-- issueType: FAULT LOG -->
+        <commandchain id="implApprL1ReviewAutoApproved">
+        	<command id="update">
+                <parameter name="bb_implApproverL1_aware" value="true"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueFaultLogSendMail" />
+        </commandchain>
+        
+        <!-- issueType: MANIFESTATION -->
+        <commandchain id="issueCreatorManifestationCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="unspecified"/>
+            </command>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueManifestationSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: MANIFESTATION -->
+        <commandchain id="implApprL1ManifestationReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueManifestationSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: MANIFESTATION -->
+        <commandchain id="implApprL1ManifestationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueManifestationSendMail" />
+        </commandchain>
+        
+        <!-- issueType: MANIFESTATION -->
+        <commandchain id="mgmtApprL1ManifestationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="accepted"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueManifestationSendMail" />
+        </commandchain>
+        
+         <!-- issueType: MANIFESTATION -->
+        <commandchain id="mgmtApprL1ManifestationReviewAutoApproved">
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_aware" value="true"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueManifestationSendMail" />
+        </commandchain>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <commandchain id="issueCreatorExtrapolationCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExtrapolationSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <commandchain id="mgmtApprL1ExtrapolationReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExtrapolationSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <commandchain id="mgmtApprL1ExtrapolationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExtrapolationSendMail" />
+        </commandchain>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <commandchain id="implApprL2ExtrapolationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="accepted"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueExtrapolationSendMail" />
+        </commandchain>
+        
+        <!-- issueType: EXTRAPOLATION -->
+        <commandchain id="implApprL2ExtrapolationReviewAutoApproved">
+            <command id="update">
+                <parameter name="bb_implApproverL2_aware" value="true"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueExtrapolationSendMail" />
+        </commandchain>
+        
+        <!-- issueType: SAD -->
+        <commandchain id="issueCreatorSADCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="unspecified"/>
+            </command>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueSADSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: SAD -->
+        <commandchain id="mgmtApprL2SADReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueSADSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: SAD -->
+        <commandchain id="mgmtApprL2SADReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueSADSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="issueCreatorTechRecommendationCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="refreshOwnersAndReviewersGroup"/>
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="calculatePlannedDaysATBReport" />
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: ACTION -->
+        <commandchain id="issueCreatorActionCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="refreshOwnersAndReviewersGroup"/>
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="calculatePlannedDaysATBReport" />
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="mgmtApprL1TechRecommendationReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="mgmtApprL1TechRecommendationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="mgmtApprL2TechRecommendationReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="mgmtApprL2TechRecommendationReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="implApprL1TechRecommendationReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: ACTION -->
+        <commandchain id="implApprL1ActionReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL1ExecutableIssueReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="issueTechApprovalNeeded" >
+            	<parameter name="dialogID" value="issue_techapprover_needed" />
+                <parameter name="messagePropertyKeys" value="info.issuemanagement.issue.techapprover.needed.INF" />
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="1,5"/>
+                <parameter name="targetStatesToTaskItemDeadline" value="openForCreationExecutableIssueTechApprL1, openForCreationExecutableIssueImplApprL2"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL1ExecutableIssueReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL1ExecutableIssueReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="techApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="1"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL1ExecutableIssueReviewAutoApproved">
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="techApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="1"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point 
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL2ExecutableIssueReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL2ExecutableIssueReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="techApprL2ExecutableIssueReviewAutoApproved">
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="5"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+       
+                
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL2ExecutableIssueReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="implApprL2ExecutableIssueReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="new"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execStartDate" value="$now"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+
+        <!-- issueType: TECH_RECOMMENDATION -->
+        <commandchain id="implApprL2ExecutableIssueReviewAutoApproved">
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="new"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execStartDate" value="$now"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: ACTION -->
+        <commandchain id="implApprL2ActionReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+
+        <!-- issueType: ACTION -->
+        <commandchain id="implApprL2ActionReviewAutoApproved">
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+
+                        
+        <!-- issueType: ACTION -->
+        <commandchain id="mgmtApprL1ActionReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: ACTION -->
+        <commandchain id="mgmtApprL1ActionReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="new"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execStartDate" value="$now"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+ 
+         <!-- issueType: ACTION -->
+        <commandchain id="mgmtApprL1ActionReviewAutoApproved">
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="new"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execStartDate" value="$now"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+ 
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="executableIssueExecutionFinished">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_execImplApprL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="owner" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL1ExecutableIssueExecutionNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+                <parameter name="bb_conclusionDate" value="$null"/>
+                <parameter name="bb_execPercentDays" value="$null"/>
+                <parameter name="bb_execWorkedDays" value="$null"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL2_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="owner" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+<!--             <command id="resetConclusionDate"></command> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL1ExecutableIssueExecutionApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="reviewer_status" value="to_be_approved"/>
+            </command>
+            <command id="issueInjuredDetected" >
+            	<parameter name="dialogID" value="issue_injured_detected" />
+                <parameter name="messagePropertyKeys" value="info.issuemanagement.issue.injured.detected.INF" />
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="reviewer" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="calculateWorkedDaysATBReport"/>
+            <command id="calculatePercentDaysATBReport"/>
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="obtainConclusionDate" />
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL2ExecutableIssueExecutionNotApproved">        
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+                <parameter name="bb_conclusionDate" value="$null"/>
+                <parameter name="bb_execPercentDays" value="$null"/>
+                <parameter name="bb_execWorkedDays" value="$null"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL1_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="owner" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+<!--             <command id="resetConclusionDate"></command> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="implApprL2ExecutableIssueExecutionApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL1_status" value="unspecified"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="injured"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="obtainConclusionDate" />
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="executableIssueReviewFinished">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="reviewer" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL1ExecutableIssueCertificationNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="reviewer_status" value="to_be_approved"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL1_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+            	<parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="reviewer" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL1ExecutableIssueCertificationRejected">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+                <parameter name="bb_conclusionDate" value="$null"/>
+                <parameter name="bb_execPercentDays" value="$null"/>
+                <parameter name="bb_execWorkedDays" value="$null"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="undecided"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="owner" />
+                <parameter name="phase" value="execution" />
+            </command>
+<!--             <command id="resetConclusionDate"></command> -->
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL1ExecutableIssueCertificationAccepted">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <!-- BdB does not want to notify at this point
+            <command id="issueExecutableSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL2ExecutableIssueCertificationRejected">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="owner_status" value="in_progress"/>
+                <parameter name="bb_conclusionDate" value="$null"/>
+                <parameter name="bb_execPercentDays" value="$null"/>
+                <parameter name="bb_execWorkedDays" value="$null"/>                
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL1_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execImplApprL2_status" value="please_select"/>
+            </command>
+            <command id="update">
+                <parameter name="reviewer_status" value="undecided"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_execMgmtApprL1_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="owner" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="update">
+                <parameter name="stateTime" value="on_time"/>
+            </command>
+<!--             <command id="resetConclusionDate"></command> -->
+            <command id="createNewIROWrappers"/>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL1ExecutableIssueCertificationApproved">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="issueSetOperator">
+            	<parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="obtainCertificationDate"></command>            
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: TECH_RECOMMENDATION & ACTION -->
+        <commandchain id="mgmtApprL2ExecutableIssueCertificationAccepted">
+            <command id="closingObjectDialog" />
+            <command id="refreshOwnersAndReviewersGroup"/>
+            <command id="issueSetOperator">
+            	<parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="execution" />
+            </command>
+            <command id="issueExecutableSendMail" />
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="issueCreatorDealingDeadlineCreationReleased">
+        	<command id="closingObjectDialog" />
+        	<command id="issueClearOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="update">
+                <parameter name="bb_implApproverL2_status" value="unspecified"/>
+            </command>
+            <!-- BdB does not want to notify at this point
+            <command id="issueDealingDeadlineSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="implApprL2DealingDeadlineReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="creator_status" value="in_creation"/>
+            </command>
+            <command id="update">
+                <parameter name="bb_techApproverL1_status" value="please_select"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="calculateImplApprL2AttrsATBReport" />
+            <!-- BdB does not want to notify at this point
+            <command id="issueDealingDeadlineSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="implApprL2DealingDeadlineReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="issueTechApprovalNeeded" >
+            	<parameter name="dialogID" value="issue_techapprover_needed" />
+                <parameter name="messagePropertyKeys" value="info.issuemanagement.issue.techapprover.needed.INF" />
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="implApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateTaskItemExecutionDate">
+                <parameter name="fromExecutionDateAttr" value="bb_taskItemStartDate"/>
+                <parameter name="toExecutionDateAttr" value="bb_taskItemEndDate"/>
+                <parameter name="daysToTaskItemDeadline" value="2"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="calculateImplApprL2AttrsATBReport" />
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="techApprL1DealingDeadlineReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="techApprL1DealingDeadlineReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="techApprL1DealingDeadlineReviewAutoApproved">
+        	<command id="refreshOwnersAndReviewersGroup"/>
+            <command id="update">
+                <parameter name="bb_mgmtApproverL1_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="techApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="mgmtApprL1DealingDeadlineReviewFinished">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="bb_mgmtApproverL2_status" value="unspecified"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL1" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueClearOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="createNewIROWrappers"/>
+            <command id="calculateMgmtApprL1AttrsATBReport" />
+            <!-- BdB does not want to notify at this point
+            <command id="issueDealingDeadlineSendMail" /> -->
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="mgmtApprL2DealingDeadlineReviewNotApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="calculateMgmtApprL2AttrsATBReport" />
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+        
+        <!-- issueType: DEALING_DEADLINE -->
+        <commandchain id="mgmtApprL2DealingDeadlineReviewApproved">
+            <command id="closingObjectDialog" />
+            <command id="update">
+                <parameter name="stateTime" value="finished"/>
+            </command>
+            <command id="issueSetOperator">
+                <parameter name="operator" value="mgmtApproverL2" />
+                <parameter name="phase" value="creation" />
+            </command>
+            <command id="issueDealingDeadlineAccepted" />
+            <command id="calculateMgmtApprL2AttrsATBReport" />
+            <command id="issueDealingDeadlineSendMail" />
+        </commandchain>
+        
+        <!-- issueType: GENERIC -->
+        <commandchain id="executionInProgress">
+            <command id="updateIssueOwnerStatus"/>
+            <command id="issueUsersChangedSendMail"/>
+            <command id="createNewIROWrappers"/>
+        </commandchain>
+        
+        <!-- issueType: GENERIC -->
+        <commandchain id="reviewInProgress">
+            <command id="update">
+                <parameter name="reviewer_status" value="to_be_approved"/>
+            </command>
+            <command id="createNewIROWrappers"/>
+        </commandchain>
+        
+        <commandchain id="delete">
+            <command id="checkIssueDeletionPossible"/>
+            <command id="checkSignOffLockForDeletion" />
+            <command id="issueDeactivateDependentTestcase" />
+        </commandchain>
+
+        <commandchain id="recover">
+            <command id="issueReactivateDependentTestcase" />
+            <!-- 
+            <command id="issueUsersChangedSendMail" >
+                <parameter name="alwaysSending" value="true" />
+            </command>  -->
+        </commandchain>
+
+    </catalog>
+
+</custom>
+    

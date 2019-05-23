@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <view id="signoffprocess" view.parameter="DISTINCT">
+        <viewObject id="VO_signoffprocess_1" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_start" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_end" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="process_isroot" attributeType="isroot" isSortable="true"/>
+            <viewColumn id="task_id" attributeType="sotask" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_id_ugk" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_3" objectType="USERGROUP">
+            <viewColumn id="owner_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="owner_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_4" objectType="USER">
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_4b" objectType="USER">
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_5" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_6" objectType="USERGROUP">
+            <viewColumn id="user_manager_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="user_manager_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="user_manager_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="user_manager_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_7" objectType="USERGROUP">
+            <viewColumn id="reviewer_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="reviewer_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="64" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_4" joinType="LEFT"/>
+        <link linktype.id="63" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_3" joinType="LEFT"/>
+        <link linktype.id="61" firstViewObject="VO_signoffprocess_5" secondViewObject="VO_signoffprocess_1"/>
+        <link linktype.id="3111" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_4b" joinType="LEFT"/>
+        <link linktype.id="6111" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_6"  joinType="LEFT"/>
+        <link linktype.id="76" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_7" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="process_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                            <condition column.id="owner_version_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="ownerUserVersion_active" compareType="EQ" value="true"/>
+                            <condition column.id="ownerUserVersion_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="substitute_version_active" compareType="EQ" value="true"/>
+                            <condition column.id="substitute_version_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_id" compareType="EQ"/>
+                                <condition column.id="ownerUser_name" compareType="LIKE"/>
+                                <condition column.id="substitute" compareType="LIKE"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_control_start" compareType="LE"/>
+                                <condition column.id="process_control_end" compareType="GE"/>
+                            </compoundCondition>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_so_start" compareType="LE"/>
+                                <condition column.id="process_so_end" compareType="GE"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="hierarchy_type" compareType="IN"/>
+                                <condition column.id="client_sign" compareType="LIKE"/>
+                            </compoundCondition>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="task_version_active" compareType="EQ" value="true"/>
+                                <condition column.id="deactivated" compareType="EQ"/>
+                            </compoundCondition>
+                            <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="owner_status" compareType="IN"/>
+                        <!-- <condition column.id="process_isroot" compareType="EQ" value="true"/> -->
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="process_id" compareType="EQ"/>
+                        <condition column.id="user_manager_name" compareType="EQ"/>
+                        <condition column.id="substitute" compareType="LIKE"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <condition column.id="owner_name" compareType="LIKE"/>
+                <condition column.id="reviewer_name" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="signoffowner" view.parameter="DISTINCT">
+        <viewObject id="VO_signoffowner_1" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_start" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_end" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_version_active" attributeType="version_active"/>
+            <viewColumn id="process_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="task_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_signoffowner_3" objectType="USERGROUP">
+            <viewColumn id="owner_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="owner_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="signOffOwner" objectType="USER">
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="signOffOwnerSubstitute" objectType="USER">
+            <viewColumn id="ownerUserSubst_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserSubst_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserSubst_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUserSubst_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="signOffReviewer" objectType="USER">
+            <viewColumn id="reviewerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="reviewerUser_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="signOffReviewerSubstitute" objectType="USER">
+            <viewColumn id="reviewerUserSubst_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerUserSubst_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="reviewerUserSubst_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffowner_5" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffowner_7" objectType="USER">
+            <viewColumn id="userId" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="user2_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffowner_8" objectType="USERGROUP">
+			<viewColumn id="reviewer_group" attributeType="name" isSelectColumn="true"/>
+		</viewObject>
+        <link linktype.id="64" firstViewObject="VO_signoffowner_1" secondViewObject="signOffOwner" joinType="LEFT"/>
+        <link linktype.id="63" firstViewObject="VO_signoffowner_1" secondViewObject="VO_signoffowner_3"/>
+        <link linktype.id="61" firstViewObject="VO_signoffowner_5" secondViewObject="VO_signoffowner_1"/>
+        <link linktype.id="1" firstViewObject="VO_signoffowner_3" secondViewObject="VO_signoffowner_7"/>
+        <link linktype.id="3111" firstViewObject="VO_signoffowner_1" secondViewObject="signOffOwnerSubstitute" joinType="LEFT"/>
+        <link linktype.id="4002" firstViewObject="VO_signoffowner_1" secondViewObject="signOffReviewer" joinType="LEFT"/>
+        <link linktype.id="4003" firstViewObject="VO_signoffowner_1" secondViewObject="signOffReviewerSubstitute" joinType="LEFT"/>
+        <link linktype.id="76" firstViewObject="VO_signoffowner_1" secondViewObject="VO_signoffowner_8" joinType="LEFT"/>	
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_version_active" compareType="EQ" value="true"/>
+                                <condition column.id="process_deactivated" compareType="EQ"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_control_start" compareType="LE"/>
+                                <condition column.id="process_control_end" compareType="GE"/>
+                            </compoundCondition>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_so_start" compareType="LE"/>
+                                <condition column.id="process_so_end" compareType="GE"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="owner_status" compareType="IN"/>
+                                <condition column.id="process_id" compareType="EQ"/>
+                            </compoundCondition>
+                        </compoundCondition>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="ownerUserVersion_active" compareType="EQ" value="true"/>
+                            <condition column.id="ownerUserVersion_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="ownerUserSubst_version_active" compareType="EQ" value="true"/>
+                            <condition column.id="ownerUserSubst_version_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="AND">
+                            <condition column.id="task_version_active" compareType="EQ" value="true"/>
+                        </compoundCondition>
+                        <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <condition column.id="user2_version_active" compareType="EQ" value="true"/>
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="AND">
+                            <condition column.id="userId" compareType="EQ"/>
+                            <condition column.id="client_sign" compareType="LIKE"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="AND">
+                            <condition column.id="hierarchy_type" compareType="IN"/>
+                            <condition column.id="ownerUser_name" compareType="LIKE"/>
+                            <condition column.id="ownerUserSubst_id" compareType="LIKE"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+                <condition column.id="owner_name" compareType="LIKE"/>
+                <condition column.id="reviewer_group" compareType="LIKE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="signoffreviewer" view.parameter="DISTINCT">
+        <viewObject id="VO_signoffreviewer_soprocess" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_start" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_end" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_version_active" attributeType="version_active"/>
+            <viewColumn id="process_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="process_isroot" attributeType="isroot" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_sotask" objectType="SOTASK">
+            <viewColumn id="task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_ownergroup" objectType="USERGROUP">
+            <viewColumn id="owner_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="owner_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_reviewergroup" objectType="USERGROUP">
+            <viewColumn id="reviewer_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="reviewer_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_owner" objectType="USER">
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_ownerSubstitute" objectType="USER">
+            <viewColumn id="ownerUserSubst_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserSubst_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserSubst_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUserSubst_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_reviewer" objectType="USER">
+            <viewColumn id="reviewerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="reviewerUser_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_reviewerSubstitute" objectType="USER">
+            <viewColumn id="reviewerUserSubst_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewerUserSubst_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="reviewerUserSubst_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffreviewer_element" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="60"      firstViewObject="VO_signoffreviewer_sotask"     secondViewObject="VO_signoffreviewer_reviewergroup"/>
+        <link linktype.id="61"      firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_element"/>
+        <link linktype.id="62"      firstViewObject="VO_signoffreviewer_sotask"     secondViewObject="VO_signoffreviewer_soprocess"/>
+        <link linktype.id="63"      firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_ownergroup"/>
+        <link linktype.id="64"      firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_owner" joinType="LEFT"/>
+        <link linktype.id="3111"    firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_ownerSubstitute" joinType="LEFT"/>
+        <link linktype.id="4002"    firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_reviewer" joinType="LEFT"/>
+        <link linktype.id="4003"    firstViewObject="VO_signoffreviewer_soprocess"  secondViewObject="VO_signoffreviewer_reviewerSubstitute" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="process_version_active" compareType="EQ" value="true"/>
+                <condition column.id="process_deactivated" compareType="EQ" />
+                <condition column.id="process_control_start" compareType="LE"/>
+                <condition column.id="process_control_end" compareType="GE"/>
+                <condition column.id="process_so_start" compareType="LE"/>
+                <condition column.id="process_so_end" compareType="GE"/>
+                <condition column.id="process_id" compareType="EQ"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="ownerUser_name" compareType="LIKE"/>
+                <condition column.id="ownerUserSubst_name" compareType="LIKE"/>
+                <!-- <condition column.id="process_isroot" compareType="EQ" value="true"/> -->
+                <condition column.id="hierarchy_type" compareType="IN"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="ownerUserVersion_active" compareType="EQ" value="true"/>
+                    <condition column.id="ownerUserVersion_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="ownerUserSubst_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="ownerUserSubst_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="soprocess2issue_Locks_1" view.parameter="DISTINCT">
+        <viewObject id="VO_soprocess2issue_Locks_1_0" objectType="SOPROCESS">
+            <viewColumn id="id" attributeType="obj_id"/>
+            <viewColumn id="deactivated" attributeType="deactivated"/>
+            <viewColumn id="sop_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2issue_Locks_1_5" objectType="HIERARCHY">
+            <viewColumn id="dont_remove" attributeType="type"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2issue_Locks_1_1" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_name" attributeType="name"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2issue_Locks_1_3" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated"/>
+            <viewColumn id="ta_version_active" attributeType="version_active"/>
+            <!--<viewColumn viewColumn.id="VC_soprocess2recommendation_Locks_1_3_3" name="ta_id" attribute.idref="A_V_2"  isGrouped="false" isSortable="true" isSelectColumn="true"/>-->
+            <viewColumn id="controlstartdate" attributeType="controlstartdate"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2issue_Locks_1_6" objectType="ISSUE">
+            <!--issue-->
+            <viewColumn id="issue_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="created_by_testcase" attributeType="created_by_testcase"/>
+        </viewObject>
+        <link linktype.id="72" firstViewObject="VO_soprocess2issue_Locks_1_1" secondViewObject="VO_soprocess2issue_Locks_1_3"/>
+        <link linktype.id="54,72,74,75" firstViewObject="VO_soprocess2issue_Locks_1_5" secondViewObject="VO_soprocess2issue_Locks_1_3"/>
+        <link linktype.id="61" firstViewObject="VO_soprocess2issue_Locks_1_0" secondViewObject="VO_soprocess2issue_Locks_1_5" attendVersionizing="false"/>
+        <link linktype.id="3102" firstViewObject="VO_soprocess2issue_Locks_1_3" secondViewObject="VO_soprocess2issue_Locks_1_6" attendVersionizing="false"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="created_by_testcase" compareType="EQ" value="true"/>
+                <condition column.id="id" compareType="IN"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="sotask2soprocess" view.parameter="DISTINCT">
+        <viewObject id="VO_signoffprocess_1" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_start" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_control_end" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_start" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_end" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_so_date" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="process_version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+            <viewColumn id="process_isroot" attributeType="isroot" isSortable="true"/>
+            <viewColumn id="task_id" attributeType="sotask" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="task_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_3" objectType="USERGROUP">
+            <viewColumn id="owner_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="owner_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_4" objectType="USER">
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_4b" objectType="USER">
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_5" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true" />
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signoffprocess_6" objectType="USERGROUP">
+            <viewColumn id="reviewer_group" attributeType="name" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_signofftask" objectType="SOTASK">
+            <viewColumn id="sotask_obj_id" attributeType="obj_id" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="64" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_4" joinType="LEFT"/>
+        <link linktype.id="63" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_3" joinType="LEFT"/>
+        <link linktype.id="61" firstViewObject="VO_signoffprocess_5" secondViewObject="VO_signoffprocess_1"/>
+        <link linktype.id="3111" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_4b" joinType="LEFT"/>
+        <link linktype.id="76" firstViewObject="VO_signoffprocess_1" secondViewObject="VO_signoffprocess_6" joinType="LEFT"/>
+        <link linktype.id="62" firstViewObject="VO_signofftask" secondViewObject="VO_signoffprocess_1" />
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="process_version_active" compareType="EQ" value="true"/>
+                        <condition column.id="deactivated" compareType="EQ" value="false"/>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+                            <condition column.id="owner_version_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="ownerUserVersion_active" compareType="EQ" value="true"/>
+                            <condition column.id="ownerUserVersion_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="OR">
+                            <condition column.id="substitute_version_active" compareType="EQ" value="true"/>
+                            <condition column.id="substitute_version_active" compareType="ISNULL"/>
+                        </compoundCondition>
+                    </compoundCondition>
+                </compoundCondition>
+                <compoundCondition conditionConnect="AND">
+                    <compoundCondition conditionConnect="AND">
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_id" compareType="EQ"/>
+                                <condition column.id="ownerUser_name" compareType="LIKE"/>
+                                <condition column.id="substitute" compareType="LIKE"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_control_start" compareType="LE"/>
+                                <condition column.id="process_control_end" compareType="GE"/>
+                            </compoundCondition>
+                        </compoundCondition>
+                        <compoundCondition conditionConnect="AND">
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="process_so_start" compareType="LE"/>
+                                <condition column.id="process_so_end" compareType="GE"/>
+                            </compoundCondition>
+                            <compoundCondition conditionConnect="AND">
+                                <condition column.id="hierarchy_type" compareType="IN"/>
+                                <condition column.id="client_sign" compareType="LIKE"/>
+                            </compoundCondition>
+                        </compoundCondition>
+	                    <compoundCondition conditionConnect="AND">
+	                        <compoundCondition conditionConnect="AND">
+	                            <condition column.id="task_version_active" compareType="EQ" value="true"/>
+	                            <condition column.id="deactivated" compareType="EQ"/>
+	                        </compoundCondition>
+	                        <condition column.id="owner_version_active" compareType="EQ" value="true"/>
+	                    </compoundCondition>
+                    </compoundCondition>
+                    <compoundCondition conditionConnect="AND">
+                        <condition column.id="owner_status" compareType="IN"/>
+                    </compoundCondition>
+                </compoundCondition>
+                <condition column.id="owner_name" compareType="LIKE"></condition>
+                <condition column.id="reviewer_group" compareType="LIKE"></condition>
+                <condition column.id="sotask_obj_id" compareType="EQ" currentObjectType.id="SOTASK" currentAttributeType.id="obj_id"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="soprocess2testaction_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_soprocess2testaction_refs_1_0" objectType="SOPROCESS">
+            <viewColumn id="id" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="sop_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_5" objectType="HIERARCHY">
+            <viewColumn id="dont_remove" attributeType="type" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_1" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_3" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdate" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+            <viewColumn id="measure" attributeType="measure"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_6" objectType="USER">
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_6b" objectType="USER">
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="72" firstViewObject="VO_soprocess2testaction_refs_1_1" secondViewObject="VO_soprocess2testaction_refs_1_3"/>
+        <link linktype.id="54,72,74,75" firstViewObject="VO_soprocess2testaction_refs_1_5" secondViewObject="VO_soprocess2testaction_refs_1_3"/>
+        <link linktype.id="61" firstViewObject="VO_soprocess2testaction_refs_1_0" secondViewObject="VO_soprocess2testaction_refs_1_5" attendVersionizing="false"/>
+        <link linktype.id="12" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_6" joinType="LEFT"/>
+        <link linktype.id="57" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_7"/>
+        <link linktype.id="3110" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_6b" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <condition column.id="controlstartdate" compareType="GE" currentObjectType.id="SOPROCESS" currentAttributeType.id="controlstartdate"/>
+                <condition column.id="controlenddate" compareType="LE" currentObjectType.id="SOPROCESS" currentAttributeType.id="controlenddate"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="id" compareType="IN" currentObjectType.id="SOPROCESS" currentAttributeType.id="obj_id"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="measure" compareType="IN"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="soprocess_control2testaction_refs_1" view.parameter="DISTINCT">
+        <viewObject id="VO_soprocess2testaction_refs_1_0" objectType="SOPROCESS">
+            <viewColumn id="id" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="sop_version_active" attributeType="version_active" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_5" objectType="HIERARCHY">
+            <viewColumn id="dont_remove" attributeType="type" isSortable="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_1" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_3" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testdate" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+            <viewColumn id="measure" attributeType="measure"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_6" objectType="USER">
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_6b" objectType="USER">
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_soprocess2testaction_refs_1_7" objectType="USERGROUP">
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="72" firstViewObject="VO_soprocess2testaction_refs_1_1" secondViewObject="VO_soprocess2testaction_refs_1_3"/>
+        <link linktype.id="10051,72,74,75" firstViewObject="VO_soprocess2testaction_refs_1_5" secondViewObject="VO_soprocess2testaction_refs_1_3"/>
+        <link linktype.id="61" firstViewObject="VO_soprocess2testaction_refs_1_0" secondViewObject="VO_soprocess2testaction_refs_1_5" attendVersionizing="false"/>
+        <link linktype.id="12" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_6" joinType="LEFT"/>
+        <link linktype.id="57" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_7"/>
+        <link linktype.id="3110" firstViewObject="VO_soprocess2testaction_refs_1_3" secondViewObject="VO_soprocess2testaction_refs_1_6b" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <condition column.id="controlstartdate" compareType="GE" currentObjectType.id="SOPROCESS" currentAttributeType.id="controlstartdate"/>
+                <condition column.id="controlenddate" compareType="LE" currentObjectType.id="SOPROCESS" currentAttributeType.id="controlenddate"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="id" compareType="IN" currentObjectType.id="SOPROCESS" currentAttributeType.id="obj_id"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="measure" compareType="IN"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+
+    <view id="soprocess2testcase_statistic">
+        <!-- this is the current sign off process where object specific privileges are checked on -->
+        <viewObject id="SOPROCESS_START" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="signoff_start_id" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="SOTASK" objectType="SOTASK">
+            <viewColumn id="task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="signoff_task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <!-- these are all sign off processes where *no* privileges are checked - therefore sign off owner can see the same
+             sign off processes and their test cases as the sign off manager -->
+        <viewObject id="SOPROCESS" objectType="SOPROCESS">
+            <viewColumn id="signoff_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="node_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="sop_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="sop_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="signoff_state" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true"/>
+            <viewColumn id="hierarchy_status" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="TESTCASE" objectType="TESTCASE">
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="id" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_state" attributeType="owner_status" isSelectColumn="true"/>
+            <viewColumn id="testcase_owner_status" attributeType="owner_status" isSelectColumn="true"/>
+            <viewColumn id="deficiency_state" attributeType="measure" isSelectColumn="true"/>
+            <viewColumn id="measure" attributeType="measure" isSelectColumn="true"/>
+            <viewColumn id="followup" attributeType="followup" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="62" firstViewObject="SOPROCESS_START" secondViewObject="SOTASK"/>
+        <link linktype.id="62" firstViewObject="SOPROCESS" secondViewObject="SOTASK"/>
+        <link linktype.id="61" firstViewObject="SOPROCESS" secondViewObject="HIERARCHY" attendVersionizing="false"/>
+        <link linktype.id="54,72,74,75" firstViewObject="HIERARCHY" secondViewObject="TESTCASE" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="hierarchy_status" compareType="EQ" value="false"/>
+                <condition column.id="sop_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="task_id" compareType="EQ"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                    <condition column.id="ta_deactivated" compareType="ISNULL"/>
+                </compoundCondition>
+                <!-- test case control period must lie completely within sign-off control period -->
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="soprocess_control2testcase_statistic">
+        <!-- this is the current sign off process where object specific privileges are checked on -->
+        <viewObject id="SOPROCESS_START" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="signoff_start_id" attributeType="obj_id" isSortable="true"/>
+        </viewObject>
+        <viewObject id="SOTASK" objectType="SOTASK">
+            <viewColumn id="task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="signoff_task_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <!-- these are all sign off processes where *no* privileges are checked - therefore sign off owner can see the same
+             sign off processes and their test cases as the sign off manager -->
+        <viewObject id="SOPROCESS" objectType="SOPROCESS">
+            <viewColumn id="signoff_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="node_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="sop_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="sop_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="signoff_state" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_type" attributeType="type" isSortable="true"/>
+            <viewColumn id="hierarchy_status" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="TESTCASE" objectType="TESTCASE">
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="id" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+<!--             <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/> -->
+<!--             <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>             -->
+            <viewColumn id="ta_state" attributeType="owner_status" isSelectColumn="true"/>
+            <viewColumn id="testcase_owner_status" attributeType="owner_status" isSelectColumn="true"/>
+            <viewColumn id="deficiency_state" attributeType="measure" isSelectColumn="true"/>
+            <viewColumn id="measure" attributeType="measure" isSelectColumn="true"/>
+            <viewColumn id="followup" attributeType="followup" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="62" firstViewObject="SOPROCESS_START" secondViewObject="SOTASK"/>
+        <link linktype.id="62" firstViewObject="SOPROCESS" secondViewObject="SOTASK"/>
+        <link linktype.id="61" firstViewObject="SOPROCESS" secondViewObject="HIERARCHY" attendVersionizing="false"/>
+        <link linktype.id="10051,72,74,75" firstViewObject="HIERARCHY" secondViewObject="TESTCASE" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="hierarchy_status" compareType="EQ" value="false"/>
+                <condition column.id="sop_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="task_id" compareType="EQ"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                    <condition column.id="ta_deactivated" compareType="ISNULL"/>
+                </compoundCondition>
+                <!-- test case control period must lie completely within sign-off control period -->
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="signoffControlStatisticTestcases" view.parameter="DISTINCT">
+        <viewObject id="SOPROCESS" objectType="SOPROCESS">
+            <viewColumn id="signoff_id" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="id" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="sop_id" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="soprocessIdList" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="sop_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="SOPROCESS_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_type" attributeType="type"/>
+        </viewObject>
+        <viewObject id="TESTER_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_type2" attributeType="type"/>
+            <viewColumn id="hierarchy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="TESTCASE" objectType="TESTCASE" isMainViewObject="true">
+            <viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ta_deactivated" attributeType="deactivated" isSortable="true"/>
+            <viewColumn id="ta_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ta_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="bb_inicioClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="bb_fimClicloAvaliatorio" isSortable="true" isSelectColumn="true"/>
+            <!-- <viewColumn id="controlstartdate" attributeType="controlstartdate" isSortable="true" isSelectColumn="true"/> -->
+            <!-- <viewColumn id="controlenddate" attributeType="controlenddate" isSortable="true" isSelectColumn="true"/> -->
+            <viewColumn id="testdate" attributeType="execution_date" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="testcase_owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="measure" attributeType="measure" isSortable="true"/>
+            <viewColumn id="plannedstartdate" attributeType="plannedstartdate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="plannedenddate" attributeType="plannedenddate" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="OWNER" objectType="USER">
+            <viewColumn id="ownerUserVersion_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="ownerUser_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerUser_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="OWNER_SUBSTITUTE" objectType="USER">
+            <viewColumn id="substitute_version_active" attributeType="version_active" isSortable="true"/>
+            <viewColumn id="substitute" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="OWNER_GROUP" objectType="USERGROUP">
+            <viewColumn id="group_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="group_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="72" firstViewObject="TESTER_HIERARCHY" secondViewObject="TESTCASE"/>
+        <link linktype.id="10051,72,74,75" firstViewObject="SOPROCESS_HIERARCHY" secondViewObject="TESTCASE"/>
+        <link linktype.id="61" firstViewObject="SOPROCESS" secondViewObject="SOPROCESS_HIERARCHY" attendVersionizing="false"/>
+        <link linktype.id="12" firstViewObject="TESTCASE" secondViewObject="OWNER" joinType="LEFT"/>
+        <link linktype.id="57" firstViewObject="TESTCASE" secondViewObject="OWNER_GROUP"/>
+        <link linktype.id="3110" firstViewObject="TESTCASE" secondViewObject="OWNER_SUBSTITUTE" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="soprocessIdList" compareType="IN"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <condition column.id="sop_version_active" compareType="EQ" value="true"/>
+                <condition column.id="sop_id" compareType="IN"/>
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="type" compareType="IN"/>
+                <condition column.id="plannedstartdate" compareType="LE"/>
+                <condition column.id="plannedenddate" compareType="GE"/>
+                <condition column.id="ta_deactivated" compareType="EQ" value="false"/>
+                <condition column.id="ta_version_active" compareType="EQ" value="true"/>
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+                <condition column.id="testcase_owner_status" compareType="IN"/>
+                <condition column.id="measure" compareType="IN"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="signoff_deficiency_statistic" view.parameter="DISTINCT">
+        <viewObject id="DEFICIENCY" objectType="DEFICIENCY">
+            <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l1" attributeType="savestate" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="bb_inicioClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="bb_fimClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_id" attributeType="obj_id" isGrouped="true" isSelectColumn="true"/>
+            <!-- n:m relation -->
+            <viewColumn id="deficiency_version_active" attributeType="version_active" isGrouped="true"/>
+            <viewColumn id="deficiency_deactivated" attributeType="deactivated" isGrouped="true"/>
+        </viewObject>
+        <viewObject id="SIGNOFF_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_node_id" attributeType="obj_id" isGrouped="true"/>
+        </viewObject>
+        <viewObject id="SOPROCESS" objectType="SOPROCESS" isMainViewObject="true">
+            <viewColumn id="node_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="signoff_version_active" attributeType="version_active" isGrouped="true"/>
+        </viewObject>
+        <link linktype.id="61" firstViewObject="SIGNOFF_HIERARCHY" secondViewObject="SOPROCESS" attendVersionizing="false"/>
+        <link linktype.id="42,67,68,9000" firstViewObject="DEFICIENCY" secondViewObject="SIGNOFF_HIERARCHY" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="EQ"/>
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+                <condition column.id="signoff_version_active" compareType="EQ" value="true"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="deficiency_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="deficiency_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="deficiency_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+    
+    <view id="signoff_deficiency_statistic_link" view.parameter="DISTINCT">
+        <viewObject id="DEFICIENCY" objectType="DEFICIENCY" isMainViewObject="true" skipRightsConditionForRoleLevels="object">
+	        <viewColumn id="client_sign" attributeType="client_sign" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_id" attributeType="deficiency_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="company" attributeType="company" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="likelihood" attributeType="likelihood" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="magnitude" attributeType="magn" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="currency" attributeType="currency" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="remedied_by_mgmt" attributeType="remedied_by_mgmt" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="still_exists_at_yearend" attributeType="still_exists_at_yearend" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="descr_l1" attributeType="descr_l1" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l1" attributeType="savestate" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l2" attributeType="savestate_l2" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="savestate_l3" attributeType="savestate_l3" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="bb_inicioClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="bb_fimClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="bb_inicioClicloAvaliatorio" attributeType="bb_inicioClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="bb_fimClicloAvaliatorio" attributeType="bb_fimClicloAvaliatorio" isGrouped="true" isSelectColumn="true"/>
+            <viewColumn id="deficiency_version_active" isGrouped="true" attributeType="version_active"/>
+            <viewColumn id="deficiency_deactivated" isGrouped="true" attributeType="deactivated"/>
+        </viewObject>
+        <viewObject id="SIGNOFF_HIERARCHY" objectType="HIERARCHY">
+            <viewColumn id="hierarchy_node_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="SOPROCESS" objectType="SOPROCESS">
+            <viewColumn id="soprocessIdList" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="signoff_version_active" attributeType="version_active"/>
+        </viewObject>
+        <viewObject id="TESTCASE" objectType="TESTCASE">
+            <viewColumn id="testcase_id" attributeType="obj_id" isGrouped="true" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <link linktype.id="61" firstViewObject="SIGNOFF_HIERARCHY" secondViewObject="SOPROCESS" attendVersionizing="false"/>
+        <link linktype.id="42,67,68,9000" firstViewObject="DEFICIENCY" secondViewObject="SIGNOFF_HIERARCHY" joinType="LEFT"/>
+        <link linktype.id="18,20160521" firstViewObject="TESTCASE" secondViewObject="DEFICIENCY" joinType="LEFT"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition column.id="client_sign" compareType="EQ"/>
+                <condition column.id="controlstartdate" compareType="GE"/>
+                <condition column.id="controlenddate" compareType="LE"/>
+                <condition column.id="signoff_version_active" compareType="EQ" value="true"/>
+                <compoundCondition conditionConnect="OR">
+                    <condition column.id="deficiency_version_active" compareType="EQ" value="true"/>
+                    <condition column.id="deficiency_version_active" compareType="ISNULL"/>
+                </compoundCondition>
+                <condition column.id="deficiency_deactivated" compareType="EQ" value="false"/>
+            </compoundCondition>
+        </conditions>
+    </view>    
+</custom>

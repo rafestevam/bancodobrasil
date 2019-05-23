@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_HIERARCHY">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="SWITCH_VIEW"/>
+            <buttonReference button.idref="SWITCH_EDIT"/>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="hierarchy">
+            <rowGroup id="hierarchy.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="name" propertyKey="form.row.name.DBI">
+                    <cell>
+                        <element attribute.idref="name" />
+                    </cell>
+                </row>
+                <row id="hnumber">
+                    <element attribute.idref="hnumber" />
+                </row>
+                <row id="bb_nivel">
+                    <element attribute.idref="bb_nivel" />
+                </row>
+                <row id="bb_caminho">
+                	<element attribute.idref="bb_caminho"/>
+                </row>                
+                <row id="type">
+                    <element attribute.idref="type" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="bb_dicionarioDeRisco">
+                    <element attribute.idref="bb_dicionarioDeRisco" />
+                </row>
+<!--
+                <row id="status">
+                    <element attribute.idref="status" >
+                        <parameter name="yesKey" value="html.active"/>
+                        <parameter name="noKey" value="html.inactive"/>
+                    </element>
+                </row>
+-->
+                <row id="tester">
+                    <element attribute.idref="tester" >
+                        <parameter name="selectionList" value="hierarchy_testergroup_sel" />
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="signoff">
+                    <element attribute.idref="signoff" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="so_owner">
+                    <element attribute.idref="so_owner" >
+                        <parameter name="selectionList" value="hierarchy_signoffowner_sel" />
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="auditor">
+                    <element attribute.idref="auditor" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="objectguid">
+                    <element attribute.idref="objectguid" />
+                </row>
+                <row id="objectlink">
+                    <element attribute.idref="objectlink" template="modellink">
+                        <parameter name="guidProperty" value="objectguid"/>
+                        <parameter name="clientProperty" value="objectlinkpattern"/>
+                        <parameter name="mode" value="objectlink"/>
+                        <parameter name="icon" value="iconlib/icons/object_action_16.png"/>
+                    </element>
+                </row>
+                <row id="model_name">
+                    <element attribute.idref="model_name" />
+                </row>
+                <row id="modelguid">
+                    <element attribute.idref="modelguid" />
+                </row>
+                <row id="modellink">
+                    <element attribute.idref="modellink" template="modellink">
+                        <parameter name="guidProperty" value="modelguid"/>
+                        <parameter name="clientProperty" value="modellinkpattern"/>
+                    </element>
+                </row>
+                
+                <!-- BdB CUSTOMIZATIONS -->
+                <row id="bb_company">
+                    <element attribute.idref="bb_company" />
+                </row>                          
+                <row id="bb_deptManager">
+                    <element attribute.idref="bb_deptManager">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_product">
+                    <element attribute.idref="bb_product">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_financcount">  
+                    <element attribute.idref="bb_financcount">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>                
+                
+                <!-- Neila -->
+                <row id="bb_riskfactor">  
+                    <element attribute.idref="bb_riskfactor">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                            
+                <row id="bb_scopeSelection"> 
+                    <element attribute.idref="bb_scopeSelection" />
+                </row>
+                <row id="bb_scope">
+                    <element attribute.idref="bb_scope" />
+                </row>                                
+                <row id="bb_codDependResp">            
+                   <element attribute.idref="bb_codDependResp" />
+                </row>
+                <row id="bb_nomeDependResp">            
+                   <element attribute.idref="bb_nomeDependResp" />
+                </row>                        
+                <row id="bb_codDivisaoResp">            
+                   <element attribute.idref="bb_codDivisaoResp" />
+                </row>                        
+                <row id="bb_codNucleoResp">            
+                   <element attribute.idref="bb_codNucleoResp" />
+                </row>                       
+                <row id="bb_codigoEstadoModal">
+                    <element attribute.idref="bb_codigoEstadoModal" />
+                </row>                
+                <row id="bb_inicioComercModalidade">
+                    <element attribute.idref="bb_inicioComercModalidade"/>
+                </row>
+                <row id="bb_fimComercModalidade">
+                    <element attribute.idref="bb_fimComercModalidade"/>
+                </row>
+                <row id="bb_codAbragModalidade">
+                    <element attribute.idref="bb_codAbragModalidade" />
+                </row>
+                <row id="bb_indModalidadeTesouraria">
+                    <element attribute.idref="bb_indModalidadeTesouraria" />
+                </row>  
+                   <!-- BdB CUSTOMIZATIONS --> 
+                <row id="bb_tipoUnidOrganizacional"> 
+                    <element attribute.idref="bb_tipoUnidOrganizacional" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>  
+                <row id="bb_codigoIOR">
+                    <element attribute.idref="bb_codigoIOR" />
+                </row>
+                <row id="bb_mapFreeSH2">
+                    <element attribute.idref="bb_mapFreeSH2" />
+                </row>
+                <row id="bb_fundoGarantiaInvest">
+                    <element attribute.idref="bb_fundoGarantiaInvest" />
+                </row>
+                <row id="bb_eloParSA">
+                    <element attribute.idref="bb_eloParSA" />
+                </row>
+                <row id="bb_previ">
+                    <element attribute.idref="bb_previ"/>
+                </row>
+                <row id="bb_BB_USA_Hold">
+                    <element attribute.idref="bb_BB_USA_Hold"/>
+                </row>
+                <row id="bb_BB_Seguros_Part">
+                    <element attribute.idref="bb_BB_Seguros_Part"/>
+                </row>    
+                <row id="bb_TesouroNacional">
+                    <element attribute.idref="bb_TesouroNacional"/>
+                </row>
+                <row id="bb_BB_Leasing_Co">
+                    <element attribute.idref="bb_BB_Leasing_Co"/>
+                </row>
+                <row id="bb_BB_BI">
+                    <element attribute.idref="bb_BB_BI"/>
+                </row>
+                <row id="bb_MapFreeSegurosGerais">
+                    <element attribute.idref="bb_MapFreeSegurosGerais"/>
+                </row>
+                <row id="bb_BB">
+                    <element attribute.idref="bb_BB"/>
+                </row>
+                <row id="bb_AcaoTesouroria">
+                    <element attribute.idref="bb_AcaoTesouroria"/>
+                </row>
+                <row id="bb_BB_mapFreeSH1">
+                    <element attribute.idref="bb_BB_mapFreeSH1"/>
+                </row>
+                <row id="bb_fundoFiscalInvEstab">
+                    <element attribute.idref="bb_fundoFiscalInvEstab"/>
+                </row>
+                <row id="bb_BB_cartoesPart">
+                    <element attribute.idref="bb_BB_cartoesPart"/>
+                </row>
+                <row id="bb_BB_AG">
+                    <element attribute.idref="bb_BB_AG"/>
+                </row>
+                <row id="bb_corPart">
+                    <element attribute.idref="bb_corPart"/>
+                </row>
+                <row id="bb_cxFIGarantConstNaval">
+                    <element attribute.idref="bb_cxFIGarantConstNaval"/>
+                </row>
+                <row id="bb_BAMB">
+                    <element attribute.idref="bb_BAMB"/>
+                </row>
+                <row id="bb_segPart">
+                    <element attribute.idref="bb_segPart"/>
+                </row>
+                <row id="bb_BB_DTVM">
+                    <element attribute.idref="bb_BB_DTVM"/>
+                </row>
+                <row id="bb_freeFloat">
+                    <element attribute.idref="bb_freeFloat"/>
+                </row>
+                <row id="bb_BNDESPar">
+                    <element attribute.idref="bb_BNDESPar"/>
+                </row>
+				<row id="bb_codigoUOR">
+                    <element attribute.idref="bb_codigoUOR"/>
+                </row>
+                <row id="bb_codigoTipologia">
+                    <element attribute.idref="bb_codigoTipologia"/>
+                </row>
+                <row id="bb_sigla">
+                    <element attribute.idref="bb_sigla"/>
+                </row>
+                <row id="bb_prefixo">
+                    <element attribute.idref="bb_prefixo"/>
+                </row>
+                <row id="bb_emailUOR">
+                    <element attribute.idref="bb_emailUOR"/>
+                </row>
+                <row id="bb_notaTecnicaAprova">
+                    <element attribute.idref="bb_notaTecnicaAprova" />
+                </row> 
+                <row id="bb_periodicidadeRevisa">
+                    <element attribute.idref="bb_periodicidadeRevisa" />
+                </row>
+                <row id="bb_tipoFatorControle"> 
+                    <element attribute.idref="bb_tipoFatorControle" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+				<row id="bb_participacaoCalculoCapital"> 
+                    <element attribute.idref="bb_participacaoCalculoCapital" />
+                </row>
+                <row id="bb_valorLimiteCritico"> 
+                    <element attribute.idref="bb_valorLimiteCritico" />
+                </row>
+                <row id="bb_dataFimValidFator"> 
+                    <element attribute.idref="bb_dataFimValidFator" />
+                </row>
+                <row id="bb_valorLimiteInferior"> 
+                    <element attribute.idref="bb_valorLimiteInferior" />
+                </row>
+                <row id="bb_valorLimiteSuperior"> 
+                	<element attribute.idref="bb_valorLimiteSuperior" />
+                </row>
+                <row id="bb_metodoAgregacao"> 
+                	<element attribute.idref="bb_metodoAgregacao" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+               	<row id="bb_metodoPrevisao"> 
+                    <element attribute.idref="bb_metodoPrevisao" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_estadoRegControl"> 
+                    <element attribute.idref="bb_estadoRegControl" />
+                </row>
+                <row id="bb_mesesParaTotalizacao"> 
+                    <element attribute.idref="bb_mesesParaTotalizacao" />
+                </row>
+                <row id="bb_codClassifFatorContrInt"> 
+                    <element attribute.idref="bb_codClassifFatorContrInt" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_valFatorContrApurado"> 
+                    <element attribute.idref="bb_valFatorContrApurado" />
+                </row>
+                <row id="bb_numRecomendRisco"> 
+                    <element attribute.idref="bb_numRecomendRisco" />
+                </row>
+                
+                <!-- BdB CUSTOMIZATION - FINANCIALACCOUNT -->
+                
+                <row id="bb_tipoFinancialAccount">
+                	<element attribute.idref="bb_tipoFinancialAccount"/>
+                </row>                     
+                <row id="bb_codIOR_contaContabil">
+                    <element attribute.idref="bb_codIOR_contaContabil">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>                                
+                <row id="bb_consolidado">
+                	<element attribute.idref="bb_consolidado"/>
+                </row>          
+                <row id="bb_eliminado">
+                	<element attribute.idref="bb_eliminado"/>
+                </row>          
+                <row id="bb_aglutinado">
+                	<element attribute.idref="bb_aglutinado"/>
+                </row>
+                <row id="bb_classificacaoQuant">
+                	<element attribute.idref="bb_classificacaoQuant"/>
+                </row> 
+                <row id="bb_classificacaoQual">
+                	<element attribute.idref="bb_classificacaoQual"/>
+                </row>   
+                <row id="bb_classificacaoFinal">
+                	<element attribute.idref="bb_classificacaoFinal"/>
+                </row>       
+                <row id="bb_avalMaterialidadeContas">
+                	<element attribute.idref="bb_avalMaterialidadeContas"/>
+                </row>          
+                <row id="bb_grauExposicao">
+                	<element attribute.idref="bb_grauExposicao"/>
+                </row>
+                <row id="bb_dataBalancete">
+                    <element attribute.idref="bb_dataBalancete" />
+                </row>
+                <row id="bb_finaccountAssertions">
+                    <element attribute.idref="bb_finaccountAssertions" />
+                </row>
+                <row id="bb_suscetibFraude">
+                	<element attribute.idref="bb_suscetibFraude"/>
+                </row>
+                <row id="bb_avalQuantitativa">
+                	<element attribute.idref="bb_avalQuantitativa"/>
+                </row>
+                <row id="bb_valBaseMaterialidade">
+                	<element attribute.idref="bb_valBaseMaterialidade"/>
+                </row>
+                <row id="bb_percentAplicRiscoAlto">
+                	<element attribute.idref="bb_percentAplicRiscoAlto"/>
+                </row>
+                <row id="bb_percentAplicRiscoMedio">
+                	<element attribute.idref="bb_percentAplicRiscoMedio"/>
+                </row>
+                <row id="bb_riskFactorType">
+                	<element attribute.idref="bb_riskFactorType"/>
+                </row>                                                                
+            </rowGroup>
+        </page>
+        <page id="changeManagement" licensedComponentIds="cm">
+            <rowGroup id="changeManagement.1">
+                <row id="reviewRelevant">
+                    <element attribute.idref="reviewRelevant">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+                <row id="activities">
+                    <element attribute.idref="activities"/>
+                </row>
+                <row id="frequency">
+                    <element attribute.idref="frequency">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="event_driven_allowed">
+                    <element attribute.idref="event_driven_allowed"/>
+                </row>
+                <row id="duration">
+                    <element attribute.idref="duration"/>
+                </row>
+                <row id="startdate">
+                    <element attribute.idref="startdate"/>
+                </row>
+                <row id="enddate">
+                    <element attribute.idref="enddate"/>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_USER">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="user">
+            <rowGroup id="user.1">
+                <row id="userid">
+                    <element attribute.idref="userid" />
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="email">
+                    <element attribute.idref="email" />
+                </row>
+                <row id="phone">
+                    <element attribute.idref="phone" />
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+    <form id="FORM_USERGROUP">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="usergroup">
+            <rowGroup id="usergroup.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="usergroupClientSelect">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="bb_email">
+                    <element attribute.idref="bb_email"/>
+                </row>
+                <!--  
+                <row id="bb_relatedOrgUnit">
+                    <element attribute.idref="bb_relatedOrgUnit">
+                    	<parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                -->
+                <row id="role">
+                    <element attribute.idref="role" template="roles">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="rolelevel">
+                    <element attribute.idref="rolelevel" template="roles">
+                        <parameter name="roleProperty" value="role"/>
+                        <parameter name="mode" value="level"/>
+                    </element>
+                </row>
+                <row id="bb_orgunit">
+                    <element attribute.idref="bb_orgunit">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="groupmembers">
+                    <element attribute.idref="groupmembers" template="userRelation">
+                        <parameter name="selectionList" value="group2user_sel"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+    </form>
+    
+</custom>

@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_RISK">
+    	<logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="risk" licensedComponentIds="tm,rm,il,in">
+            <rowGroup id="risk.1">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="bb_datapromocao">
+                    <element attribute.idref="bb_datapromocao" />
+                </row>
+            </rowGroup>
+            <rowGroup id="risk.2" propertyKey="rowgroup.risk2.DBI">          
+                <row id="risk_id">
+                    <element attribute.idref="risk_id" />
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                
+                <!-- BdB CUSTOMIZATION -->
+                <row id="risk_category">
+                    <element attribute.idref="risk_category" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="organizational_unit">
+                    <element attribute.idref="orgunit" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+            </rowGroup>
+            <rowGroup id="risk.3" propertyKey="rowgroup.risk3.DBI">              
+                <row id="process">
+                    <element attribute.idref="process" >
+                        <parameter name="selectionList" value="AUTO"/>
+                        <button.add button.idref="OBJECTLINK" location="row"/>
+                        <button.add button.idref="MODELLINK" location="row"/>
+                    </element>
+                </row>
+                <row id="bb_business_line">
+                    <element attribute.idref="bb_business_line" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="finaccount">
+                    <element attribute.idref="finaccount" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>                                             
+                <row id="application_system_type">
+                    <element attribute.idref="appsystem" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_icr">
+                    <element attribute.idref="bb_icr" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_riskfactor">
+                    <element attribute.idref="bb_riskfactor" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>              
+                              
+            </rowGroup>
+            <rowGroup id="risk.4" propertyKey="rowgroup.risk4.DBI">
+            <!-- BdB CUSTOMIZATION -->
+                <row id="probability">
+                    <element attribute.idref="probability" />
+                </row>                         
+                <row id="impact">
+                    <element attribute.idref="impact"/>
+                </row>
+                <row id="bb_criticidadeInicial">
+                    <element attribute.idref="bb_criticidadeInicial"/>
+                </row>                                
+                <row id="bb_desc_impacto">
+                    <element attribute.idref="bb_desc_impacto" />
+                </row>
+            </rowGroup>
+            <rowGroup id="risk.5" propertyKey="rowgroup.risk5.DBI">     
+                <row id="risktype">
+                    <element attribute.idref="risktype" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onClick"/>
+                    </element>
+                </row>
+                <row id="assertions">
+                    <element attribute.idref="assertions" />
+                </row>                       
+                <row id="manager_group">
+                    <element attribute.idref="manager_group" >
+                        <parameter name="selectionList" value="risk_riskmanager_sel"/>
+                    </element>
+                </row>
+            </rowGroup>               
+            <rowGroup id="risk.6">                
+                <!-- 
+                <row id="finaccount">
+                    <element attribute.idref="finaccount" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_icr">
+                    <element attribute.idref="bb_icr" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                -->                                 
+                <!-- BdB CUSTOMIZATION
+                <row id="bb_pendencia">
+                    <element attribute.idref="bb_pendencia" />
+                </row>
+                <row id="bb_desc_pendencia">
+                    <element attribute.idref="bb_desc_pendencia" />
+                </row>
+                -->
+                
+                <row id="risk_catalog1">
+                    <element attribute.idref="risk_catalog1" />
+                </row>
+                <row id="risk_catalog2">
+                    <element attribute.idref="risk_catalog2" />
+                </row>  
+             </rowGroup>          
+        </page>
+        <!-- BdB CUSTOMIZATION SALES-->
+        <page id="riskassessment" licensedComponentIds="rm,il,in">
+        	<rowGroup id="riskassessment.0">        	
+                <row id="risk_management_relevant">
+                    <element attribute.idref="risk_management_relevant" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onClick"/>
+                    </element>
+                </row>
+        	</rowGroup>
+            <rowGroup id="riskassessment.1" propertyKey="rowgroup.risk6.DBI">
+                <row id="frequency">
+                    <element attribute.idref="frequency" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="startdate">
+                    <element attribute.idref="startdate" />
+                </row>
+                <row id="enddate">
+                    <element attribute.idref="enddate" />
+                </row>
+                <row id="duration">
+                    <element attribute.idref="duration" />
+                </row>
+                <row id="event_driven_allowed">
+                    <element attribute.idref="event_driven_allowed" />
+                </row>
+			</rowGroup>
+            <rowGroup id="riskassessment.2" propertyKey="rowgroup.risk7.DBI">
+                <row id="type">
+                    <element attribute.idref="type" />
+                </row>
+                <row id="data_source">
+                    <element attribute.idref="data_source" />
+                </row>
+                <row id="assessment_activities">
+                    <element attribute.idref="assessment_activities" />
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" >
+                        <parameter name="selectionList" value="risk_riskowner_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" >
+                        <parameter name="selectionList" value="risk_riskreviewer_sel"/>
+                        <button.add button.idref="RELATION_CREATE" location="toolbar" type="writable"/>
+                    </element>
+                </row>
+                <!--
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>                
+                 -->
+                <!-- BdB CUSTOMIZATION 
+                <row id="risk_category">
+                    <element attribute.idref="risk_category" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="organizational_unit">
+                    <element attribute.idref="orgunit" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="application_system_type">
+                    <element attribute.idref="appsystem" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_business_line">
+                    <element attribute.idref="bb_business_line" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="finaccount">
+                    <element attribute.idref="finaccount" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="bb_icr">
+                    <element attribute.idref="bb_icr" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row> 
+                -->                               
+            </rowGroup>
+            <rowGroup id="riskassessment.3" propertyKey="rowgroup.risk8.DBI">
+                <row id="currency">
+                    <element attribute.idref="currency" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="loss"
+                     propertyKey="form.row.risk.assessment.threshold.expected.loss.DBI" errorModel="local">
+                    <cell separator="{td}">
+                        <element name="min_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="th_exp_min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element name="avg_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="th_exp_avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="th_exp_max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="reduced_loss"
+                     propertyKey="form.row.risk.assessment.threshold.reduced.expected.loss.DBI" errorModel="local">
+                    <cell separator="{td}">
+                        <element name="red_min_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="th_red_exp_min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element name="avg_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="th_red_exp_avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element name="max_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="th_red_exp_max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="notification_to">
+                    <element attribute.idref="notification_to" />
+                </row>
+            </rowGroup>
+            <rowGroup id="riskassessment.4" propertyKey="rowgroup.risk9.DBI">
+				<row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO" />
+                    </element>
+                </row>                
+            </rowGroup>
+        </page>
+    </form>
+    
+  	<form id="FORM_RISKASSESSMENT" controlName="riskassessmentform" >
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="OBJECT_TRANSFER"/>
+            <buttonReference button.idref="OBJECT_COPY_LOSSVALUES"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="riskassessment.0" licensedComponentIds="rm">
+            <rowGroup id="riskassessment.0">
+                <row id="bb_riskAssessmentStatus">
+                    <element attribute.idref="bb_riskAssessmentStatus" />
+                </row>
+            </rowGroup>
+            <rowGroup id="riskassessment.1" propertyKey="rowgroup.risk.assessment.risk1.DBI">
+                <row id="client_sign">
+                    <element attribute.idref="client_sign" template="clientSign"/>
+                </row>
+                <row id="risk">
+                    <element attribute.idref="risk" >
+                        <parameter name="selectionList" value="AUTO" />
+                    </element>
+                </row>
+                <row id="risk_category">
+                    <element attribute.idref="risk_category" />
+                </row>
+            	<row id="organizational_unit">
+                    <element attribute.idref="orgunit" />
+                </row>
+                <row id="process">
+                    <element attribute.idref="process" >
+                        <button.add button.idref="OBJECTLINK" location="row"/>
+                        <button.add button.idref="MODELLINK" location="row"/>
+                    </element>
+                </row>
+                <!--
+                <row id="process_model_name" propertyKey="form.row.risk.assessment.process_model_name.DBI">
+                    <element attribute.idref="process" template="childAttribute">
+                        <parameter name="listAttribute1" value="model_name"/>
+                    </element>
+                </row>
+                -->
+            </rowGroup>
+            <rowGroup id="riskassessment.2" propertyKey="rowgroup.risk.assessment.risk2.DBI">
+                 <row id="obj_id" propertyKey="form.row.risk.assessment.id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="assessment_periode"
+                     propertyKey="form.row.risk.assessment.period.DBI">
+                    <cell separator=" - ">
+                        <element attribute.idref="plannedstartdate" />
+                        <element attribute.idref="plannedenddate" />
+                    </cell>
+                </row>
+                <row id="type">
+                    <element attribute.idref="type" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="data_source">
+                    <element attribute.idref="data_source" />
+                </row>
+                <row id="assessment_activities">
+                    <element attribute.idref="assessment_activities" />
+                </row>
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" />
+                </row>
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" />
+                </row>
+            </rowGroup>
+            <rowGroup id="riskassessment.3" propertyKey="rowgroup.risk.assessment.risk3.DBI">
+                <row id="execution_date">
+                    <element attribute.idref="execution_date" />
+                </row>
+                <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+                <row id="owner_status">
+                    <element attribute.idref="owner_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="owner_upload_user">
+                    <element attribute.idref="owner_upload_user"/>
+                </row>
+                <row id="owner_upload_confirm">
+                    <element attribute.idref="owner_upload_confirm"/>
+                </row>
+            	<row id="bb_owner_analysis">
+                    <element attribute.idref="bb_owner_analysis" />
+                </row>
+           		<!--
+                <row id="application_system_type">
+                    <element attribute.idref="appsystem" />
+                </row>
+                <row id="finaccount">
+                    <element attribute.idref="finaccount" />
+                </row>
+                <row id="risk_category">
+                    <element attribute.idref="risk_category" />
+                </row>
+                 -->
+            </rowGroup>
+            <rowGroup id="riskassessment.5" propertyKey="rowgroup.risk.assessment.risk4.DBI">
+                <row id="review_date">
+                	<element attribute.idref="review_date"/>
+                </row>
+                <row id="reviewer">
+                    <element attribute.idref="reviewer" />
+				</row>
+				<row id="reviewer_upload_user">
+                    <element attribute.idref="reviewer_upload_user"/>
+                </row>
+                <row id="reviewer_upload_confirm">
+                    <element attribute.idref="reviewer_upload_confirm"/>
+                </row>
+                <row id="reviewer_status">
+                    <element attribute.idref="reviewer_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="remark">
+                    <element attribute.idref="remark" />
+                </row>
+            </rowGroup>
+            <rowGroup id="riskassesment.6" propertyKey="rowgroup.risk.assessment.risk5.DBI">
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+            </rowGroup>
+        </page>
+        <page id="ra_impacttypes" licensedComponentIds="rm">
+            <rowGroup id="riskassessment.6">
+                <row id="impacttypes" attribute.idref="impacttypes" template="riskassessmentStructure"/>
+            </rowGroup>
+        </page>
+    </form>
+        
+    <form id="FORM_RA_IMPACTTYPE">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="frequency">
+        <rowGroup id="riskassessment_impacttype.1" propertyKey="rowgroup.risk.assessment.risk6">
+                <row id="type">
+                    <element attribute.idref="type" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+                </row>
+                <row id="currency">
+                    <element attribute.idref="currency" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+	            </row>
+            </rowGroup>
+            <rowGroup id="riskassessment.quali.0" propertyKey="attribute.RA_IMPACTTYPE.quali_id.DBI">
+            	<row id="quali_id">
+            	<element attribute.idref="quali_id" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+            	</row>
+			</rowGroup>
+			<rowGroup id="riskassessment_impacttype.4" propertyKey="attribute.RA_IMPACTTYPE.quant_id.DBI">
+            	<row id="frequLossQual"
+                     errorModel="local">
+                    <element attribute.idref="frequLossQual" template="rmSelection">
+                        <parameter name="source" value="frequencies" />
+                    </element>
+                </row>
+                <row id="lossQual"
+                     errorModel="local">
+                    <element attribute.idref="lossQual" template="rmSelection">
+                        <parameter name="source" value="quotations" />
+                    </element>
+                </row>
+                <row id="redLossQual"
+                     errorModel="local">
+                    <element attribute.idref="redLossQual" template="rmSelection">
+                        <parameter name="source" value="quotations" />
+                    </element>
+                </row>
+                <row id="redFrequLossQual"
+                     errorModel="local">
+                    <element attribute.idref="redFrequLossQual" template="rmSelection">
+                        <parameter name="source" value="frequencies" />
+                    </element>
+                </row>
+                <!-- BdB CUSTOMIZATION -->
+                <row id="bb_criticidadeFinal" errorModel="local">
+                    <element attribute.idref="bb_criticidadeFinal" />
+		    	</row>	                                            
+            </rowGroup>
+			<rowGroup id="riskassessment.quant.0" propertyKey="rowgroup.risk.assessment.risk7.DBI">
+            	<row id="quant_id">
+            	<element attribute.idref="quant_id" >
+                        <javaScriptEvent expression="aam_objectcommand('cache')" name="onChange"/>
+                    </element>
+            	</row>
+			</rowGroup>
+            <rowGroup id="riskassessment_impacttype.2" propertyKey="rowgroup.risk.assessment.risk7.DBI">
+                <row id="amount_of_damage"
+                     propertyKey="form.row.risk.assessment.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="min_loss" name="min_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="avg_loss" name="avg_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="max_loss" name="max_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="bb_sum_loss" name="sum_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.sum.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_sum_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="red_amount_of_damage"
+                     propertyKey="form.row.risk.assessment.reduced.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="red_min_loss" name="red_min_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_avg_loss" name="red_avg_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="red_avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_max_loss" name="red_max_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="bb_red_sum_loss" name="red_sum_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.sum.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_red_sum_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="maxLength" value="20"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="frequ_amount_of_damage"
+                     propertyKey="form.row.risk.assessment.frequ.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="frequ_min_loss" name="frequ_min_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="frequ_min_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="frequ_avg_loss" name="frequ_avg_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="frequ_avg_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="frequ_max_loss" name="frequ_max_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="frequ_max_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="bb_frequ_sum_loss" name="frequ_sum_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.sum.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_frequ_sum_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="frequ_red_amount_of_damage"
+                     propertyKey="form.row.risk.assessment.reduced.frequ.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="red_frequ_min_loss" name="frequ_red_min_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_frequ_min_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_frequ_avg_loss" name="frequ_red_avg_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="red_frequ_avg_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_frequ_max_loss" name="frequ_red_max_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_frequ_max_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="bb_red_frequ_sum_loss" name="frequ_red_sum_amount_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.sum.DBI"/>
+                        </element>
+                        <element attribute.idref="bb_red_frequ_sum_loss" template="textField">
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="bb_frequ_relevant_events">
+                    <element attribute.idref="bb_frequ_relevant_events" template="textField"> 
+                         <parameter name="size" value="20"/>
+                     </element>
+                </row>
+                <row id="exp_loss"
+                     propertyKey="form.row.risk.assessment.expected.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="exp_min_loss" name="min_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="exp_min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="exp_avg_loss" name="avg_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="exp_avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="exp_max_loss" name="max_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="exp_max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                </row>
+                <row id="red_exp_loss"
+                     propertyKey="form.row.risk.assessment.reduced.expected.loss.DBI"
+                     errorModel="local">
+                    <cell separator="{td}">
+                        <element attribute.idref="red_exp_min_loss" name="red_min_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.minimum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_exp_min_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_exp_avg_loss" name="red_avg_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.average.DBI"/>
+                        </element>
+                        <element attribute.idref="red_exp_avg_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                        </element>
+                    </cell>
+                    <cell separator="{td}">
+                        <element attribute.idref="red_exp_max_loss" name="red_max_exp_loss_title" template="label">
+                            <parameter name="propertyKey" value="form.risk.assessment.maximum.DBI"/>
+                        </element>
+                        <element attribute.idref="red_exp_max_loss" template="stringEnum">
+                            <parameter name="enumProperty" value="currency"/>
+                            <parameter name="size" value="20"/>
+                            <parameter name="alignment" value="right"/>
+                        </element>
+                    </cell>
+                </row>
+            	<row id="others_lost"  
+            		propertyKey="attribute.RA_IMPACTTYPE.others_loss.DBI"
+            		errorModel="local" > 
+            		<cell separator="{td}">
+                  		<element attribute.idref="bb_near_loss" name="bb_near_loss_title" template="label" >                      	                                                                 	                        
+                        	<parameter name="propertyKey" value="attribute.RA_IMPACTTYPE.bb_near_loss.DBI"/>
+	              		</element>
+                  		<element attribute.idref="bb_near_loss" template="stringEnum" >                      	                                                                 	                        
+                    		<parameter name="enumProperty" value="currency"/>
+		                    <parameter name="maxLength" value="32"/>
+		                    <parameter name="size" value="32"/>	                    
+	              		</element>                               
+                	</cell>
+                	<cell separator="{td}"> 
+                  		<element attribute.idref="bb_lost_income" name="bb_lost_income_title" template="label" >                      	                                                                 	                        
+                        	<parameter name="propertyKey" value="attribute.RA_IMPACTTYPE.bb_lost_income.DBI"/>
+	              		</element>                
+                  		<element attribute.idref="bb_lost_income" template="stringEnum">
+                    		<parameter name="enumProperty" value="currency"/>
+	                        <parameter name="maxLength" value="32"/>
+	                        <parameter name="size" value="32"/>
+                  		</element>
+                	</cell>
+                	<cell separator="{td}">
+                  		<element attribute.idref="bb_oportunity_cost" name="bb_oportunity_cost_title" template="label" >                      	                                                                 	                        
+                        	<parameter name="propertyKey" value="attribute.RA_IMPACTTYPE.bb_oportunity_cost.DBI"/>
+	              		</element>                                
+                  		<element attribute.idref="bb_oportunity_cost" template="stringEnum">
+	                    	<parameter name="enumProperty" value="currency"/>
+	                        <parameter name="maxLength" value="32"/>
+	                        <parameter name="size" value="32"/>
+                  		</element>
+                	</cell>
+                	<cell separator="{td}">
+                  		<element attribute.idref="bb_operational_gain" name="bb_operational_gain_title" template="label" >                      	                                                                 	                        
+                        	<parameter name="propertyKey" value="attribute.RA_IMPACTTYPE.bb_operational_gain.DBI"/>
+	              		</element>                                                
+                  		<element attribute.idref="bb_operational_gain" template="stringEnum">
+	                    	<parameter name="enumProperty" value="currency"/>
+	                        <parameter name="maxLength" value="32"/>
+	                        <parameter name="size" value="32"/>
+                  		</element>
+                	</cell>
+              	</row>
+            </rowGroup>
+		</page>
+    </form>
+    
+</custom>

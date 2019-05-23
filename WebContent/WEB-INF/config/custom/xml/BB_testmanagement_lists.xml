@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<list id="control_add2appsystems_refs"
+          filter.idref="control2appsystem"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          frame="tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="HIERARCHY"
+          srcAttributeType.idref="bb_appSystems"
+          srcDataType.idref="CONTROL">
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+		</simpleFilterRow>
+        <listHeaderRow>
+			<listHeader column="LC_control2appsystems_1" propertyKey="tableheader.name" width="40%"/>
+			<listHeader column="LC_control2appsystems_2" propertyKey="tableheader.description" width="60%"/>
+		</listHeaderRow>
+		<column id="LC_control2appsystems_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="obj_id"/>
+		</column>
+		<column id="LC_control2appsystems_2" dataReference.idref="description" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_NEW"/>
+			<buttonReference button.idref="LIST_ATTACH_DEST" function="aam_initlist('control_appsystems_sel','tabcontent')"/>
+			<buttonReference button.idref="LIST_DETACH"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_DETACH"/>
+		</rowButtons>
+	</list>
+
+	<list id="control_appsystems_sel"
+          view.idref="control_appsystem_sel"
+          filter.idref="control2appsystem_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="bb_appSystems"
+          destDataType.idref="CONTROL"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_control_appsystem_sel_1" propertyKey="tableheader.name" width="40%"/>
+			<listHeader column="LC_control_appsystem_sel_2" propertyKey="tableheader.description" width="60%"/>
+		</listHeaderRow>
+		<column id="LC_control_appsystem_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="LC_control_appsystem_sel_2" dataReference.idref="description" />
+		<listButtons>
+			<buttonReference button.idref="BACK" function="aam_initlist('control_add2appsystems_refs','tabcontent')"/>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="control"
+          view.idref="control"
+          filter.idref="control"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="CONTROL"
+          propertyKey="list.control.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="sign"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_Control_1" propertyKey="tableheader.name" width="30%"/>
+			<listHeader column="LC_Control_0" propertyKey="tableheader.function" width="18%"/>
+			<listHeader column="LC_Control_2" propertyKey="tableheader.control.controls" width="32%"/>
+			<listHeader column="LC_Control_3" propertyKey="tableheader.control.owner" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_Control_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="obj_id"/>
+		</column>
+		<column id="LC_Control_0" align="center" dataReference.idref="control_process_name" template="openObject" />
+		<column id="LC_Control_2" dataReference.idref="controls" />
+		<column id="LC_Control_3" dataReference.idref="userGroup_name" />
+		<listButtons>
+			<!-- BdB has requested it 
+			<buttonReference button.idref="LIST_CREATE"/>
+			-->
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<!-- BdB has requested it 
+			<buttonReference button.idref="FIELDSELECT"/>
+			-->
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="control_add2risk_refs"
+          filter.idref="base"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="controls"
+          destDataType.idref="RISK"
+          frame="tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="RISK"
+          srcDataType.idref="CONTROL">
+		<listHeaderRow>
+			<listHeader column="LC_control2risk_1" propertyKey="tableheader.name" width="20%"/>
+			<listHeader column="LC_control2risk_2" propertyKey="tableheader.id" width="20%"/>
+			<listHeader column="LC_control2risk_3" propertyKey="tableheader.description" width="60%"/>
+		</listHeaderRow>
+		<column id="LC_control2risk_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="obj_id"/>
+		</column>
+		<column id="LC_control2risk_2" dataReference.idref="risk_id" />
+		<column id="LC_control2risk_3" dataReference.idref="description" />
+		<listButtons>
+			<!-- BdB has requested it
+			<buttonReference button.idref="LIST_REVERSE_DETACH"/>
+			-->
+		</listButtons>
+		<rowButtons>
+			<!-- BdB has requested it
+			<buttonReference button.idref="LISTROW_REVERSE_DETACH"/>
+			-->
+		</rowButtons>
+	</list>
+	
+	<list id="BB_control2deficiencies"
+          view.idref="BB_control2deficiencies"
+          filter.idref="BB_control2deficiencies"
+          idColumn.idref="id"
+          defaultOrderColumn.idref="deficiency_id"
+          frame="tabcontent"
+          ignoreRoleRestriction="true"
+          relatedObjectType.idref="DEFICIENCY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="deficiency_id"/>
+			<simpleFilter filterRow.idref="company"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="clientSign"/>
+			<simpleFilter filterRow.idref="ta_id"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_DEFICIENCY_DEFICIENCYID" propertyKey="tableheader.deficiency.deficiency_id" width="10%"/>
+		    <!--  
+		    <listHeader column="LC_DEFICIENCY_CLIENTSIGN" propertyKey="tableheader.deficiency.client" width="10%"/>
+		    <listHeader column="LC_DEFICIENCY_COMPANY" propertyKey="tableheader.deficiency.company" width="10%"/>
+		    -->
+		    <listHeader column="LC_DEFICIENCY_TAID" propertyKey="tableheader.deficiency.ta_id" width="10%"/>
+		    <listHeader column="LC_DEFICIENCY_SAVESTATE" propertyKey="tableheader.deficiency.savestate_l1" width="5%"/>
+		    <listHeader column="LC_DEFICIENCY_SAVESTATEL2" propertyKey="tableheader.deficiency.savestate_l2" width="5%"/>
+		    <listHeader column="LC_DEFICIENCY_SAVESTATEL3" propertyKey="tableheader.deficiency.savestate_l3" width="5%"/>
+		    <!--  <listHeader column="LC_DEFICIENCY_DESCR_L1" propertyKey="tableheader.deficiency.descr_l1" width="10%"/> -->
+		    <listHeader column="LC_DEFICIENCY_LIKELIHOOD" propertyKey="tableheader.deficiency.likelihood" width="10%"/>
+		    <listHeader column="LC_DEFICIENCY_MAGNITUDE" propertyKey="tableheader.deficiency.magnitude" width="25%"/>
+		    <listHeader column="LC_DEFICIENCY_REMEDIEDBYMGMT" forceInline="false" propertyKey="tableheader.deficiency.remedied_by_mgmt" width="15%"/>
+		    <listHeader column="LC_DEFICIENCY_STILLEXISTSATYEAREND" forceInline="false" propertyKey="tableheader.deficiency.still_exists_at_yearend" width="15%"/>
+		</listHeaderRow>
+		<!-- BEGIN : Issue #113859 : TC.GD.157 - Explorer/Gestão de deficiência/Deficiências - ID -->
+		<!-- <column id="LC_DEFICIENCY_DEFICIENCYID" dataReference.idref="deficiency_id" template="openObject">
+			<parameter name="idColumn" value="id"/>
+		</column> -->
+		<column id="LC_DEFICIENCY_DEFICIENCYID" dataReference.idref="id" template="openObject">
+			<parameter name="idColumn" value="id"/>
+		</column>
+		<!-- END -->
+		<!--  
+		<column id="LC_DEFICIENCY_CLIENTSIGN" align="center" dataReference.idref="client_sign" />
+		<column id="LC_DEFICIENCY_COMPANY" dataReference.idref="company" />
+		-->
+		<column id="LC_DEFICIENCY_TAID" dataReference.idref="ta_id" template="object">
+			<parameter name="deactivatedColumn" value="ta_deactivated"/>
+		</column>
+		<column id="LC_DEFICIENCY_SAVESTATE" align="center" dataReference.idref="savestate" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_DEFICIENCY_SAVESTATEL2" align="center" dataReference.idref="savestate_l2" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_DEFICIENCY_SAVESTATEL3" align="center" dataReference.idref="savestate_l3" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<!--  <column id="LC_DEFICIENCY_DESCR_L1" dataReference.idref="descr_l1" /> -->
+		<column id="LC_DEFICIENCY_LIKELIHOOD" align="center" dataReference.idref="likelihood" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_DEFICIENCY_MAGNITUDE" dataReference.idref="magnitude" template="stringEnum">
+            <parameter name="enumProperty" value="currency"/>
+		</column>
+
+		<column id="LC_DEFICIENCY_REMEDIEDBYMGMT" align="center" dataReference.idref="remedied_by_mgmt" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<column id="LC_DEFICIENCY_STILLEXISTSATYEAREND" align="center" dataReference.idref="still_exists_at_yearend" >
+			<parameter name="showText" value="false"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_OPEN"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+		</rowButtons>	
+	</list>
+	
+	<list id="testdefinition2orgunit_sel"
+          view.idref="testdefinition2orgunit_sel"
+          filter.idref="testdefinition2orgunit_sel"
+          idColumn.idref="obj_id"
+          useCheckBoxes="false"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="orgunit"
+          destDataType.idref="TESTDEFINITION"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_prefixo"/>
+			<simpleFilter filterRow.idref="bb_codigoUOR"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testdefinition2orgunit_sel_1" propertyKey="tableheader.name" width="20%"/>
+			<listHeader column="LC_testdefinition2orgunit_sel_2" propertyKey="tableheader.description" width="40%"/>
+			<listHeader column="LC_testdefinition2orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_prefixo.DBI" width="20%"/>
+			<listHeader column="LC_testdefinition2orgunit_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_testdefinition2orgunit_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="LC_testdefinition2orgunit_sel_2" dataReference.idref="description" />
+		<column id="LC_testdefinition2orgunit_sel_3" dataReference.idref="bb_prefixo" />
+		<column id="LC_testdefinition2orgunit_sel_4" dataReference.idref="bb_codigoUOR" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="testdefinition2testaction"
+          view.idref="testdefinition2testaction"
+          filter.idref="testactionCommon"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          frame="tabcontent"
+          relatedObjectType.idref="TESTCASE"
+          rightsPath.datakind="transactiondata"
+            >
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="owner_status"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="type"/>
+			<simpleFilter filterRow.idref="control_period"/>
+		</simpleFilterRow>
+			<listHeaderRow>
+				<listHeader column="LC_testdefinition2testaction_1" propertyKey="tableheader.testcase" rowSpan="2" width="6%"/>
+				<listHeader column="LC_testdefinition2testaction_9" propertyKey="tableheader.client" rowSpan="2" width="7%"/>
+				<listHeader column="LC_testdefinition2testaction_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="13%"/>
+				<listHeader column="LC_testdefinition2testaction_3" propertyKey="tableheader.performed.by" rowSpan="2" width="13%"/>
+				<listHeader column="LC_testdefinition2testaction_4" propertyKey="tableheader.testing.date" rowSpan="2" width="7%"/>
+				<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="14%"/>
+				<listHeader column="LC_testdefinition2testaction_7" propertyKey="tableheader.owner.status.short.DBI" tooltip="tableheader.owner.status.DBI"
+                                                                    rowSpan="2" width="5%"/>
+                <listHeader column="LC_testdefinition2testaction_7b" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.reviewer.status.DBI"
+                                                                     rowSpan="2" width="5%"/>
+                <listHeader column="LC_testdefinition2testaction_7c" propertyKey="tableheader.measure.DBI" rowSpan="2" width="5%"/>
+				<listHeader column="LC_testdefinition2testaction_8" propertyKey="tableheader.type" rowSpan="2" width="3%"/>
+				<listHeader column="LC_testdefinition2testaction_10" propertyKey="tableheader.function" rowSpan="2" width="7%"/>
+				<listHeader column="LC_testdefinition2testaction_11" propertyKey="tableheader.name.soa.relevance" rowSpan="2" width="15%"/>
+			</listHeaderRow>
+			<listHeaderRow>
+				<listHeader column="LC_testdefinition2testaction_5" propertyKey="tableheader.testing.begin" width="7%"/>
+				<listHeader column="LC_testdefinition2testaction_6" propertyKey="tableheader.testing.end" width="7%"/>
+			</listHeaderRow>
+			<column id="LC_testdefinition2testaction_1" dataReference.idref="ta_id" template="openObject">
+				<parameter name="idColumn" value="ta_id"/>
+			</column>
+			<column id="LC_testdefinition2testaction_9" align="center" dataReference.idref="client_sign" />
+			<column id="LC_testdefinition2testaction_2" dataReference.idref="testergroup_name" template="object">
+				<parameter name="deactivatedColumn" value="testergroup_deactivated"/>
+			</column>
+			<column id="LC_testdefinition2testaction_3" dataReference.idref="username" template="userSubstitute">
+				<parameter name="substitute" value="substitute"/>
+				<parameter name="deactivatedProperty" value="user_deactivated"/>
+				<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+			</column>
+			<column id="LC_testdefinition2testaction_4" align="center" dataReference.idref="testdatefrom" />
+			<column id="LC_testdefinition2testaction_5" align="center" dataReference.idref="plannedstartdate" />
+			<column id="LC_testdefinition2testaction_6" align="center" dataReference.idref="plannedenddate" />
+			<column id="LC_testdefinition2testaction_7" align="center" dataReference.idref="owner_status"/>
+            <column id="LC_testdefinition2testaction_7b" align="center" dataReference.idref="reviewer_status" />
+            <column id="LC_testdefinition2testaction_7c" align="center" dataReference.idref="measure" />
+			<column id="LC_testdefinition2testaction_8" align="center" dataReference.idref="type"/>
+			<column id="LC_testdefinition2testaction_10" dataReference.idref="function_name" template="object"/>
+			<column id="LC_testdefinition2testaction_11" dataReference.idref="risk_name" template="object"/>
+			<listButtons>
+				<buttonReference button.idref="PARENT_LIST_OPEN"/>
+				<buttonReference button.idref="LIST_CHECKOUT" function="aam_objectcommand('checkoutDialog', null, null, '_parent')"/>
+			</listButtons>
+			<rowButtons>
+				<buttonReference button.idref="RELATION_POPUP"/>
+				<buttonReference button.idref="LISTROW_CHECKOUT" function="aam_objectcommand('checkoutDialog', '[id]', null, '_parent')"/>
+			</rowButtons>
+		</list>
+	<!--
+	<list id="TD_dependenciaAmostra2orgunit_sel"
+          view.idref="TD_dependenciaAmostra2orgunit_sel"
+          filter.idref="TD_dependenciaAmostra2orgunit_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="bb_dependenciaAmostra"
+          destDataType.idref="TESTDEFINITION"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_prefixo"/>
+			<simpleFilter filterRow.idref="bb_codigoUOR"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_TD_dependenciaAmostra2orgunit_sel_1" propertyKey="tableheader.name" width="20%"/>
+			<listHeader column="LC_TD_dependenciaAmostra2orgunit_sel_2" propertyKey="tableheader.description" width="40%"/>
+			<listHeader column="LC_TD_dependenciaAmostra2orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_prefixo.DBI" width="20%"/>
+			<listHeader column="LC_TD_dependenciaAmostra2orgunit_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="LC_TD_dependenciaAmostra2orgunit_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="LC_TD_dependenciaAmostra2orgunit_sel_2" dataReference.idref="description" />
+		<column id="LC_TD_dependenciaAmostra2orgunit_sel_3" dataReference.idref="bb_prefixo" />
+		<column id="LC_TD_dependenciaAmostra2orgunit_sel_4" dataReference.idref="bb_codigoUOR" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	-->
+	<!--<list id="TD_dependExecutaControle2orgunit_sel"
+          view.idref="TD_dependExecutaControle2orgunit_sel"
+          filter.idref="TD_dependExecutaControle2orgunit_sel"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          destAttributeType.idref="bb_detalDependExecutaControle"
+          destDataType.idref="TESTDEFINITION"
+          frame="tabcontent"
+          listType="selection"
+          relatedObjectType.idref="HIERARCHY">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="description"/>
+        </simpleFilterRow>
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="bb_prefixo"/>
+			<simpleFilter filterRow.idref="bb_codigoUOR"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="TD_dependExecutaControle2orgunit_sel_1" propertyKey="tableheader.name" width="20%"/>
+			<listHeader column="TD_dependExecutaControle2orgunit_sel_2" propertyKey="tableheader.description" width="40%"/>
+			<listHeader column="TD_dependExecutaControle2orgunit_sel_3" propertyKey="attribute.HIERARCHY.bb_prefixo.DBI" width="20%"/>
+			<listHeader column="TD_dependExecutaControle2orgunit_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="20%"/>
+		</listHeaderRow>
+		<column id="TD_dependExecutaControle2orgunit_sel_1" dataReference.idref="name" template="openObject"/>
+		<column id="TD_dependExecutaControle2orgunit_sel_2" dataReference.idref="description" />
+		<column id="TD_dependExecutaControle2orgunit_sel_3" dataReference.idref="bb_prefixo" />
+		<column id="TD_dependExecutaControle2orgunit_sel_4" dataReference.idref="bb_codigoUOR" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST"/>
+        </listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	-->
+	<list id="testdefinition"
+          view.idref="testdefinition"
+          filter.idref="testdefinition"
+          idColumn.idref="testdefinition_obj_id"
+          defaultOrderColumn.idref="testdefinition_name"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="TESTDEFINITION"
+          propertyKey="list.testdefinition.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="testdefinition_name"/>
+			<simpleFilter filterRow.idref="sign"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testdefinition_1" propertyKey="tableheader.name" width="32%"/>
+			<listHeader column="LC_testdefinition_0" propertyKey="tableheader.client" width="17%"/>
+			<listHeader column="LC_testdefinition_2" propertyKey="tableheader.id" width="6%"/>
+			<listHeader column="LC_testdefinition_3" propertyKey="tableheader.responsible.testergroup" width="18%"/>
+			<listHeader column="LC_testdefinition_4" propertyKey="tableheader.frequency" width="10%"/>
+			<listHeader column="LC_testdefinition_5" propertyKey="tableheader.duration" width="9%"/>
+			<listHeader column="LC_testdefinition_6" propertyKey="tableheader.start" width="8%"/>
+		</listHeaderRow>
+		<column id="LC_testdefinition_1" dataReference.idref="testdefinition_name" template="openObject">
+			<parameter name="idColumn" value="testdefinition_obj_id"/>
+		</column>
+		<column id="LC_testdefinition_0" align="center" dataReference.idref="client_sign" />
+		<column id="LC_testdefinition_2" dataReference.idref="testdefinition_obj_id" />
+		<column id="LC_testdefinition_3" dataReference.idref="groupname" template="object">
+			<parameter name="deactivatedColumn" value="group_deactivated"/>
+		</column>
+		<column id="LC_testdefinition_4" align="center" dataReference.idref="testfrequency" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_testdefinition_5" align="center" dataReference.idref="testduration" />
+		<column id="LC_testdefinition_6" align="center" dataReference.idref="startdate" />
+		<listButtons>
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<!-- BdB won't to provide massive edit for TESTDEFINITIONS
+			<buttonReference button.idref="FIELDSELECT"/>
+			-->
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	  
+	<list id="testdefinition_BB"
+          view.idref="testdefinition_BB"
+          filter.idref="testdefinition"
+          idColumn.idref="testdefinition_obj_id"
+          defaultOrderColumn.idref="testdefinition_name"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="TESTDEFINITION"
+          propertyKey="list.testdefinition_BB.DBI">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="testdefinition_name"/>
+			<simpleFilter filterRow.idref="sign"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testdefinition_1" propertyKey="tableheader.name" width="32%"/>
+			<listHeader column="LC_testdefinition_0" propertyKey="tableheader.client" width="17%"/>
+			<listHeader column="LC_testdefinition_2" propertyKey="tableheader.id" width="6%"/>
+			<listHeader column="LC_testdefinition_3" propertyKey="tableheader.responsible.testergroup" width="18%"/>
+			<listHeader column="LC_testdefinition_4" propertyKey="tableheader.frequency" width="10%"/>
+			<listHeader column="LC_testdefinition_5" propertyKey="tableheader.duration" width="9%"/>
+			<listHeader column="LC_testdefinition_6" propertyKey="tableheader.start" width="8%"/>
+		</listHeaderRow>
+		<column id="LC_testdefinition_1" dataReference.idref="testdefinition_name" template="openObject">
+			<parameter name="idColumn" value="testdefinition_obj_id"/>
+		</column>
+		<column id="LC_testdefinition_0" align="center" dataReference.idref="client_sign" />
+		<column id="LC_testdefinition_2" dataReference.idref="testdefinition_obj_id" />
+		<column id="LC_testdefinition_3" dataReference.idref="groupname" template="object">
+			<parameter name="deactivatedColumn" value="group_deactivated"/>
+		</column>
+		<column id="LC_testdefinition_4" align="center" dataReference.idref="testfrequency" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_testdefinition_5" align="center" dataReference.idref="testduration" />
+		<column id="LC_testdefinition_6" align="center" dataReference.idref="startdate" />
+		<listButtons>
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	<!-- 
+ 	<list id="risks_add2controls_refs"
+           filter.idref="controlAssignment"
+           idColumn.idref="obj_id"
+           defaultOrderColumn.idref="name"
+           frame="tabcontent"
+           listType="assignment"
+           relatedObjectType.idref="CONTROL"
+           srcAttributeType.idref="controls"
+           srcDataType.idref="RISK">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="controls"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_risk2controls_refs_1" propertyKey="tableheader.name" width="100%"/>
+		</listHeaderRow>
+		<column id="LC_risk2controls_refs_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="obj_id"/>
+		</column>
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_DEST" function="aam_initlist('risk_control_sel','tabcontent')"/>
+			<buttonReference button.idref="LIST_DETACH"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_DETACH"/>
+		</rowButtons>
+	</list>
+	
+	<list id="control_add2testdefinitions_refs"
+          filter.idref="control2testdefinition"
+          idColumn.idref="obj_id"
+          defaultOrderColumn.idref="name"
+          frame="tabcontent"
+          listType="assignment"
+          relatedObjectType.idref="TESTDEFINITION"
+          srcAttributeType.idref="testdefinitions"
+          srcDataType.idref="CONTROL">
+        <simpleFilterRow>
+			<simpleFilter filterRow.idref="name"/>
+			<simpleFilter filterRow.idref="testfrequency"/>
+		</simpleFilterRow>
+        <listHeaderRow>
+			<listHeader column="LC_control2testdefinitions_1" propertyKey="tableheader.name" width="25%"/>
+			<listHeader column="LC_control2testdefinitions_2" propertyKey="tableheader.id" width="10%"/>
+			<listHeader column="LC_control2testdefinitions_3" propertyKey="tableheader.frequency" width="20%"/>
+			<listHeader column="LC_control2testdefinitions_4" propertyKey="tableheader.duration" width="20%"/>
+			<listHeader column="LC_control2testdefinitions_5" propertyKey="tableheader.start" width="25%"/>
+		</listHeaderRow>
+		<column id="LC_control2testdefinitions_1" dataReference.idref="name" template="openObject">
+			<parameter name="idColumn" value="obj_id"/>
+		</column>
+		<column id="LC_control2testdefinitions_2" dataReference.idref="obj_id" />
+		<column id="LC_control2testdefinitions_3" align="center" dataReference.idref="frequency" >
+			<parameter name="showImage" value="false"/>
+			<parameter name="showText" value="true"/>
+		</column>
+		<column id="LC_control2testdefinitions_4" align="center" dataReference.idref="duration" />
+		<column id="LC_control2testdefinitions_5" align="center" dataReference.idref="startdate" />
+		<listButtons>
+			<buttonReference button.idref="LIST_ATTACH_NEW"/>
+			<buttonReference button.idref="LIST_ATTACH_DEST" function="aam_initlist('control_testdefinition_sel','tabcontent')"/>
+			<buttonReference button.idref="LIST_DETACH"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_DETACH"/>
+		</rowButtons>
+	</list>
+	
+	-->
+	
+	<list id="testdefinition_ownergroup_sel"
+          view.idref="testdefinition_ownergroup_sel"
+          filter.idref="tester_usergroup_sel"
+          idColumn.idref="ownergroup_obj_id"
+          defaultOrderColumn.idref="ownergroup_name"
+          nameColumn.idref="ownergroup_name"
+          destAttributeType.idref="owner_group"
+          destDataType.idref="TESTDEFINITION"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="ownergroup_name"/>
+			<simpleFilter filterRow.idref="ownergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testdefinition_ownergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_testdefinition_ownergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_testdefinition_ownergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_testdefinition_ownergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_testdefinition_ownergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_testdefinition_ownergroup_sel_1" dataReference.idref="ownergroup_name" template="openObject"/>
+		<column id="LC_testdefinition_ownergroup_sel_2" dataReference.idref="ownergroup_description" />
+		<column id="LC_testdefinition_ownergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_testdefinition_ownergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_testdefinition_ownergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="testdefinition_reviewergroup_sel"
+          view.idref="testdefinition_reviewergroup_sel"
+          filter.idref="tester_reviewer_usergroup_sel"
+          idColumn.idref="reviewergroup_obj_id"
+          defaultOrderColumn.idref="reviewergroup_name"
+          nameColumn.idref="reviewergroup_name"
+          destAttributeType.idref="reviewer_group"
+          destDataType.idref="TESTDEFINITION"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="reviewergroup_name"/>
+			<simpleFilter filterRow.idref="reviewergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testdefinition_reviewergroup_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_testdefinition_reviewergroup_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_testdefinition_reviewergroup_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_testdefinition_reviewergroup_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+			<listHeader column="LC_testdefinition_reviewergroup_sel_3" propertyKey="tableheader.empty.DBI" tooltip="tableheader.assigned.to.hierarchy.DBI" width="5%"/>
+		</listHeaderRow>
+		<column id="LC_testdefinition_reviewergroup_sel_1" dataReference.idref="reviewergroup_name" template="openObject"/>
+		<column id="LC_testdefinition_reviewergroup_sel_2" dataReference.idref="reviewergroup_description" />
+		<column id="LC_testdefinition_reviewergroup_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_testdefinition_reviewergroup_sel_5" dataReference.idref="orgunit_name" />
+		<column id="LC_testdefinition_reviewergroup_sel_3" align="center" dataReference.idref="hierarchy_count"  template="assignmentExist"/>
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="control_manager_group_sel"
+          view.idref="control_manager_group_sel"
+          filter.idref="control_manager_group_sel"
+          idColumn.idref="usergroup_id"
+          defaultOrderColumn.idref="usergroup_name"
+          nameColumn.idref="usergroup_name"
+          destAttributeType.idref="manager_group"
+          destDataType.idref="CONTROL"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="usergroup_name"/>
+			<simpleFilter filterRow.idref="usergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_control_manager_group_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_control_manager_group_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_control_manager_group_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_control_manager_group_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_control_manager_group_sel_1" dataReference.idref="usergroup_name" template="openObject"/>
+		<column id="LC_control_manager_group_sel_2" dataReference.idref="description" />
+		<column id="LC_control_manager_group_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_control_manager_group_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+	<list id="testactionTester"
+          view.idref="testactionMineView"
+          filter.idref="testactionTester"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="TESTCASE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.testactionTester.DBI">
+		<roleRestriction role="tester"/>
+		<simpleFilterRow>
+		<!--  	<simpleFilter filterRow.idref="responsible"/> -->
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+        <simpleFilterRow>
+            <simpleFilter filterRow.idref="testactionstate"/>
+            <simpleFilter filterRow.idref="control_period"/>
+        </simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_3_1" propertyKey="tableheader.testcase" rowSpan="2" width="7%"/>
+			<listHeader column="LC_3_9" propertyKey="tableheader.client" rowSpan="2" width="9%"/>
+			<listHeader column="LC_3_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="12%"/>
+			<listHeader column="LC_3_3" propertyKey="tableheader.performed.by" rowSpan="2" width="9%"/>
+			<listHeader column="LC_3_4" propertyKey="tableheader.testing.date" rowSpan="2" width="9%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="18%"/>
+			<listHeader column="LC_3_7" propertyKey="tableheader.owner.status.short.DBI" tooltip="tableheader.owner.status.DBI"
+                                        rowSpan="2" width="3%"/>
+            <listHeader column="LC_3_7b" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.reviewer.status.DBI"
+                                         rowSpan="2" width="3%"/>
+            <listHeader column="LC_3_7c" propertyKey="tableheader.measure.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_3_8" propertyKey="tableheader.type" rowSpan="2" width="3%"/>
+			<listHeader column="LC_3_10" propertyKey="tableheader.function" rowSpan="2" width="8%"/>
+			<listHeader column="LC_3_11" propertyKey="tableheader.name.soa.relevance" rowSpan="2" width="14%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_3_5" propertyKey="tableheader.testing.begin" width="9%"/>
+			<listHeader column="LC_3_6" propertyKey="tableheader.testing.end" width="9%"/>
+		</listHeaderRow>
+		<column id="LC_3_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_3_9" align="center" dataReference.idref="client_sign" />
+		<column id="LC_3_2" dataReference.idref="tester_group_name" template="object">
+			<parameter name="deactivatedColumn" value="tester_group_deactivated"/>
+		</column>
+		<column id="LC_3_3" dataReference.idref="username" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="user2_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_3_4" align="center" dataReference.idref="testdatefrom" />
+		<column id="LC_3_5" align="center" dataReference.idref="plannedstartdate" />
+		<column id="LC_3_6" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_3_7" align="center" dataReference.idref="testactionstate" />
+        <column id="LC_3_7b" align="center" dataReference.idref="reviewer_status" />
+        <column id="LC_3_7c" align="center" dataReference.idref="measure" />
+		<column id="LC_3_8" align="center" dataReference.idref="testactiontype"/>
+		<column id="LC_3_10" dataReference.idref="control_process_name" template="object"/>
+		<column id="LC_3_11" dataReference.idref="risk_name" template="object"/>
+		<listButtons>
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<buttonReference button.idref="LIST_CHECKOUT"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+        </listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+			<buttonReference button.idref="LISTROW_CHECKOUT"/>
+		</rowButtons>
+	</list>
+	
+	<list id="BB_testaction2deficiency_refs"
+          view.idref="BB_testaction_deficiency_refs"
+          filter.idref="base"
+          idColumn.idref="deficiency_id"
+          defaultOrderColumn.idref="deficiency_defid"
+          frame="tabcontent"
+          ignoreRoleRestriction="true"
+          relatedObjectType.idref="DEFICIENCY">
+		<listHeaderRow>
+			<listHeader column="LC_testaction2deficiency_refs_1_1" propertyKey="tableheader.deficiency.deficiency_id" width="20%"/>
+			<listHeader column="LC_testaction2deficiency_refs_1_2" propertyKey="tableheader.deficiency.savestate_l1" width="30%"/>
+			<listHeader column="LC_testaction2deficiency_refs_1_3" propertyKey="tableheader.deficiency.savestate_l2" width="30%"/>
+			<listHeader column="LC_testaction2deficiency_refs_1_4" propertyKey="tableheader.deficiency.savestate_l3" width="20%"/>
+		</listHeaderRow>
+		<!-- BEGIN : Issue #113859 : TC.GD.157 - Explorer/Gestão de deficiência/Deficiências - ID -->
+		<!-- <column id="LC_testaction2deficiency_refs_1_1" dataReference.idref="deficiency_defid" template="openObject">
+			<parameter name="idColumn" value="deficiency_id"/>
+		</column> -->
+		<column id="LC_testaction2deficiency_refs_1_1" dataReference.idref="id" template="openObject">
+			<parameter name="idColumn" value="id"/>
+		</column>
+		<!-- END -->
+		<column id="LC_testaction2deficiency_refs_1_2" dataReference.idref="deficiency_savestate" />
+		<column id="LC_testaction2deficiency_refs_1_3" dataReference.idref="deficiency_savestate_l2" />
+		<column id="LC_testaction2deficiency_refs_1_4" dataReference.idref="deficiency_savestate_l3" />
+		<listButtons>
+			<buttonReference button.idref="PARENT_LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+		</listButtons>
+		<rowButtons>
+			<buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+		</rowButtons>
+	</list>
+	
+	<list id="testactionReviewer"
+          view.idref="testactionReviewer"
+          filter.idref="testactionReviewer"
+          idColumn.idref="ta_id"
+          defaultOrderColumn.idref="ta_id"
+          allowMarkAsIssueRelevant="true"
+          relatedObjectType.idref="TESTCASE"
+          rightsPath.datakind="transactiondata"
+          propertyKey="list.testactionReviewer.DBI">
+		<roleRestriction role="testreviewer"/>
+		<simpleFilterRow>
+			<!--     <simpleFilter filterRow.idref="testactionstate"/>
+			         <simpleFilter filterRow.idref="reviewer_status"/> -->
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+		<!-- <simpleFilter filterRow.idref="measure"/>
+			 <simpleFilter filterRow.idref="testing_period"/> -->
+			
+			<simpleFilter filterRow.idref="testactionstate"/>
+	        <simpleFilter filterRow.idref="control_period"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testactionReviewer_1" propertyKey="tableheader.testcase" rowSpan="2" width="7%"/>
+			<listHeader column="LC_testactionReviewer_9" propertyKey="tableheader.client" rowSpan="2" width="8%"/>
+			<listHeader column="LC_testactionReviewer_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="12%"/>
+			<listHeader column="LC_testactionReviewer_3" propertyKey="tableheader.performed.by" rowSpan="2" width="9%"/>
+			<listHeader column="LC_testactionReviewer_4" propertyKey="tableheader.testing.date" rowSpan="2" width="9%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="18%"/>
+			<listHeader column="LC_testactionReviewer_7" propertyKey="tableheader.owner.status.short.DBI" tooltip="tableheader.owner.status.DBI"
+                                                         rowSpan="2" width="3%"/>
+			<listHeader column="LC_testactionReviewer_7b" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.reviewer.status.DBI"
+                                                          rowSpan="2" width="3%"/>
+			<listHeader column="LC_testactionReviewer_7c" propertyKey="tableheader.measure.DBI" rowSpan="2" width="5%"/>
+			<listHeader column="LC_testactionReviewer_8" propertyKey="tableheader.type" rowSpan="2" width="3%"/>
+			<listHeader column="LC_testactionReviewer_10" propertyKey="tableheader.function" rowSpan="2" width="10%"/>
+			<listHeader column="LC_testactionReviewer_11" propertyKey="tableheader.name.soa.relevance" rowSpan="2" width="13%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_testactionReviewer_5" propertyKey="tableheader.testing.begin" width="9%"/>
+			<listHeader column="LC_testactionReviewer_6" propertyKey="tableheader.testing.end" width="9%"/>
+		</listHeaderRow>
+		<column id="LC_testactionReviewer_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_testactionReviewer_9" align="center" dataReference.idref="client_sign" />
+		<column id="LC_testactionReviewer_2" dataReference.idref="testergroup_name" template="object">
+			<parameter name="deactivatedColumn" value="testergroup_deactivated"/>
+		</column>
+		<column id="LC_testactionReviewer_3" dataReference.idref="username" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="user_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_testactionReviewer_4" align="center" dataReference.idref="testdatefrom" />
+		<column id="LC_testactionReviewer_5" align="center" dataReference.idref="plannedstartdate" />
+		<column id="LC_testactionReviewer_6" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_testactionReviewer_7" align="center" dataReference.idref="testactionstate"/>
+		<column id="LC_testactionReviewer_7b" align="center" dataReference.idref="reviewer_status" />
+		<column id="LC_testactionReviewer_7c" align="center" dataReference.idref="measure" />
+		<column id="LC_testactionReviewer_8" align="center" dataReference.idref="testactiontype" />
+		<column id="LC_testactionReviewer_10" dataReference.idref="control_process_name" template="object"/>
+		<column id="LC_testactionReviewer_11" dataReference.idref="risk_name" template="object"/>
+		<listButtons>
+            <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<buttonReference button.idref="LIST_CHECKOUT"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+            <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+            <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+			<buttonReference button.idref="LIST_CHECKOUT"/>
+		</rowButtons>
+	</list>
+	
+	<list id="statisticTestcasesControl"
+         view.idref="statisticTestcasesControl"
+         filter.idref="none"
+         idColumn.idref="ta_id"
+         defaultOrderColumn.idref="tester_group_name"
+         allowMarkAsIssueRelevant="true"
+         relatedObjectType.idref="TESTCASE"
+         rightsPath.datakind="transactiondata"
+         propertyKey="list.statisticTestcases.DBI">
+		<listHeaderRow>
+			<listHeader column="LC_statisticTestcases_1" propertyKey="tableheader.testcase" rowSpan="2" width="8%"/>
+			<listHeader column="LC_statisticTestcases_9" propertyKey="tableheader.client" rowSpan="2" width="7%"/>
+			<listHeader column="LC_statisticTestcases_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="14%"/>
+			<listHeader column="LC_statisticTestcases_3" propertyKey="tableheader.performed.by" rowSpan="2" width="9%"/>
+			<listHeader column="LC_statisticTestcases_4" propertyKey="tableheader.testing.date" rowSpan="2" width="8%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="14%"/>
+               <listHeader column="LC_statisticTestcases_7" propertyKey="tableheader.owner.status.short.DBI" tooltip="tableheader.owner.status.DBI"
+                                                            rowSpan="2" width="3%"/>
+               <listHeader column="LC_statisticTestcases_7b" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.reviewer.status.DBI"
+                                                             rowSpan="2" width="3%"/>
+               <listHeader column="LC_statisticTestcases_7c" propertyKey="tableheader.measure.DBI" rowSpan="2" width="7%"/>
+			<listHeader column="LC_statisticTestcases_8" propertyKey="tableheader.type" rowSpan="2" width="4%"/>
+			<listHeader column="LC_statisticTestcases_10" propertyKey="tableheader.function" rowSpan="2" width="9%"/>
+			<listHeader column="LC_statisticTestcases_11" propertyKey="tableheader.control.DBI" rowSpan="2" width="14%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_statisticTestcases_5" propertyKey="tableheader.testing.begin" width="7%"/>
+			<listHeader column="LC_statisticTestcases_6" propertyKey="tableheader.testing.end" width="7%"/>
+		</listHeaderRow>
+		<column id="LC_statisticTestcases_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_statisticTestcases_9" align="center" dataReference.idref="client_sign" />
+		<column id="LC_statisticTestcases_2" dataReference.idref="tester_group_name" template="object">
+			<parameter name="deactivatedColumn" value="tester_group_deactivated"/>
+		</column>
+		<column id="LC_statisticTestcases_3" dataReference.idref="username" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="user_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_statisticTestcases_4" align="center" dataReference.idref="testdatefrom" />
+		<column id="LC_statisticTestcases_5" align="center" dataReference.idref="plannedstartdate" />
+		<column id="LC_statisticTestcases_6" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_statisticTestcases_7" align="center" dataReference.idref="testcase_owner_status" />
+           <column id="LC_statisticTestcases_7b" align="center" dataReference.idref="reviewer_status" />
+	    <column id="LC_statisticTestcases_7c" align="center" dataReference.idref="measure" />
+		<column id="LC_statisticTestcases_8" align="center" dataReference.idref="testcasetype" />
+		<column id="LC_statisticTestcases_10" dataReference.idref="function_name" template="object"/>
+		<column id="LC_statisticTestcases_11" dataReference.idref="control_name" template="object"/>
+		<listButtons>
+               <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<buttonReference button.idref="LIST_CHECKOUT"/>
+               <buttonReference button.idref="PDF_REPORT"/>
+               <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+               <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+			<buttonReference button.idref="LISTROW_CHECKOUT"/>
+		</rowButtons>
+	</list>
+	
+	<list id="createdTestactions"
+         view.idref="createdTestactions"
+         filter.idref="createdTestactions"
+         idColumn.idref="ta_id"
+         defaultOrderColumn.idref="ta_id"
+         allowMarkAsIssueRelevant="true"
+         relatedObjectType.idref="TESTCASE"
+         rightsPath.datakind="transactiondata"
+         propertyKey="list.createdTestactions.DBI" >
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="client_sign"/>
+			<simpleFilter filterRow.idref="testing_period"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="testactionstate"/>
+        <simpleFilter filterRow.idref="control_period"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_createdTestactions_1" propertyKey="tableheader.testcase" rowSpan="2" width="8%"/>
+			<listHeader column="LC_createdTestactions_9" propertyKey="tableheader.client" rowSpan="2" width="8%"/>
+			<listHeader column="LC_createdTestactions_2" propertyKey="tableheader.responsible.testergroup" rowSpan="2" width="15%"/>
+			<listHeader column="LC_createdTestactions_3" propertyKey="tableheader.performed.by" rowSpan="2" width="8%"/>
+			<listHeader column="LC_createdTestactions_4" propertyKey="tableheader.testing.date" rowSpan="2" width="8%"/>
+			<listHeader colSpan="2" propertyKey="tableheader.testing.period" width="14%"/>
+			<listHeader column="LC_createdTestactions_7" propertyKey="tableheader.owner.status.short.DBI" tooltip="tableheader.owner.status.DBI"
+                                                            rowSpan="2" width="3%"/>
+               <listHeader column="LC_createdTestactions_7b" propertyKey="tableheader.reviewer.status.short.DBI" tooltip="tableheader.reviewer.status.DBI" 
+                                                             rowSpan="2" width="3%"/>
+               <listHeader column="LC_createdTestactions_7c" propertyKey="tableheader.measure.DBI" rowSpan="2" width="6%"/>
+			<listHeader column="LC_createdTestactions_8" propertyKey="tableheader.type" rowSpan="2" width="4%"/>
+			<listHeader column="LC_createdTestactions_10" propertyKey="tableheader.function" rowSpan="2" width="10%"/>
+			<listHeader column="LC_createdTestactions_11" propertyKey="tableheader.name.soa.relevance" rowSpan="2" width="13%"/>
+		</listHeaderRow>
+		<listHeaderRow>
+			<listHeader column="LC_createdTestactions_5" propertyKey="tableheader.testing.begin" width="7%"/>
+			<listHeader column="LC_createdTestactions_6" propertyKey="tableheader.testing.end" width="7%"/>
+		</listHeaderRow>
+		<column id="LC_createdTestactions_1" dataReference.idref="ta_id" template="openObject">
+			<parameter name="idColumn" value="ta_id"/>
+		</column>
+		<column id="LC_createdTestactions_9" align="center" dataReference.idref="client_sign" />
+		<column id="LC_createdTestactions_2" dataReference.idref="tester_group_name" template="object">
+			<parameter name="deactivatedColumn" value="tester_group_deactivated"/>
+		</column>
+		<column id="LC_createdTestactions_3" dataReference.idref="username" template="userSubstitute">
+			<parameter name="substitute" value="substitute"/>
+			<parameter name="deactivatedProperty" value="user_deactivated"/>
+			<parameter name="substituteDeactivatedProperty" value="substitute_deactivated"/>
+		</column>
+		<column id="LC_createdTestactions_4" align="center" dataReference.idref="testdatefrom" />
+		<column id="LC_createdTestactions_5" align="center" dataReference.idref="plannedstartdate" />
+		<column id="LC_createdTestactions_6" align="center" dataReference.idref="plannedenddate" />
+		<column id="LC_createdTestactions_7" align="center" dataReference.idref="testactionstate" />
+           <column id="LC_createdTestactions_7b" align="center" dataReference.idref="reviewer_status" />
+	    <column id="LC_createdTestactions_7c" align="center" dataReference.idref="measure" />
+		<column id="LC_createdTestactions_8" align="center" dataReference.idref="testactiontype" />
+		<column id="LC_createdTestactions_10" dataReference.idref="control_process_name" template="object"/>
+		<column id="LC_createdTestactions_11" dataReference.idref="risk_name" template="object"/>
+		<listButtons>
+               <buttonReference button.idref="LIST_OPEN"/>
+			<buttonReference button.idref="LIST_DELETE"/>
+			<buttonReference button.idref="LIST_CHECKOUT"/>
+               <buttonReference button.idref="PDF_REPORT"/>
+               <buttonReference button.idref="EXCEL_REPORT"/>
+		</listButtons>
+		<rowButtons>
+               <buttonReference button.idref="RELATION_POPUP"/>
+			<buttonReference button.idref="LISTROW_DELETE"/>
+			<buttonReference button.idref="LISTROW_CHECKOUT"/>
+		</rowButtons>
+	</list>
+	
+	<list id="testcase_defManagerL1_group_sel"
+          view.idref="testcase_defManagerL1_group_sel"
+          filter.idref="testcase_defManagerL1_group_sel"
+          idColumn.idref="usergroup_id"
+          defaultOrderColumn.idref="usergroup_name"
+          nameColumn.idref="usergroup_name"
+          destAttributeType.idref="bb_defManagerL1_group"
+          destDataType.idref="TESTCASE"
+          frame="popup"
+          listType="selection"
+          relatedObjectType.idref="USERGROUP"
+          useCheckBoxes="false">
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="usergroup_name"/>
+			<simpleFilter filterRow.idref="usergroup_description"/>
+		</simpleFilterRow>
+		<simpleFilterRow>
+			<simpleFilter filterRow.idref="orgunit_codigoUOR"/>
+			<simpleFilter filterRow.idref="orgunit_name"/>
+		</simpleFilterRow>
+		<listHeaderRow>
+			<listHeader column="LC_testcase_defManagerL1_group_sel_1" propertyKey="tableheader.name" width="35%"/>
+			<listHeader column="LC_testcase_defManagerL1_group_sel_2" propertyKey="tableheader.description" width="15%"/>
+			<listHeader column="LC_testcase_defManagerL1_group_sel_4" propertyKey="attribute.HIERARCHY.bb_codigoUOR.DBI" width="10%"/>
+			<listHeader column="LC_testcase_defManagerL1_group_sel_5" propertyKey="attribute.USERGROUP.bb_orgunit.DBI" width="35%"/>
+		</listHeaderRow>
+		<column id="LC_testcase_defManagerL1_group_sel_1" dataReference.idref="usergroup_name" template="openObject"/>
+		<column id="LC_testcase_defManagerL1_group_sel_2" dataReference.idref="description" />
+		<column id="LC_testcase_defManagerL1_group_sel_4" dataReference.idref="orgunit_codigoUOR" />
+		<column id="LC_testcase_defManagerL1_group_sel_5" dataReference.idref="orgunit_name" />
+		<listButtons/>
+		<rowButtons>
+			<buttonReference button.idref="LISTROW_ATTACH_DEST"/>
+		</rowButtons>
+	</list>
+	
+</custom>

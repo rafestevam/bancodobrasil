@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	
+	<filter id="sotask" dataSource.idref="signofftasks">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="hierarchy_name" propertyKey="filter.row.so.element.DBI">
+			<filterElement dataReference.idref="hierarchy_name"  />
+		</filterRow>
+		<filterRow id="hierarchy_type">
+			<filterElement dataReference.idref="hierarchy_type" default="0" />
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.so.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="task_control_start"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="task_control_end"/>
+                </filterElement>
+				<filterElement dataReference.idref="task_control_end"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="signofftask_period" propertyKey="filter.row.so.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="task_so_start"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="task_so_end"/>
+                </filterElement>
+				<filterElement dataReference.idref="task_so_end"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="user_reviewer_name" propertyKey="filter.row.so.reviewer.DBI">
+			<filterElement dataReference.idref="user_reviewer_name"  />
+		</filterRow>
+		<filterRow id="task_done">
+			<filterElement dataReference.idref="task_done" default="-1"  />
+		</filterRow>
+		<filterRow id="manager_group" propertyKey="filter.row.signoff.manager.group.DBI">
+            <filterElement dataReference.idref="user_manager_name"  />
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter>
+	
+	<filter id="soprocess" dataSource.idref="signoffprocess">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="process_id">
+			<filterElement dataReference.idref="process_id"  />
+		</filterRow>
+		<filterRow id="signoff_period" propertyKey="filter.row.signoff.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_so_end" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_so_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_so_start" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.so.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_control_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_control_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_control_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ownerUser_name" propertyKey="filter.row.signoff.user.DBI">
+			<filterElement dataReference.idref="ownerUser_name"  />
+		</filterRow>
+	    <filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="substitute"  />
+		</filterRow>
+		<filterRow id="hierarchy_type">
+			<filterElement dataReference.idref="hierarchy_type" default="0"  />
+		</filterRow>
+		<filterRow id="owner_name" propertyKey="tableheader.so.owner">
+        	<filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="1"  />
+		</filterRow>
+		<filterRow id="reviewer_group" propertyKey="tableheader.so.group_reviewer">
+        	<filterElement dataReference.idref="reviewer_name"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow>
+        <filterRow id="manager_group" propertyKey="filter.row.signoff.manager.group.DBI">
+            <filterElement dataReference.idref="user_manager_name"  />
+        </filterRow>
+        <filterRow id="hierarchy_name" propertyKey="filter.row.so.element.DBI">
+			<filterElement dataReference.idref="hierarchy_name"  />
+		</filterRow>
+        <filterRow id="usergroupkind" propertyKey="filter.row.usergroupkind.DBI">
+			<filterElement dataReference.idref="ta_id_ugk" template="predefinedValues" filterType="usergroupKindFilterBB" enumeration.idref="bb_usergroupkind" default="-1">
+				<parameter name="usergroups" value="owner_id,reviewer_id"/>
+			</filterElement>	
+		</filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter>
+	
+	<filter id="soowner" dataSource.idref="signoffowner">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="process_id">
+			<filterElement dataReference.idref="process_id"  />
+		</filterRow>
+		<filterRow id="signoff_period" propertyKey="filter.row.signoff.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_so_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_so_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_so_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.so.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_control_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_control_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_control_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ownerUser_name" propertyKey="filter.row.performed.by.DBI">
+			<filterElement dataReference.idref="ownerUser_name"  />
+		</filterRow>
+		<filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="ownerUserSubst_id"  />
+		</filterRow>
+		<filterRow id="hierarchy_type">
+			<filterElement dataReference.idref="hierarchy_type" default="0"  />
+		</filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="1"  />
+		</filterRow>
+		<filterRow id="reviewer_group" propertyKey="tableheader.so.group_reviewer">
+        	<filterElement dataReference.idref="reviewer_group"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>
+        <filterRow id="owner_name" propertyKey="tableheader.so.owner">
+        	<filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+        <filterRow id="hierarchy_name" propertyKey="filter.row.so.element.DBI">
+			<filterElement dataReference.idref="hierarchy_name"  />
+		</filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="process_deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter>
+
+	<filter id="soreviewer" dataSource.idref="signoffreviewer">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="process_id">
+			<filterElement dataReference.idref="process_id"  />
+		</filterRow>
+		<filterRow id="signoff_period" propertyKey="filter.row.signoff.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_so_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_so_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_so_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.so.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_control_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_control_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_control_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ownerUser_name" propertyKey="filter.row.performed.by.DBI">
+			<filterElement dataReference.idref="ownerUser_name"  />
+		</filterRow>
+		<filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="reviewerUserSubst_name"  />
+		</filterRow>
+		<filterRow id="hierarchy_type">
+			<filterElement dataReference.idref="hierarchy_type" default="0"  />
+		</filterRow>
+		<filterRow id="owner_name" propertyKey="tableheader.so.group_owner">
+        	<filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="0"  />
+		</filterRow>
+		<filterRow id="reviewer_name" propertyKey="tableheader.so.group_reviewer">
+        	<filterElement dataReference.idref="reviewer_name"/>
+        </filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="-1"  />
+        </filterRow>
+        <filterRow id="hierarchy_name" propertyKey="filter.row.so.element.DBI">
+			<filterElement dataReference.idref="hierarchy_name"  />
+		</filterRow>
+        <filterRow id="deactivated">
+			<filterElement dataReference.idref="process_deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+	</filter>
+	
+	<filter id="sotask2soprocess" dataSource.idref="sotask2soprocess">
+		<filterRow id="client_sign" propertyKey="filter.row.client.sign.DBI">
+			<filterElement dataReference.idref="client_sign"  />
+		</filterRow>
+		<filterRow id="process_id">
+			<filterElement dataReference.idref="process_id"  />
+		</filterRow>
+		<filterRow id="signoff_period" propertyKey="filter.row.signoff.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_so_end" default="01.01" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_so_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_so_start" default="today" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="control_period" propertyKey="filter.row.so.control.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="process_control_end"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="process_control_start"/>
+                </filterElement>
+				<filterElement dataReference.idref="process_control_start"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="ownerUser_name" propertyKey="filter.row.signoff.user.DBI">
+			<filterElement dataReference.idref="ownerUser_name"  />
+		</filterRow>
+	    <filterRow id="substitute" propertyKey="filter.row.performed.by.substitute.DBI">
+			<filterElement dataReference.idref="substitute"  />
+		</filterRow>
+		<filterRow id="hierarchy_type">
+			<filterElement dataReference.idref="hierarchy_type" default="0" >
+				<filterType.parameter name="sorted" value="true"/>
+			</filterElement>
+		</filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="1"  />
+		</filterRow>
+        <filterRow id="reviewer_status">
+            <filterElement dataReference.idref="reviewer_status" default="0"  />
+        </filterRow>
+        <filterRow id="owner_name" propertyKey="tableheader.so.owner">
+        	<filterElement dataReference.idref="owner_name"/>
+        </filterRow>
+		<filterRow id="deactivated">
+			<filterElement dataReference.idref="deactivated"  >
+				<parameter name="showAll" value="false"/>
+			</filterElement>
+		</filterRow>
+        <filterRow id="reviewer_group" propertyKey="tableheader.so.group_reviewer">
+        	<filterElement dataReference.idref="reviewer_group"/>
+        </filterRow>
+		<filterRow id="hierarchy_name" propertyKey="filter.row.so.element.DBI">
+			<filterElement dataReference.idref="hierarchy_name"  />
+		</filterRow>
+	</filter>
+	
+	<filter id="testactionSignOff" dataSource.idref="TESTCASE" dataSourceType="object">
+       <filterRow id="testing_period" propertyKey="filter.row.testing.period.DBI">
+		   <filterCell>
+				<filterElement dataReference.idref="plannedenddate"  >
+					<parameter name="propertyKey" value="filter.from.DBI"/>
+                    <filterType.parameter name="daterange" value="plannedstartdate"/>
+                </filterElement>
+				<filterElement dataReference.idref="plannedstartdate"  >
+					<parameter name="propertyKey" value="filter.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+		<filterRow id="reviewer_status">
+			<filterElement dataReference.idref="reviewer_status" default="0"  />
+		</filterRow>
+		<filterRow id="owner_status">
+			<filterElement dataReference.idref="owner_status" default="-1"  />
+		</filterRow>
+        <filterRow id="type">
+            <filterElement dataReference.idref="type" default="0"  />
+        </filterRow>
+        
+        <filterRow id="ciclo_period" propertyKey="filter.row.ciclo.period.DBI">
+			<filterCell>
+				<filterElement dataReference.idref="bb_fimClicloAvaliatorio"  filterType="daterange">
+					<parameter name="propertyKey" value="filter.ciclo.period.from.DBI"/>
+		            <filterType.parameter name="daterange" value="bb_inicioClicloAvaliatorio"/>
+		        </filterElement>					
+				<filterElement dataReference.idref="bb_inicioClicloAvaliatorio" filterType="daterange" >
+					<parameter name="propertyKey" value="filter.ciclo.period.to.DBI"/>
+				</filterElement>
+			</filterCell>
+		</filterRow>
+	</filter>
+</custom>

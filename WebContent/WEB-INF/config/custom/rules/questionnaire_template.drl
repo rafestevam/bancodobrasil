@@ -1,0 +1,129 @@
+package QUESTIONNAIRE_TEMPLATE_RuleSet
+expander questionnaire_template.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.QuestionnaireTemplateHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.QuestionnaireTemplateHelperBB;
+
+# OBJECT                 client_objid          LONG       Client ID                                                                                                                      
+# OBJECT                 client_sign           CLIENTSIGN Client                                                                                                                         
+# OBJECT                 create_date           DATE       Creation date                                                                                                                  
+# OBJECT                 creator_user_id       LONG       User ID (creator)                                                                                                              
+# OBJECT                 delete_date           DATE       Deletion date                                                                                                                  
+# OBJECT                 guid                  STRING     GUID                                                                                                                           
+# OBJECT                 obj_id                LONG       ID                                                                                                                             
+# OBJECT                 obj_type              OBJECTTYPE Object type                                                                                                                    
+# OBJECT                 root_guid             STRING     Root GUID                                                                                                                      
+# OBJECT                 versions              LONG       Number of versions                                                                                                             
+# VERSION                aris_change_date      DATE       ARIS change date                                                                                                               
+# VERSION                change_date           DATE       Change date                                                                                                                    
+# VERSION                change_type           ENUM       Change type                       changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)
+# VERSION                change_user_id        LONG       User ID (editor)                                                                                                               
+# VERSION                deactivated           BOOLEAN    Deactivated                                                                                                                    
+# VERSION                id                    LONG       ID                                                                                                                             
+# VERSION                substitute_user_id    LONG       User ID (substitute)                                                                                                           
+# VERSION                version_active        BOOLEAN    Current version                                                                                                                
+# VERSION                version_number        LONG       Version number                                                                                                                 
+# QUESTIONNAIRE_TEMPLATE description           TEXT       Description                                                                                                                    
+# QUESTIONNAIRE_TEMPLATE documents             LIST       Documents                         to * DOCUMENTs (LT=3220)                                                                     
+# QUESTIONNAIRE_TEMPLATE isWorkingCopy         ENUM       Working copy                      workingcopy (all=-1,snapshot=3,no=0,yes=1,internal=2)                                        
+# QUESTIONNAIRE_TEMPLATE name                  STRING     Name                                                                                                                           
+# QUESTIONNAIRE_TEMPLATE originalQuestTemplate LIST       Questionnaire template (original) to 1 QUESTIONNAIRE_TEMPLATE (LT=3201)                                                        
+# QUESTIONNAIRE_TEMPLATE sections              LIST       Sections                          to * SECTIONs (LT=3200)                                                                      
+# QUESTIONNAIRE_TEMPLATE targetScore           DOUBLE     Score (target)                                                                                                                 
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "define mandatory fields [I,V]"
+
+	salience 10300
+
+	when
+
+	then
+		set "name" mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "targetScore" mandatory
+
+end
+
+rule "disable original questionnaire template visibility [I,V]"
+
+	salience 10200
+
+	when
+		( user has_not right "read" AND    ### user has at object role "surveyreviewer" will not work here, since surveyreviewers are objectspecific and not related to any questionnaire template
+		  user has_not at object role "surveymanager"  AND
+		  user has_not at object role "surveyauditor" ) OR
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "originalQuestTemplate" invisible
+
+end
+
+rule "enable editable for some fields for managers only [I,V]"
+
+	salience 10100
+
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+
+	then
+		set "name" editable
+		set "description" editable
+		set "targetScore" editable
+		set "sections" editable
+		set "manager_group" editable
+		set "documents" editable
+
+end
+
+rule "protect sections from being edited as long as template is not persistent yet [I,V]"
+
+	salience 10000
+
+	when
+		user has at object role "surveymanager"
+		#no copy
+		value comparison fulfilled: ":transient:" attr_value "isWorkingCopy" "CONTAINS" value "no"
+		object is new
+
+	then
+		set "sections" readonly
+		add object "information" message "surveymanagement.template.deny.assigning.sections.DBI"
+
+end
+
+########################
+### BB CUSTOMIZATION ###
+rule "hide attributes [I,V]"
+
+ salience 9900
+ no-loop true
+  
+ when
+ 
+ then
+   set "isWorkingCopy" invisible
+end
+
+rule "check sections [V]"
+
+    salience 9800
+
+	when
+		user has at object role "surveymanager"
+
+	then 
+		check sections
+
+end

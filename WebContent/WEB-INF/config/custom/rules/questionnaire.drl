@@ -1,0 +1,411 @@
+package QUESTIONNAIRE_RuleSet
+expander questionnaire.dsl
+
+import com.idsscheer.webapps.arcm.bl.re.ext.CollectiveHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.QuestionnaireHelper;
+import com.idsscheer.webapps.arcm.bl.component.surveymanagement.re.QuestionnaireHelperBB;
+
+# OBJECT        client_objid           LONG       Client ID                                                                                                                                                                     
+# OBJECT        client_sign            CLIENTSIGN Client                                                                                                                                                                        
+# OBJECT        create_date            DATE       Creation date                                                                                                                                                                 
+# OBJECT        creator_user_id        LONG       User ID (creator)                                                                                                                                                             
+# OBJECT        delete_date            DATE       Deletion date                                                                                                                                                                 
+# OBJECT        guid                   STRING     GUID                                                                                                                                                                          
+# OBJECT        obj_id                 LONG       ID                                                                                                                                                                            
+# OBJECT        obj_type               OBJECTTYPE Object type                                                                                                                                                                   
+# OBJECT        root_guid              STRING     Root GUID                                                                                                                                                                     
+# OBJECT        versions               LONG       Number of versions                                                                                                                                                            
+# VERSION       aris_change_date       DATE       ARIS change date                                                                                                                                                              
+# VERSION       change_date            DATE       Change date                                                                                                                                                                   
+# VERSION       change_type            ENUM       Change type               changetype (created=0,unchanged=1,changed=2,deleted=3,xmlcreated=4,xmlchanged=5,xmldeleted=6)                                                       
+# VERSION       change_user_id         LONG       User ID (editor)                                                                                                                                                              
+# VERSION       deactivated            BOOLEAN    Deactivated                                                                                                                                                                   
+# VERSION       id                     LONG       ID                                                                                                                                                                            
+# VERSION       substitute_user_id     LONG       User ID (substitute)                                                                                                                                                          
+# VERSION       version_active         BOOLEAN    Current version                                                                                                                                                               
+# VERSION       version_number         LONG       Version number                                                                                                                                                                
+# TRANSACTIONAL execution_date         DATE       Processed on                                                                                                                                                                  
+# TRANSACTIONAL owner                  LIST       Performed by              to 1 USER (LT=3216)                                                                                                                                 
+# TRANSACTIONAL owner_group            LIST       Interviewees              to 1 USERGROUP (LT=40)                                                                                                                              
+# TRANSACTIONAL owner_status           ENUM       Status                    questionnaire_status (all=-1,open=99,closed=-2,to_be_reviewed=-3,offlineprocessable=-4,new=1,inprocess=2,completed=4,notanswerable=5,notcompleted=6)
+# TRANSACTIONAL owner_substitute       LIST       Performed by (substitute) to 1 USER (LT=3217)                                                                                                                                 
+# TRANSACTIONAL review_date            DATE       Review date                                                                                                                                                                   
+# TRANSACTIONAL reviewer               LIST       Reviewer                  to 1 USER (LT=4009)                                                                                                                                 
+# TRANSACTIONAL reviewer_group         LIST       Survey reviewer           to 1 USERGROUP (LT=41)                                                                                                                              
+# TRANSACTIONAL reviewer_status        ENUM       Reviewer status           survey_review_status (all=-1,open=-2,offlineprocessable=-3,to_be_executed=-4,please_select=0,inprocess=3,accepted=1,notaccepted=2)                  
+# TRANSACTIONAL reviewer_substitute    LIST       Reviewer (substitute)     to 1 USER (LT=4010)                                                                                                                                 
+# MONITORABLE   controlenddate         DATE       End of control period                                                                                                                                                         
+# MONITORABLE   controlstartdate       DATE       Start of control period                                                                                                                                                       
+# MONITORABLE   plannedenddate         DATE       End date                                                                                                                                                                      
+# MONITORABLE   plannedstartdate       DATE       Start date                                                                                                                                                                    
+# QUESTIONNAIRE actualScore            DOUBLE     Score (actual)                                                                                                                                                                
+# QUESTIONNAIRE controls               LIST       Controls                  to * CONTROLs (LT=3259)                                                                                                                             
+# QUESTIONNAIRE documents              LIST       Documents                 to * DOCUMENTs (LT=3222)                                                                                                                            
+# QUESTIONNAIRE followup               LIST       Follow-up                 to 1 QUESTIONNAIRE (LT=3213)                                                                                                                        
+# QUESTIONNAIRE predecessor            LIST       Predecessor               to 1 QUESTIONNAIRE (LT=3214)                                                                                                                        
+# QUESTIONNAIRE progress               DOUBLE     Progress                                                                                                                                                                      
+# QUESTIONNAIRE questTemplateDescr     TEXT       Description                                                                                                                                                                   
+# QUESTIONNAIRE questTemplateName      STRING     Questionnaire name                                                                                                                                                            
+# QUESTIONNAIRE questionnaireSections  LIST       Sections                  to 1 QUESTIONNAIRESECTION (LT=3211)                                                                                                                 
+# QUESTIONNAIRE questionnaire_template LIST       Questionnaire template    to 1 QUESTIONNAIRE_TEMPLATE (LT=39)                                                                                                                 
+# QUESTIONNAIRE relatedAppSystems      LIST       Application system types  to * HIERARCHYs (LT=3253)                                                                                                                           
+# QUESTIONNAIRE relatedCategories      LIST       Risk categories           to * HIERARCHYs (LT=3257)                                                                                                                           
+# QUESTIONNAIRE relatedOrgunits        LIST       Organizational units      to * HIERARCHYs (LT=3255)                                                                                                                           
+# QUESTIONNAIRE relatedProcesses       LIST       Processes                 to * HIERARCHYs (LT=3256)                                                                                                                           
+# QUESTIONNAIRE relatedRegulations     LIST       Regulations               to * HIERARCHYs (LT=3254)                                                                                                                           
+# QUESTIONNAIRE reviewRemark           TEXT       Remark (reviewer)                                                                                                                                                             
+# QUESTIONNAIRE risks                  LIST       Risks                     to * RISKs (LT=3258)                                                                                                                                
+# QUESTIONNAIRE survey                 LIST       Survey                    to 1 SURVEY (LT=3228)                                                                                                                               
+# QUESTIONNAIRE surveyTask             LIST       Survey task               to 1 SURVEYTASK (LT=3212)                                                                                                                           
+# QUESTIONNAIRE targetScore            DOUBLE     Score (target)                                                                                                                                                                
+# QUESTIONNAIRE test_definitions       LIST       Test definitions          to * TESTDEFINITIONs (LT=3260)                                                                                                                      
+# QUESTIONNAIRE totalNumberOfAnswers   LONG       Total number of answers                                                                                                                                                       
+
+# DO NOT CHANGE THE LINES ABOVE - all of them will be updated automatically by tool com.idsscheer.webapps.arcm.bl.re.RETemplater
+
+################################################
+### All workflow states - before state rules ###
+
+rule "disable visibility for surveyauditor [I,V]"
+
+	salience 10200
+
+	when
+		user has at object role "surveyauditor" OR
+		user has at object role "questionnaireowner"
+
+	then
+		set "surveyTask" invisible
+		set "survey" invisible
+		set "questionnaire_template" invisible
+		set "targetScore" invisible
+
+end
+
+rule "enable actualScore visibility for dedicated roles only [I,V]"
+
+	salience 10100
+
+	when
+		( user has_not at object role "surveyreviewer" AND
+		  user has_not at object role "surveymanager"  AND
+		  user has_not at object role "surveyauditor"      ) OR
+		object is_not head revision
+
+	then
+		set "actualScore" invisible
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_intervieweeActualScore" invisible
+
+end
+
+rule "enable progress visibility for dedicated roles only [I,V]"
+
+	salience 10000
+
+	when
+		( user has_not at object role "questionnaireowner" AND
+		  user has_not at object role "surveyreviewer"     AND
+		  user has_not at object role "surveymanager"      AND
+		  user has_not at object role "surveyauditor"          ) OR
+		object is_not head revision
+
+	then
+		set "progress" invisible
+
+end
+
+##########################################
+### Workflow state "openForExecution"  ###
+
+rule "owner status editable [I,V]"
+
+	salience 1100
+
+	when
+	    is in workflow state "openForExecution"
+		user has at object role "questionnaireowner"
+
+	then
+		set "owner_status" editable
+		set "owner_status" mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		related questionnaire is offline
+
+end
+
+rule "check endDate editable for workflow state 'openForExecution' [I,V]"
+
+	salience 1000
+
+	when
+		is in workflow state "openForExecution"
+	    #TODO allgemeines DSL item f�r das Recht EXTEND einf�hren
+		( user has at object role "surveyreviewer" OR
+		  user has at object role "surveymanager" )
+		related survey is active
+		## this questionnaire has not been expired yet:
+		( "plannedenddate" is dirty      OR
+		  value comparison fulfilled: ":transient:" attr_value "plannedenddate" "GREATER EQUAL" value ":TODAY:" )
+		value comparison fulfilled: ":transient:" attr_value "plannedstartdate" "LESS EQUAL" value ":TODAY:"
+
+	then
+		set "plannedenddate" editable
+		set "plannedenddate" mandatory
+
+end
+
+#######################################
+### Workflow state "openForReview"  ###
+
+rule "reviewer status editable and mandatory, reviewer remark editable [I,V]"
+
+	salience 1200
+
+	when
+	    is in workflow state "openForReview"
+		user has at object role "surveyreviewer"
+
+	then
+		set "reviewRemark" editable
+		set "reviewer_status" editable
+		#
+		# cannot be set mandatory since status is set automatically from '
+		# please_select' to 'inprocess' by a BL command automatically during 
+		# the first successful save
+		#
+		#set "reviewer_status" mandatory
+		
+		########################
+		### BB CUSTOMIZATION ###
+		related questionnaire is offline
+
+end
+
+rule "check endDate editable for workflow state 'openForReview' [I,V]"
+
+	salience 1100
+
+	when
+		is in workflow state "openForReview"
+		user has at object role "surveyreviewer"
+		"reviewer_status" is dirty
+		value comparison fulfilled: ":transient:" attr_value "reviewer_status" "CONTAINS" value "notaccepted"
+		related survey is active
+		## this questionnaire has not been expired yet:
+		value comparison fulfilled: ":persistent:" attr_value "plannedenddate"   "GREATER EQUAL" value ":TODAY:"
+		value comparison fulfilled: ":persistent:" attr_value "plannedstartdate" "LESS EQUAL" value ":TODAY:"
+
+	then
+		set "plannedenddate" editable
+		set "plannedenddate" mandatory
+
+end
+
+rule "endDate restored [I,V]"
+
+	salience 1000
+	when
+	    is in workflow state "openForReview"
+		user has at object role "surveyreviewer"
+		value comparison fulfilled: ":transient:" attr_value "reviewer_status" "CONTAINS NOT" value "notaccepted"
+
+	then
+		reset "plannedenddate" to persistent value
+
+end
+
+###############################################
+### All workflow states - after state rules ###
+
+rule "startdate > enddate [V]"
+
+	salience 120
+
+	when
+		attribute comparison fulfilled: ":transient:" attr_value "plannedstartdate" "GREATER THAN" ":transient:" attr_value "plannedenddate"
+
+	then
+		set "plannedenddate" invalid
+		add "error" message "error.date.range.DBI" to "plannedenddate"
+
+end
+
+rule "enddate must not be shortened [V]"
+
+	salience 110
+
+	when
+		"plannedenddate" is dirty
+		attribute comparison fulfilled: ":transient:" attr_value "plannedenddate" "LESS THAN" ":persistent:" attr_value "plannedenddate"
+
+	then
+		set "plannedenddate" invalid
+		add "error" message "errors.date.extend.only" to "plannedenddate"
+
+end
+
+#
+# lock this questionnaire if currently not in working period ('survey period')
+#
+rule "not in survey period -> lock this questionnaire [I,V]"
+
+	salience 100
+	
+	when
+		( user has at object role "questionnaireowner" OR
+		  user has at object role "surveyreviewer"     OR
+		  user has at object role "surveymanager" )
+		is in workflow state "openForExecution"
+		## this questionnaire has expired:
+		
+		( value comparison fulfilled: ":persistent:" attr_value "plannedenddate"   "LESS THAN" value ":TODAY:" OR
+		  value comparison fulfilled: ":persistent:" attr_value "plannedstartdate" "GREATER THAN" value ":TODAY:" )
+
+	then
+		set "controlenddate"            readonly
+		set "controlstartdate"          readonly
+		set "plannedenddate"            readonly
+		set "plannedstartdate"          readonly
+		set "actualScore"               readonly
+		set "documents"                 readonly
+		set "escalationLevel"           readonly
+		set "followup"                  readonly
+		set "predecessor"               readonly
+		set "progress"                  readonly
+		set "questTemplateDescr"        readonly
+		set "questTemplateName"         readonly
+		set "questionnaireSections"     readonly
+		set "questionnaire_template"    readonly
+        set "relatedAppSystems"         readonly
+        set "relatedRegulations"        readonly
+        set "relatedOrgunits"           readonly
+        set "relatedProcesses"          readonly
+        set "relatedCategories"         readonly
+        set "risks"                     readonly
+        set "controls"                  readonly
+        set "test_definitions"          readonly
+		set "reviewRemark"              readonly
+		set "survey"                    readonly
+		set "surveyTask"                readonly
+		set "targetScore"               readonly
+		set "totalNumberOfAnswers"      readonly
+		set "execution_date"            readonly
+		set "owner"                     readonly
+		set "owner_group"               readonly
+		set "owner_status"              readonly
+		set "owner_substitute"          readonly
+		set "review_date"               readonly
+		set "reviewer"                  readonly
+		set "reviewer_group"            readonly
+		set "reviewer_status"           readonly
+		set "reviewer_substitute"       readonly
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_intervieweeActualScore" readonly
+
+		set "owner_status"              not_mandatory
+		set "plannedenddate"            not_mandatory
+
+		add object "error" message "message.questionnaire.survey.period.not.active.ERR"
+
+end
+
+#
+# lock this questionnaire if currently not in working period ('survey period')
+#
+rule "survey period finished-> lock this questionnaire [I,V]"
+
+	salience 100
+	
+	when
+		( user has at object role "questionnaireowner" OR
+		  user has at object role "surveyreviewer"     OR
+		  user has at object role "surveymanager" )
+		is in workflow state "openForExecution"
+		## this questionnaire has expired:
+		 value comparison fulfilled: ":persistent:" attr_value "plannedenddate"   "LESS THAN" value ":TODAY:" 
+
+	then
+		set "controlenddate"            readonly
+		set "controlstartdate"          readonly
+		set "plannedenddate"            readonly
+		set "plannedstartdate"          readonly
+		set "actualScore"               readonly
+		set "documents"                 readonly
+		set "escalationLevel"           readonly
+		set "followup"                  readonly
+		set "predecessor"               readonly
+		set "progress"                  readonly
+		set "questTemplateDescr"        readonly
+		set "questTemplateName"         readonly
+		set "questionnaireSections"     readonly
+		set "questionnaire_template"    readonly
+        set "relatedAppSystems"         readonly
+        set "relatedRegulations"        readonly
+        set "relatedOrgunits"           readonly
+        set "relatedProcesses"          readonly
+        set "relatedCategories"         readonly
+        set "risks"                     readonly
+        set "controls"                  readonly
+        set "test_definitions"          readonly
+		set "reviewRemark"              readonly
+		set "survey"                    readonly
+		set "surveyTask"                readonly
+		set "targetScore"               readonly
+		set "totalNumberOfAnswers"      readonly
+		set "execution_date"            readonly
+		set "owner"                     readonly
+		set "owner_group"               readonly
+		set "owner_status"              readonly
+		set "owner_substitute"          readonly
+		set "review_date"               readonly
+		set "reviewer"                  readonly
+		set "reviewer_group"            readonly
+		set "reviewer_status"           readonly
+		set "reviewer_substitute"       readonly
+		
+		########################
+		### BB CUSTOMIZATION ###
+		set "bb_intervieweeActualScore" readonly
+
+		set "owner_status"              not_mandatory
+		set "plannedenddate"            not_mandatory
+
+		add object "error" message "message.questionnaire.survey.period.finished.ERR"
+
+end
+
+rule "hide owner upload if empty [I,V]"
+
+    salience 90
+    no-loop true
+
+    when
+        "owner_upload_user" is_not filled
+
+    then
+        set "owner_upload_user" invisible
+        set "owner_upload_confirm" invisible
+
+end
+
+
+rule "hide reviewer upload if empty [I,V]"
+
+    salience 80
+    no-loop true
+
+    when
+        "reviewer_upload_user" is_not filled
+
+    then
+        set "reviewer_upload_user" invisible
+        set "reviewer_upload_confirm" invisible
+
+end

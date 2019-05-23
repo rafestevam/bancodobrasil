@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+	<view id="openIncidents" view.parameter="DISTINCT">
+		<viewObject id="INCIDENT" objectType="INCIDENT" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="pendingLoss" attributeType="pendingLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_qtdePerdasRelevantes_int" attributeType="bb_qtdePerdasRelevantes_int" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_vincOperacaoCred" attributeType="bb_vincOperacaoCred" isSelectColumn="true"/>
+			<viewColumn id="bb_sobreposRiscoMercado" attributeType="bb_sobreposRiscoMercado" isSelectColumn="true"/>
+            <viewColumn id="bb_canal" attributeType="bb_canal" isSelectColumn="true"/>           																											
+		</viewObject>
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="BB_JURISDDIRETORIA" objectType="HIERARCHY">
+            <viewColumn id="bb_jurisdDiretoria_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_PRODUCT" objectType="HIERARCHY">
+            <viewColumn id="bb_product_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_GESTORPERDA" objectType="HIERARCHY">
+            <viewColumn id="bb_gestorPerda_name" attributeType="name"/>
+        </viewObject>       
+		<viewObject id="VO_openIncidents_incident_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openIncidents_incident_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openIncidents_incident_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+        <viewObject id="ORGUNIT" objectType="HIERARCHY">
+            <viewColumn id="orgunit_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="PROCESS" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="APPSYSTEMTYPE" objectType="HIERARCHY">
+            <viewColumn id="appSys_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="FINACCOUNT" objectType="HIERARCHY">
+            <viewColumn id="finAcc_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CATEGORY" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="POLICY" objectType="POLICY">
+            <viewColumn id="policy_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="AUDIT" objectType="AUDIT">
+            <viewColumn id="audit_name" attributeType="name"/>
+        </viewObject>
+		<link linktype.id="3305" firstViewObject="INCIDENT" secondViewObject="VO_openIncidents_incident_ownerGroup"/>
+		<link linktype.id="3306" firstViewObject="INCIDENT" secondViewObject="VO_openIncidents_incident_performedBy" joinType="LEFT"/>
+		<link linktype.id="3307" firstViewObject="INCIDENT" secondViewObject="VO_openIncidents_incident_substitute" joinType="LEFT"/>
+        <link linktype.id="3300" firstViewObject="INCIDENT" secondViewObject="ORGUNIT" joinType="LEFT"/>
+        <link linktype.id="3301" firstViewObject="INCIDENT" secondViewObject="PROCESS" joinType="LEFT"/>
+        <link linktype.id="3302" firstViewObject="INCIDENT" secondViewObject="APPSYSTEMTYPE" joinType="LEFT"/>
+        <link linktype.id="3303" firstViewObject="INCIDENT" secondViewObject="FINACCOUNT" joinType="LEFT"/>
+        <link linktype.id="3309" firstViewObject="INCIDENT" secondViewObject="CATEGORY" joinType="LEFT"/>
+        <link linktype.id="3321" firstViewObject="INCIDENT" secondViewObject="RISK" joinType="LEFT"/>
+        <link linktype.id="3322" firstViewObject="INCIDENT" secondViewObject="CONTROL" joinType="LEFT"/>
+        <link linktype.id="3323" firstViewObject="INCIDENT" secondViewObject="POLICY" joinType="LEFT"/>
+        <link linktype.id="3324" firstViewObject="INCIDENT" secondViewObject="AUDIT" joinType="LEFT"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10026" firstViewObject="INCIDENT" secondViewObject="BB_PRODUCT" joinType="LEFT"/>
+        <link linktype.id="10027" firstViewObject="INCIDENT" secondViewObject="BB_JURISDDIRETORIA" joinType="LEFT"/>        
+        <link linktype.id="10038" firstViewObject="INCIDENT" secondViewObject="BB_GESTORPERDA" joinType="LEFT"/>
+                
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+				<!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <condition column.id="pendingLoss" compareType="BETWEEN"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="policy_name" compareType="LIKE"/>
+                <condition column.id="audit_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION  -->
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>		
+                <condition column.id="bb_qtdePerdasRelevantes_int" compareType="EQ"/>
+                <condition column.id="bb_tipoEvento" compareType="IN"/>
+                <condition column.id="bb_vincOperacaoCred" compareType="EQ"/>	
+                <condition column.id="bb_sobreposRiscoMercado" compareType="EQ"/>
+                <condition column.id="bb_canal" compareType="EQ"/>                                
+                <condition column.id="bb_jurisdDiretoria_name" compareType="LIKE"/>                
+                <condition column.id="bb_product_name" compareType="LIKE"/>
+                <condition column.id="bb_gestorPerda_name" compareType="LIKE"/>                				                
+			</compoundCondition>
+		</conditions>
+	</view>
+
+	<view id="createdIncidents" view.parameter="DISTINCT">
+		<viewObject id="INCIDENT" objectType="INCIDENT" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="pendingLoss" attributeType="pendingLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_qtdePerdasRelevantes_int" attributeType="bb_qtdePerdasRelevantes_int" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_vincOperacaoCred" attributeType="bb_vincOperacaoCred" isSelectColumn="true"/>
+			<viewColumn id="bb_sobreposRiscoMercado" attributeType="bb_sobreposRiscoMercado" isSelectColumn="true"/>
+            <viewColumn id="bb_canal" attributeType="bb_canal" isSelectColumn="true"/>
+            <viewColumn id="ta_id_ugk" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>           																					
+		</viewObject>
+		<viewObject id="OWNER_GROUP" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdIncidents_incident_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdIncidents_incident_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="REVIEWER_GROUP" objectType="USERGROUP">
+			<viewColumn id="reviewerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="ORGUNIT" objectType="HIERARCHY">
+			<viewColumn id="orgunit_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="PROCESS" objectType="HIERARCHY">
+			<viewColumn id="process_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="APPSYSTEMTYPE" objectType="HIERARCHY">
+			<viewColumn id="appSys_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="FINACCOUNT" objectType="HIERARCHY">
+			<viewColumn id="finAcc_name" attributeType="name"/>
+		</viewObject>
+        <viewObject id="CATEGORY" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="POLICY" objectType="POLICY">
+            <viewColumn id="policy_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="AUDIT" objectType="AUDIT">
+            <viewColumn id="audit_name" attributeType="name"/>
+        </viewObject>
+
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="BB_JURISDDIRETORIA" objectType="HIERARCHY">
+            <viewColumn id="bb_jurisdDiretoria_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="BB_PRODUCT" objectType="HIERARCHY">
+            <viewColumn id="bb_product_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_GESTORPERDA" objectType="HIERARCHY">
+            <viewColumn id="bb_gestorPerda_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+        </viewObject>       
+		<link linktype.id="3305" firstViewObject="INCIDENT" secondViewObject="OWNER_GROUP"/>
+		<link linktype.id="3308" firstViewObject="INCIDENT" secondViewObject="REVIEWER_GROUP"/>
+		<link linktype.id="3306" firstViewObject="INCIDENT" secondViewObject="VO_createdIncidents_incident_performedBy" joinType="LEFT"/>
+		<link linktype.id="3307" firstViewObject="INCIDENT" secondViewObject="VO_createdIncidents_incident_substitute" joinType="LEFT"/>
+		<link linktype.id="3300" firstViewObject="INCIDENT" secondViewObject="ORGUNIT" joinType="LEFT"/>
+		<link linktype.id="3301" firstViewObject="INCIDENT" secondViewObject="PROCESS" joinType="LEFT"/>
+		<link linktype.id="3302" firstViewObject="INCIDENT" secondViewObject="APPSYSTEMTYPE" joinType="LEFT"/>
+		<link linktype.id="3303" firstViewObject="INCIDENT" secondViewObject="FINACCOUNT" joinType="LEFT"/>
+		<link linktype.id="3309" firstViewObject="INCIDENT" secondViewObject="CATEGORY" joinType="LEFT"/>
+		<link linktype.id="3321" firstViewObject="INCIDENT" secondViewObject="RISK" joinType="LEFT"/>
+		<link linktype.id="3322" firstViewObject="INCIDENT" secondViewObject="CONTROL" joinType="LEFT"/>
+		<link linktype.id="3323" firstViewObject="INCIDENT" secondViewObject="POLICY" joinType="LEFT"/>
+		<link linktype.id="3324" firstViewObject="INCIDENT" secondViewObject="AUDIT" joinType="LEFT"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10026" firstViewObject="INCIDENT" secondViewObject="BB_PRODUCT" joinType="LEFT"/>
+        <link linktype.id="10027" firstViewObject="INCIDENT" secondViewObject="BB_JURISDDIRETORIA" joinType="LEFT"/>        
+        <link linktype.id="10038" firstViewObject="INCIDENT" secondViewObject="BB_GESTORPERDA" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND">
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <condition column.id="pendingLoss" compareType="BETWEEN"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="reviewerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="policy_name" compareType="LIKE"/>
+                <condition column.id="audit_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION  -->
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>		
+                <condition column.id="bb_qtdePerdasRelevantes_int" compareType="EQ"/>
+                <condition column.id="bb_tipoEvento" compareType="IN"/>
+                <condition column.id="bb_vincOperacaoCred" compareType="EQ"/>	
+                <condition column.id="bb_sobreposRiscoMercado" compareType="EQ"/>
+                <condition column.id="bb_canal" compareType="EQ"/>                                
+                <condition column.id="bb_jurisdDiretoria_name" compareType="LIKE"/>                
+                <condition column.id="bb_product_name" compareType="LIKE"/>
+                <condition column.id="bb_gestorPerda_name" compareType="LIKE"/>                				
+			</compoundCondition>
+		</conditions>
+	</view>
+
+	<view id="acceptedIncidents" view.parameter="DISTINCT"><!--loss owner sees all accepted incidents no mather if he is in the owner group or not-->
+		<viewObject id="INCIDENT" objectType="INCIDENT" isMainViewObject="true" preserveRightCheck="object">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="pendingLoss" attributeType="pendingLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_qtdePerdasRelevantes_int" attributeType="bb_qtdePerdasRelevantes_int" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_vincOperacaoCred" attributeType="bb_vincOperacaoCred" isSelectColumn="true"/>
+			<viewColumn id="bb_sobreposRiscoMercado" attributeType="bb_sobreposRiscoMercado" isSelectColumn="true"/>
+            <viewColumn id="bb_canal" attributeType="bb_canal" isSelectColumn="true"/>            																					
+		</viewObject>
+		<viewObject id="VO_acceptedIncidents_incident_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_acceptedIncidents_incident_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_acceptedIncidents_incident_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+        <viewObject id="ORGUNIT" objectType="HIERARCHY">
+            <viewColumn id="orgunit_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="PROCESS" objectType="HIERARCHY">
+            <viewColumn id="process_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="APPSYSTEMTYPE" objectType="HIERARCHY">
+            <viewColumn id="appSys_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="FINACCOUNT" objectType="HIERARCHY">
+            <viewColumn id="finAcc_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CATEGORY" objectType="HIERARCHY">
+            <viewColumn id="category_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="risk_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CONTROL" objectType="CONTROL">
+            <viewColumn id="control_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="POLICY" objectType="POLICY">
+            <viewColumn id="policy_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="AUDIT" objectType="AUDIT">
+            <viewColumn id="audit_name" attributeType="name"/>
+        </viewObject>
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="BB_JURISDDIRETORIA" objectType="HIERARCHY">
+            <viewColumn id="bb_jurisdDiretoria_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_PRODUCT" objectType="HIERARCHY">
+            <viewColumn id="bb_product_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_GESTORPERDA" objectType="HIERARCHY">
+            <viewColumn id="bb_gestorPerda_name" attributeType="name"/>
+        </viewObject>                                      
+		<link linktype.id="3305" firstViewObject="INCIDENT" secondViewObject="VO_acceptedIncidents_incident_ownerGroup"/>
+		<link linktype.id="3306" firstViewObject="INCIDENT" secondViewObject="VO_acceptedIncidents_incident_performedBy" joinType="LEFT"/>
+		<link linktype.id="3307" firstViewObject="INCIDENT" secondViewObject="VO_acceptedIncidents_incident_substitute" joinType="LEFT"/>
+        <link linktype.id="3300" firstViewObject="INCIDENT" secondViewObject="ORGUNIT" joinType="LEFT"/>
+        <link linktype.id="3301" firstViewObject="INCIDENT" secondViewObject="PROCESS" joinType="LEFT"/>
+        <link linktype.id="3302" firstViewObject="INCIDENT" secondViewObject="APPSYSTEMTYPE" joinType="LEFT"/>
+        <link linktype.id="3303" firstViewObject="INCIDENT" secondViewObject="FINACCOUNT" joinType="LEFT"/>
+        <link linktype.id="3309" firstViewObject="INCIDENT" secondViewObject="CATEGORY" joinType="LEFT"/>
+        <link linktype.id="3321" firstViewObject="INCIDENT" secondViewObject="RISK" joinType="LEFT"/>
+        <link linktype.id="3322" firstViewObject="INCIDENT" secondViewObject="CONTROL" joinType="LEFT"/>
+        <link linktype.id="3323" firstViewObject="INCIDENT" secondViewObject="POLICY" joinType="LEFT"/>
+        <link linktype.id="3324" firstViewObject="INCIDENT" secondViewObject="AUDIT" joinType="LEFT"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10026" firstViewObject="INCIDENT" secondViewObject="BB_PRODUCT" joinType="LEFT"/>
+        <link linktype.id="10027" firstViewObject="INCIDENT" secondViewObject="BB_JURISDDIRETORIA" joinType="LEFT"/>        
+        <link linktype.id="10038" firstViewObject="INCIDENT" secondViewObject="BB_GESTORPERDA" joinType="LEFT"/>                
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="IN"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <condition column.id="pendingLoss" compareType="BETWEEN"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>
+                <condition column.id="category_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <condition column.id="control_name" compareType="LIKE"/>
+                <condition column.id="policy_name" compareType="LIKE"/>
+                <condition column.id="audit_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION  -->
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>		
+                <condition column.id="bb_qtdePerdasRelevantes_int" compareType="EQ"/>
+                <condition column.id="bb_tipoEvento" compareType="IN"/>
+                <condition column.id="bb_vincOperacaoCred" compareType="EQ"/>	
+                <condition column.id="bb_sobreposRiscoMercado" compareType="EQ"/>
+                <condition column.id="bb_canal" compareType="EQ"/>                                
+                <condition column.id="bb_jurisdDiretoria_name" compareType="LIKE"/>                
+                <condition column.id="bb_product_name" compareType="LIKE"/>
+                <condition column.id="bb_gestorPerda_name" compareType="LIKE"/>                                
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="hierarchy2incidents" view.parameter="DISTINCT" viewHandler="com.idsscheer.webapps.arcm.dl.framework.viewhandler.Hierarchy2IncidentsViewHandler">
+		<viewObject id="INCIDENT" objectType="INCIDENT" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="pendingLoss" attributeType="pendingLoss"/>
+			<viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_qtdePerdasRelevantes_int" attributeType="bb_qtdePerdasRelevantes_int" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_vincOperacaoCred" attributeType="bb_vincOperacaoCred" isSelectColumn="true"/>
+			<viewColumn id="bb_sobreposRiscoMercado" attributeType="bb_sobreposRiscoMercado" isSelectColumn="true"/>
+            <viewColumn id="bb_canal" attributeType="bb_canal" isSelectColumn="true"/>            																					
+		</viewObject>
+		<viewObject id="VO_hierarchy2Incidents_incident_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Incidents_incident_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Incidents_incident_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="HIERARCHY" objectType="HIERARCHY">
+			<viewColumn id="id" attributeType="obj_id"/>
+		</viewObject>
+        <viewObject id="RISK" objectType="RISK">
+            <viewColumn id="riskName" attributeType="name"/>
+        </viewObject>
+        <viewObject id="CONTROL" objectType="CONTROL">
+            <viewColumn id="controlName" attributeType="name"/>
+        </viewObject>
+        <viewObject id="POLICY" objectType="POLICY">
+            <viewColumn id="policyName" attributeType="name"/>
+        </viewObject>
+        <viewObject id="AUDIT" objectType="AUDIT">
+            <viewColumn id="audit_name" attributeType="name"/>
+        </viewObject>
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="BB_JURISDDIRETORIA" objectType="HIERARCHY">
+            <viewColumn id="bb_jurisdDiretoria_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_PRODUCT" objectType="HIERARCHY">
+            <viewColumn id="bb_product_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_GESTORPERDA" objectType="HIERARCHY">
+            <viewColumn id="bb_gestorPerda_name" attributeType="name"/>
+        </viewObject>                                     
+		<link linktype.id="3305" firstViewObject="INCIDENT" secondViewObject="VO_hierarchy2Incidents_incident_ownerGroup"/>
+		<link linktype.id="3306" firstViewObject="INCIDENT" secondViewObject="VO_hierarchy2Incidents_incident_performedBy" joinType="LEFT"/>
+		<link linktype.id="3307" firstViewObject="INCIDENT" secondViewObject="VO_hierarchy2Incidents_incident_substitute" joinType="LEFT"/>
+		<link linktype.id="3321" firstViewObject="INCIDENT" secondViewObject="RISK" joinType="LEFT"/>
+        <link linktype.id="3322" firstViewObject="INCIDENT" secondViewObject="CONTROL" joinType="LEFT"/>
+        <link linktype.id="3323" firstViewObject="INCIDENT" secondViewObject="POLICY" joinType="LEFT"/>
+        <link linktype.id="3324" firstViewObject="INCIDENT" secondViewObject="AUDIT" joinType="LEFT"/>        
+        <link linktype.id="3300,3301,3302,3303,3309" firstViewObject="INCIDENT" secondViewObject="HIERARCHY"/>
+        
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10026" firstViewObject="INCIDENT" secondViewObject="BB_PRODUCT" joinType="LEFT"/>
+        <link linktype.id="10027" firstViewObject="INCIDENT" secondViewObject="BB_JURISDDIRETORIA" joinType="LEFT"/>        
+        <link linktype.id="10038" firstViewObject="INCIDENT" secondViewObject="BB_GESTORPERDA" joinType="LEFT"/>                        
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <condition column.id="pendingLoss" compareType="BETWEEN"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="riskName" compareType="LIKE"/>
+                <condition column.id="controlName" compareType="LIKE"/>
+                <condition column.id="policyName" compareType="LIKE"/>
+                <condition column.id="audit_name" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="id" compareType="IN"/>
+
+				<!-- BdB CUSTOMIZATION  -->
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>		
+                <condition column.id="bb_qtdePerdasRelevantes_int" compareType="EQ"/>
+                <condition column.id="bb_tipoEvento" compareType="IN"/>
+                <condition column.id="bb_vincOperacaoCred" compareType="EQ"/>	
+                <condition column.id="bb_sobreposRiscoMercado" compareType="EQ"/>
+                <condition column.id="bb_canal" compareType="EQ"/>                                
+                <condition column.id="bb_jurisdDiretoria_name" compareType="LIKE"/>                
+                <condition column.id="bb_product_name" compareType="LIKE"/>
+                <condition column.id="bb_gestorPerda_name" compareType="LIKE"/>                                
+			</compoundCondition>
+		</conditions>
+	</view>	
+
+	<view id="loss2incident_sel" view.parameter="DISTINCT">
+        <!-- BdB CUSTOMIZATION -->
+        <viewObject id="BB_JURISDDIRETORIA" objectType="HIERARCHY">
+            <viewColumn id="bb_jurisdDiretoria_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_PRODUCT" objectType="HIERARCHY">
+            <viewColumn id="bb_product_name" attributeType="name"/>
+        </viewObject>
+        <viewObject id="BB_GESTORPERDA" objectType="HIERARCHY">
+            <viewColumn id="bb_gestorPerda_name" attributeType="name"/>
+        </viewObject>                                     	
+		<viewObject id="VO_loss2Incident_sel_incident" objectType="INCIDENT" isMainViewObject="true" preserveRightCheck="object">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="obj_id" attributeType="obj_id"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="pendingLoss" attributeType="pendingLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="currency" attributeType="currency" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_qtdePerdasRelevantes_int" attributeType="bb_qtdePerdasRelevantes_int" isSelectColumn="true"/>
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_vincOperacaoCred" attributeType="bb_vincOperacaoCred" isSelectColumn="true"/>
+			<viewColumn id="bb_sobreposRiscoMercado" attributeType="bb_sobreposRiscoMercado" isSelectColumn="true"/>
+            <viewColumn id="bb_canal" attributeType="bb_canal" isSelectColumn="true"/>            																					
+		</viewObject>
+		<viewObject id="VO_loss2Incident_sel_incident_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_loss2Incident_sel_incident_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_loss2Incident_sel_incident_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<link linktype.id="3305" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="VO_loss2Incident_sel_incident_ownerGroup"/>
+		<link linktype.id="3306" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="VO_loss2Incident_sel_incident_performedBy" joinType="LEFT"/>
+		<link linktype.id="3307" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="VO_loss2Incident_sel_incident_substitute" joinType="LEFT"/>
+        <!-- BdB CUSTOMIZATION -->
+        <link linktype.id="10026" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="BB_PRODUCT" joinType="LEFT"/>
+        <link linktype.id="10027" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="BB_JURISDDIRETORIA" joinType="LEFT"/>        
+        <link linktype.id="10038" firstViewObject="VO_loss2Incident_sel_incident" secondViewObject="BB_GESTORPERDA" joinType="LEFT"/>                        
+		
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="EQ" currentObjectType.id="LOSS" currentAttributeType.id="client_sign"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--incident filters-->
+                <condition column.id="obj_id" compareType="NOTIN" currentObjectType.id="LOSS" currentAttributeType.id="incident"/>
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <condition column.id="pendingLoss" compareType="BETWEEN"/>
+                <!-- REquirements 9.0 - ACR-812: Assign also open incidents to losses
+                <condition column.id="owner_status" compareType="EQ" value="3"/>
+				<condition column.id="reviewer_status" compareType="EQ" value="1"/>
+				-->
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION  -->
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>		
+                <condition column.id="bb_qtdePerdasRelevantes_int" compareType="EQ"/>
+                <condition column.id="bb_tipoEvento" compareType="IN"/>
+                <condition column.id="bb_vincOperacaoCred" compareType="EQ"/>	
+                <condition column.id="bb_sobreposRiscoMercado" compareType="EQ"/>
+                <condition column.id="bb_canal" compareType="EQ"/>                                
+                <condition column.id="bb_jurisdDiretoria_name" compareType="LIKE"/>                
+                <condition column.id="bb_product_name" compareType="LIKE"/>
+                <condition column.id="bb_gestorPerda_name" compareType="LIKE"/>                                				
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="incident2hierarchies_category" view.parameter="DISTINCT">
+	        <viewObject id="HIERARCHY" objectType="HIERARCHY" isMainViewObject="true" preserveRightCheck="object">
+	            <viewColumn id="hierarchy_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="hierarchy_version" attributeType="version_number" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="version_active" attributeType="version_active"/>
+	            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="description" attributeType="description" isSelectColumn="true"/>
+	            <viewColumn id="hierarchy_type" attributeType="type"/>
+	        </viewObject>
+	        <viewObject id="RISK" objectType="RISK">
+	            <viewColumn id="risk_id" attributeType="obj_id"/>
+	        </viewObject>
+	        <viewObject id="INCIDENT" objectType="INCIDENT">
+	            <viewColumn id="incident_id" attributeType="obj_id"/>
+	        </viewObject>
+	
+	        <link linktype.id="3162" firstViewObject="RISK" secondViewObject="HIERARCHY"/>
+	        <link linktype.id="3321" firstViewObject="INCIDENT" secondViewObject="RISK"/>
+	
+	        <conditions>
+	            <compoundCondition conditionConnect="AND">
+	                <condition column.id="name" compareType="LIKE" />
+	                <condition column.id="description" compareType="LIKE" />
+	                <condition column.id="hierarchy_type" compareType="EQ" />
+	                <condition column.id="deactivated" compareType="EQ" value="false"/>
+	                <condition column.id="hierarchy_obj_id" compareType="EQ"/>
+	                <condition column.id="risk_id" compareType="EQ"/>
+	                <condition column.id="incident_id" compareType="EQ" currentObjectType.id="INCIDENT" currentAttributeType.id="obj_id"/>
+	            </compoundCondition>
+	        </conditions>
+	    </view>
+
+    <!-- "incident2hierarchies" is already used as mashzone view, cannot be renamed -->
+	    <view id="incident2hierarchies_assignment" view.parameter="DISTINCT">
+	        <viewObject id="HIERARCHY" objectType="HIERARCHY" isMainViewObject="true" preserveRightCheck="object">
+	            <viewColumn id="hierarchy_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="hierarchy_version" attributeType="version_number" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="version_active" attributeType="version_active"/>
+	            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+	            <viewColumn id="description" attributeType="description" isSelectColumn="true"/>
+	            <viewColumn id="hierarchy_type" attributeType="type"/>
+	        </viewObject>
+	        <viewObject id="INCIDENT" objectType="INCIDENT">
+	            <viewColumn id="parent_id" attributeType="obj_id"/>
+	        </viewObject>
+	
+	        <link linktype.id="3300,3301,3302,3303,3309,10026" firstViewObject="INCIDENT" secondViewObject="HIERARCHY"/>
+	
+	        <conditions>
+	            <compoundCondition conditionConnect="AND">
+	                <condition column.id="name" compareType="LIKE" />
+	                <condition column.id="description" compareType="LIKE" />
+	                <condition column.id="hierarchy_type" compareType="EQ" />
+	                <condition column.id="deactivated" compareType="EQ" value="false"/>
+	                <condition column.id="parent_id" compareType="EQ" currentObjectType.id="INCIDENT" currentAttributeType.id="obj_id"/>
+	            </compoundCondition>
+	        </conditions>
+	    </view>
+		    
+    <!-- BdB CUSTOMIZATION -->
+    <view id="incident2hierarchies_bb_product_sel" view.parameter="DISTINCT">
+        <viewObject id="HIERARCHY_OBJ" objectType="OBJECT">
+            <viewColumn id="client_sign" attributeType="client_sign" isSelectColumn="true" isSortable="true"/>
+        </viewObject>
+        <viewObject id="HIERARCHY" objectType="HIERARCHY" isMainViewObject="true" preserveRightCheck="object">
+            <viewColumn id="hierarchy_obj_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="description" attributeType="description" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="hierarchy_type" attributeType="type"/>
+        </viewObject>
+
+        <link linktype.id="100" firstViewObject="HIERARCHY_OBJ" secondViewObject="HIERARCHY" />
+
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <condition viewObject.id="HIERARCHY" column.id="name" compareType="LIKE"/>
+                <condition viewObject.id="HIERARCHY" column.id="description" compareType="LIKE"/>
+                <condition viewObject.id="HIERARCHY" column.id="hierarchy_type" compareType="EQ" />
+                <condition viewObject.id="HIERARCHY" column.id="hierarchy_obj_id" compareType="NOTIN" currentObjectType.id="INCIDENT" currentAttributeType.id="process"/>
+                <condition viewObject.id="HIERARCHY_OBJ" column.id="client_sign" compareType="EQ" currentObjectType.id="INCIDENT" currentAttributeType.id="client_sign"/>
+                <condition viewObject.id="HIERARCHY" column.id="version_active" compareType="EQ" value="true"/>
+                <condition viewObject.id="HIERARCHY" column.id="deactivated" compareType="EQ" value="false" />
+            </compoundCondition>
+        </conditions>
+    </view>    
+    
+    <!-- ******************************************************************
+   *
+   * LOSS related views
+   *
+   *********************************************************************** -->
+    
+	<view id="createdLosses" view.parameter="DISTINCT">
+		<viewObject id="VO_createdLosses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="reserves" attributeType="lossReserves"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="relevantForAppSysEval" attributeType="relevantForAppSysEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForFinAccEval" attributeType="relevantForFinAccEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForOrgUnitEval" attributeType="relevantForOrgUnitEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForProcessEval" attributeType="relevantForProcessEval" isSortable="true" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ta_id_ugk" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+			<viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+			<viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>	
+			<viewColumn id="bb_tipoEvento" attributeType="bb_tipoEvento" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_risk" objectType="RISK">
+			<viewColumn id="risk_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_orgUnit" objectType="HIERARCHY">
+			<viewColumn id="orgunit_id" attributeType="obj_id"/>
+			<viewColumn id="orgunit_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_process" objectType="HIERARCHY">
+			<viewColumn id="process_id" attributeType="obj_id"/>
+			<viewColumn id="process_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_appSys" objectType="HIERARCHY">
+			<viewColumn id="appSys_id" attributeType="obj_id"/>
+			<viewColumn id="appSys_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_createdLosses_finAcc" objectType="HIERARCHY">
+			<viewColumn id="finAcc_id" attributeType="obj_id"/>
+			<viewColumn id="finAcc_name" attributeType="name"/>
+		</viewObject>
+		<link linktype.id="3320" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_incident" joinType="LEFT"/>
+		<link linktype.id="3311" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_ownerGroup"/>
+		<link linktype.id="3315" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_risk" joinType="LEFT"/>
+		<link linktype.id="3312" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_substitute" joinType="LEFT"/>
+		<link linktype.id="3317" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_orgUnit" joinType="LEFT"/>
+		<link linktype.id="3316" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_process" joinType="LEFT"/>
+		<link linktype.id="3319" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_appSys" joinType="LEFT"/>
+		<link linktype.id="3318" firstViewObject="VO_createdLosses_loss" secondViewObject="VO_createdLosses_finAcc" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="reserves" compareType="BETWEEN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="incident_name" compareType="LIKE"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user, risk, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <!--related object exists filter-->
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION -->
+				<condition column.id="bb_saldo" compareType="BETWEEN"/>
+				<condition column.id="bb_qtdeEventos_int" compareType="EQ"/>
+				<condition column.id="bb_tipoEvento" compareType="EQ"/>
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="openLosses" view.parameter="DISTINCT">
+		<viewObject id="VO_openLosses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="relevantForAppSysEval" attributeType="relevantForAppSysEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForFinAccEval" attributeType="relevantForFinAccEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForOrgUnitEval" attributeType="relevantForOrgUnitEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForProcessEval" attributeType="relevantForProcessEval" isSortable="true" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+			<viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+			<viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_risk" objectType="RISK">
+			<viewColumn id="risk_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_orgUnit" objectType="HIERARCHY">
+			<viewColumn id="orgunit_id" attributeType="obj_id"/>
+			<viewColumn id="orgunit_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_process" objectType="HIERARCHY">
+			<viewColumn id="process_id" attributeType="obj_id"/>
+			<viewColumn id="process_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_appSys" objectType="HIERARCHY">
+			<viewColumn id="appSys_id" attributeType="obj_id"/>
+			<viewColumn id="appSys_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_openLosses_finAcc" objectType="HIERARCHY">
+			<viewColumn id="finAcc_id" attributeType="obj_id"/>
+			<viewColumn id="finAcc_name" attributeType="name"/>
+		</viewObject>
+		<link linktype.id="3311" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_ownerGroup"/>
+		<link linktype.id="3315" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_risk" joinType="LEFT"/>
+		<link linktype.id="3320" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_incident" joinType="LEFT"/>
+		<link linktype.id="3312" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_substitute" joinType="LEFT"/>
+		<link linktype.id="3317" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_orgUnit" joinType="LEFT"/>
+		<link linktype.id="3316" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_process" joinType="LEFT"/>
+		<link linktype.id="3319" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_appSys" joinType="LEFT"/>
+		<link linktype.id="3318" firstViewObject="VO_openLosses_loss" secondViewObject="VO_openLosses_finAcc" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--incident filters-->
+                <condition column.id="incident_name" compareType="LIKE"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user, risk filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <!--related object filter-->
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION -->
+				<condition column.id="bb_saldo" compareType="BETWEEN"/>				
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+    
+	<view id="reviewLosses" view.parameter="DISTINCT">
+		<viewObject id="VO_reviewLosses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<viewColumn id="relevantForAppSysEval" attributeType="relevantForAppSysEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForFinAccEval" attributeType="relevantForFinAccEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForOrgUnitEval" attributeType="relevantForOrgUnitEval" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="relevantForProcessEval" attributeType="relevantForProcessEval" isSortable="true" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>
+			
+		</viewObject>
+		<viewObject id="VO_reviewLosses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+			<viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+			<viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_risk" objectType="RISK">
+			<viewColumn id="risk_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_orgUnit" objectType="HIERARCHY">
+			<viewColumn id="orgunit_id" attributeType="obj_id"/>
+			<viewColumn id="orgunit_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_process" objectType="HIERARCHY">
+			<viewColumn id="process_id" attributeType="obj_id"/>
+			<viewColumn id="process_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_appSys" objectType="HIERARCHY">
+			<viewColumn id="appSys_id" attributeType="obj_id"/>
+			<viewColumn id="appSys_name" attributeType="name"/>
+		</viewObject>
+		<viewObject id="VO_reviewLosses_finAcc" objectType="HIERARCHY">
+			<viewColumn id="finAcc_id" attributeType="obj_id"/>
+			<viewColumn id="finAcc_name" attributeType="name"/>
+		</viewObject>
+		<link linktype.id="3311" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_ownerGroup"/>
+		<link linktype.id="3320" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_incident" joinType="LEFT"/>
+		<link linktype.id="3315" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_risk" joinType="LEFT"/>
+		<link linktype.id="3312" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_substitute" joinType="LEFT"/>
+		<link linktype.id="3317" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_orgUnit" joinType="LEFT"/>
+		<link linktype.id="3316" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_process" joinType="LEFT"/>
+		<link linktype.id="3319" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_appSys" joinType="LEFT"/>
+		<link linktype.id="3318" firstViewObject="VO_reviewLosses_loss" secondViewObject="VO_reviewLosses_finAcc" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--incident filters-->
+                <condition column.id="incident_name" compareType="LIKE"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user, risk filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <condition column.id="risk_name" compareType="LIKE"/>
+                <!--related object exists filter-->
+                <condition column.id="orgunit_name" compareType="LIKE"/>
+                <condition column.id="process_name" compareType="LIKE"/>
+                <condition column.id="appSys_name" compareType="LIKE"/>
+                <condition column.id="finAcc_name" compareType="LIKE"/>			
+				<!-- BdB CUSTOMIZATION -->
+                <condition column.id="bb_saldo" compareType="BETWEEN"/>				
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<view id="risk2Losses" view.parameter="DISTINCT">
+		<viewObject id="VO_risk2Losses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="reserves" attributeType="lossReserves"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>			
+		</viewObject>
+		<viewObject id="VO_risk2Losses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+			<viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+			<viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_risk2Losses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_risk2Losses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_risk2Losses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_risk2Losses_risk" objectType="RISK">
+			<viewColumn id="risk_id" attributeType="obj_id"/>
+		</viewObject>
+		<link linktype.id="3311" firstViewObject="VO_risk2Losses_loss" secondViewObject="VO_risk2Losses_ownerGroup"/>
+		<link linktype.id="3315" firstViewObject="VO_risk2Losses_loss" secondViewObject="VO_risk2Losses_risk"/>
+		<link linktype.id="3320" firstViewObject="VO_risk2Losses_loss" secondViewObject="VO_risk2Losses_incident" joinType="LEFT"/>
+		<link linktype.id="3312" firstViewObject="VO_risk2Losses_loss" secondViewObject="VO_risk2Losses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_risk2Losses_loss" secondViewObject="VO_risk2Losses_substitute" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="reserves" compareType="BETWEEN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="incident_name" compareType="LIKE"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <!-- risk filter -->
+                <!--restricted to current risk-->
+                <condition column.id="risk_id" compareType="EQ" currentObjectType.id="RISK" currentAttributeType.id="obj_id"/>
+				<!-- BdB CUSTOMIZATION -->
+				<condition column.id="bb_saldo" compareType="BETWEEN"/>				
+			</compoundCondition>
+		</conditions>
+	</view>	
+
+	<view id="hierarchy2Losses" view.parameter="DISTINCT">
+		<viewObject id="VO_hierarchy2Losses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Losses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+			<viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+			<viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+			<viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+			<viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+			<viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+			<viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+			<viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+			<viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+			<viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Losses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Losses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Losses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_hierarchy2Losses_hierarchy" objectType="HIERARCHY">
+			<viewColumn id="id" attributeType="obj_id"/>
+		</viewObject>
+		<link linktype.id="3311" firstViewObject="VO_hierarchy2Losses_loss" secondViewObject="VO_hierarchy2Losses_ownerGroup"/>
+		<link linktype.id="3316,3317,3318,3319" firstViewObject="VO_hierarchy2Losses_loss" secondViewObject="VO_hierarchy2Losses_hierarchy" attendVersionizing="false"/>
+		<link linktype.id="3320" firstViewObject="VO_hierarchy2Losses_loss" secondViewObject="VO_hierarchy2Losses_incident" joinType="LEFT"/>
+		<link linktype.id="3312" firstViewObject="VO_hierarchy2Losses_loss" secondViewObject="VO_hierarchy2Losses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_hierarchy2Losses_loss" secondViewObject="VO_hierarchy2Losses_substitute" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <!-- hierarchy filter -->
+                <!--only direct assignments-->
+                <condition column.id="id" compareType="IN"/>
+				<!-- BdB CUSTOMIZATION -->
+				<condition column.id="bb_saldo" compareType="BETWEEN"/>
+			</compoundCondition>
+		</conditions>
+	</view>    
+	
+	<view id="incident2Losses" view.parameter="DISTINCT">
+		<viewObject id="VO_incident2Losses_loss" objectType="LOSS" isMainViewObject="true">
+			<viewColumn id="client_sign" attributeType="client_sign" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+			<viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateFrom" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="discoveryDateTo" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="owner_status" attributeType="owner_status"/>
+			<viewColumn id="reviewer_status" attributeType="reviewer_status"/>
+			<viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="creditDefault" attributeType="creditDefault"/>
+			<viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+			<viewColumn id="reserves" attributeType="lossReserves"/>
+			<viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+			<viewColumn id="version_active" attributeType="version_active"/>
+			<viewColumn id="deactivated" attributeType="deactivated"/>
+			<!-- BdB CUSTOMIZATION -->
+			<viewColumn id="bb_saldo" attributeType="bb_saldo" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="bb_qtdeEventos_int" attributeType="bb_qtdeEventos_int" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_incident2Losses_incident" objectType="INCIDENT">
+			<viewColumn id="incident_id" 			attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="in_discoveryDateFrom" 	attributeType="discoveryDate"/>
+			<viewColumn id="in_discoveryDateTo" 	attributeType="discoveryDate"/>
+		</viewObject>
+		<viewObject id="VO_incident2Losses_ownerGroup" objectType="USERGROUP">
+			<viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_incident2Losses_performedBy" objectType="USER">
+			<viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="performedBy_deactivated" attributeType="deactivated" isSortable="true" isSelectColumn="true"/>
+		</viewObject>
+		<viewObject id="VO_incident2Losses_substitute" objectType="USER">
+			<viewColumn id="substitute_id" attributeType="obj_id" isSelectColumn="true"/>
+			<viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+			<viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+		</viewObject>
+		<link linktype.id="3320" firstViewObject="VO_incident2Losses_loss" secondViewObject="VO_incident2Losses_incident"/>
+		<link linktype.id="3311" firstViewObject="VO_incident2Losses_loss" secondViewObject="VO_incident2Losses_ownerGroup"/>
+		<link linktype.id="3312" firstViewObject="VO_incident2Losses_loss" secondViewObject="VO_incident2Losses_performedBy" joinType="LEFT"/>
+		<link linktype.id="3313" firstViewObject="VO_incident2Losses_loss" secondViewObject="VO_incident2Losses_substitute" joinType="LEFT"/>
+		<conditions>
+			<compoundCondition conditionConnect="AND"><!--object filters-->
+				<!--object filters-->
+                <condition column.id="client_sign" compareType="LIKE"/>
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="discoveryDateFrom" compareType="GE"/>
+                <condition column.id="discoveryDateTo" compareType="LE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="reserves" compareType="BETWEEN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ" currentAttributeType.id="obj_id" currentObjectType.id="INCIDENT"/>
+                <!--groups, user, hierarchy filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+				<!-- BdB CUSTOMIZATION -->
+                <condition column.id="bb_saldo" compareType="BETWEEN"/>
+                <condition column.id="bb_qtdeEventos_int" compareType="EQ"/>				
+			</compoundCondition>
+		</conditions>
+	</view>
+	
+	<!--assignment tab risk to losses -->
+    <view id="riskassessment2Losses" view.parameter="DISTINCT">
+        <viewObject id="VO_riskassessment2Losses_loss" objectType="LOSS" isMainViewObject="true">
+            <viewColumn id="creationDateFrom" attributeType="create_date"/>
+            <viewColumn id="creationDateTo" attributeType="create_date"/>
+            <viewColumn id="loss_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="lossIds" attributeType="obj_id" isSortable="true"/>
+            <viewColumn id="name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="type" attributeType="type" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlstartdate" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="controlenddate" attributeType="discoveryDate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="entryDateFrom" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="entryDateTo" attributeType="entryDate" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="owner_status" attributeType="owner_status" isSelectColumn="true"/>
+            <viewColumn id="reviewer_status" attributeType="reviewer_status" isSelectColumn="true"/>
+            <viewColumn id="grossActTotalLoss" attributeType="grossTotalLoss" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="netActTotalLoss" attributeType="netTotalLoss" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="creditDefault" attributeType="creditDefault"/>
+            <viewColumn id="insurancePayment" attributeType="insurancePayment"/>
+            <viewColumn id="reserves" attributeType="lossReserves"/>
+            <viewColumn id="currency" attributeType="currency" isSelectColumn="true"/>
+            <viewColumn id="version_active" attributeType="version_active"/>
+            <viewColumn id="deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_incident" objectType="INCIDENT">
+            <viewColumn id="incident_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="incident_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="in_discoveryDateFrom" attributeType="discoveryDate"/>
+            <viewColumn id="in_discoveryDateTo" attributeType="discoveryDate"/>
+            <viewColumn id="in_entryDateFrom" attributeType="entryDate"/>
+            <viewColumn id="in_entryDateTo" attributeType="entryDate"/>
+            <viewColumn id="businessLineLvl1" attributeType="businessLinesLevel_1"/>
+            <viewColumn id="businessLineLvl2" attributeType="businessLinesLevel_2"/>
+            <viewColumn id="eventTypeLvl1" attributeType="eventTypeLevel_1"/>
+            <viewColumn id="eventTypeLvl2" attributeType="eventTypeLevel_2"/>
+            <viewColumn id="eventCauseClass1" attributeType="eventCauseClassificLevel_1"/>
+            <viewColumn id="eventCauseClass2" attributeType="eventCauseClassificLevel_2"/>
+            <viewColumn id="incident_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_ownerGroup" objectType="USERGROUP">
+            <viewColumn id="ownerGroupID" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerGroupName" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="ownerGroupDeactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_performedBy" objectType="USER">
+            <viewColumn id="performedBy_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedBy_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="performedBy_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_substitute" objectType="USER">
+            <viewColumn id="substitute_id" attributeType="obj_id" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_name" attributeType="name" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="substitute_deactivated" attributeType="deactivated" isSelectColumn="true"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_risk" objectType="RISK">
+            <viewColumn id="risk_id" attributeType="obj_id"/>
+        </viewObject>
+        <viewObject id="VO_riskassessment2Losses_riskassessment" objectType="RISKASSESSMENT">
+            <viewColumn id="riskassessment_id" attributeType="obj_id"/>
+            <viewColumn id="riskassessment_va" attributeType="version_active"/>
+        </viewObject>
+        <link linktype.id="3311" firstViewObject="VO_riskassessment2Losses_loss" secondViewObject="VO_riskassessment2Losses_ownerGroup"/>
+        <link linktype.id="3315" firstViewObject="VO_riskassessment2Losses_loss" secondViewObject="VO_riskassessment2Losses_risk">
+            <viewColumn id="risk_grossActual" attributeType="relRisks_grossActual" isSortable="true" isSelectColumn="true"/>
+            <viewColumn id="risk_netActual" attributeType="relRisks_netActual" isSortable="true" isSelectColumn="true"/>
+        </link>
+        <link linktype.id="3320" firstViewObject="VO_riskassessment2Losses_loss" secondViewObject="VO_riskassessment2Losses_incident" joinType="LEFT"/>
+        <link linktype.id="3312" firstViewObject="VO_riskassessment2Losses_loss" secondViewObject="VO_riskassessment2Losses_performedBy" joinType="LEFT"/>
+        <link linktype.id="3313" firstViewObject="VO_riskassessment2Losses_loss" secondViewObject="VO_riskassessment2Losses_substitute" joinType="LEFT"/>
+        <link linktype.id="3166" firstViewObject="VO_riskassessment2Losses_riskassessment" secondViewObject="VO_riskassessment2Losses_risk" attendVersionizing="false"/>
+        <conditions>
+            <compoundCondition conditionConnect="AND">
+                <!--object filters-->
+                <condition column.id="creationDateFrom" compareType="GE"/>
+                <condition column.id="creationDateTo" compareType="LE"/>
+                <!--loss filters-->
+                <condition column.id="loss_id" compareType="EQ"/>
+                <condition column.id="lossIds" compareType="NOTIN"/>
+                <condition column.id="name" compareType="LIKE"/>
+                <condition column.id="type" compareType="EQ"/>
+                <condition column.id="controlstartdate" compareType="LE"/>
+                <condition column.id="controlenddate" compareType="GE"/>
+                <condition column.id="entryDateFrom" compareType="GE"/>
+                <condition column.id="entryDateTo" compareType="LE"/>
+                <condition column.id="owner_status" compareType="IN"/>
+                <condition column.id="reviewer_status" compareType="IN"/>
+                <condition column.id="grossActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="netActTotalLoss" compareType="BETWEEN"/>
+                <condition column.id="creditDefault" compareType="EQ"/>
+                <condition column.id="insurancePayment" compareType="EQ"/>
+                <condition column.id="reserves" compareType="BETWEEN"/>
+                <condition column.id="version_active" compareType="EQ" value="true"/>
+                <condition column.id="deactivated" compareType="EQ" value="false"/>
+                <!--incident filters-->
+                <condition column.id="incident_id" compareType="EQ"/>
+                <condition column.id="incident_name" compareType="LIKE"/>
+                <condition column.id="in_discoveryDateFrom" compareType="GE"/>
+                <condition column.id="in_discoveryDateTo" compareType="LE"/>
+                <condition column.id="in_entryDateFrom" compareType="GE"/>
+                <condition column.id="in_entryDateTo" compareType="LE"/>
+                <condition column.id="businessLineLvl1" compareType="EQ"/>
+                <condition column.id="businessLineLvl2" compareType="EQ"/>
+                <condition column.id="eventTypeLvl1" compareType="EQ"/>
+                <condition column.id="eventTypeLvl2" compareType="EQ"/>
+                <condition column.id="eventCauseClass1" compareType="EQ"/>
+                <condition column.id="eventCauseClass2" compareType="EQ"/>
+                <!--groups, user filters-->
+                <condition column.id="ownerGroupName" compareType="LIKE"/>
+                <condition column.id="performedBy_name" compareType="LIKE"/>
+                <condition column.id="substitute_name" compareType="LIKE"/>
+                <!-- risk filter -->
+                <!--restricted to current risk-->
+                <condition column.id="riskassessment_id" compareType="EQ" currentObjectType.id="RISKASSESSMENT" currentAttributeType.id="obj_id"/>
+                <condition column.id="riskassessment_va" compareType="EQ" value="true"/>
+            </compoundCondition>
+        </conditions>
+    </view>
+	
+</custom>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+	<navigation>
+	
+	    <nav.module module.id="module.evaluation" propertyKey="module.evaluation.DBI">
+	        <nav.item item.idref="item.evaluation.audit.management"/>
+	        <nav.item item.idref="item.evaluation.deficiency.management"/>
+	        <nav.item item.idref="item.evaluation.incident.management"/>
+	        <nav.item item.idref="item.evaluation.policy.management"/>
+	        <nav.item item.idref="item.evaluation.risk.management"/>
+	        <nav.item item.idref="item.evaluation.survey.management"/>
+	        <nav.item item.idref="item.evaluation.test.management"/>
+	        <!-- BdB CUSTOMIZATION -->
+	        <!-- <nav.item item.idref="item.evaluation.control.management"/> -->
+    	</nav.module>
+
+	    <!-- TEST MANAGEMENT -->
+
+	    <nav.item item.id="item.evaluation.test.management" propertyKey="item.evaluation.test.management.DBI">
+	        <nav.access>
+	            <nav.access.component licensedComponentIDs="tm"/>
+	        </nav.access>
+	        <!-- manager and auditor -->
+	        <nav.item item.id="item.evaluation.test.management.complete" propertyKey="evaluation.testcase.statistics.complete.DBI">
+	            <nav.access>
+	                <nav.access.role roleIDs="TESTMANAGER:CLIENT
+	                                            ,RISKMANAGER:OBJECT
+	                                            ,CONTROLMANAGER:OBJECT
+	                                            ,TESTAUDITOR:OBJECT"/>
+	            </nav.access>
+	            <nav.evaluation evaluation.idref="testcase" hierarchyType="orgunit"/>
+	            <nav.evaluation evaluation.idref="testcaseControl" hierarchyType="process"/>
+	            <nav.evaluation evaluation.idref="testcase" hierarchyType="financialaccount">
+	                <nav.parameter name="acceptUnassignedNodes" value="true"/>
+	            </nav.evaluation>
+	            <nav.evaluation evaluation.idref="testcase" hierarchyType="tester"/>
+	        </nav.item>
+	        <!-- tester -->
+	        <nav.item item.id="item.evaluation.test.management.tester" propertyKey="evaluation.testcase.statistics.tester.DBI">
+	            <nav.access>
+	                <nav.access.role roleIDs="TESTER"/>
+	            </nav.access>
+	            <nav.evaluation uniqueID="testcase.owner" evaluation.idref="testcase" hierarchyType="tester"/>
+	        </nav.item>
+	        <!-- reviewer -->
+	        <nav.item item.id="item.evaluation.test.management.reviewer" propertyKey="evaluation.testcase.statistics.reviewer.DBI">
+	            <nav.access>
+	                <nav.access.role roleIDs="TESTREVIEWER"/>
+	            </nav.access>
+	            <nav.evaluation uniqueID="testcase.reviewer" evaluation.idref="testcase" hierarchyType="process"/>
+	            <nav.evaluation uniqueID="testcase.reviewer" evaluation.idref="testcaseControl" hierarchyType="process"/>
+	            <nav.evaluation uniqueID="testcase.reviewer" evaluation.idref="testcase" hierarchyType="orgunit"/>
+	            <nav.evaluation uniqueID="testcase.reviewer" evaluation.idref="testcase" hierarchyType="financialaccount">
+	                <nav.parameter name="acceptUnassignedNodes" value="true"/>
+	            </nav.evaluation>
+	        <nav.evaluation uniqueID="testcase.reviewer" evaluation.idref="testcase" hierarchyType="tester"/>
+	        </nav.item>
+	        <!-- Account Disclosure Assertion Control Matrix (access rights checked by AccountAssertionStatisticDefinition) -->
+	        <nav.item item.id="item.evaluation.test.management.adacm" propertyKey="statistic.adacm.name.DBI">
+	            <nav.access>
+	                <nav.access.role roleIDs="TESTMANAGER
+	                                            ,TESTREVIEWER
+	                                            ,TESTAUDITOR"/>
+	            </nav.access>
+	            <nav.evaluation evaluation.idref="accountassertion"/>
+	        </nav.item>
+	
+	        <nav.item item.id="item.evaluation.test.management.forecast" propertyKey="item.evaluation.test.management.forecast.DBI">
+	            <nav.access>
+	                <nav.access.role   roleIDs="TESTMANAGER"/>
+	            </nav.access>
+	            <nav.evaluation evaluation.idref="forecast_testcase"/>
+	        </nav.item>
+    	</nav.item>
+	    
+	</navigation>
+</custom>

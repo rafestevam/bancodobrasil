@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+
+    <objectType id="QUESTION" extends="VERSION" xmlexport="true" displayAttribute="question_text"
+                clientDependent="true" licensedComponentIds="sm" descriptionAttributes="type, remark"
+                mashzoneId="110" arisImportRole="surveymanager" image="iconlib/icons/content/question_16.png">
+        <textAttrType id="remark"/>
+        <listAttrType id="optionSet" maxSize="1" objectType.idref="OPTIONSET" linkType="25"/>
+        <listAttrType id="options" objectType.idref="OPTION" linkType="3205" orderType="user">
+            <doubleAttrType id="options_weighting" defaultValue="1.0"/>
+        </listAttrType>
+        <listAttrType id="originalQuestion" maxSize="1" objectType.idref="QUESTION" linkType="3206" usingFixChildVersion="true"/>
+        <enumAttrType id="type" enumeration="question_type" defaultValue="0"/>
+        <booleanAttrType id="annotationAllowed" defaultValue="false"/>
+        <doubleAttrType id="questionValue" defaultValue="1.0"/>
+        <textAttrType id="question_text"/>
+        <booleanAttrType id="reviewerRatesAnswer" defaultValue="true"/>
+        <booleanAttrType id="optionalQuestion" defaultValue="false"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3221"/>
+        <enumAttrType id="isWorkingCopy" enumeration="workingcopy" defaultValue="0"/>
+        <listAttrType id="manager_group" objectType.idref="USERGROUP" linkType="6102">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="surveymanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <booleanAttrType id="bb_evidencesAllowed" defaultValue="false"/>
+        <listAttrType id="bb_reviewerOptionSet" maxSize="1" objectType.idref="OPTIONSET" linkType="10045"/>
+        
+    </objectType>
+    
+    <objectType id="ANSWER" extends="TRANSACTIONAL" displayAttribute="question_text" xmlexport="true"
+                clientDependent="true" licensedComponentIds="sm" dataKind="transactiondata"
+                mashzoneId="180" image="iconlib/icons/content/answer_16.png">
+
+        <enumAttrType id="owner_status" enumeration="EMPTY" />
+        <listAttrType id="owner_group" maxSize="1" objectType.idref="USERGROUP" linkType="4007"/>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3229"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3230"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3265"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+        <enumAttrType id="reviewer_status" enumeration="EMPTY" />
+        <listAttrType id="reviewer_group" maxSize="1" objectType.idref="USERGROUP" linkType="4008"/>
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="3231"/>
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="3232"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3266"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+
+        <listAttrType id="question" objectType.idref="QUESTION" linkType="36" maxSize="1" usingFixChildVersion="true"/>
+        <listAttrType id="selectedOptions" objectType.idref="OPTION" linkType="37" usingFixChildVersion="true">
+            <doubleAttrType id="selectedOptions_weighting"/>
+        </listAttrType>
+        <listAttrType id="reviewerOption" maxSize="1" objectType.idref="OPTION" linkType="3233">
+            <doubleAttrType id="reviewerOption_weighting"/>
+        </listAttrType>
+        <textAttrType id="remark"/>
+        <listAttrType id="possibleOptions" objectType.idref="OPTION" linkType="38" orderType="user" usingFixChildVersion="true">
+            <doubleAttrType id="possibleOptions_weighting"/>
+        </listAttrType>
+        <booleanAttrType id="annotationAllowed"/>
+        <enumAttrType id="type" enumeration="question_type" defaultValue="0"/>
+        <textAttrType id="textValue"/>
+        <dateAttrType id="dateValue"/>
+        <dateAttrType id="dateValueFrom"/>
+        <dateAttrType id="dateValueTo"/>
+        <longAttrType id="longValue"/>
+        <doubleAttrType id="doubleValue"/>
+        <textAttrType id="question_text"/>
+        <textAttrType id="question_remark"/>
+        <listAttrType id="question_documents" objectType.idref="DOCUMENT" linkType="3236"/>
+        <listAttrType id="relatedQuestionnaire" maxSize="1" objectType.idref="QUESTIONNAIRE" linkType="3215" breakCycle="true"/>
+        <longAttrType id="answered" defaultValue="0"/>  <!-- not replaced by owner_state due to generic cast to long neceesary-->
+        <longAttrType id="reviewed" defaultValue="0"/>  <!-- not replaced by owner_state due to generic cast to long neceesary-->
+        <doubleAttrType id="questionValue"/>
+        <longAttrType id="answerIndex"/>
+        <doubleAttrType id="actualScore"/>
+        <booleanAttrType id="reviewerRatesAnswer" defaultValue="false"/>
+        <booleanAttrType id="optionalAnswer" defaultValue="false"/>
+        <!--<attribute id="answerGroupedGUID" size="64" />-->
+        <index id="I_ANSWER_TYPE" type="normal">
+            <attributeRef attribute="type"/>
+        </index>
+        <index id="I_ANSWER_ANSWERED" type="normal">
+            <attributeRef attribute="answered"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <enumAttrType id="bb_reviewerEvaluation" enumeration="reviewer_evaluation" defaultValue="-2"/>
+        <listAttrType id="bb_answerDocuments" objectType.idref="DOCUMENT" linkType="10001"/>
+        
+    </objectType>
+    
+    <objectType id="QUESTIONNAIRE_TEMPLATE" extends="VERSION" clientDependent="true" xmlexport="true"
+                licensedComponentIds="sm" displayAttribute="name" descriptionAttributes="description, isWorkingCopy"
+                mashzoneId="90" arisImportRole="surveymanager" image="iconlib/icons/content/questionnaire_template_16.png">
+                
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="description"/>
+        <listAttrType id="sections" orderType="user" objectType.idref="SECTION" linkType="3200" isHierarchical="true"/>
+        <listAttrType id="originalQuestTemplate" maxSize="1" objectType.idref="QUESTIONNAIRE_TEMPLATE"
+                  linkType="3201" usingFixChildVersion="true"/>
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3220"/>
+        
+        <enumAttrType id="isWorkingCopy" enumeration="workingcopy" defaultValue="0"/>
+        <listAttrType id="manager_group" objectType.idref="USERGROUP" linkType="6101">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="surveymanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <index id="I_QUEST_TEMPL_name" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->        
+        <doubleAttrType id="targetScore" >
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>   
+    </objectType>
+    
+    <objectType id="SECTION" extends="VERSION" xmlexport="true" displayAttribute="name" clientDependent="true"
+                descriptionAttributes="description" licensedComponentIds="sm"
+                mashzoneId="100" arisImportRole="surveymanager" image="iconlib/icons/content/section_16.png">
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="description"/>
+        <listAttrType id="relQuestionnaireTemplate" maxSize="1" objectType.idref="QUESTIONNAIRE_TEMPLATE"
+                  linkType="3235" breakCycle="true"/>
+        <!-- no list restriction on working copy flag possible (=> snapshots) -->
+        <listAttrType id="questions" objectType.idref="QUESTION" linkType="3202" orderType="user" isHierarchical="true"/>
+        <listAttrType id="subSections" orderType="user" objectType.idref="SECTION" linkType="3203" isHierarchical="true"/>
+        <listAttrType id="originalSection" orderType="user" maxSize="1" objectType.idref="SECTION" linkType="3204" usingFixChildVersion="true"/>
+        
+        <enumAttrType id="isWorkingCopy" enumeration="workingcopy" defaultValue="0"/>
+        <index id="I_SECTION_NAME" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <doubleAttrType id="targetScore">
+            <validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>   
+    </objectType>
+    
+    <objectType id="OPTION" extends="VERSION" xmlexport="true" descriptionAttributes="optionValue" displayAttribute="name"
+                clientDependent="true" licensedComponentIds="sm"
+                mashzoneId="130" arisImportRole="surveymanager" image="iconlib/icons/content/answer_option_16.png">
+        <stringAttrType id="name" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <listAttrType id="originalOption" maxSize="1" objectType.idref="OPTION" linkType="3207" usingFixChildVersion="true"/>
+        <enumAttrType id="isWorkingCopy" enumeration="workingcopy" defaultValue="0"/>
+        <listAttrType id="manager_group" objectType.idref="USERGROUP" linkType="6104">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="surveymanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <index id="I_OPTION_name" type="normal">
+            <attributeRef attribute="name"/>
+        </index>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <doubleAttrType id="optionValue">
+        	<validate name="double" arg0="geq:0:value.must.not.be.smaller.than.bound.ERR"/>
+            <validate name="double" arg0="leq:999999999999999:value.must.not.be.greater.than.bound.ERR"/>
+            <validate name="double" arg0="scale:2:value.must.have.at.most.decimal.places.ERR"/>
+            <convert name="double" arg0="minFrac:2" arg1="maxFrac:2"/>
+        </doubleAttrType>
+    </objectType>
+    
+    <objectType id="QUESTIONNAIRE" extends="MONITORABLE" displayAttribute="obj_id" xmlexport="true" clientDependent="true"
+                licensedComponentIds="sm" dataKind="transactiondata"
+                mashzoneId="160" image="iconlib/icons/content/questionnaire_16.png">
+
+        <enumAttrType id="owner_status" enumeration="questionnaire_status" defaultValue="1"/>
+        <listAttrType id="owner_group" objectType.idref="USERGROUP" linkType="40" maxSize="1">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="questionnaireowner"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="owner" maxSize="1" objectType.idref="USER" linkType="3216"/>
+        <listAttrType id="owner_substitute" maxSize="1" objectType.idref="USER" linkType="3217"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="owner_upload_user" maxSize="1" objectType.idref="USER" linkType="3263"/>
+        <enumAttrType id="owner_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="owner_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+
+        <enumAttrType id="reviewer_status" enumeration="survey_review_status" defaultValue="0"/>
+        <listAttrType id="reviewer_group" objectType.idref="USERGROUP" linkType="41" maxSize="1">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="surveyreviewer"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="reviewer" maxSize="1" objectType.idref="USER" linkType="4009"/>
+        <listAttrType id="reviewer_substitute" maxSize="1" objectType.idref="USER" linkType="4010"/>
+		<!-- Added on 98.5.1.10 -->
+		<listAttrType id="reviewer_upload_user" maxSize="1" objectType.idref="USER" linkType="3264"/>
+        <enumAttrType id="reviewer_upload_role" enumeration="userrole_type" defaultValue="0"/>
+        <enumAttrType id="reviewer_upload_confirm" enumeration="confirmation_type" defaultValue="0"/>
+        <!-- Added on 98.5.1.10 -->
+        
+		<listAttrType id="manager_group" objectType.idref="USERGROUP" linkType="6106" maxSize="1">
+            <listRestriction>
+                <attributeRestriction attribute="role" value="surveymanager"/>
+                <attributeRestriction attribute="rolelevel" value="object"/>
+            </listRestriction>
+        </listAttrType>
+        
+        <listAttrType id="questionnaire_template" objectType.idref="QUESTIONNAIRE_TEMPLATE" linkType="39" maxSize="1" usingFixChildVersion="true"/>
+        <textAttrType id="reviewRemark"/>
+        <listAttrType id="questionnaireSections" maxSize="1" objectType.idref="QUESTIONNAIRESECTION" linkType="3211" isHierarchical="true"/>
+        <listAttrType id="surveyTask" maxSize="1" objectType.idref="SURVEYTASK" linkType="3212" usingFixChildVersion="true"/>
+        <listAttrType id="followup" maxSize="1" objectType.idref="QUESTIONNAIRE" linkType="3213"/>
+        <listAttrType id="predecessor" maxSize="1" objectType.idref="QUESTIONNAIRE" linkType="3214"/>
+        <stringAttrType id="questTemplateName" maxCharCount="250">
+            <validate name="maxlength" arg0="250"/>
+        </stringAttrType>
+        <textAttrType id="questTemplateDescr"/>
+        <longAttrType id="totalNumberOfAnswers"/>
+        <listAttrType id="relatedAppSystems" objectType.idref="HIERARCHY" linkType="3253" orderType="hierarchy">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="applicationsystemtype"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="relatedRegulations" objectType.idref="HIERARCHY" linkType="3254" orderType="hierarchy">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="financialaccount"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="relatedOrgunits" objectType.idref="HIERARCHY" linkType="3255" orderType="hierarchy">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="orgunit"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="relatedProcesses" objectType.idref="HIERARCHY" linkType="3256" orderType="hierarchy">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="process"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="relatedCategories" objectType.idref="HIERARCHY" linkType="3257" orderType="hierarchy">
+            <listRestriction>
+                <attributeRestriction attribute="type" value="category"/>
+            </listRestriction>
+        </listAttrType>
+        <listAttrType id="risks" objectType.idref="RISK" linkType="3258" />
+        <listAttrType id="controls" objectType.idref="CONTROL" linkType="3259" />
+        <listAttrType id="test_definitions" objectType.idref="TESTDEFINITION" linkType="3260" />
+        <listAttrType id="documents" objectType.idref="DOCUMENT" linkType="3222"/>
+        <doubleAttrType id="targetScore"/>
+        <listAttrType id="survey" maxSize="1" objectType.idref="SURVEY" linkType="3228"/>
+        <!--
+            Attributes necessary for technical reasons only (to enable/disable visibility)
+            Note that both attributes are _not_ maintained by the application, yet.
+        -->
+        <doubleAttrType id="actualScore"/>
+        <doubleAttrType id="progress"/>
+        
+        <!-- BdB CUSTOMIZATIONS -->
+        <doubleAttrType id="bb_intervieweeActualScore"/>
+        
+    </objectType>
+       
+</custom>

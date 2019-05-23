@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/custom.xsd">
+    <form id="FORM_ISSUE">
+        <logToolbarButtons>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_PDF"/>
+            <buttonReference button.idref="OBJECT_AUDITTRAIL_EXCEL"/>
+        </logToolbarButtons>
+        <formButtons>
+            <buttonReference button.idref="OBJECT_SAVE"/>
+            <buttonReference button.idref="OBJECT_SAVE_AND_NEXT"/>
+            <buttonReference button.idref="OBJECT_DELETE"/>
+            <buttonReference button.idref="OBJECT_REACTIVATE"/>
+            <buttonReference button.idref="PDF_REPORT"/>
+        </formButtons>
+        <page id="issue" licensedComponentIds="im">
+        	<group id="issue.A" propertyKey="group.issue.DBI">
+            <rowGroup id="issue.1">
+                <row id="obj_id" propertyKey="form.row.issue.id.DBI">
+                    <element attribute.idref="obj_id" />
+                </row>
+                <row id="bb_issueType">
+                    <element attribute.idref="bb_issueType">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="name">
+                    <element attribute.idref="name" />
+                </row>
+                <row id="issueRelevantObjects"> 
+                    <element attribute.idref="issueRelevantObjects" template="irorelations">
+                        <parameter name="selectionList" value="IssueRelevantObjectSelection"/>
+                        <button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                        <button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    </element>
+                </row>
+            </rowGroup>
+            </group>
+            <group id="issue.B" propertyKey="group.issue2.DBI">
+            <rowGroup id="issue.2" >
+            	<row id="creator">
+                    <element attribute.idref="creator" />
+                </row>
+                <row id="bb_creators_group">
+                    <element attribute.idref="bb_creators_group" />
+                </row>
+                <row id="bb_mgmtApproverL1_group">
+                    <element attribute.idref="bb_mgmtApproverL1_group">
+                    	<parameter name="selectionList" value="issue_issuemgmtapproverl1_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="bb_mgmtApproverL2_group">
+                    <element attribute.idref="bb_mgmtApproverL2_group">
+                    	<parameter name="selectionList" value="issue_issuemgmtapproverl2_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="bb_mgmtApprover_orgunit">
+                    <element attribute.idref="bb_mgmtApprover_orgunit">
+                    	<parameter name="selectionList" value="BB_mgmtApprover_orgunit_sel"/>
+                    </element>
+                </row>
+                <row id="bb_implApproverL1_group">
+                    <element attribute.idref="bb_implApproverL1_group">
+                    	<parameter name="selectionList" value="issue_issueimplapproverl1_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="bb_implApproverL2_group">
+                    <element attribute.idref="bb_implApproverL2_group">
+                    	<parameter name="selectionList" value="issue_issueimplapproverl2_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="bb_implApprover_orgunit">
+                    <element attribute.idref="bb_implApprover_orgunit">
+                    	<parameter name="selectionList" value="BB_implApprover_orgunit_sel"/>
+                    </element>
+                </row>
+                <row id="bb_isTechSupportNeeded">
+                    <element attribute.idref="bb_isTechSupportNeeded">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row> 
+               	<row id="bb_techApproverL1_group">
+                    <element attribute.idref="bb_techApproverL1_group">
+                    	<parameter name="selectionList" value="issue_issuetechapproverl1_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row>
+                <row id="bb_techApproverL2_group">
+                    <element attribute.idref="bb_techApproverL2_group">
+                    	<parameter name="selectionList" value="issue_issuetechapproverl2_sel"/>
+                    	<button.remove button.idref="RELATION_DETACH" location="toolbar"/>
+                    	<button.remove button.idref="RELATION_OPEN" location="toolbar"/>
+                    </element>
+                </row> 
+                <row id="bb_techApprover_orgunit">
+                    <element attribute.idref="bb_techApprover_orgunit">
+                    	<parameter name="selectionList" value="bb_techApprover_orgunit_sel"/>
+                    </element>
+                </row>
+            </rowGroup>
+            </group>
+            <group id="issue.C" propertyKey="group.issue3.DBI">
+            <rowGroup id="issue.3" >
+                <row id="description">
+                    <element attribute.idref="description" />
+                </row>
+                <row id="remark">
+                    <element attribute.idref="remark" />
+                </row>                  
+                <row id="created_by_testcase">
+                    <element attribute.idref="created_by_testcase" />
+                </row>
+                <row id="bb_issueOrign">
+                    <element attribute.idref="bb_issueOrign" />
+                </row>
+                <row id="bb_specificKpiLimit">
+                    <element attribute.idref="bb_specificKpiLimit" />
+                </row>
+                <row id="bb_specificKpiLimitAmount">
+                    <element attribute.idref="bb_specificKpiLimitAmount" />
+                </row>
+                <row id="bb_kpiLimitCurrentAmount">
+                    <element attribute.idref="bb_kpiLimitCurrentAmount" />
+                </row>
+                <row id="bb_specificKpiLimitDocs">
+                    <element attribute.idref="bb_specificKpiLimitDocs" />
+                </row>
+                <row id="priority">
+                    <element attribute.idref="priority"/>
+                </row>
+                <row id="bb_issueGrade">
+                    <element attribute.idref="bb_issueGrade" />
+                </row>
+                <!-- 
+                <row id="category">
+                    <element attribute.idref="category" />
+                </row>
+                -->
+                <row id="bb_faultLogCategory">
+                    <element attribute.idref="bb_faultLogCategory" />
+                </row>
+                <row id="immediateMeasure">
+                    <element attribute.idref="immediateMeasure" />
+                </row>
+                <row id="remediationMeasure">
+                    <element attribute.idref="remediationMeasure" />
+                </row>
+                <row id="bb_start_date">
+                    <element attribute.idref="bb_start_date" />
+                </row>
+                <row id="bb_firstPlannedEndDate">
+                    <element attribute.idref="bb_firstPlannedEndDate" />
+                </row>
+                <row id="plannedenddate">
+                    <element attribute.idref="plannedenddate">
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_anotherImportantInfo">
+                    <element attribute.idref="bb_anotherImportantInfo" />
+                </row> 
+                <row id="stateTime">
+                    <element attribute.idref="stateTime" />
+                </row>
+                <row id="bb_confidentialityLevel">
+                    <element attribute.idref="bb_confidentialityLevel" />
+                </row>
+                <row id="bb_projectServiceRequest">
+                    <element attribute.idref="bb_projectServiceRequest" />
+                </row>
+                <row id="documents">
+                    <element attribute.idref="documents" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="creator_status">
+                    <element attribute.idref="creator_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+            </rowGroup>
+            </group>
+            <group id="issue.D" propertyKey="form.questionnaire.DBI">
+            <rowGroup id="questionnaire.1" propertyKey="form.questionnaire.1.DBI" >
+        		<row id="bb_probAndMagnitQst01" >
+                   	<element attribute.idref="bb_probAndMagnitQst01"/>
+                </row>
+                <row id="bb_probAndMagnitQst02" >
+                   	<element attribute.idref="bb_probAndMagnitQst02"/>
+                </row>
+                <row id="bb_probAndMagnitQst03" >
+                   	<element attribute.idref="bb_probAndMagnitQst03"/>
+                </row>
+                <row id="bb_probAndMagnitQst04" >
+                   	<element attribute.idref="bb_probAndMagnitQst04"/>
+                </row>
+                <row id="bb_probAndMagnitQst05" >
+                   	<element attribute.idref="bb_probAndMagnitQst05"/>
+                </row>
+        	</rowGroup>
+        	<rowGroup id="questionnaire.2" propertyKey="form.questionnaire.2.DBI" >
+        		<row id="bb_compControlsQst01" >
+                   	<element attribute.idref="bb_compControlsQst01"/>
+                </row>
+                
+                <!-- BdB CUSTOMIZATION -->
+                <row id="bb_controlesCompensat">
+                    <element attribute.idref="bb_controlesCompensat">
+                    	<parameter name="selectionList" value="testcase2issue"/>
+                    </element>
+                </row>
+
+        	</rowGroup>
+        	<rowGroup id="questionnaire.3" propertyKey="form.questionnaire.3.DBI" >
+        		<row id="bb_otherConsidQst01" >
+                   	<element attribute.idref="bb_otherConsidQst01"/>
+                </row>
+                <row id="bb_otherConsidQst02" >
+                   	<element attribute.idref="bb_otherConsidQst02"/>
+                </row>
+                <row id="bb_otherConsidQst03" >
+                   	<element attribute.idref="bb_otherConsidQst03"/>
+                </row>
+                <row id="bb_otherConsidQst04" >
+                   	<element attribute.idref="bb_otherConsidQst04"/>
+                </row>
+        	</rowGroup>
+        	<rowGroup id="questionnaire.4" propertyKey="form.questionnaire.4.DBI" >
+        		<row id="bb_deficiencyGravityQst01" >
+                   	<element attribute.idref="bb_deficiencyGravityQst01">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_deficiencyGravityQst02" >
+                   	<element attribute.idref="bb_deficiencyGravityQst02">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_deficiencyGravityQst03" >
+                   	<element attribute.idref="bb_deficiencyGravityQst03">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_deficiencyGravityQst04" >
+                   	<element attribute.idref="bb_deficiencyGravityQst04">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_defGravityRmrk04" >
+                   	<element attribute.idref="bb_defGravityRmrk04"/>
+                </row>
+                <row id="bb_deficiencyGravityQst05" >
+                   	<element attribute.idref="bb_deficiencyGravityQst05">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_defGravityRmrk05" >
+                   	<element attribute.idref="bb_defGravityRmrk05"/>
+                </row>
+                <row id="bb_deficiencyGravityQst06" >
+                   	<element attribute.idref="bb_deficiencyGravityQst06">
+                   		<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                   	</element>
+                </row>
+                <row id="bb_defGravitySuggResult" >
+                   	<element attribute.idref="bb_defGravitySuggResult"/>
+                </row>
+                <row id="bb_defGravityResult" >
+                   	<element attribute.idref="bb_defGravityResult"/>
+                </row>
+        	</rowGroup>
+        	</group>
+        	<group id="issue.E" propertyKey="group.issue5.DBI">
+        	<rowGroup id="issue.5.1" propertyKey="rowgroup.issue5.1.DBI">
+        		<row id="bb_mgmtApproverL1_status">
+                    <element attribute.idref="bb_mgmtApproverL1_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_mgmtApproverL1_aware">
+                    <element attribute.idref="bb_mgmtApproverL1_aware" />
+                </row>
+                <row id="bb_mgmtApproverL1_remark">
+                    <element attribute.idref="bb_mgmtApproverL1_remark" />
+                </row>
+                <row id="bb_mgmtApproverL1">
+                    <element attribute.idref="bb_mgmtApproverL1" />
+                </row>
+                <row id="bb_dealingDeadlineDate">
+                    <element attribute.idref="bb_dealingDeadlineDate" />
+                </row>
+                <row id="bb_mgmtApproverL1_date">
+                    <element attribute.idref="bb_mgmtApproverL1_date" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.5.2" propertyKey="rowgroup.issue5.2.DBI">
+                <row id="bb_mgmtApproverL2_status">
+                    <element attribute.idref="bb_mgmtApproverL2_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_mgmtApproverL2_remark">
+                    <element attribute.idref="bb_mgmtApproverL2_remark" />
+                </row>
+                <row id="bb_mgmtApproverL2">
+                    <element attribute.idref="bb_mgmtApproverL2" />
+                </row>
+                <row id="bb_mgmtApproverL2_date">
+                    <element attribute.idref="bb_mgmtApproverL2_date" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.5.3" propertyKey="rowgroup.issue5.3.DBI">
+                <row id="bb_implApproverL1_status">
+                    <element attribute.idref="bb_implApproverL1_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_implApproverL1_aware">
+                    <element attribute.idref="bb_implApproverL1_aware" />
+                </row>
+                <row id="bb_implApproverL1_remark">
+                    <element attribute.idref="bb_implApproverL1_remark" />
+                </row>
+                <row id="bb_implApproverL1">
+                    <element attribute.idref="bb_implApproverL1" />
+                </row>
+                <row id="bb_implApproverL1_date">
+                    <element attribute.idref="bb_implApproverL1_date" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.5.5" propertyKey="rowgroup.issue5.5.DBI">
+                <row id="bb_techApproverL1_status">
+                    <element attribute.idref="bb_techApproverL1_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_techApproverL1_remark">
+                    <element attribute.idref="bb_techApproverL1_remark" />
+                </row>
+                <row id="bb_techApproverL1">
+                    <element attribute.idref="bb_techApproverL1" />
+                </row>
+                <row id="bb_techApproverL1_date">
+                    <element attribute.idref="bb_techApproverL1_date" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.5.6" propertyKey="rowgroup.issue5.6.DBI">
+                <row id="bb_techApproverL2_status">
+                    <element attribute.idref="bb_techApproverL2_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_techApproverL2_remark">
+                    <element attribute.idref="bb_techApproverL2_remark" />
+                </row>
+                <row id="bb_techApproverL2">
+                    <element attribute.idref="bb_techApproverL2" />
+                </row>
+                <row id="bb_techApproverL2_date">
+                    <element attribute.idref="bb_techApproverL2_date" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.5.4" propertyKey="rowgroup.issue5.4.DBI">
+                <row id="bb_implApproverL2_status">
+                    <element attribute.idref="bb_implApproverL2_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_implApproverL2_aware">
+                    <element attribute.idref="bb_implApproverL2_aware" />
+                </row>
+                <row id="bb_implApproverL2_remark">
+                    <element attribute.idref="bb_implApproverL2_remark" />
+                </row>
+                <row id="bb_implApproverL2">
+                    <element attribute.idref="bb_implApproverL2" />
+                </row>
+                <row id="bb_implApproverL2_date">
+                    <element attribute.idref="bb_implApproverL2_date" />
+                </row>
+        	</rowGroup>
+        	</group>
+        	<group id="issue.F" propertyKey="group.issue4.DBI">
+            <rowGroup id="issue.4.1" propertyKey="rowgroup.issue4.1.DBI">
+            	<row id="bb_owners_group">
+                    <element attribute.idref="bb_owners_group">
+                    	<parameter name="selectionList" value="issue_issueowner_sel"/>
+                    </element>
+                </row>
+            	<row id="owners">
+                    <element attribute.idref="owners" >
+                        <parameter name="selectionList" value="IssueOwnerSelection"/>
+                    </element>
+                </row>
+                <!-- BdB wants usergroups instead of users in issuemanagement
+                <row id="owner_group">
+                    <element attribute.idref="owner_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row> -->
+                <row id="owner">
+                    <element attribute.idref="owner" template="userSubstitute">
+                        <parameter name="substitute" value="owner_substitute"/>
+                    </element>
+                </row>
+                <row id="bb_conclusionPercentage">
+                    <element attribute.idref="bb_conclusionPercentage" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_injuredIssue">
+                    <element attribute.idref="bb_injuredIssue" >
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_implDocuments">
+                    <element attribute.idref="bb_implDocuments" template="doclink">
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row>
+                <row id="owner_status">
+                    <element attribute.idref="owner_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="owner_remark">
+                    <element attribute.idref="owner_remark" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.4.2" propertyKey="rowgroup.issue4.2.DBI">
+                <row id="bb_execImplApprL1_status">
+                    <element attribute.idref="bb_execImplApprL1_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_execImplApprL1_remark">
+                    <element attribute.idref="bb_execImplApprL1_remark" />
+                </row>
+                <row id="bb_execImplApprL1">
+                    <element attribute.idref="bb_execImplApprL1" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.4.3" propertyKey="rowgroup.issue4.3.DBI">
+                <row id="bb_execImplApprL2_status">
+                    <element attribute.idref="bb_execImplApprL2_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_execImplApprL2_remark">
+                    <element attribute.idref="bb_execImplApprL2_remark" />
+                </row>
+                <row id="bb_execImplApprL2">
+                    <element attribute.idref="bb_execImplApprL2" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.4.4" propertyKey="rowgroup.issue4.4.DBI">
+                <row id="bb_reviewers_group">
+                    <element attribute.idref="bb_reviewers_group">
+                    	<parameter name="selectionList" value="issue_issuereviewers_sel"/>
+                    </element>
+                </row>
+                <row id="reviewers">
+                    <element attribute.idref="reviewers" >
+                        <parameter name="selectionList" value="IssueReviewerSelection"/>
+                    </element>
+                </row>
+                <!-- BdB wants usergroups instead of users in issuemanagement
+                <row id="reviewer_group">
+                    <element attribute.idref="reviewer_group" >
+                        <parameter name="selectionList" value="AUTO"/>
+                    </element>
+                </row> -->
+                <row id="reviewer">
+                    <element attribute.idref="reviewer" template="userSubstitute">
+                        <parameter name="substitute" value="reviewer_substitute"/>
+                    </element>
+                </row>
+                <row id="reviewer_status">
+                    <element attribute.idref="reviewer_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="reviewer_remark">
+                    <element attribute.idref="reviewer_remark" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.4.5" propertyKey="rowgroup.issue4.5.DBI">
+                <row id="bb_execMgmtApprL1_aware">
+                    <element attribute.idref="bb_execMgmtApprL1_aware">
+                    	<javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_execMgmtApprL1_status">
+                    <element attribute.idref="bb_execMgmtApprL1_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_execMgmtApprL1_remark">
+                    <element attribute.idref="bb_execMgmtApprL1_remark" />
+                </row>
+                <row id="bb_execMgmtApprL1">
+                    <element attribute.idref="bb_execMgmtApprL1" />
+                </row>
+            </rowGroup>
+            <rowGroup id="issue.4.6" propertyKey="rowgroup.issue4.6.DBI">
+                <row id="bb_execMgmtApprL2_status">
+                    <element attribute.idref="bb_execMgmtApprL2_status" >
+                        <javaScriptEvent expression="aam_objectcommand('cache');" name="onChange"/>
+                    </element>
+                </row>
+                <row id="bb_execMgmtApprL2_remark">
+                    <element attribute.idref="bb_execMgmtApprL2_remark" />
+                </row>
+                <row id="bb_execMgmtApprL2">
+                    <element attribute.idref="bb_execMgmtApprL2" />
+                </row>
+            </rowGroup>
+            </group>
+        </page>
+    </form>
+</custom>
